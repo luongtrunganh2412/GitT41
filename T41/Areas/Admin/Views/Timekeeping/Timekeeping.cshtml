@@ -1,0 +1,339 @@
+﻿@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Báo cáo kế hoạch phân ca đã thiết lập trên hệ thống phần mềm</title>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Báo cáo kế hoạch phân ca đã thiết lập trên hệ thống phần mềm</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Loại báo cáo</label>
+                        <select class="form-control select2" style="width: 100%;" id="channel">
+                            <option selected="selected" value="0">Chi tiết phân công lao động theo ngày</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Đơn vị</label>
+                        <select class="form-control select2" style="width: 100%;" id="postman">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">TTKTTN-HN</option>
+                            <option value="2">TTKTTN-DN</option>
+                            <option value="3">TTKTTN-HCM</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Hoạt động</label>
+                        <select class="form-control select2" style="width: 100%;" id="channel">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">Khai thác trong nước</option>
+                            <option value="2">Vận chuyển</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Bưu cục</label>
+                        <select class="form-control select2" style="width: 100%;" id="postman">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">100916 – Liên tỉnh</option>
+                            <option value="2">101000 – Nội tỉnh</option>
+                            <option value="3">550915 – Liên tỉnh</option>
+                            <option value="3">550100 – Nội tỉnh</option>
+                            <option value="3">700916 – Liên tỉnh</option>
+                            <option value="3">701000 – Nội tỉnh</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Địa điểm</label>
+                        <select class="form-control select2" style="width: 100%;" id="channel">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">Hải Bối</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Ca</label>
+                        <select class="form-control select2" style="width: 100%;" id="postman">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">Ca 1</option>
+                            <option value="2">Ca 2</option>
+                            <option value="3">Ca 3</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Kíp</label>
+                        <select class="form-control select2" style="width: 100%;" id="channel">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">Kíp 1(8h-16h)</option>
+                            <option value="2">Kíp 2(9h-20h)</option>
+                            <option value="3">Kíp 3(10h-18h)</option>
+                            <option value="4">Kíp 4(11h-20h)</option>
+                            <option value="5">Kíp 5(16h-22h)</option>
+                            <option value="6">Kíp 6(20h-6h30)</option>
+                            <option value="7">Kíp 7(9h-17h)</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label>Khoảng thời gian</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="reservation">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                    <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Lấy số liệu</button>
+                </td>
+            </tr>
+            <div class="box-header">
+                <h3 class="box-title">Tổng hợp theo kíp</h3>
+            </div>
+            <table id="example1" class="table table-bordered table-hover">
+                <thead>
+                    <tr class="bg-light-blue color-palette">
+                        <th>STT</th>STT	Ca	Tên Kíp	Thời gian(Từ-Đến)	Tổng giờ làm	Số người	Khung giờ sản xuất
+                        <th>Ca</th>
+                        <th>Tên Kíp</th>
+                        <th>Thời gian(Từ-Đến)</th>
+                        <th>Tổng giờ làm</th>
+                        <th>Số người</th>
+                        <th>Khung giờ sản xuất</th>
+                    </tr>
+                    <tr class="bg-light-blue color-palette">
+                        <th class="hide"></th>
+                        <th class="hide"></th>
+                        <th class="hide"></th>
+                        <th class="hide"></th>
+                        <th class="hide"></th>
+                        <th class="hide"></th>
+
+                        <th>Ngày giờ</th>
+                        <th>Ngày giờ</th>
+
+                        <th>Kết quả phát</th>
+                        <th>Lý do không phát được</th>
+                        <th>Nơi phát</th>
+
+                        <th>Cước</th>
+                        <th>Thu hộ</th>
+                    </tr>
+                </thead>
+                <tbody id="summarydeliveryreport"></tbody>
+            </table>
+            <div class="box-header">
+                <h3 class="box-title">Bảng kê chi tiết phát theo mã bưu gửi</h3>
+            </div>
+            <div>
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th rowspan="2">STT</th>
+                            <th rowspan="2">Kênh</th>
+                            <th rowspan="2">Id giao dịch</th>
+                            <th rowspan="2">Thời gian phát</th>
+                            <th rowspan="2">Thời gian hệ thống</th>
+                            <th rowspan="2">Mã vận đơn</th>
+                            <th rowspan="2">Loại DV</th>
+                            <th>Đến phát</th>
+                            <th>Tồn phát</th>
+                            <th colspan="3" class="text-center">Hoạt động phát</th>
+                            <th colspan="2" class="text-center">Tiền phải thu (đ)</th>
+                            <th rowspan="2">Bưu cục</th>
+                            <th rowspan="2">Tuyến phát</th>
+                            <th rowspan="2">Bưu tá</th>
+                        </tr>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+                            <th class="hide"></th>
+
+                            <th>Ngày giờ</th>
+                            <th>Ngày giờ</th>
+
+                            <th>Kết quả phát</th>
+                            <th>Lý do không phát được</th>
+                            <th>Nơi phát</th>
+
+                            <th>Cước</th>
+                            <th>Thu hộ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listdeliveryreport"></tbody>
+                    @*<tfoot>
+                            <tr>
+                                <th>Rendering engine</th>
+                                <th>Browser</th>
+                                <th>Platform(s)</th>
+                                <th>Engine version</th>
+                                <th>CSS grade</th>
+                            </tr>
+                        </tfoot>*@
+                </table>
+            </div>
+            <div class="row">
+                @*<div class="col-sm-5">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"></div>
+                    </div>*@
+                <div id="page-selection" class="col-sm-12 text-center">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.box-body -->
+
+
+
+
+
+</section>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+
+<!--jquery.bootpag.min-->>
+
+
+@*<script>
+    $(function () {
+        $('#reservation').daterangepicker()
+    })
+    $("#btnreport").click(function () {
+        // Summary
+        summary();
+        // Detail
+        detail(1);
+    });
+    function summary() {
+        $.ajax({
+            url: '@Url.Action("SummaryDeliveryReport", "Delivery")',
+            dataType: 'html',
+            data:
+                {
+                    channel: $("#channel").val(),
+                    postman: $("#postman").val(),
+                    deliveryroute: $("#deliveryroute").val(),
+                    postcode: $("#postcode").val(),
+                    fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
+                    todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
+                    status: $("#status").val()
+                },
+            success: function (result) {
+                $('#summarydeliveryreport').html(result);
+            }
+        })
+    }
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("ListDetailedDeliveryReport", "Delivery")',
+            dataType: 'html',
+            data:
+                {
+                    channel: $("#channel").val(),
+                    postman: $("#postman").val(),
+                    deliveryroute: $("#deliveryroute").val(),
+                    postcode: $("#postcode").val(),
+                    fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
+                    todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
+                    status: $("#status").val(),
+                    page: p
+                },
+            success: function (result) {
+                $('#listdeliveryreport').html(result);
+                if (p == 1) refreshPaging();
+            }
+        })
+    }
+    function refreshPaging() {
+        $('#page-selection').bootpag({
+            total: $('#total_page').val(),
+            maxVisible: 10,
+        }).on("page", function (event, /* page number here */ num) {
+            detail(num);
+        });
+    }
+    $(document).ready(function () {
+        $.getJSON("/Delivery/ListPostCode", function (data) {
+            $.each(data, function (i, data) {
+                $('<option>',
+                   {
+                       value: data.POST_CODE,
+                       text: data.POST_CODE_NAME
+                   }).html(data.POST_CODE + '-' + data.POST_CODE_NAME).appendTo("#postcode");
+            });
+        })
+        $.getJSON("/Delivery/ListPostMan", function (data) {
+            $.each(data, function (i, data) {
+                $('<option>',
+                   {
+                       value: data.POSTMAN_ID,
+                       text: data.POSTMAN_NAME
+                   }).html(data.POSTMAN_ID + '-' + data.POSTMAN_NAME).appendTo("#postman");
+            });
+        })
+        $('#postcode').change(function () {
+            $.ajax({
+                url: "/Delivery/ListDeliveryRouteByPostCode",
+                dataType: "json",
+                data: { postcode: $("#postcode").val() },
+                success: function (data) {
+                    $('#deliveryroute').html('<option value=0>Tuyến phát</option>');
+                    jQuery.each(data, function (i, val) {
+                        $('#deliveryroute').html($('#deliveryroute').html() +
+                            "<option value='" + val.POST_CODE + "'>" + val.POST_CODE + '-' + val.POST_CODE_NAME + "</option>");
+                    });
+                }
+            });
+        })
+    });
+</script>*@
+
+
