@@ -132,7 +132,7 @@
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
                     <tr class="bg-light-blue color-palette">
-                        <th>STT</th>STT	Ca	Tên Kíp	Thời gian(Từ-Đến)	Tổng giờ làm	Số người	Khung giờ sản xuất
+                        <th>STT</th>
                         <th>Ca</th>
                         <th>Tên Kíp</th>
                         <th>Thời gian(Từ-Đến)</th>
@@ -307,7 +307,7 @@
         });
     }
     $(document).ready(function () {
-        $.getJSON("/Delivery/ListPostCode", function (data) {
+        $.getJSON("/Timekeeping/DMKip", function (data) {
             $.each(data, function (i, data) {
                 $('<option>',
                    {
@@ -320,8 +320,8 @@
             $.each(data, function (i, data) {
                 $('<option>',
                    {
-                       value: data.POSTMAN_ID,
-                       text: data.POSTMAN_NAME
+                       value: data.MAKIP,
+                       text: data.TENKIP
                    }).html(data.POSTMAN_ID + '-' + data.POSTMAN_NAME).appendTo("#postman");
             });
         })
