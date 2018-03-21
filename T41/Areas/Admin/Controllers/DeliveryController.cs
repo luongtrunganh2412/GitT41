@@ -41,11 +41,14 @@ namespace T41.Areas.Admin.Controllers
         }
         public ActionResult ListDetailedDeliveryReport(int channel, int postman, int postcode, int deliveryroute, int status, string fromdate, string todate, int? page)
         {
+            DeliveryRepository deliveryRepository = new DeliveryRepository();
             int currentPageIndex = page.HasValue ? page.Value : 1;
             ViewBag.currentPageIndex = currentPageIndex;
             ViewBag.PageSize = page_size;
             ReturnDelivery returndelivery = new ReturnDelivery();
-            returndelivery = apiRepository.ListDeliveryReport(channel, postman, postcode, deliveryroute, status, common.DateToInt(fromdate), common.DateToInt(todate), page_size, currentPageIndex);
+
+            //returndelivery = apiRepository.ListDeliveryReport(channel, postman, postcode, deliveryroute, status, common.DateToInt(fromdate), common.DateToInt(todate), page_size, currentPageIndex);
+            returndelivery = deliveryRepository.DELIVERY_DEPART_DETAIL(channel, postman, status, common.DateToInt(fromdate), common.DateToInt(todate), postcode, deliveryroute, page_size, currentPageIndex);
             ViewBag.total = returndelivery.Total;
             ViewBag.total_page = (returndelivery.Total + page_size - 1) / page_size;
             return View(returndelivery.ListDeliveryReport);
@@ -53,7 +56,9 @@ namespace T41.Areas.Admin.Controllers
         public ActionResult SummaryDeliveryReport(int channel, int postman, int postcode, int deliveryroute, int status, string fromdate, string todate)
         {
             ReturnSummaryDelivery returndelivery = new ReturnSummaryDelivery();
-            returndelivery = apiRepository.SummaryDelivery(channel, postman, postcode, deliveryroute, status, common.DateToInt(fromdate), common.DateToInt(todate));
+            DeliveryRepository deliveryRepository = new DeliveryRepository();
+            //returndelivery = apiRepository.SummaryDelivery(channel, postman, postcode, deliveryroute, status, common.DateToInt(fromdate), common.DateToInt(todate));
+            returndelivery = deliveryRepository.COME_DELIVERY_SUMMARY(channel, postman, status, common.DateToInt(fromdate), common.DateToInt(todate), postcode, deliveryroute);
             ViewBag.ComeDeliveryTotal = returndelivery.ComeDeliverySummary;
             ViewBag.RemainDeliveryTotal = returndelivery.RemainDeliverySummary;
 

@@ -51,7 +51,7 @@ namespace T41.Areas.Admin.Models.DataModel
     public class DeliveryDetail
     {
         public string CHANNEL { get; set; }
-        public string ID_PROCESS { get; set; }
+        public int ID_PROCESS { get; set; }
         public string DELIVERY_DATE_TIME { get; set; }
         public string SYSTEM_DATE_TIME { get; set; }
         public string LADING_CODE { get; set; }

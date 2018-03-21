@@ -193,12 +193,12 @@
 
 <script>
     $(function () {
-        $('#reservation').daterangepicker()
+        $('#reservation').daterangepicker()// load tu ngay den ngay
     })
     $("#btnreport").click(function () {
-        // Summary
+        // goi ham Summary
         summary();
-        // Detail
+        // goi ham Detail
         detail(1);
     });
     function summary() {
@@ -216,7 +216,7 @@
                     status: $("#status").val()
                 },
             success: function (result) {
-                $('#summarydeliveryreport').html(result);
+                $('#summarydeliveryreport').html(result);   //sau khi chay ham thanh cong lay ra ket qua thi bind html vao id summarydeliveryreport
             }
         })
     }
@@ -236,6 +236,7 @@
                     page: p
                 },
             success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listdeliveryreport
                 $('#listdeliveryreport').html(result);
                 if (p == 1) refreshPaging();
             }
@@ -249,9 +250,13 @@
             detail(num);
         });
     }
+    // nap du lieu vao combo buu cuc
     $(document).ready(function () {
+ 
         $.getJSON("/Delivery/ListPostCode", function (data) {
+          
             $.each(data, function (i, data) {
+               
                 $('<option>',
                    {
                        value: data.POST_CODE,
@@ -259,6 +264,7 @@
                    }).html(data.POST_CODE + '-' + data.POST_CODE_NAME).appendTo("#postcode");
             });
         })
+        // nap du lieu vao combo buu ta
         $.getJSON("/Delivery/ListPostMan", function (data) {
             $.each(data, function (i, data) {
                 $('<option>',
@@ -268,6 +274,7 @@
                    }).html(data.POSTMAN_ID + '-' + data.POSTMAN_NAME).appendTo("#postman");
             });
         })
+        // su kien thay doi cua combo buu cuc se load thong tin tuyen phat vao combo tuyen phat.
         $('#postcode').change(function () {
             $.ajax({
                 url: "/Delivery/ListDeliveryRouteByPostCode",

@@ -23,5 +23,21 @@ namespace T41.Areas.Admin.Common
             }
 
         }
+        #region Convert_Date
+        public string Convert_Date(int str_Date)
+        {
+            string str = "";
+            str = string.Format("{0:dd/MM/yyyy}", str_Date.ToString());
+            if ((str == "") || (str == "0"))
+                return str;
+            else
+            {
+                string ngay = str.Substring(6, 2);
+                string thang = str.Substring(4, 2);
+                string nam = str.Substring(0, 4);
+                return ngay + "/" + thang + "/" + nam;
+            }
+        }
+        #endregion  
     }
 }

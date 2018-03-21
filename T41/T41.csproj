@@ -194,6 +194,7 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimekeepingController.cs" />
     <Compile Include="Areas\Admin\Data\ApiRepository.cs" />
+    <Compile Include="Areas\Admin\Data\DeliveryRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\DataInitializer.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\DTPowerDBContext.cs" />
