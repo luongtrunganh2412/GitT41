@@ -13,7 +13,7 @@ namespace T41.Areas.Admin.Data
     {
 
         #region GetALLDMKip
-        public IEnumerable<TimeKeeping> GetAllDMKip(int don_vi)
+        public IEnumerable<TimeKeeping> GetAllDMKip()
         {
             List<TimeKeeping> listTimeKeeping = null;
             TimeKeeping oTimeKeeping = null;
@@ -32,16 +32,10 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oTimeKeeping = new TimeKeeping();
-                            oTimeKeeping.DONVI= int.Parse(dr["DONVI"].ToString());
+                            oTimeKeeping.MAKIP = int.Parse(dr["MAKIP"].ToString());
+                            oTimeKeeping.TENKIP = dr["TENKIP"].ToString();
                             listTimeKeeping.Add(oTimeKeeping);
                         }
-                        //while (dr.Read())
-                        //{
-                        //    oTimeKeeping = new TimeKeeping();
-                        //    oTimeKeeping.MAKIP = int.Parse(dr["MAKIP"].ToString());
-                        //    oTimeKeeping.TENKIP = dr["TENKIP"].ToString();
-                        //    listTimeKeeping.Add(oTimeKeeping);
-                        //}
                     }
                 }
             }

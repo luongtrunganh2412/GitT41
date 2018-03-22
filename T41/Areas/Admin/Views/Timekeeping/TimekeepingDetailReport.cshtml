@@ -447,33 +447,6 @@
     }
 
     $(document).ready(function () {
-        
-
-        $.getJSON("/Timekeeping/DMKip", function (data) {
-            $.each(data, function (i, data) {
-                alert("0");
-                $('<option>',
-                   {
-                       value: data.DONVI,
-                   }).html(data.DONVI).appendTo("#donvi");
-            });
-        })
-
-    });
-    $(document).ready(function () {
-        $.ajax({
-            url: "/Timekeeping/DMKip",
-            dataType: "json",
-            data: { DONVI: $("#DONVI").val() },
-            success: function (data) {
-                alert("0");
-                $('#donvi').html('<option value=0>Tất Cả</option>');
-                jQuery.each(data, function (i, val) {
-                    $('#donvi').html($('#donvi').html() +
-                        "<option value='" + val.POST_CODE + "'>" + val.POST_CODE + '-' + val.POST_CODE_NAME + "</option>");
-                });
-            }
-        });
 
         $.getJSON("/Timekeeping/DMKip", function (data) {
             $.each(data, function (i, data) {
