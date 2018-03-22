@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.Ca </td>
+            <td>@c.TenKip </td>
+            <td>@c.ThoiGian</td>
+            <td>@c.TongGioLam </td>
+            <td>@c.SoNguoi </td>
+            <td>@c.Gio8Den9h </td>
+            <td>@c.Gio9Den10h </td>
+            <td>@c.Gio10Den11h </td>
+            <td>@c.Gio11Den12h </td>
+            <td>@c.Gio12Den13h </td>
+            <td>@c.Gio13Den14h </td>
+            <td>@c.Gio14Den15h </td>
+            <td>@c.Gio15Den16h </td>
+            <td>@c.Gio16Den17h </td>
+            <td>@c.Gio17Den18h </td>
+            <td>@c.Gio18Den19h </td>
+            <td>@c.Gio19Den20h </td>
+            <td>@c.Gio20Den21h </td>
+            <td>@c.Gio21Den22h </td>
+            <td>@c.Gio22Den23h </td>
+            <td>@c.Gio23Den24h </td>
+            <td>@c.Gio24Den1h </td>
+            <td>@c.Gio1Den2h </td>
+            <td>@c.Gio2Den3h </td>
+            <td>@c.Gio3Den4h </td>
+            <td>@c.Gio4Den5h </td>
+            <td>@c.Gio5Den6h </td>
+            <td>@c.Gio6Den7h </td>
+            <td>@c.Gio7Den8h </td>
+
+        </tr>
+        i++;
+    }
+}
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />

@@ -27,8 +27,8 @@ namespace T41.Areas.Admin.Controllers
         }
         public JsonResult ListPostCode()
         {
-            TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();           
-            return Json(timekeepingRepository.GetAllDeliveryPostCode(), JsonRequestBehavior.AllowGet);
+            DeliveryRepository deliveryRepository = new DeliveryRepository();
+            return Json(deliveryRepository.GetAllDeliveryPostCode(), JsonRequestBehavior.AllowGet);
             //  return Json(apiRepository.ListPostCode(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult ListDeliveryRouteByPostCode(int postcode)
@@ -42,11 +42,10 @@ namespace T41.Areas.Admin.Controllers
         public ActionResult ListDetailedDeliveryReport(int channel, int postman, int postcode, int deliveryroute, int status, string fromdate, string todate, int? page)
         {
             DeliveryRepository deliveryRepository = new DeliveryRepository();
+            ReturnDelivery returndelivery = new ReturnDelivery();
             int currentPageIndex = page.HasValue ? page.Value : 1;
             ViewBag.currentPageIndex = currentPageIndex;
             ViewBag.PageSize = page_size;
-            ReturnDelivery returndelivery = new ReturnDelivery();
-
             //returndelivery = apiRepository.ListDeliveryReport(channel, postman, postcode, deliveryroute, status, common.DateToInt(fromdate), common.DateToInt(todate), page_size, currentPageIndex);
             returndelivery = deliveryRepository.DELIVERY_DEPART_DETAIL(channel, postman, status, common.DateToInt(fromdate), common.DateToInt(todate), postcode, deliveryroute, page_size, currentPageIndex);
             ViewBag.total = returndelivery.Total;

@@ -3058,7 +3058,8 @@
     <Content Include="Areas\Admin\Views\Delivery\DeliveryDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\Delivery\ListDetailedDeliveryReport.cshtml" />
     <Content Include="Areas\Admin\Views\Delivery\SummaryDeliveryReport.cshtml" />
-    <Content Include="Areas\Admin\Views\Timekeeping\Timekeeping.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\TimekeepingDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\ListDetailedTimekeepingReport.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

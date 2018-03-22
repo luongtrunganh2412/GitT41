@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using T41.Areas.Admin.Models.DataModel;
+using T41.Areas.Admin.Models.DataModel;
 using T41.Areas.Admin.Common;
 using System.Data;
 
@@ -11,6 +12,42 @@ namespace T41.Areas.Admin.Data
 {
     public class DeliveryRepository
     {
+        #region GetALLDeliveryPostCode
+
+        public IEnumerable<DeliveryPostCode> GetAllDeliveryPostCode()
+        {
+            List<DeliveryPostCode> listDeliveryPostCode = null;
+            DeliveryPostCode oDeliveryPostCode = null;
+
+            try
+            {
+                using (OracleCommand cm = new OracleCommand())
+                {
+                    cm.Connection = Helper.OraDCOracleConnection;
+                    cm.CommandText = string.Format("SELECT * FROM DELIVERY_POST_CODE ORDER BY DELIVERY_POST_CODE");
+                    cm.CommandType = CommandType.Text;
+                    using (OracleDataReader dr = cm.ExecuteReader())
+                    {
+                        listDeliveryPostCode = new List<DeliveryPostCode>();
+                        while (dr.Read())
+                        {
+                            oDeliveryPostCode = new DeliveryPostCode();
+                            oDeliveryPostCode.POST_CODE = int.Parse(dr["DELIVERY_POST_CODE"].ToString());
+                            oDeliveryPostCode.POST_CODE_NAME = dr["POST_CODE_NAME"].ToString();
+                            listDeliveryPostCode.Add(oDeliveryPostCode);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "GetAllDeliveryPostCode" + ex.Message);
+                listDeliveryPostCode = null;
+            }
+
+            return listDeliveryPostCode;
+        }
+        #endregion
         #region DELIVERY_DEPART_DETAIL
 
         public ReturnDelivery DELIVERY_DEPART_DETAIL(int channel, int post_man, int status, int from_date, int to_date, int delivery_post_code, int delivery_route_code, int page_size, int page_index)
@@ -56,6 +93,7 @@ namespace T41.Areas.Admin.Data
             DeliveryDetail oDeliveryDetail = null;
             try
             {
+                // Gọi vào DB để lấy dữ liệu.
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     cmd.Connection = Helper.OraDCOracleConnection;
