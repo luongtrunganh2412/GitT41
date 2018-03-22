@@ -22,10 +22,10 @@ namespace T41.Areas.Admin.Controllers
         {
             return View();
         }
-        public JsonResult DMKip()
+        public JsonResult DMKip(int donvi)
         {
             TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();
-            return Json(timekeepingRepository.GetAllDMKip(1), JsonRequestBehavior.AllowGet);
+            return Json(timekeepingRepository.GetAllDMKip(donvi), JsonRequestBehavior.AllowGet);
             //  return Json(apiRepository.ListPostCode(), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListDetailedTimekeepingReport(int ngay, int donvi, int ankip)
