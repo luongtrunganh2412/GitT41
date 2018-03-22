@@ -80,6 +80,7 @@ namespace T41.Areas.Admin.Model.DataModel
     }
     public class MetaData
     {
+        public string from_to_date { get; set; }
         public string donvi { get; set; }
         public string hoatdong { get; set; }
         public string buucuc { get; set; }
