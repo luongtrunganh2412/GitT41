@@ -90,7 +90,7 @@
                         <label>Kíp</label>
                         <select class="form-control select2" style="width: 100%;" id="kip">
                             <option selected="selected" value="0">Tất cả</option>
-                            <option value="1">Kíp 1(8h-16h)</option>
+                            @*<option value="1">Kíp 1(8h-16h)</option>
                             <option value="2">Kíp 2(9h-20h)</option>
                             <option value="3">Kíp 3(10h-18h)</option>
                             <option value="4">Kíp 4(11h-20h)</option>
@@ -102,22 +102,21 @@
                             <option value="10">Kíp 10</option>
                             <option value="11">Kíp 11</option>
                             <option value="12">Kíp 12</option>
-                            <option value="13">Kíp 13</option>
+                            <option value="13">Kíp 13</option>*@
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label>Khoảng thời gian</label>
+                        <label>Thời gian</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" id="reservation">
+                            <input class="form-control pull-right" id="datepicker" type="text">
                         </div>
-                        <!-- /.input group -->
                     </div>
                     <!-- /.form-group -->
-                </div>
+                    </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
@@ -144,8 +143,8 @@
                         </tr>
                         <tr class="bg-light-blue color-palette">
                             <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</tdcolspan="2">
-                            <td colspan="2">&nbsp;</tdcolspan="2">
+                            <td colspan="2">&nbsp;</td>
+                            <td colspan="2">&nbsp;</td>
                             <td colspan="2">&nbsp;</td>
                             <td colspan="2">&nbsp;</td>
                             <td colspan="2">&nbsp;</td>
@@ -177,6 +176,7 @@
                             <td>6h-7h</td>
                             <td>7h-8h</td>
                         </tr>
+                       
                     </thead>
                     <tbody id="listtimekeepingreport"></tbody>
                     @*<tfoot>
@@ -236,7 +236,7 @@
                             <td>7h-8h</td>
                         </tr>
                     </thead>
-                    <tbody id="listtimekeepingreport1"></tbody>
+                    <tbody id="listtimekeepingtitle"></tbody>
                     @*<tfoot>
                             <tr>
                                 <th>Rendering engine</th>
@@ -251,7 +251,7 @@
             <div class="box-header">
                 <h3 class="box-title">Chi Tiết</h3>
             </div>
-            <div>
+            <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr class="bg-light-blue color-palette">
@@ -322,7 +322,7 @@
                             <td>7h-8h</td>
                         </tr>
                     </thead>
-                    <tbody id="listtimekeepingreport2"></tbody>
+                    <tbody id="listtimekeepingdetail"></tbody>
                     @*<tfoot>
                             <tr>
                                 <th>Rendering engine</th>
@@ -369,17 +369,17 @@
 
 <script>
     $(function () {
-        $('#reservation').daterangepicker()
+        $('#datepicker').datepicker()
     })
     $("#btnreport").click(function () {
         // Summary
-        summary();
+        SummaryKipDetail();
         // Detail
-        detail(1);
+      //  detail(1);
     });
     function summary() {
         $.ajax({
-            url: '@Url.Action("SummaryDeliveryReport", "Delivery")',
+            url: '@Url.Action("ListDetailedTimekeepingReport", "Timekeeping")',
             dataType: 'html',
             data:
                 {
@@ -396,44 +396,25 @@
             }
         })
     }
-    function detail(p) {
-        alert($("#donvi").val());
+    function SummaryKipDetail(){
+        console.log("1");
+    
         $.ajax({
             url: '@Url.Action("ListDetailedTimekeepingReport", "Timekeeping")',
             dataType: 'html',
             data:
                 {
-                    ngay: $("#ngay").val(),
+                    ngay: '10/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
                     donvi: $("#donvi").val(),
-                    ankip: $("#ankip").val(),
-                    fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    page: p
+                    ankip: '0'
+                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
+                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
+                    //page: p
                 },
             success: function (result) {
+                console.log(result);
                 $('#listtimekeepingreport').html(result);
-                if (p == 1) refreshPaging();
-            }
-        })
-    }
-    function detail(p) {
-        $.ajax({
-            url: '@Url.Action("ListDetailedDeliveryReport", "Delivery")',
-            dataType: 'html',
-            data:
-                {
-                    channel: $("#channel").val(),
-                    postman: $("#postman").val(),
-                    deliveryroute: $("#deliveryroute").val(),
-                    postcode: $("#postcode").val(),
-                    fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    status: $("#status").val(),
-                    page: p
-                },
-            success: function (result) {
-                $('#listdeliveryreport').html(result);
-                if (p == 1) refreshPaging();
+               // if (p == 1) refreshPaging();
             }
         })
     }
@@ -450,6 +431,7 @@
 
         $.getJSON("/Timekeeping/DMKip", function (data) {
             $.each(data, function (i, data) {
+                
                 $('<option>',
                    {
                        value: data.MAKIP,

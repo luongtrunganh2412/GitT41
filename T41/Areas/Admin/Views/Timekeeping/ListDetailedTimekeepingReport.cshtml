@@ -3,16 +3,17 @@
 }
 @if (Model != null)
 {
-    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    int i = 0;
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model)
     {
         <tr>
-            <td>@(i + 1)</td>
-            <td>@c.Ca </td>
-            <td>@c.TenKip </td>
-            <td>@c.ThoiGian</td>
-            <td>@c.TongGioLam </td>
-            <td>@c.SoNguoi </td>
+            <td colspan="2">@(i + 1)</td>
+            <td colspan="2">@c.Ca </td>
+            <td colspan="2">@c.TenKip </td>
+            <td colspan="2">@c.ThoiGian</td>
+            <td colspan="2">@c.TongGioLam </td>
+            <td colspan="2">@c.SoNguoi </td>
             <td>@c.Gio8Den9h </td>
             <td>@c.Gio9Den10h </td>
             <td>@c.Gio10Den11h </td>
@@ -42,6 +43,6 @@
         i++;
     }
 }
-<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+@*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
 <input type="hidden" id="total_page" value="@ViewBag.total_page" />
-<input type="hidden" id="total" value="@ViewBag.total" />
+<input type="hidden" id="total" value="@ViewBag.total" />*@

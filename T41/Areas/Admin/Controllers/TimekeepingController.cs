@@ -28,7 +28,7 @@ namespace T41.Areas.Admin.Controllers
             return Json(timekeepingRepository.GetAllDMKip(), JsonRequestBehavior.AllowGet);
             //  return Json(apiRepository.ListPostCode(), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ListDetailedTimekeepingReport(int ngay, int donvi, int ankip)
+        public ActionResult ListDetailedTimekeepingReport(string ngay, int donvi, int ankip)
         {
             TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();
             ReturnTimekeeping returntimekeeping = new ReturnTimekeeping();
