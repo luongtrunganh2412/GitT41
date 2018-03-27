@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0;
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model)
+    {
+        <tr class="bg-light-blue color-palette">
+            <td>Tổng :</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2">@c.SumSoNguoi </td>
+            <td>@c.SumDen9h </td>
+            <td>@c.SumDen10h</td>
+            <td>@c.SumDen11h </td>
+            <td>@c.SumDen12h </td>
+            <td>@c.SumDen13h </td>
+            <td>@c.SumDen14h </td>
+            <td>@c.SumDen15h </td>
+            <td>@c.SumDen16h </td>
+            <td>@c.SumDen17h </td>
+            <td>@c.SumDen18h </td>
+            <td>@c.SumDen19h </td>
+            <td>@c.SumDen20h </td>
+            <td>@c.SumDen21h </td>
+            <td>@c.SumDen22h </td>
+            <td>@c.SumDen23h </td>
+            <td>@c.SumDen24h </td>
+            <td>@c.SumDen1h </td>
+            <td>@c.SumDen2h </td>
+            <td>@c.SumDen3h </td>
+            <td>@c.SumDen4h </td>
+            <td>@c.SumDen5h </td>
+            <td>@c.SumDen6h </td>
+            <td>@c.SumDen7h </td>
+            <td>@c.SumDen8h </td>
+
+
+        </tr>
+        
+        i++;
+    }
+}
+        @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+            <input type="hidden" id="total_page" value="@ViewBag.total_page" />
+            <input type="hidden" id="total" value="@ViewBag.total" />*@

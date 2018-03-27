@@ -57,6 +57,39 @@ namespace T41.Areas.Admin.Model.DataModel
 
     }
 
+    public class SumTimekeepingKipDetail
+    {
+        public int SumSoNguoi { get; set; }
+        public int SumDen9h { get; set; }
+        public int SumDen10h { get; set; }
+        public int SumDen11h { get; set; }
+        public int SumDen12h { get; set; }
+        public int SumDen13h { get; set; }
+        public int SumDen14h { get; set; }
+        public int SumDen15h { get; set; }
+        public int SumDen16h { get; set; }
+        public int SumDen17h { get; set; }
+        public int SumDen18h { get; set; }
+        public int SumDen19h { get; set; }
+        public int SumDen20h { get; set; }
+        public int SumDen21h { get; set; }
+        public int SumDen22h { get; set; }
+        public int SumDen23h { get; set; }
+        public int SumDen24h { get; set; }
+        public int SumDen1h { get; set; }
+        public int SumDen2h { get; set; }
+        public int SumDen3h { get; set; }
+        public int SumDen4h { get; set; }
+        public int SumDen5h { get; set; }
+        public int SumDen6h { get; set; }
+        public int SumDen7h { get; set; }
+        public int SumDen8h { get; set; }
+
+
+
+
+    }
+
     public class TimekeepingTitleDetail
     {
         public String TenChucDanh { get; set; }
@@ -164,13 +197,15 @@ namespace T41.Areas.Admin.Model.DataModel
         public int Total { get; set; }
 
         public TimekeepingKipDetail TimekeepingKipReport { get; set; }
-
         public List<TimekeepingKipDetail> ListTimekeepingKipReport;
+
+        public SumTimekeepingKipDetail SumTimekeepingKipReport { get; set; }
+        public List<SumTimekeepingKipDetail> ListSumTimekeepingKipReport;
+
         public TimekeepingTitleDetail TimekeepingTitleReport { get; set; }
-
         public List<TimekeepingTitleDetail> ListTimekeepingTitleReport;
-        public TimekeepingDetail TimekeepingReport { get; set; }
 
+        public TimekeepingDetail TimekeepingReport { get; set; }
         public List<TimekeepingDetail> ListTimekeepingReport;
 
 

@@ -180,6 +180,7 @@
                             <td>6h-7h</td>
                             <td>7h-8h</td>
                         </tr>
+                        
                        
                     </thead>
                     <tbody id="listtimekeepingkipreport"></tbody>
@@ -192,6 +193,23 @@
                                 <th>CSS grade</th>
                             </tr>
                         </tfoot>*@
+                </table>
+            </div>
+            <div>
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+ 
+                    </thead>
+                    <tbody id="sumtimekeepingkipreport"></tbody>
+                    @*<tfoot>
+                    <tr>
+                        <th>Rendering engine</th>
+                        <th>Browser</th>
+                        <th>Platform(s)</th>
+                        <th>Engine version</th>
+                        <th>CSS grade</th>
+                    </tr>
+                </tfoot>*@
                 </table>
             </div>
             <div class="box-header">
@@ -377,16 +395,18 @@
         $('#datepicker').datepicker()
     })
     $("#btnreport").click(function () {
+        KipDetail();
+        alert("DoneKipDetail")
         SummaryKipDetail();
-        alert("Donesummarykip");
-        SummaryTitleDetail();
-        alert("Donesummarytitle");
-        SummaryDetail();
-        alert("Donesummarydetail");
+        alert("DoneSummaryKip");
+        TitleDetail();
+        alert("DoneTitle");
+        Detail();
+        alert("DoneDetail");
 
     });
 
-    function SummaryKipDetail(){
+    function KipDetail(){
         console.log("1");
 
 
@@ -398,9 +418,6 @@
                     ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
                     donvi: $("#donvi").val(),
                     ankip: '0'
-                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    //page: p
                 },
             success: function (result) {
                 console.log(result);
@@ -410,7 +427,28 @@
         })
     }
 
-    function SummaryTitleDetail() {
+    function SummaryKipDetail() {
+        console.log("1");
+
+
+        $.ajax({
+            url: '@Url.Action("SumTimekeepingKipReport", "Timekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
+                    donvi: $("#donvi").val(),
+                    to: '0'
+                },
+            success: function (result) {
+                console.log(result);
+                $('#sumtimekeepingkipreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function TitleDetail() {
         console.log("1");
 
         $.ajax({
@@ -421,9 +459,6 @@
                     ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
                     donvi: $("#donvi").val(),
                     to: '0'
-                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    //page: p
                 },
             success: function (result) {
                 console.log(result);
@@ -433,7 +468,7 @@
         })
     }
 
-    function SummaryDetail() {
+    function Detail() {
         console.log("1");
 
         $.ajax({
@@ -444,9 +479,6 @@
                     ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
                     donvi: $("#donvi").val(),
                     to: '0'
-                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    //page: p
                 },
             success: function (result) {
                 console.log(result);

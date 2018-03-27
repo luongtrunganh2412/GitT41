@@ -141,24 +141,91 @@ namespace T41.Areas.Admin.Data
 
 
         #endregion
-        #region COME_TIMEKEEPING_SUMMARY 
-        //public ReturnSummaryTimekeeping COME_TIMEKEEPING_SUMMARY(int ngay,int donvi,)
-        //{
-        //    MetaData _metadata = new MetaData();
-        //    Convertion common = new Convertion();
-        //    ReturnSummaryTimekeeping _ReturnSummaryTimekeeping = new ReturnSummaryTimekeeping();
-        //    try
-        //    {
+        #region SUM_TIMEKEEPING_KIP_DETAIL 
+        public ReturnTimekeeping SUM_TIMEKEEPING_KIP_DETAIL(string ngay, int donvi, int to)
+        {
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnTimekeeping _returnTimekeeping = new ReturnTimekeeping();
 
-        //    }
-        //    catch
-        //    {
-        //        _ReturnSummaryTimekeeping.Code = "99";
-        //        _ReturnSummaryTimekeeping.Message = "Lỗi xử lý dữ liệu";
 
-        //    }
-        //    return _ReturnSummaryTimekeeping;
-        //}
+            List<SumTimekeepingKipDetail> listSumTimekeepingKipDetail = null;
+            SumTimekeepingKipDetail oSumTimekeepingKipDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    cmd.Connection = Helper.OraDCOracleConnection;
+                    cmd.CommandText = Helper.SchemaName + "EMS_CHAMCONG.TongTK";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("v_Ngay", OracleDbType.Int32)).Value = common.DateToInt(ngay);
+                    switch (donvi)
+                    {
+                        case 1:
+                            cmd.Parameters.Add(new OracleParameter("v_DonVi", OracleDbType.NVarchar2)).Value = "TTKTTN-HN";
+                            break;
+                        case 2:
+                            cmd.Parameters.Add(new OracleParameter("v_DonVi", OracleDbType.NVarchar2)).Value = "TTKTTN-DN";
+                            break;
+                        case 3:
+                            cmd.Parameters.Add(new OracleParameter("v_DonVi", OracleDbType.NVarchar2)).Value = "TTKTTN-HCM";
+                            break;
+                    }
+
+                    cmd.Parameters.Add(new OracleParameter("v_To", OracleDbType.Int32)).Value = to;
+                    cmd.Parameters.Add("v_List", OracleDbType.RefCursor, null, ParameterDirection.Output);
+                    OracleDataReader dr = Helper.ExecuteDataReader(cmd, Helper.OraDCOracleConnection);
+
+                    if (dr.HasRows)
+                    {
+                        listSumTimekeepingKipDetail = new List<SumTimekeepingKipDetail>();
+                        while (dr.Read())
+                        {
+                            oSumTimekeepingKipDetail = new SumTimekeepingKipDetail();
+                            oSumTimekeepingKipDetail.SumSoNguoi = Convert.ToInt32(dr["SUM(SO_NGUOI)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen9h = Convert.ToInt32(dr["SUM(Den_9h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen10h = Convert.ToInt32(dr["SUM(Den_10h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen11h = Convert.ToInt32(dr["SUM(Den_11h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen12h = Convert.ToInt32(dr["SUM(Den_12h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen13h = Convert.ToInt32(dr["SUM(Den_13h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen14h = Convert.ToInt32(dr["SUM(Den_14h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen15h = Convert.ToInt32(dr["SUM(Den_15h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen16h = Convert.ToInt32(dr["SUM(Den_16h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen17h = Convert.ToInt32(dr["SUM(Den_17h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen18h = Convert.ToInt32(dr["SUM(Den_18h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen19h = Convert.ToInt32(dr["SUM(Den_19h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen20h = Convert.ToInt32(dr["SUM(Den_20h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen21h = Convert.ToInt32(dr["SUM(Den_21h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen22h = Convert.ToInt32(dr["SUM(Den_22h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen23h = Convert.ToInt32(dr["SUM(Den_23h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen24h = Convert.ToInt32(dr["SUM(Den_24h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen1h = Convert.ToInt32(dr["SUM(Den_1h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen2h = Convert.ToInt32(dr["SUM(Den_2h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen3h = Convert.ToInt32(dr["SUM(Den_3h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen4h = Convert.ToInt32(dr["SUM(Den_4h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen5h = Convert.ToInt32(dr["SUM(Den_5h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen6h = Convert.ToInt32(dr["SUM(Den_6h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen7h = Convert.ToInt32(dr["SUM(Den_7h)"].ToString());
+                            oSumTimekeepingKipDetail.SumDen8h = Convert.ToInt32(dr["SUM(Den_8h)"].ToString());
+                            listSumTimekeepingKipDetail.Add(oSumTimekeepingKipDetail);
+                        }
+                        _returnTimekeeping.Code = "00";
+                        _returnTimekeeping.Message = "Lấy dữ liệu thành công.";
+                        _returnTimekeeping.ListSumTimekeepingKipReport = listSumTimekeepingKipDetail;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnTimekeeping.Code = "99";
+                _returnTimekeeping.Message = "Lỗi xử lý dữ liệu";
+                _returnTimekeeping.Total = 0;
+                _returnTimekeeping.ListSumTimekeepingKipReport = null;
+            }
+            return _returnTimekeeping;
+        }
+
         #endregion
         #region TIMEKEEPING_TITLE_DETAIL
 
