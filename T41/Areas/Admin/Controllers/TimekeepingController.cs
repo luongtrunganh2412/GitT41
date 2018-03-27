@@ -28,16 +28,30 @@ namespace T41.Areas.Admin.Controllers
             return Json(timekeepingRepository.GetAllDMKip(), JsonRequestBehavior.AllowGet);
             //  return Json(apiRepository.ListPostCode(), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ListDetailedTimekeepingReport(string ngay, int donvi, int ankip)
+        public ActionResult ListDetailedTimekeepingKipReport(string ngay, int donvi, int ankip)
         {
             TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();
             ReturnTimekeeping returntimekeeping = new ReturnTimekeeping();
-            returntimekeeping = timekeepingRepository.TIMEKEEPING_DETAIL(ngay, donvi, ankip);
-            return View(returntimekeeping.ListTimekeepingReport);
+            returntimekeeping = timekeepingRepository.TIMEKEEPING_KIP_DETAIL(ngay, donvi, ankip);
+            return View(returntimekeeping.ListTimekeepingKipReport);
         }
         //public ActionResult SummaryDetailedTimekeepingReport()
         //{
 
         //}
+        public ActionResult ListDetailedTimekeepingTitleReport(string ngay, int donvi, int to)
+        {
+            TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();
+            ReturnTimekeeping returntimekeeping = new ReturnTimekeeping();
+            returntimekeeping = timekeepingRepository.TIMEKEEPING_TITLE_DETAIL(ngay, donvi, to);
+            return View(returntimekeeping.ListTimekeepingTitleReport);
+        }
+        public ActionResult ListDetailedTimekeepingReport(string ngay, int donvi, int to)
+        {
+            TimeKeepingRepository timekeepingRepository = new TimeKeepingRepository();
+            ReturnTimekeeping returntimekeeping = new ReturnTimekeeping();
+            returntimekeeping = timekeepingRepository.TIMEKEEPING_DETAIL(ngay, donvi, to);
+            return View(returntimekeeping.ListTimekeepingReport);
+        }
     }
 }

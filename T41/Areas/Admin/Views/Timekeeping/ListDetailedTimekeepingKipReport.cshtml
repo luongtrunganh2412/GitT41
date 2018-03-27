@@ -7,35 +7,13 @@
     //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model)
     {
-        <tr>
+<tr>
             <td colspan="2">@(i + 1)</td>
-            <td colspan="2" class="hide">@c.Ma </td>
-            <td colspan="4">@c.Ten </td>
-            <td colspan="4">@c.ChucDanh</td>
-            <td colspan="4">@c.Loai</td>
-            <td colspan="3">@c.Ca</td>
-            <td colspan="3">@c.ThoiGian</td>
+            <td colspan="2">@c.Ca </td>
+            <td colspan="2">@c.TenKip </td>
+            <td colspan="2">@c.ThoiGian</td>
             <td colspan="2">@c.TongGioLam </td>
-            <td>@c.Kip1 </td>
-            <td>@c.Kip2 </td>
-            <td>@c.Kip3 </td>
-            <td>@c.Kip4 </td>
-            <td>@c.Kip5 </td>
-            <td>@c.Kip6 </td>
-            <td>@c.Kip7 </td>
-            <td>@c.Kip8 </td>
-            <td>@c.Kip9 </td>
-            <td>@c.Kip10 </td>
-            <td>@c.Kip11</td>
-            <td>@c.Kip12 </td>
-            <td>@c.Kip13 </td>
-            <td>@c.Kip14 </td>
-            <td>@c.Kip15 </td>
-            <td>@c.Kip16 </td>
-            <td>@c.Kip17 </td>
-            <td>@c.Kip18 </td>
-            <td>@c.Kip19</td>
-            <td>@c.Kip20 </td>
+            <td colspan="2">@c.SoNguoi </td>
             <td>@c.Gio8Den9h </td>
             <td>@c.Gio9Den10h </td>
             <td>@c.Gio10Den11h </td>
@@ -65,6 +43,6 @@
         i++;
     }
 }
-        @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
-            <input type="hidden" id="total_page" value="@ViewBag.total_page" />
-            <input type="hidden" id="total" value="@ViewBag.total" />*@
+@*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />*@

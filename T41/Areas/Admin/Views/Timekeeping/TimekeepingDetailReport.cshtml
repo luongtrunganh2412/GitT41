@@ -91,32 +91,36 @@
                         <select class="form-control select2" style="width: 100%;" id="kip">
                             <option selected="selected" value="0">Tất cả</option>
                             @*<option value="1">Kíp 1(8h-16h)</option>
-                            <option value="2">Kíp 2(9h-20h)</option>
-                            <option value="3">Kíp 3(10h-18h)</option>
-                            <option value="4">Kíp 4(11h-20h)</option>
-                            <option value="5">Kíp 5(16h-22h)</option>
-                            <option value="6">Kíp 6(20h-6h30)</option>
-                            <option value="7">Kíp 7(9h-17h)</option>
-                            <option value="8">Kíp 8</option>
-                            <option value="9">Kíp 9</option>
-                            <option value="10">Kíp 10</option>
-                            <option value="11">Kíp 11</option>
-                            <option value="12">Kíp 12</option>
-                            <option value="13">Kíp 13</option>*@
+                    <option value="2">Kíp 2(9h-20h)</option>
+                    <option value="3">Kíp 3(10h-18h)</option>
+                    <option value="4">Kíp 4(11h-20h)</option>
+                    <option value="5">Kíp 5(16h-22h)</option>
+                    <option value="6">Kíp 6(20h-6h30)</option>
+                    <option value="7">Kíp 7(9h-17h)</option>
+                    <option value="8">Kíp 8</option>
+                    <option value="9">Kíp 9</option>
+                    <option value="10">Kíp 10</option>
+                    <option value="11">Kíp 11</option>
+                    <option value="12">Kíp 12</option>
+                    <option value="13">Kíp 13</option>*@
                         </select>
                     </div>
-                    <!-- /.form-group -->
-                    <div class="form-group">
-                        <label>Thời gian</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+                </div>
+               <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Thời gian</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control pull-right" id="datepicker" type="text">
                             </div>
-                            <input class="form-control pull-right" id="datepicker" type="text">
                         </div>
-                    </div>
+               </div>
                     <!-- /.form-group -->
-                    </div>
+                    
+                    <!-- /.form-group -->
+                 
                 <!-- /.col -->
             </div>
             <!-- /.row -->
@@ -178,7 +182,7 @@
                         </tr>
                        
                     </thead>
-                    <tbody id="listtimekeepingreport"></tbody>
+                    <tbody id="listtimekeepingkipreport"></tbody>
                     @*<tfoot>
                             <tr>
                                 <th>Rendering engine</th>
@@ -236,7 +240,7 @@
                             <td>7h-8h</td>
                         </tr>
                     </thead>
-                    <tbody id="listtimekeepingtitle"></tbody>
+                    <tbody id="listtimekeepingtitlereport"></tbody>
                     @*<tfoot>
                             <tr>
                                 <th>Rendering engine</th>
@@ -256,11 +260,12 @@
                     <thead>
                         <tr class="bg-light-blue color-palette">
                             <th colspan="2">STT</th>
-                            <th colspan="2">Tên</th>
-                            <th colspan="2">Chức Danh</th>
-                            <th colspan="2">Loại</th>
-                            <th colspan="2">Ca</th>
-                            <th colspan="2">Từ-Đến</th>
+                            <th colspan="2" class="hide">MA</th>
+                            <th colspan="4">Tên</th>
+                            <th colspan="4">Chức Danh</th>
+                            <th colspan="4">Loại</th>
+                            <th colspan="3">Ca</th>
+                            <th colspan="3">Từ-Đến</th>
                             <th colspan="2">Tổng Giờ Làm</th>
                             <th colspan="20" class="text-center">Tên Kíp</th>
                             <th colspan="24" class="text-center">Khung Giờ Sản Xuất</th>
@@ -268,11 +273,11 @@
                         </tr>
                         <tr class="bg-light-blue color-palette">
                             <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</td>
-                            <td colspan="2">&nbsp;</td>
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="3">&nbsp;</td>
+                            <td colspan="3">&nbsp;</td>
                             <td colspan="2">&nbsp;</td>
 
                             <td>Kíp 1</td>
@@ -322,7 +327,7 @@
                             <td>7h-8h</td>
                         </tr>
                     </thead>
-                    <tbody id="listtimekeepingdetail"></tbody>
+                    <tbody id="listtimekeepingdetailreport"></tbody>
                     @*<tfoot>
                             <tr>
                                 <th>Rendering engine</th>
@@ -372,39 +377,25 @@
         $('#datepicker').datepicker()
     })
     $("#btnreport").click(function () {
-        // Summary
         SummaryKipDetail();
-        // Detail
-      //  detail(1);
+        alert("Donesummarykip");
+        SummaryTitleDetail();
+        alert("Donesummarytitle");
+        SummaryDetail();
+        alert("Donesummarydetail");
+
     });
-    function summary() {
-        $.ajax({
-            url: '@Url.Action("ListDetailedTimekeepingReport", "Timekeeping")',
-            dataType: 'html',
-            data:
-                {
-                    channel: $("#channel").val(),
-                    postman: $("#postman").val(),
-                    deliveryroute: $("#deliveryroute").val(),
-                    postcode: $("#postcode").val(),
-                    fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
-                    todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
-                    status: $("#status").val()
-                },
-            success: function (result) {
-                $('#summarydeliveryreport').html(result);
-            }
-        })
-    }
+
     function SummaryKipDetail(){
         console.log("1");
-    
+
+
         $.ajax({
-            url: '@Url.Action("ListDetailedTimekeepingReport", "Timekeeping")',
+            url: '@Url.Action("ListDetailedTimekeepingKipReport", "Timekeeping")',
             dataType: 'html',
             data:
                 {
-                    ngay: '10/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
+                    ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
                     donvi: $("#donvi").val(),
                     ankip: '0'
                     //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
@@ -413,11 +404,58 @@
                 },
             success: function (result) {
                 console.log(result);
-                $('#listtimekeepingreport').html(result);
+                $('#listtimekeepingkipreport').html(result);
                // if (p == 1) refreshPaging();
             }
         })
     }
+
+    function SummaryTitleDetail() {
+        console.log("1");
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedTimekeepingTitleReport", "Timekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
+                    donvi: $("#donvi").val(),
+                    to: '0'
+                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
+                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
+                    //page: p
+                },
+            success: function (result) {
+                console.log(result);
+                $('#listtimekeepingtitlereport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummaryDetail() {
+        console.log("1");
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedTimekeepingReport", "Timekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: '01/03/2018',                     //Hiện tại đang fix cứng dữ liệu , cần truyền theo ngày lấy dữ liệu
+                    donvi: $("#donvi").val(),
+                    to: '0'
+                    //fromdate: $('#reservation').data('daterangepicker').startDate.format('DD/MM/YYYY'),
+                    //todate: $('#reservation').data('daterangepicker').endDate.format('DD/MM/YYYY'),
+                    //page: p
+                },
+            success: function (result) {
+                console.log(result);
+                $('#listtimekeepingdetailreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
     function refreshPaging() {
         $('#page-selection').bootpag({
             total: $('#total_page').val(),
@@ -431,7 +469,7 @@
 
         $.getJSON("/Timekeeping/DMKip", function (data) {
             $.each(data, function (i, data) {
-                
+
                 $('<option>',
                    {
                        value: data.MAKIP,
