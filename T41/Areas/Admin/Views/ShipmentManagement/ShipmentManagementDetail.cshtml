@@ -1,0 +1,149 @@
+﻿
+@{
+//  Layout = null;
+}
+
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
+@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Shipment Magement</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Shipment Magement</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tỉnh Đóng </label>
+                        <select class="form-control select2" style="width: 100%;" id="fromprovince"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mã Khách hàng </label>
+                        <select class="form-control select2" style="width: 100%;" id="fromposcode">
+                            <option selected="selected" value="0">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tỉnh Nhận </label>
+                        <select class="form-control select2" style="width: 100%;" id="toprovince"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số Điện Thoại Nhận </label>
+                        <select class="form-control select2" style="width: 100%;" id="toposcode">
+                            <option selected="selected" value="0">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Từ Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Đến Ngày</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+
+            </div>
+        </div>
+        <div class="box-body">
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
+                </div>
+
+            </div>
+            
+            <div class="box-header">
+                <h3 class="box-title">Báo Cáo Tổng hợp</h3>
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+</section>
+
+
+
+<script>
+
+    
+    
+
+    $(function () {
+        $('#fromdate').datepicker()
+        $("#fromdate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+
+    $(function () {
+        $('#todate').datepicker()
+        $("#todate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+
+    
+
+    
+    
+</script>
+
+

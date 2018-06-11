@@ -19,19 +19,19 @@ namespace T41.Areas.Admin.Model.BusinessModel
                 IsAdmin = 1,
                 Email = "trungndems@gmail.com",
                 FullName = "Nguyen Duc Trung",
-                Avatar = "~/Areas/Admin/Content/Image/user3-128x128.jpg"
+                Avatar = "~/Areas/Admin/Content/Image/avatar1.jpg"
             };
             context.Administrator.Add(admin);
 
             var nv1 = new Administrator()
             {
                 UserName = "nv1",
-                PassWord = "7d6e1100464006b3e71b241fd2972f26",
+                PassWord = "e69de489e0fc381cd7ebae2e6c5eae7c",
                 Active = 1,
                 IsAdmin = 0,
                 Email = "trungndems@gmail.com",
                 FullName = "Nguyen Duc Trung",
-                Avatar = "~/Areas/Admin/Content/Image/user3-128x128.jpg"
+                Avatar = "~/Areas/Admin/Content/Image/avatar3-128x128.png"
             };
             context.Administrator.Add(nv1);
             context.SaveChanges();

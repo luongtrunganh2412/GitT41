@@ -4,6 +4,52 @@
 @if (Model != null)
 {
     int i = 0;
+    string checkX = "X";
+    long sumKip1 = 0;
+    long sumKip2 = 0;
+    long sumKip3 = 0;
+    long sumKip4 = 0;
+    long sumKip5 = 0;
+    long sumKip6 = 0;
+    long sumKip7 = 0;
+    long sumKip8 = 0;
+    long sumKip9 = 0;
+    long sumKip10 = 0;
+    long sumKip11 = 0;
+    long sumKip12 = 0;
+    long sumKip13 = 0;
+    long sumKip14 = 0;
+    long sumKip15 = 0;
+    long sumKip16 = 0;
+    long sumKip17 = 0;
+    long sumKip18 = 0;
+    long sumKip19 = 0;
+    long sumKip20 = 0;
+
+    long sumDen9h = 0;
+    long sumDen10h = 0;
+    long sumDen11h = 0;
+    long sumDen12h = 0;
+    long sumDen13h = 0;
+    long sumDen14h = 0;
+    long sumDen15h = 0;
+    long sumDen16h = 0;
+    long sumDen17h = 0;
+    long sumDen18h = 0;
+    long sumDen19h = 0;
+    long sumDen20h = 0;
+    long sumDen21h = 0;
+    long sumDen22h = 0;
+    long sumDen23h = 0;
+    long sumDen24h = 0;
+    long sumDen1h = 0;
+    long sumDen2h = 0;
+    long sumDen3h = 0;
+    long sumDen4h = 0;
+    long sumDen5h = 0;
+    long sumDen6h = 0;
+    long sumDen7h = 0;
+    long sumDen8h = 0;
     //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model)
     {
@@ -16,54 +62,341 @@
             <td colspan="3">@c.Ca</td>
             <td colspan="3">@c.ThoiGian</td>
             <td colspan="2">@c.TongGioLam </td>
-            <td>@c.Kip1 </td>
-            <td>@c.Kip2 </td>
-            <td>@c.Kip3 </td>
-            <td>@c.Kip4 </td>
-            <td>@c.Kip5 </td>
-            <td>@c.Kip6 </td>
-            <td>@c.Kip7 </td>
-            <td>@c.Kip8 </td>
-            <td>@c.Kip9 </td>
-            <td>@c.Kip10 </td>
-            <td>@c.Kip11</td>
-            <td>@c.Kip12 </td>
-            <td>@c.Kip13 </td>
-            <td>@c.Kip14 </td>
-            <td>@c.Kip15 </td>
-            <td>@c.Kip16 </td>
-            <td>@c.Kip17 </td>
-            <td>@c.Kip18 </td>
-            <td>@c.Kip19</td>
-            <td>@c.Kip20 </td>
-            <td>@c.Gio8Den9h </td>
-            <td>@c.Gio9Den10h </td>
-            <td>@c.Gio10Den11h </td>
-            <td>@c.Gio11Den12h </td>
-            <td>@c.Gio12Den13h </td>
-            <td>@c.Gio13Den14h </td>
-            <td>@c.Gio14Den15h </td>
-            <td>@c.Gio15Den16h </td>
-            <td>@c.Gio16Den17h </td>
-            <td>@c.Gio17Den18h </td>
-            <td>@c.Gio18Den19h </td>
-            <td>@c.Gio19Den20h </td>
-            <td>@c.Gio20Den21h </td>
-            <td>@c.Gio21Den22h </td>
-            <td>@c.Gio22Den23h </td>
-            <td>@c.Gio23Den24h </td>
-            <td>@c.Gio24Den1h </td>
-            <td>@c.Gio1Den2h </td>
-            <td>@c.Gio2Den3h </td>
-            <td>@c.Gio3Den4h </td>
-            <td>@c.Gio4Den5h </td>
-            <td>@c.Gio5Den6h </td>
-            <td>@c.Gio6Den7h </td>
-            <td>@c.Gio7Den8h </td>
+
+            <td>
+                <div class="@(c.Kip1 =="X" ? "bg-green" : "" )">
+                    @c.Kip1
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip2 =="X" ? "bg-green" : "" )">
+                    @c.Kip2
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip3 =="X" ? "bg-green" : "" )">
+                    @c.Kip3
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip4 =="X" ? "bg-green" : "" )">
+                    @c.Kip4
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip5 =="X" ? "bg-green" : "" )">
+                    @c.Kip5
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip6 =="X" ? "bg-green" : "" )">
+                    @c.Kip6
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip7 =="X" ? "bg-green" : "" )">
+                    @c.Kip7
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip8 =="X" ? "bg-green" : "" )">
+                    @c.Kip8
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip9 =="X" ? "bg-green" : "" )">
+                    @c.Kip9
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip10 =="X" ? "bg-green" : "" )">
+                    @c.Kip10
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip11 =="X" ? "bg-green" : "" )">
+                    @c.Kip11
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip12 =="X" ? "bg-green" : "" )">
+                    @c.Kip12
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip13 =="X" ? "bg-green" : "" )">
+                    @c.Kip13
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip14 =="X" ? "bg-green" : "" )">
+                    @c.Kip14
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip15 =="X" ? "bg-green" : "" )">
+                    @c.Kip15
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip16 =="X" ? "bg-green" : "" )">
+                    @c.Kip16
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip17 =="X" ? "bg-green" : "" )">
+                    @c.Kip17
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip18 =="X" ? "bg-green" : "" )">
+                    @c.Kip18
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip19 =="X" ? "bg-green" : "" )">
+                    @c.Kip19
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Kip20 =="X" ? "bg-green" : "" )">
+                    @c.Kip20
+                </div>
+            </td>
+
+
+            <td>
+                <div class="@(c.Gio8Den9h =="X" ? "bg-blue" : "" )">
+                    @c.Gio8Den9h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio9Den10h =="X" ? "bg-blue" : "" )">
+                    @c.Gio9Den10h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio10Den11h =="X" ? "bg-blue" : "" )">
+                    @c.Gio10Den11h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio11Den12h =="X" ? "bg-blue" : "" )">
+                    @c.Gio11Den12h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio12Den13h =="X" ? "bg-blue" : "" )">
+                    @c.Gio12Den13h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio13Den14h =="X" ? "bg-blue" : "" )">
+                    @c.Gio13Den14h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio14Den15h =="X" ? "bg-blue" : "" )">
+                    @c.Gio14Den15h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio15Den16h =="X" ? "bg-blue" : "" )">
+                    @c.Gio15Den16h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio16Den17h =="X" ? "bg-blue" : "" )">
+                    @c.Gio16Den17h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio17Den18h =="X" ? "bg-blue" : "" )">
+                    @c.Gio17Den18h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio18Den19h =="X" ? "bg-blue" : "" )">
+                    @c.Gio18Den19h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio19Den20h =="X" ? "bg-blue" : "" )">
+                    @c.Gio19Den20h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio20Den21h =="X" ? "bg-blue" : "" )">
+                    @c.Gio20Den21h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio21Den22h =="X" ? "bg-blue" : "" )">
+                    @c.Gio21Den22h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio22Den23h =="X" ? "bg-blue" : "" )">
+                    @c.Gio22Den23h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio23Den24h =="X" ? "bg-blue" : "" )">
+                    @c.Gio23Den24h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio24Den1h =="X" ? "bg-blue" : "" )">
+                    @c.Gio24Den1h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio1Den2h =="X" ? "bg-blue" : "" )">
+                    @c.Gio1Den2h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio2Den3h =="X" ? "bg-blue" : "" )">
+                    @c.Gio2Den3h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio3Den4h =="X" ? "bg-blue" : "" )">
+                    @c.Gio3Den4h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio4Den5h =="X" ? "bg-blue" : "" )">
+                    @c.Gio4Den5h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio5Den6h =="X" ? "bg-blue" : "" )">
+                    @c.Gio5Den6h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio6Den7h =="X" ? "bg-blue" : "" )">
+                    @c.Gio6Den7h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio7Den8h =="X" ? "bg-blue" : "" )">
+                    @c.Gio7Den8h
+                </div>
+            </td>
+            
 
         </tr>
         i++;
+        //Kiểm tra xem c.Kip1 có bằng X hay không , nếu có thì sumKip1 tăng lên 1 
+
+        sumKip1 = c.Kip1 == checkX ? sumKip1 + 1 : sumKip1;
+        sumKip2 = c.Kip2 == checkX ? sumKip2 + 1 : sumKip2;
+        sumKip3 = c.Kip3 == checkX ? sumKip3 + 1 : sumKip3;
+        sumKip4 = c.Kip4 == checkX ? sumKip4 + 1 : sumKip4;
+        sumKip5 = c.Kip5 == checkX ? sumKip5 + 1 : sumKip5;
+        sumKip6 = c.Kip6 == checkX ? sumKip6 + 1 : sumKip6;
+        sumKip7 = c.Kip7 == checkX ? sumKip7 + 1 : sumKip7;
+        sumKip8 = c.Kip8 == checkX ? sumKip8 + 1 : sumKip8;
+        sumKip9 = c.Kip9 == checkX ? sumKip9 + 1 : sumKip9;
+        sumKip10 = c.Kip10 == checkX ? sumKip10 + 1 : sumKip10;
+        sumKip11 = c.Kip11 == checkX ? sumKip11 + 1 : sumKip11;
+        sumKip12 = c.Kip12 == checkX ? sumKip12 + 1 : sumKip12;
+        sumKip13 = c.Kip13 == checkX ? sumKip13 + 1 : sumKip13;
+        sumKip14 = c.Kip14 == checkX ? sumKip14 + 1 : sumKip14;
+        sumKip15 = c.Kip15 == checkX ? sumKip15 + 1 : sumKip15;
+        sumKip16 = c.Kip16 == checkX ? sumKip16 + 1 : sumKip16;
+        sumKip17 = c.Kip17 == checkX ? sumKip17 + 1 : sumKip17;
+        sumKip18 = c.Kip18 == checkX ? sumKip18 + 1 : sumKip18;
+        sumKip19 = c.Kip19 == checkX ? sumKip19 + 1 : sumKip19;
+        sumKip20 = c.Kip20 == checkX ? sumKip20 + 1 : sumKip20;
+
+        sumDen9h = c.Gio8Den9h == checkX ? sumDen9h + 1 : sumDen9h;
+        sumDen10h = c.Gio9Den10h == checkX ? sumDen10h + 1 : sumDen10h;
+        sumDen11h = c.Gio10Den11h == checkX ? sumDen11h + 1 : sumDen11h;
+        sumDen12h = c.Gio11Den12h == checkX ? sumDen12h + 1 : sumDen12h;
+        sumDen13h = c.Gio12Den13h == checkX ? sumDen13h + 1 : sumDen13h;
+        sumDen14h = c.Gio13Den14h == checkX ? sumDen14h + 1 : sumDen14h;
+        sumDen15h = c.Gio14Den15h == checkX ? sumDen15h + 1 : sumDen15h;
+        sumDen16h = c.Gio15Den16h == checkX ? sumDen16h + 1 : sumDen16h;
+        sumDen17h = c.Gio16Den17h == checkX ? sumDen17h + 1 : sumDen17h;
+        sumDen18h = c.Gio17Den18h == checkX ? sumDen18h + 1 : sumDen18h;
+        sumDen19h = c.Gio18Den19h == checkX ? sumDen19h + 1 : sumDen19h;
+        sumDen20h = c.Gio19Den20h == checkX ? sumDen20h + 1 : sumDen20h;
+        sumDen21h = c.Gio20Den21h == checkX ? sumDen21h + 1 : sumDen21h;
+        sumDen22h = c.Gio21Den22h == checkX ? sumDen22h + 1 : sumDen22h;
+        sumDen23h = c.Gio22Den23h == checkX ? sumDen23h + 1 : sumDen23h;
+        sumDen24h = c.Gio23Den24h == checkX ? sumDen24h + 1 : sumDen24h;
+        sumDen1h = c.Gio24Den1h == checkX ? sumDen1h + 1 : sumDen1h;
+        sumDen2h = c.Gio1Den2h == checkX ? sumDen2h + 1 : sumDen2h;
+        sumDen3h = c.Gio2Den3h == checkX ? sumDen3h + 1 : sumDen3h;
+        sumDen4h = c.Gio3Den4h == checkX ? sumDen4h + 1 : sumDen4h;
+        sumDen5h = c.Gio4Den5h == checkX ? sumDen5h + 1 : sumDen5h;
+        sumDen6h = c.Gio5Den6h == checkX ? sumDen6h + 1 : sumDen6h;
+        sumDen7h = c.Gio6Den7h == checkX ? sumDen7h + 1 : sumDen7h;
+        sumDen8h = c.Gio7Den8h == checkX ? sumDen8h + 1 : sumDen8h;
+
+
+
+
+
     }
+    <tr class="bg-yellow text-primary color-palette">
+        <td colspan="2">Tổng:</td>
+        <td colspan="4"></td>
+        <td colspan="4"></td>
+        <td colspan="4"></td>
+        <td colspan="3"></td>
+        <td colspan="3"></td>
+        <td colspan="2"></td>
+        <td>@sumKip1 </td>
+        <td>@sumKip2 </td>
+        <td>@sumKip3 </td>
+        <td>@sumKip4 </td>
+        <td>@sumKip5 </td>
+        <td>@sumKip6 </td>
+        <td>@sumKip7 </td>
+        <td>@sumKip8 </td>
+        <td>@sumKip9 </td>
+        <td>@sumKip10 </td>
+        <td>@sumKip11 </td>
+        <td>@sumKip12 </td>
+        <td>@sumKip13 </td>
+        <td>@sumKip14 </td>
+        <td>@sumKip15 </td>
+        <td>@sumKip16 </td>
+        <td>@sumKip17 </td>
+        <td>@sumKip18 </td>
+        <td>@sumKip19 </td>
+        <td>@sumKip20 </td>
+        <td>@sumDen9h</td>
+        <td>@sumDen10h</td>
+        <td>@sumDen11h </td>
+        <td>@sumDen12h </td>
+        <td>@sumDen13h </td>
+        <td>@sumDen14h </td>
+        <td>@sumDen15h </td>
+        <td>@sumDen16h </td>
+        <td>@sumDen17h </td>
+        <td>@sumDen18h </td>
+        <td>@sumDen19h </td>
+        <td>@sumDen20h </td>
+        <td>@sumDen21h </td>
+        <td>@sumDen22h </td>
+        <td>@sumDen23h </td>
+        <td>@sumDen24h </td>
+        <td>@sumDen1h </td>
+        <td>@sumDen2h </td>
+        <td>@sumDen3h </td>
+        <td>@sumDen4h </td>
+        <td>@sumDen5h </td>
+        <td>@sumDen6h </td>
+        <td>@sumDen7h </td>
+        <td>@sumDen8h </td>
+
+
+    </tr>
 }
         @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
             <input type="hidden" id="total_page" value="@ViewBag.total_page" />

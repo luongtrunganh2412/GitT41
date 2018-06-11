@@ -44,17 +44,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -185,21 +192,39 @@
     <Compile Include="Areas\Admin\Common\LoggerGeneral.cs" />
     <Compile Include="Areas\Admin\Common\Security.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AirwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CollectController.cs" />
     <Compile Include="Areas\Admin\Controllers\DeliveryController.cs" />
     <Compile Include="Areas\Admin\Controllers\GrantPermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QualityDeliveryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RealTimekeepingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShipmentManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimekeepingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TransferManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
+    <Compile Include="Areas\Admin\Data\RoadwayTransportRepository.cs" />
     <Compile Include="Areas\Admin\Data\ApiRepository.cs" />
     <Compile Include="Areas\Admin\Data\DeliveryRepository.cs" />
+    <Compile Include="Areas\Admin\Data\RealTimeKeepingRepository.cs" />
+    <Compile Include="Areas\Admin\Data\QualityDeliveryRepository.cs" />
+    <Compile Include="Areas\Admin\Data\AirwayTransportRepository.cs" />
+    <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
+    <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\DataInitializer.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\DTPowerDBContext.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Administrator.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\RoadwayTransport.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\AirwayTransportCome.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Business.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Category.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Delivery.cs" />
@@ -207,7 +232,12 @@
     <Compile Include="Areas\Admin\Model\DataModel\Permission.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\PermissionAction.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Post.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\RealTimeKeeping.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\QualityDelivery.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\TransferManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\UserManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2531,6 +2561,7 @@
     <Content Include="Areas\Admin\Content\dist\css\alt\AdminLTE-select2.min.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\AdminLTE-without-plugins.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Areas\Admin\Content\dist\css\print.css" />
     <Content Include="Areas\Admin\Content\dist\css\skins\skin-black-light.css" />
     <Content Include="Areas\Admin\Content\dist\css\skins\skin-black-light.min.css" />
     <Content Include="Areas\Admin\Content\dist\css\skins\skin-black.css" />
@@ -3063,6 +3094,97 @@
     <Content Include="Areas\Admin\Views\Timekeeping\ListDetailedTimekeepingTitleReport.cshtml" />
     <Content Include="Areas\Admin\Views\Timekeeping\ListDetailedTimekeepingReport.cshtml" />
     <Content Include="Areas\Admin\Views\Timekeeping\SumTimekeepingKipReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\SumSLKLTimekeepingKipReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\SumTimekeepingTitleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\SumSLKLTimekeepingTitleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Timekeeping\SumTimekeepingReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealTimekeepingDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealSumTimekeepingTitleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealListDetailedTimekeepingKipReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealListDetailedTimekeepingReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealListDetailedTimekeepingTitleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealSumSLKLTimekeepingKipReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealSumSLKLTimekeepingTitleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealSumTimekeepingKipReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RealTimekeeping\RealSumTimekeepingReport.cshtml" />
+    <Content Include="Areas\Admin\Views\QualityDelivery\QualityDeliveryDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\ExportExcel.cshtml" />
+    <Content Include="Areas\Admin\Views\QualityDelivery\ListDetailedQualityDeliveryReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\TransferManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\E2_TransferManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_E2_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_CTTS_E2_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\UserManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\ListDetailedUserManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\ID_USER_MANAGEMENT_DETAIL.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\DeleteUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Collect\CollectDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\CreateUserReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_MCT_E2_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_CTTS_MCT_E2_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\MCT_E2_TransferManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\ListTransferManagement_SOTUI_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagement\SOTUITRONGCHTHU.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\DeleteUserReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\ListDetailed_ID_UserManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\AirwayTransportDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListAirwayTransport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport1.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\TotalDataReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\AirwayTransportComeDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListAirwayTransportCome.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\TotalDataReport.cshtml" />
+    <Content Include="Areas\Admin\Views\ShipmentManagement\ShipmentManagementDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport2.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport13.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport20.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport21.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport22.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport23.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport24.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport25.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport26.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport3.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport5.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport4.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport6.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport7.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport8.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport9.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport10.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport11.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport12.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport14.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport15.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport16.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport17.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport18.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport19.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome1.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome10.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome11.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome12.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome13.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome14.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome15.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome16.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome17.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome18.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome19.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome2.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome20.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome3.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome4.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome5.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome6.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome7.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome8.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome9.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport.cshtml" />
+    <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3076,7 +3198,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3122,6 +3246,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

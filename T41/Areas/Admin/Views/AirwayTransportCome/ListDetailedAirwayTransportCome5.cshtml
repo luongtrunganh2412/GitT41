@@ -1,0 +1,128 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0;
+    int a1 = 0;
+    int a2 = 0;
+    int a3 = 0;
+    int a4 = 0;
+    long sumtaicungKH = 0;
+    long sumtaimemKH = 0;
+    long sumtaicungTH = 0;
+    long sumtaimemTH = 0;
+
+
+    foreach (var c in Model)
+    {
+        try
+        {
+            a1 = int.Parse(@c.TAICUNG_KH);
+        }
+        catch
+        {
+            a1 = 0;
+        }
+
+
+        try
+        {
+            a2 = int.Parse(@c.TAIMEM_KH);
+        }
+        catch
+        {
+            a2 = 0;
+        }
+
+        try
+        {
+            a3 = int.Parse(@c.TAICUNG_TH);
+        }
+        catch
+        {
+            a3 = 0;
+        }
+
+        try
+        {
+            a4 = int.Parse(@c.TAIMEM_TH);
+        }
+        catch
+        {
+            a4 = 0;
+        }
+
+
+        <tr>
+            <td>@c.STT</td>
+            <td colspan="3">@c.CHANGBAY</td>
+            <td>@c.DONVIVANCHUYEN</td>
+            <td>@c.DICHVUVANCHUYEN</td>
+            <td colspan="3">@c.KHUNGGIO</td>
+            <td>@c.TONGTAITHEOHOPDONG</td>
+            <td>@c.TAICUNG_KH</td>
+            <td>@c.TAIMEM_KH</td>
+            <td>@c.MASP</td>
+            <td>@c.TAICUNG_TH</td>
+            <td>@c.TAIMEM_TH</td>
+            <td>@c.TAICUNG_LK</td>
+            <td>@c.TAIMEM_LK</td>
+            <td>@c.GIOGIAO_QD</td>
+            <td>@c.GIOBAY_QD</td>
+            <td>@c.GIOGIAO_TT</td>
+            <td>@c.GIOBAY_TT</td>
+            <td>@c.SOHIEUCHUYENBAY</td>
+            <td>@c.GIOGIAO_CL</td>
+            <td>@c.GIOBAY_CL</td>
+            <td>@c.GIODAP_QD</td>
+            <td>@c.GIONHAN_QD</td>
+            <td>@c.GIONHAN_TT</td>
+            <td>@c.GIONHAN_CL</td>
+
+
+        </tr>
+
+        i++;
+        sumtaicungKH += a1;
+        sumtaimemKH += a2;
+        sumtaicungTH += a3;
+        sumtaimemTH += a4;
+
+
+
+
+
+    }
+    <tr class="bg-light-blue">
+        <th></th>
+        <th colspan="3">Tổng Cộng:</th>
+        <th></th>
+        <th></th>
+        <th colspan="3"></th>
+        <th></th>
+        <th>@sumtaicungKH</th>
+        <th>@sumtaimemKH</th>
+        <th></th>
+        <th>@sumtaicungTH </th>
+        <th>@sumtaimemTH </th>
+        <th>@sumtaicungTH </th>
+        <th>@sumtaimemTH </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th></th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+    </tr>
+
+}
+
+

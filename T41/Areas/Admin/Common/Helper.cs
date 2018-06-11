@@ -19,8 +19,8 @@ namespace T41.Areas.Admin.Common
         private static string _OraDCConnectionString = string.Empty;
         private static OracleConnection _OraDCOracleConnection = null;
 
-        private static string _OraPtemsConnectionString = string.Empty;
-        private static OracleConnection _OraPtemsOracleConnection = null;
+        private static string _OraDSConnectionString = string.Empty;
+        private static OracleConnection _OraDSOracleConnection = null;
 
         private static string _schemaName = string.Empty;
 
@@ -68,6 +68,7 @@ namespace T41.Areas.Admin.Common
             set 
             { _me24OracleConnection = value; }
         }
+        //Phần gọi vào Database Cpcpn
         public static string OraDCConnectionString
         {
             get
@@ -95,13 +96,14 @@ namespace T41.Areas.Admin.Common
             set
             { _me24OracleConnection = value; }
         }
-        public static string OraPtemsConnectionString
+        //Phần gọi vào Database Đối Soát
+        public static string OraDSConnectionString
         {
             get
             {
-                if (string.IsNullOrEmpty(_OraPtemsConnectionString))
-                    _OraPtemsConnectionString = ConfigurationManager.ConnectionStrings["ORA_CONNECTION_STRING_PTEMS"].ConnectionString;
-                return _OraPtemsConnectionString;
+                if (string.IsNullOrEmpty(_OraDSConnectionString))
+                    _OraDSConnectionString = ConfigurationManager.ConnectionStrings["ORA_CONNECTION_STRING_DS"].ConnectionString;
+                return _OraDSConnectionString;
             }
             set { _me24ConnectionString = value; }
         }
@@ -109,15 +111,15 @@ namespace T41.Areas.Admin.Common
         /// <summary>
         /// ME24OracleConnection
         /// </summary>
-        public static OracleConnection OraPtemsOracleConnection
+        public static OracleConnection OraDSOracleConnection
         {
             get
             {
-                if (_OraPtemsOracleConnection == null)
-                    _OraPtemsOracleConnection = new OracleConnection(OraPtemsConnectionString);
-                if (_OraPtemsOracleConnection.State == System.Data.ConnectionState.Closed)
-                    _OraPtemsOracleConnection.Open();
-                return _OraPtemsOracleConnection;
+                if (_OraDSOracleConnection == null)
+                    _OraDSOracleConnection = new OracleConnection(OraDSConnectionString);
+                if (_OraDSOracleConnection.State == System.Data.ConnectionState.Closed)
+                    _OraDSOracleConnection.Open();
+                return _OraDSOracleConnection;
             }
             set
             { _me24OracleConnection = value; }

@@ -1,0 +1,225 @@
+﻿@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0;
+    long sumSoNguoi = 0;
+    long sumDen_9h = 0;
+    long sumDen_10h = 0;
+    long sumDen_11h = 0;
+    long sumDen_12h = 0;
+    long sumDen_13h = 0;
+    long sumDen_14h = 0;
+    long sumDen_15h = 0;
+    long sumDen_16h = 0;
+    long sumDen_17h = 0;
+    long sumDen_18h = 0;
+    long sumDen_19h = 0;
+    long sumDen_20h = 0;
+    long sumDen_21h = 0;
+    long sumDen_22h = 0;
+    long sumDen_23h = 0;
+    long sumDen_24h = 0;
+    long sumDen_1h = 0;
+    long sumDen_2h = 0;
+    long sumDen_3h = 0;
+    long sumDen_4h = 0;
+    long sumDen_5h = 0;
+    long sumDen_6h = 0;
+    long sumDen_7h = 0;
+    long sumDen_8h = 0;
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model)
+    {
+        <tr>
+            <td colspan="2">@(i + 1)</td>
+            <td colspan="2">@c.TenChucDanh </td>
+            <td colspan="2">@c.Loai </td>
+            <td colspan="2">@c.SoNguoi </td>
+            <td>
+                <div class="@(c.Gio8Den9h > 0 ? "bg-blue" : "" )">
+                    @c.Gio8Den9h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio9Den10h > 0 ? "bg-blue" : "" )">
+                    @c.Gio9Den10h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio10Den11h > 0 ? "bg-blue" : "" )">
+                    @c.Gio10Den11h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio11Den12h > 0 ? "bg-blue" : "" )">
+                    @c.Gio11Den12h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio12Den13h > 0 ? "bg-blue" : "" )">
+                    @c.Gio12Den13h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio13Den14h > 0 ? "bg-blue" : "" )">
+                    @c.Gio13Den14h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio14Den15h > 0 ? "bg-blue" : "" )">
+                    @c.Gio14Den15h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio15Den16h > 0 ? "bg-blue" : "" )">
+                    @c.Gio15Den16h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio16Den17h > 0 ? "bg-blue" : "" )">
+                    @c.Gio16Den17h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio17Den18h > 0 ? "bg-blue" : "" )">
+                    @c.Gio17Den18h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio18Den19h > 0 ? "bg-blue" : "" )">
+                    @c.Gio18Den19h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio19Den20h > 0 ? "bg-blue" : "" )">
+                    @c.Gio19Den20h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio20Den21h > 0 ? "bg-blue" : "" )">
+                    @c.Gio20Den21h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio21Den22h > 0 ? "bg-blue" : "" )">
+                    @c.Gio21Den22h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio22Den23h > 0 ? "bg-blue" : "" )">
+                    @c.Gio22Den23h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio23Den24h > 0 ? "bg-blue" : "" )">
+                    @c.Gio23Den24h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio24Den1h > 0 ? "bg-blue" : "" )">
+                    @c.Gio24Den1h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio1Den2h > 0 ? "bg-blue" : "" )">
+                    @c.Gio1Den2h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio2Den3h > 0 ? "bg-blue" : "" )">
+                    @c.Gio2Den3h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio3Den4h > 0 ? "bg-blue" : "" )">
+                    @c.Gio3Den4h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio4Den5h > 0 ? "bg-blue" : "" )">
+                    @c.Gio4Den5h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio5Den6h > 0 ? "bg-blue" : "" )">
+                    @c.Gio5Den6h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio6Den7h > 0 ? "bg-blue" : "" )">
+                    @c.Gio6Den7h
+                </div>
+            </td>
+            <td>
+                <div class="@(c.Gio7Den8h > 0 ? "bg-blue" : "" )">
+                    @c.Gio7Den8h
+                </div>
+            </td>
+
+
+
+        </tr>
+        i++;
+        sumSoNguoi += @c.SoNguoi;
+        sumDen_9h += @c.Gio8Den9h;
+        sumDen_10h += @c.Gio9Den10h;
+        sumDen_11h += @c.Gio10Den11h;
+        sumDen_12h += @c.Gio11Den12h;
+        sumDen_13h += @c.Gio12Den13h;
+        sumDen_14h += @c.Gio13Den14h;
+        sumDen_15h += @c.Gio14Den15h;
+        sumDen_16h += @c.Gio15Den16h;
+        sumDen_17h += @c.Gio16Den17h;
+        sumDen_18h += @c.Gio17Den18h;
+        sumDen_19h += @c.Gio18Den19h;
+        sumDen_20h += @c.Gio19Den20h;
+        sumDen_21h += @c.Gio20Den21h;
+        sumDen_22h += @c.Gio21Den22h;
+        sumDen_23h += @c.Gio22Den23h;
+        sumDen_24h += @c.Gio23Den24h;
+        sumDen_1h += @c.Gio24Den1h;
+        sumDen_2h += @c.Gio1Den2h;
+        sumDen_3h += @c.Gio2Den3h;
+        sumDen_4h += @c.Gio3Den4h;
+        sumDen_5h += @c.Gio4Den5h;
+        sumDen_6h += @c.Gio5Den6h;
+        sumDen_7h += @c.Gio6Den7h;
+        sumDen_8h += @c.Gio7Den8h;
+    }
+    <tr class="bg-yellow text-primary color-palette">
+        <td colspan="2">Tổng</td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2">@sumSoNguoi </td>
+        <td>@sumDen_9h</td>
+        <td>@sumDen_10h</td>
+        <td>@sumDen_11h </td>
+        <td>@sumDen_12h </td>
+        <td>@sumDen_13h </td>
+        <td>@sumDen_14h </td>
+        <td>@sumDen_15h </td>
+        <td>@sumDen_16h </td>
+        <td>@sumDen_17h </td>
+        <td>@sumDen_18h </td>
+        <td>@sumDen_19h </td>
+        <td>@sumDen_20h </td>
+        <td>@sumDen_21h </td>
+        <td>@sumDen_22h </td>
+        <td>@sumDen_23h </td>
+        <td>@sumDen_24h </td>
+        <td>@sumDen_1h </td>
+        <td>@sumDen_2h </td>
+        <td>@sumDen_3h </td>
+        <td>@sumDen_4h</td>
+        <td>@sumDen_5h </td>
+        <td>@sumDen_6h </td>
+        <td>@sumDen_7h </td>
+        <td>@sumDen_8h</td>
+
+    </tr>
+}
+    @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+        <input type="hidden" id="total_page" value="@ViewBag.total_page" />
+        <input type="hidden" id="total" value="@ViewBag.total" />*@

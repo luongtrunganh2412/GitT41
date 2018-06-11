@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0;
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model)
+    {
+        <tr class="bg-yellow text-primary color-palette">
+            <td colspan="2">Tổng SL:</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td>@c.SLDen9h </td>
+            <td>@c.SLDen10h </td>
+            <td>@c.SLDen11h </td>
+            <td>@c.SLDen12h </td>
+            <td>@c.SLDen13h </td>
+            <td>@c.SLDen14h </td>
+            <td>@c.SLDen15h </td>
+            <td>@c.SLDen16h </td>
+            <td>@c.SLDen17h </td>
+            <td>@c.SLDen18h </td>
+            <td>@c.SLDen19h </td>
+            <td>@c.SLDen20h </td>
+            <td>@c.SLDen21h </td>
+            <td>@c.SLDen22h </td>
+            <td>@c.SLDen23h </td>
+            <td>@c.SLDen24h </td>
+            <td>@c.SLDen1h </td>
+            <td>@c.SLDen2h </td>
+            <td>@c.SLDen3h </td>
+            <td>@c.SLDen4h </td>
+            <td>@c.SLDen5h </td>
+            <td>@c.SLDen6h </td>
+            <td>@c.SLDen7h </td>
+            <td>@c.SLDen8h </td>
+
+
+        </tr>
+
+        
+        <tr class="bg-yellow text-primary color-palette">
+            <td colspan="2">Tổng KL:</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td>@c.KLDen9h </td>
+            <td>@c.KLDen10h </td>
+            <td>@c.KLDen11h </td>
+            <td>@c.KLDen12h </td>
+            <td>@c.KLDen13h </td>
+            <td>@c.KLDen14h </td>
+            <td>@c.KLDen15h </td>
+            <td>@c.KLDen16h </td>
+            <td>@c.KLDen17h </td>
+            <td>@c.KLDen18h </td>
+            <td>@c.KLDen19h </td>
+            <td>@c.KLDen20h </td>
+            <td>@c.KLDen21h </td>
+            <td>@c.KLDen22h </td>
+            <td>@c.KLDen23h </td>
+            <td>@c.KLDen24h </td>
+            <td>@c.KLDen1h </td>
+            <td>@c.KLDen2h </td>
+            <td>@c.KLDen3h </td>
+            <td>@c.KLDen4h </td>
+            <td>@c.KLDen5h </td>
+            <td>@c.KLDen6h </td>
+            <td>@c.KLDen7h </td>
+            <td>@c.KLDen8h </td>
+
+
+        </tr>
+
+        i++;
+    }
+}
+        @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+            <input type="hidden" id="total_page" value="@ViewBag.total_page" />
+            <input type="hidden" id="total" value="@ViewBag.total" />*@

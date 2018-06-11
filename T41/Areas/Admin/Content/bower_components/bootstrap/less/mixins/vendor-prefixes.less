@@ -16,36 +16,36 @@
 
 
 // Animations
-.animation(@animation) {
+.animationanimation) {
   -webkit-animation: @animation;
        -o-animation: @animation;
           animation: @animation;
 }
-.animation-name(@name) {
+.animation-namename) {
   -webkit-animation-name: @name;
           animation-name: @name;
 }
-.animation-duration(@duration) {
+.animation-durationduration) {
   -webkit-animation-duration: @duration;
           animation-duration: @duration;
 }
-.animation-timing-function(@timing-function) {
+.animation-timing-functiontiming-function) {
   -webkit-animation-timing-function: @timing-function;
           animation-timing-function: @timing-function;
 }
-.animation-delay(@delay) {
+.animation-delaydelay) {
   -webkit-animation-delay: @delay;
           animation-delay: @delay;
 }
-.animation-iteration-count(@iteration-count) {
+.animation-iteration-countiteration-count) {
   -webkit-animation-iteration-count: @iteration-count;
           animation-iteration-count: @iteration-count;
 }
-.animation-direction(@direction) {
+.animation-directiondirection) {
   -webkit-animation-direction: @direction;
           animation-direction: @direction;
 }
-.animation-fill-mode(@fill-mode) {
+.animation-fill-modefill-mode) {
   -webkit-animation-fill-mode: @fill-mode;
           animation-fill-mode: @fill-mode;
 }
@@ -54,7 +54,7 @@
 // Prevent browsers from flickering when using CSS 3D transforms.
 // Default value is `visible`, but can be changed to `hidden`
 
-.backface-visibility(@visibility) {
+.backface-visibilityvisibility) {
   -webkit-backface-visibility: @visibility;
      -moz-backface-visibility: @visibility;
           backface-visibility: @visibility;
@@ -65,20 +65,20 @@
 // Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
 // supported browsers that have box shadow capabilities now support it.
 
-.box-shadow(@shadow) {
+.box-shadowshadow) {
   -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
           box-shadow: @shadow;
 }
 
 // Box sizing
-.box-sizing(@boxmodel) {
+.box-sizingboxmodel) {
   -webkit-box-sizing: @boxmodel;
      -moz-box-sizing: @boxmodel;
           box-sizing: @boxmodel;
 }
 
 // CSS3 Content Columns
-.content-columns(@column-count; @column-gap: @grid-gutter-width) {
+.content-columnscolumn-count; @column-gap: @grid-gutter-width) {
   -webkit-column-count: @column-count;
      -moz-column-count: @column-count;
           column-count: @column-count;
@@ -88,7 +88,7 @@
 }
 
 // Optional hyphenation
-.hyphens(@mode: auto) {
+.hyphensmode: auto) {
   word-wrap: break-word;
   -webkit-hyphens: @mode;
      -moz-hyphens: @mode;
@@ -98,7 +98,7 @@
 }
 
 // Placeholder text
-.placeholder(@color: @input-color-placeholder) {
+.placeholdercolor: @input-color-placeholder) {
   // Firefox
   &::-moz-placeholder {
     color: @color;
@@ -109,75 +109,75 @@
 }
 
 // Transformations
-.scale(@ratio) {
-  -webkit-transform: scale(@ratio);
-      -ms-transform: scale(@ratio); // IE9 only
-       -o-transform: scale(@ratio);
-          transform: scale(@ratio);
+.scaleratio) {
+  -webkit-transform: scaleratio);
+      -ms-transform: scaleratio); // IE9 only
+       -o-transform: scaleratio);
+          transform: scaleratio);
 }
-.scale(@ratioX; @ratioY) {
-  -webkit-transform: scale(@ratioX, @ratioY);
-      -ms-transform: scale(@ratioX, @ratioY); // IE9 only
-       -o-transform: scale(@ratioX, @ratioY);
-          transform: scale(@ratioX, @ratioY);
+.scaleratioX; @ratioY) {
+  -webkit-transform: scaleratioX, @ratioY);
+      -ms-transform: scaleratioX, @ratioY); // IE9 only
+       -o-transform: scaleratioX, @ratioY);
+          transform: scaleratioX, @ratioY);
 }
-.scaleX(@ratio) {
-  -webkit-transform: scaleX(@ratio);
-      -ms-transform: scaleX(@ratio); // IE9 only
-       -o-transform: scaleX(@ratio);
-          transform: scaleX(@ratio);
+.scaleXratio) {
+  -webkit-transform: scaleXratio);
+      -ms-transform: scaleXratio); // IE9 only
+       -o-transform: scaleXratio);
+          transform: scaleXratio);
 }
-.scaleY(@ratio) {
-  -webkit-transform: scaleY(@ratio);
-      -ms-transform: scaleY(@ratio); // IE9 only
-       -o-transform: scaleY(@ratio);
-          transform: scaleY(@ratio);
+.scaleYratio) {
+  -webkit-transform: scaleYratio);
+      -ms-transform: scaleYratio); // IE9 only
+       -o-transform: scaleYratio);
+          transform: scaleYratio);
 }
-.skew(@x; @y) {
-  -webkit-transform: skewX(@x) skewY(@y);
-      -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
-       -o-transform: skewX(@x) skewY(@y);
-          transform: skewX(@x) skewY(@y);
+.skewx; @y) {
+  -webkit-transform: skewXx) skewYy);
+      -ms-transform: skewXx) skewYy); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+       -o-transform: skewXx) skewYy);
+          transform: skewXx) skewYy);
 }
-.translate(@x; @y) {
-  -webkit-transform: translate(@x, @y);
-      -ms-transform: translate(@x, @y); // IE9 only
-       -o-transform: translate(@x, @y);
-          transform: translate(@x, @y);
+.translatex; @y) {
+  -webkit-transform: translatex, @y);
+      -ms-transform: translatex, @y); // IE9 only
+       -o-transform: translatex, @y);
+          transform: translatex, @y);
 }
-.translate3d(@x; @y; @z) {
-  -webkit-transform: translate3d(@x, @y, @z);
-          transform: translate3d(@x, @y, @z);
+.translate3dx; @y; @z) {
+  -webkit-transform: translate3dx, @y, @z);
+          transform: translate3dx, @y, @z);
 }
-.rotate(@degrees) {
-  -webkit-transform: rotate(@degrees);
-      -ms-transform: rotate(@degrees); // IE9 only
-       -o-transform: rotate(@degrees);
-          transform: rotate(@degrees);
+.rotatedegrees) {
+  -webkit-transform: rotatedegrees);
+      -ms-transform: rotatedegrees); // IE9 only
+       -o-transform: rotatedegrees);
+          transform: rotatedegrees);
 }
-.rotateX(@degrees) {
-  -webkit-transform: rotateX(@degrees);
-      -ms-transform: rotateX(@degrees); // IE9 only
-       -o-transform: rotateX(@degrees);
-          transform: rotateX(@degrees);
+.rotateXdegrees) {
+  -webkit-transform: rotateXdegrees);
+      -ms-transform: rotateXdegrees); // IE9 only
+       -o-transform: rotateXdegrees);
+          transform: rotateXdegrees);
 }
-.rotateY(@degrees) {
-  -webkit-transform: rotateY(@degrees);
-      -ms-transform: rotateY(@degrees); // IE9 only
-       -o-transform: rotateY(@degrees);
-          transform: rotateY(@degrees);
+.rotateYdegrees) {
+  -webkit-transform: rotateYdegrees);
+      -ms-transform: rotateYdegrees); // IE9 only
+       -o-transform: rotateYdegrees);
+          transform: rotateYdegrees);
 }
-.perspective(@perspective) {
+.perspectiveperspective) {
   -webkit-perspective: @perspective;
      -moz-perspective: @perspective;
           perspective: @perspective;
 }
-.perspective-origin(@perspective) {
+.perspective-originperspective) {
   -webkit-perspective-origin: @perspective;
      -moz-perspective-origin: @perspective;
           perspective-origin: @perspective;
 }
-.transform-origin(@origin) {
+.transform-originorigin) {
   -webkit-transform-origin: @origin;
      -moz-transform-origin: @origin;
       -ms-transform-origin: @origin; // IE9 only
@@ -187,28 +187,28 @@
 
 // Transitions
 
-.transition(@transition) {
+.transitiontransition) {
   -webkit-transition: @transition;
        -o-transition: @transition;
           transition: @transition;
 }
-.transition-property(@transition-property) {
+.transition-propertytransition-property) {
   -webkit-transition-property: @transition-property;
           transition-property: @transition-property;
 }
-.transition-delay(@transition-delay) {
+.transition-delaytransition-delay) {
   -webkit-transition-delay: @transition-delay;
           transition-delay: @transition-delay;
 }
-.transition-duration(@transition-duration) {
+.transition-durationtransition-duration) {
   -webkit-transition-duration: @transition-duration;
           transition-duration: @transition-duration;
 }
-.transition-timing-function(@timing-function) {
+.transition-timing-functiontiming-function) {
   -webkit-transition-timing-function: @timing-function;
           transition-timing-function: @timing-function;
 }
-.transition-transform(@transition) {
+.transition-transformtransition) {
   -webkit-transition: -webkit-transform @transition;
      -moz-transition: -moz-transform @transition;
        -o-transition: -o-transform @transition;
@@ -219,7 +219,7 @@
 // User select
 // For selecting text on the page
 
-.user-select(@select) {
+.user-selectselect) {
   -webkit-user-select: @select;
      -moz-user-select: @select;
       -ms-user-select: @select; // IE10+

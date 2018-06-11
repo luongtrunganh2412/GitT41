@@ -9,23 +9,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ophelia</title>
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <meta name="Googlebot" content="noindex,nofollow,noarchive" />
+    <title>EMS</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    
+    
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css" media="all">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/Areas/Admin/Content/dist/css/AdminLTE.min.css">
+
+    <!-- Theme style -->
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="/Areas/Admin/Content/dist/css/skins/skin-blue.min.css">
-
+    <!--Print Js-->
+    @*<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">*@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,6 +45,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/Scripts/jquery.bootpag.min.js"></script>
+    @*<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>*@
+    <style type="text/css">
+        @@media print {
+            /*.body {
+                webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }*/
+            tr td .bg-blue {
+                background-color: #175eb5 !important;
+                outline-style: outset;
+            }
+
+            tr td .bg-green {
+                background-color: #239036 !important;
+                outline-style: outset;
+            }
+            /*table{
+                color: red !important;
+            }*/
+
+            .bg-blue {
+                color: white !important;
+            }
+
+            .bg-green {
+                color: white !important;
+            }
+        }
+    </style>
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -69,7 +108,7 @@ desired effect
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>LUCKY</b>ONE</span>
+                <span class="logo-lg"><b>EMS</span>
             </a>
 
             <!-- Header Navbar -->
@@ -82,103 +121,9 @@ desired effect
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the messages -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <!-- User Image -->
-                                                    <img src="@Session["avatar"]" class="img-circle" alt="User Image">
-                                                </div>
-                                                <!-- Message title and timestamp -->
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <!-- The message -->
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                    <!-- /.menu -->
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
                         <!-- /.messages-menu -->
                         <!-- Notifications Menu -->
-                        <li class="dropdown notifications-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- Inner Menu: contains the notifications -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start notification -->
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <!-- end notification -->
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
                         <!-- Tasks Menu -->
-                        <li class="dropdown tasks-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                    <!-- Inner menu: contains the tasks -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- Task item -->
-                                            <a href="#">
-                                                <!-- Task title and progress text -->
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <!-- The progress bar -->
-                                                <div class="progress xs">
-                                                    <!-- Change the css width attribute to simulate progress -->
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
@@ -199,35 +144,19 @@ desired effect
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="/Admin/Home/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="/Admin/Home/Logout" class="btn btn-default btn-flat">Đăng Xuất </a>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
+
                     </ul>
                 </div>
             </nav>
@@ -267,34 +196,50 @@ desired effect
                     <li class="header">HEADER</li>
                     <!-- Optionally, you can add icons to the links -->
                     <!-- Group 1 -->
-                    <li @*class="treeview"*@>
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span>Danh mục</span>
-
-                        </a>
-                    </li>
 
 
-                    <li><a href="/Admin/Categories">Danh mục chủ đề</a></li>
-                    <li><a href="/Admin/Posts">Danh mục bài viết</a></li>
-                    <li><a href="/Admin/Businesses">Danh mục nghiệp vụ</a></li>
-                    <li><a href="/Admin/Administrators">Danh mục người dùng</a></li>
 
 
-                    <!-- Group 2 -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span>Báo cáo phát</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
-                            <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
-                        </ul>
-                    </li>
-					<!-- Group 3 -->
+
+
+                    @{
+                        if (Convert.ToInt32(Session["isadmin"]) == 1)
+                        {
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Danh mục</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/Categories">Danh mục chủ đề</a></li>
+                                    <li><a href="/Admin/Posts">Danh mục bài viết</a></li>
+                                    <li><a href="/Admin/Businesses">Danh mục nghiệp vụ</a></li>
+                                    <li><a href="/Admin/Administrators">Danh mục người dùng</a></li>
+                                </ul>
+                            </li>
+
+							<!-- Group 2 -->
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Báo cáo phát</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
+                                    <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
+                                </ul>
+                            </li>
+                            
+
+
+                        }
+                    }
+
+                    <!-- Group 3 -->
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-link"></i> <span>Báo cáo chấm công</span>
@@ -303,8 +248,108 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Admin/Timekeeping/TimekeepingDetailReport">Chi tiết phân công lao động theo ca kíp</a></li>
-                            <li><a href="#">Chi tiết phân công lao động theo thực tế</a></li>
+                            <li><a href="/Admin/Timekeeping/TimekeepingDetailReport">Chi tiết phân công <br> lao động theo ca kíp</a></li>
+                            <li><a href="/Admin/RealTimekeeping/RealTimekeepingDetailReport">Chi tiết phân công <br> lao động theo thực tế</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Group 4 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Báo cáo chỉ tiêu <br> chất lượng</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/Admin/Collect/CollectDetailReport">Báo cáo thu gom</a></li>
+                            <li><a href="#">Báo cáo khai thác</a></li>
+                            <li><a href="#">Báo cáo vận chuyển</a></li>
+                            <li><a href="/Admin/QualityDelivery/QualityDeliveryDetailReport">Báo cáo chất lượng phát</a></li>
+                        </ul>
+                    </li>
+                    <!-- Group 5 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Quản lý truyền nhận</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/Admin/TransferManagement/TransferManagementDetailReport">Quản lý truyền nhận EMS</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Quản Lý Người Dùng</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/Admin/UserManagement/UserManagementDetailReport">Quản lý người dùng</a></li>
+                        </ul>
+                    </li>
+                    <!-- Group 6 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Báo cáo hàng không </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/Admin/AirwayTransport/AirwayTransportDetailReport">Báo cáo vận chuyển <br /> hàng không chiều đi</a></li>
+                            <li><a href="/Admin/AirwayTransportCome/AirwayTransportComeDetailReport">Báo cáo vận chuyển <br /> hàng không chiều đến</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Group 7 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/ShipmentManagement/ShipmentManagementDetail">Quản Lý Shipment</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Quản Lý Người Dùng </span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/UserManagement/UserManagement">Quản Lý người dùng</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Group 8 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Báo cáo GNVC đường bộ </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/Admin/RoadwayTransport/RoadwayTransportDetailReport">Báo cáo giao nhận <br /> vận chuyển đường bộ</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -341,10 +386,10 @@ desired effect
         <footer class="main-footer">
             <!-- To the right -->
             <div class="pull-right hidden-xs">
-                Anything you want
+                <!-- Anything you want -->
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2017 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2018 <a href="#">Cong Ty Co Phan Chuyen Phat Nhanh Buu Dien</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->
@@ -355,74 +400,13 @@ desired effect
                 <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
             </ul>
             <!-- Tab panes -->
-            <div class="tab-content">
-                <!-- Home tab content -->
-                <div class="tab-pane active" id="control-sidebar-home-tab">
-                    <h3 class="control-sidebar-heading">Recent Activity</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:;">
-                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <!-- <div class="tab-content">
 
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                    <p>Will be 23 on April 24th</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.control-sidebar-menu -->
-
-                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:;">
-                                <h4 class="control-sidebar-subheading">
-                                    Custom Template Design
-                                    <span class="pull-right-container">
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </span>
-                                </h4>
-
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.control-sidebar-menu -->
-
-                </div>
-                <!-- /.tab-pane -->
-                <!-- Stats tab content -->
-                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                <!-- /.tab-pane -->
-                <!-- Settings tab content -->
-                <div class="tab-pane" id="control-sidebar-settings-tab">
-                    <form method="post">
-                        <h3 class="control-sidebar-heading">General Settings</h3>
-
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Report panel usage
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-
-                            <p>
-                                Some information about this general settings option
-                            </p>
-                        </div>
-                        <!-- /.form-group -->
-                    </form>
-                </div>
-                <!-- /.tab-pane -->
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-        <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
+            </aside>
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+            immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
     </div>
 
 
@@ -433,7 +417,17 @@ desired effect
 <script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
+<!-- PrintJS -->
+@*<script src="/Areas/Admin/Content/plugins/Print.js-1.0.35/js/print.js"></script>*@
+@*<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>*@
 <!-- date-range-picker -->
 <script src="/Areas/Admin/Content/bower_components/moment/min/moment.min.js"></script>
 <script src="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+@*<script>
+        window.setInterval(function () {
+            $.get("Home/Index", function (data) {
+                alert("Ting Ting !");
+            });
+        }, 180000);
+    </script>*@

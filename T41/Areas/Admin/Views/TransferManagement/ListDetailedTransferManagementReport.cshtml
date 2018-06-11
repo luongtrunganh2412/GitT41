@@ -1,0 +1,331 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListTransferManagementReport != null)
+{
+
+    int i = 0;
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListTransferManagementReport)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.FromPosCode</td>
+            <td>@c.FromPosName</td>
+            <td>@c.ToPosCode</td>
+            <td>@c.ToPosName</td>
+            <td>@c.PickUpDate</td>
+            <td>
+                <a data-toggle="modal" data-id="@c.TotalMailTrip" class="modal-chthu" data-target="#myModal" href="#myModal" rel="@c.PickUpDate" rel1="@c.FromPosCode" rel2="@c.ToPosCode">@c.TotalMailTrip </a>
+            </td>
+            <td>
+                <a data-toggle="modal" data-id="@c.TotalPostBag" class="modal-tuiso" data-target="#myModal" href="#myModal" rel="@c.PickUpDate" rel1="@c.FromPosCode" rel2="@c.ToPosCode">@c.TotalPostBag </a>
+            </td>
+            <td>@c.TotalItem </td>
+            
+        </tr>
+        i++;
+
+    }
+    
+    //Thuộc tính attr sẽ gọi đến rel VD : $(this).attr("rel"); sẽ gọi đến rel , $(this).attr("data-id"); sẽ gọi đến data-id.
+    <script>
+        //Phần popup theo tổng số chuyến thư
+        $(document).ready(function () {
+            $('.modal-chthu').click(function (e) {
+
+                var fromposcode = $(this).attr("rel1");
+                var toposcode = $(this).attr("rel2");
+                var date = $(this).attr("rel");
+                var type = 1;
+                var typecomunication = '@ViewBag.typecomunication';
+                var da = {
+                    fromposcode: fromposcode,
+                    toposcode: toposcode,
+                    date: date,
+                    type: type,
+                    typecomunication: typecomunication
+
+                };
+                $.ajax({
+                    type: "POST",
+                    //url: "/QualityDelivery/QualityDeliverySuccess6HDetailReport",
+                    beforeSend: function () {
+                        $('.loading-element').show();
+                    },
+
+                    url: '@Url.Action("ListTransferManagement_CTTS_Report", "TransferManagement")',
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(da),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //$('#myModal').on('show.bs.modal', function (e) { });
+                        var str_html = '<table id="GridView1" class="table table-bordered table-hover">';
+                        str_html += '<thead>';
+                        str_html += '<tr class="bg-light-blue color-palette">';
+                        str_html += '<th>STT</th>';
+                        str_html += '<th>Bưu Cục Đóng</th>';
+                        str_html += '<th>Tên Bưu Cục Đóng</th>';
+                        str_html += '<th>Bưu Cục Nhận</th>';
+                        str_html += '<th>Tên Bưu Cục Nhận</th>';
+                        str_html += '<th>Ngày</th>';
+                        str_html += '<th>Chuyến Thư</th>';
+                        str_html += '<th>Số Túi</th>';
+                        str_html += '<th>Tổng Số Bưu Gửi</th>';
+                        str_html += '</tr>';
+                        str_html += '</thead>';
+                        str_html += '<tbody>';
+                        var str_body = "";
+                        var a = 1;
+
+
+                        $.each(data.ListTransferManagement_CTTS_Report, function (i, item) {
+                            fromposcode = item.FromPosCode;
+                            str_body += '<tr>';
+                            str_body += '<td>' + a++ + '</td>';
+                            str_body += '<td>' + item.FromPosCode + '</td>';
+                            str_body += '<td>' + item.FromPosName + '</td>';
+                            str_body += '<td>' + item.ToPosCode + '</td>';
+                            str_body += '<td>' + item.ToPosName + '</td>';
+                            str_body += '<td>' + item.PickUpDate + '</td>';
+                            str_body += '<td>' + item.TotalMailTrip + '</td>';
+                            str_body += '<td> <a href="/Admin/TransferManagement/SOTUITRONGCHTHU/?fromposcode=' + item.FromPosCode + '&toposcode=' + item.ToPosCode + '&date=' + item.PickUpDate + '&mailtrip=' + item.TotalMailTrip + '&postbag=' + item.TotalPostBag + '&typecomunication=@ViewBag.typecomunication' + ' "target="_blank"">' + item.TotalPostBag + '</a> </td>';
+                            //str_body += '<td> <a data-toggle="modal" data-id="' + item.TotalMailTrip + '" class="modal-sotuitrongchthu" data-target="#myModalSoTui" href="#myModalSoTui" data-dismiss="modal" rel="' + item.PickUpDate + '" rel1="' + item.FromPosCode + '" rel2="' + item.ToPosCode + '" rel3="' + item.TotalMailTrip + '">' + item.TotalPostBag + ' </a></td>'
+                            str_body += '<td>' + item.TotalItem + '</td>';
+                            str_body += '</tr>';
+                        });
+                        str_html += str_body;
+
+                        str_html += '</tbody>';
+                        str_html += '</table>';
+
+                        if (data.Code == '01') {
+                            $('.loading-element').hide();
+                            $("#list_test tr").remove();
+                            alert("Không Có Số Liệu");
+
+                        }
+                        else {
+                            $('.loading-element').hide();
+                            $('#list_test').html(str_html);
+
+
+                        }
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+        });
+
+
+        //Phần popup theo tổng số túi
+        $(document).ready(function () {
+            $('.modal-tuiso').click(function (e) {
+
+                var fromposcode = $(this).attr("rel1");
+                var toposcode = $(this).attr("rel2");
+                var date = $(this).attr("rel");
+                var type = 2;
+                var typecomunication = '@ViewBag.typecomunication';
+                var da = {
+                    fromposcode: fromposcode,
+                    toposcode: toposcode,
+                    date: date,
+                    type: type,
+                    typecomunication: typecomunication
+
+                };
+                $.ajax({
+                    type: "POST",
+                    //url: "/QualityDelivery/QualityDeliverySuccess6HDetailReport",
+                    beforeSend: function () {
+                        $('.loading-element').show();
+                    },
+
+                    url: '@Url.Action("ListTransferManagement_CTTS_Report", "TransferManagement")',
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(da),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //$('#myModal').on('show.bs.modal', function (e) { });
+                        var str_html = '<table id="GridView1" class="table table-bordered table-hover">';
+                        str_html += '<thead>';
+                        str_html += '<tr class="bg-light-blue color-palette">';
+                        str_html += '<th>STT</th>';
+                        str_html += '<th>Bưu Cục Đóng</th>';
+                        str_html += '<th>Tên Bưu Cục Đóng</th>';
+                        str_html += '<th>Bưu Cục Nhận</th>';
+                        str_html += '<th>Tên Bưu Cục Nhận</th>';
+                        str_html += '<th>Ngày</th>';
+                        str_html += '<th>Chuyến Thư</th>';
+                        str_html += '<th>Túi Số</th>';
+                        str_html += '<th>Tổng Số Bưu Gửi</th>';
+                        str_html += '</tr>';
+                        str_html += '</thead>';
+                        str_html += '<tbody>';
+                        var str_body = "";
+                        var a = 1;
+
+
+                        $.each(data.ListTransferManagement_CTTS_Report, function (i, item) {
+                            fromposcode = item.FromPosCode;
+                            str_body += '<tr>';
+                            str_body += '<td>' + a++ + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].FromPosCode + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].FromPosName + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].ToPosCode + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].ToPosName + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].PickUpDate + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].TotalMailTrip + '</td>';
+                            //str_body += '<td>' + data.ListTransferManagement_CTTS_Report[i].TotalPostBag + '</td>';
+                            str_body += '<td>' + item.FromPosCode + '</td>';
+                            str_body += '<td>' + item.FromPosName + '</td>';
+                            str_body += '<td>' + item.ToPosCode + '</td>';
+                            str_body += '<td>' + item.ToPosName + '</td>';
+                            str_body += '<td>' + item.PickUpDate + '</td>';
+                            str_body += '<td>' + item.TotalMailTrip + '</td>';
+                            @*str_body += '<td> <a href="' + '@Url.Action("E2_TransferManagementDetailReport", "TransferManagement", new { fromposcode ="101006" , toposcode = "100915", date = "data.ListTransferManagement_CTTS_Report[i].PickUpDate", mailtrip = "data.ListTransferManagement_CTTS_Report[i].TotalMailTrip", postbag = "data.ListTransferManagement_CTTS_Report[i].TotalPostBag" })' + '">' + data.ListTransferManagement_CTTS_Report[i].TotalPostBag + '</a> </td>';*@
+                            @*str_body += '<td> <a href="' + '@Url.Action("E2_TransferManagementDetailReport", "TransferManagement")' + '">' + item.TotalPostBag + '</a> </td>';*@
+                            str_body += '<td> <a href="/Admin/TransferManagement/E2_TransferManagementDetailReport/?fromposcode=' + item.FromPosCode + '&toposcode=' + item.ToPosCode + '&date=' + item.PickUpDate + '&mailtrip=' + item.TotalMailTrip + '&postbag=' + item.TotalPostBag + '&typecomunication=@ViewBag.typecomunication' + ' "target="_blank"">' + item.TotalPostBag + '</a> </td>';
+                            str_body += '<td>' + item.TotalItem + '</td>';
+                            str_body += '</tr>';
+                        });
+                        str_html += str_body;
+
+                        str_html += '</tbody>';
+                        str_html += '</table>';
+
+                        if (data.Code == '01') {
+                            $('.loading-element').hide();
+                            $("#list_test tr").remove();
+                            alert("Không Có Số Liệu");
+
+                        }
+                        else {
+                            $('.loading-element').hide();
+                            $('#list_test').html(str_html);
+
+
+                        }
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+        });
+
+        //Phần popup số túi trong tổng số chuyến thư
+        $(document).ready(function () {
+            $('.modal-sotuitrongchthu').click(function (e) {
+
+                var fromposcode = $(this).attr("rel1");
+                var toposcode = $(this).attr("rel2");
+                var date = $(this).attr("rel");
+                var mailtrip = $(this).attr("rel3");
+                var typecomunication = '@ViewBag.typecomunication';
+                var da = {
+                    fromposcode: fromposcode,
+                    toposcode: toposcode,
+                    date: date,
+                    mailtrip: mailtrip,
+                    typecomunication: typecomunication
+
+                };
+                $.ajax({
+                    type: "POST",
+                    //url: "/QualityDelivery/QualityDeliverySuccess6HDetailReport",
+                    beforeSend: function () {
+                        $('.loading-element').show();
+                    },
+
+                    url: '@Url.Action("ListTransferManagement_SOTUI_Report", "TransferManagement")',
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(da),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //$('#myModal').on('show.bs.modal', function (e) { });
+                        var str_html = '<table id="GridView1" class="table table-bordered table-hover">';
+                        str_html += '<thead>';
+                        str_html += '<tr class="bg-light-blue color-palette">';
+                        str_html += '<th>STT</th>';
+                        str_html += '<th>Bưu Cục Đóng</th>';
+                        str_html += '<th>Tên Bưu Cục Đóng</th>';
+                        str_html += '<th>Bưu Cục Nhận</th>';
+                        str_html += '<th>Tên Bưu Cục Nhận</th>';
+                        str_html += '<th>Ngày</th>';
+                        str_html += '<th>Chuyến Thư</th>';
+                        str_html += '<th>Túi Số</th>';
+                        str_html += '<th>Tổng Số Bưu Gửi</th>';
+                        str_html += '</tr>';
+                        str_html += '</thead>';
+                        str_html += '<tbody>';
+                        var str_body = "";
+                        var a = 1;
+
+
+                        $.each(data.ListTransferManagement_SOTUI_Report, function (i, item) {
+                            fromposcode = item.FromPosCode;
+                            str_body += '<tr>';
+                            str_body += '<td>' + a++ + '</td>';
+                            str_body += '<td>' + item.FromPosCode + '</td>';
+                            str_body += '<td>' + item.FromPosName + '</td>';
+                            str_body += '<td>' + item.ToPosCode + '</td>';
+                            str_body += '<td>' + item.ToPosName + '</td>';
+                            str_body += '<td>' + item.PickUpDate + '</td>';
+                            str_body += '<td>' + item.TotalMailTrip + '</td>';
+                            str_body += '<td> <a href="/Admin/TransferManagement/E2_TransferManagementDetailReport/?fromposcode=' + item.FromPosCode + '&toposcode=' + item.ToPosCode + '&date=' + item.PickUpDate + '&mailtrip=' + item.TotalMailTrip + '&postbag=' + item.TotalPostBag + '&typecomunication=@ViewBag.typecomunication' +  ' "target="_blank"">' + item.TotalPostBag + '</a> </td>';
+                            str_body += '<td>' + item.TotalItem + '</td>';
+                            str_body += '</tr>';
+                        });
+                        str_html += str_body;
+
+                        str_html += '</tbody>';
+                        str_html += '</table>';
+
+                        if (data.Code == '01') {
+                            $('.loading-element').hide();
+                            $("#list_sotui tr").remove();
+                            alert("Không Có Số Liệu");
+
+                        }
+                        else {
+                            $('.loading-element').hide();
+                            $('#list_sotui').html(str_html);
+
+
+                        }
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+
+}
+else
+{
+    <script>
+        alert("Không Có Số Liệu");
+    </script>
+
+}
+

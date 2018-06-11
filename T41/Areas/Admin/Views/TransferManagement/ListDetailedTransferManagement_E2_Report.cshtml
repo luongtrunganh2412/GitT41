@@ -1,0 +1,37 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListTransferManagement_E2_Report != null)
+{
+
+    int i = 0;
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListTransferManagement_E2_Report)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.MaE1</td>
+            <td class="text-center">@c.MaBCTra</td>
+            <td class="text-right">@c.KhoiLuong</td>
+            <td></td>
+            <td class="text-right">@c.CuocCS</td>
+            <td class="text-right">@c.Cuoc_DV</td>
+            <td class="text-right">@c.Tong_Cuoc</td>
+            <td>@c.TrangThai </td>
+            
+        </tr>
+
+        i++;
+
+    }
+
+
+}
+
+

@@ -1,0 +1,614 @@
+﻿@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Báo cáo kế hoạch phân ca đã thiết lập trên hệ thống phần mềm</title>
+<section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Báo cáo dữ liệu tổng hợp chi tiết chấm công thực tế</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Loại báo cáo</label>
+                            <select class="form-control select2" style="width: 100%;" id="loaibaocao">
+                                <option selected="selected" value="0">Chi tiết chấm công lao động theo ngày</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label>Đơn vị</label>
+                            <select class="form-control select2" style="width: 100%;" id="donvi">
+                                @*<option selected="selected" value="0">Tất cả</option>*@
+                                <option selected="selected" value="1">TTKTTN-HN</option>
+                                <option value="2">TTKTTN-DN</option>
+                                <option value="3">TTKTTN-HCM</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Hoạt động</label>
+                            <select class="form-control select2" style="width: 100%;" id="hoatdong">
+                                <option selected="selected" value="0">Tất cả</option>
+                                <option value="1">Khai thác trong nước</option>
+                                <option value="2">Vận chuyển</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label>Bưu cục</label>
+                            <select class="form-control select2" style="width: 100%;" id="buucuc">
+                                <option selected="selected" value="0">Tất cả</option>
+                                <option value="1">100916 – Liên tỉnh</option>
+                                <option value="2">101000 – Nội tỉnh</option>
+                                <option value="3">550915 – Liên tỉnh</option>
+                                <option value="4">550100 – Nội tỉnh</option>
+                                <option value="5">700916 – Liên tỉnh</option>
+                                <option value="6">701000 – Nội tỉnh</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Địa điểm</label>
+                            <select class="form-control select2" style="width: 100%;" id="diadiem">
+                                <option selected="selected" value="0">Tất cả</option>
+                                <option value="1">Hải Bối</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label>Ca</label>
+                            <select class="form-control select2" style="width: 100%;" id="ca">
+                                <option selected="selected" value="0">Tất cả</option>
+                                <option value="1">Ca 1</option>
+                                <option value="2">Ca 2</option>
+                                <option value="3">Ca 3</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Kíp</label>
+                            <select class="form-control select2" style="width: 100%;" id="kip">
+                                <option selected="selected" value="0">Tất cả</option>
+                                <option value="1">Kíp 1</option>
+                                <option value="2">Kíp 2</option>
+                                <option value="3">Kíp 3</option>
+                                <option value="4">Kíp 4</option>
+                                <option value="5">Kíp 5</option>
+                                <option value="6">Kíp 6</option>
+                                <option value="7">Kíp 7</option>
+                                <option value="8">Kíp 8</option>
+                                <option value="9">Kíp 9</option>
+                                <option value="10">Kíp 10</option>
+                                <option value="11">Kíp 11</option>
+                                <option value="12">Kíp 12</option>
+                                <option value="13">Kíp 13</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Thời Gian</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="datepicker" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="kipcheck" value="1">
+                            <label class="form-check-label" for="exampleCheck1">Ẩn Các Kíp KSD</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                            <label class="form-check-label" for="exampleCheck2">Ẩn Lao Động Không Bố Trí</label>
+                        </div>
+
+                    </div>
+                    <!-- /.form-group -->
+                    <!-- /.form-group -->
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Lấy số liệu</button>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="col-md-4">
+                        @*<a href="javascript:window.print()">Click to Print This Page</a>*@
+
+                        <div class='no-print'>
+                            <button type="button" class="btn btn-default btn-lrg ajax" onclick="window.print()">Print</button>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p id="demo"></p>
+
+                    </div>
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title">Tổng hợp theo kíp</h3>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-yellow text-primary color-palette">
+                                <th colspan="2">STT</th>
+                                <th colspan="2">Ca</th>
+                                <th colspan="2">Tên Kíp</th>
+                                <th colspan="2">Thời Gian(Từ-Đến)</th>
+                                <th colspan="2">Tổng Giờ Làm</th>
+                                <th colspan="2">Số Người</th>
+                                <th colspan="24" class="text-center">Khung Giờ Sản Xuất</th>
+
+                            </tr>
+                            <tr class="bg-yellow text-primary color-palette" style="border-color:black">
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+
+
+
+                                <td>8h-9h</td>
+                                <td>9h-10h</td>
+                                <td>10h-11h</td>
+                                <td>11h-12h</td>
+                                <td>12h-13h</td>
+                                <td>13h-14h</td>
+                                <td>14h-15h</td>
+                                <td>15h-16h</td>
+                                <td>16h-17h</td>
+                                <td>17h-18h</td>
+                                <td>18h-19h</td>
+                                <td>19h-20h</td>
+                                <td>20h-21h</td>
+                                <td>21h-22h</td>
+                                <td>22h-23h</td>
+                                <td>23h-24h</td>
+                                <td>24h-1h</td>
+                                <td>1h-2h</td>
+                                <td>2h-3h</td>
+                                <td>3h-4h</td>
+                                <td>4h-5h</td>
+                                <td>5h-6h</td>
+                                <td>6h-7h</td>
+                                <td>7h-8h</td>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="listtimekeepingkipreport"></tbody>
+                        <tbody id="sumtimekeepingkipreport"></tbody>
+                        <tbody id="sumslkltimekeepingkipreport"></tbody>
+                    </table>
+                </div>
+
+                <div class="box-header">
+                    <h3 class="box-title">Tổng hợp theo chức danh</h3>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-yellow text-primary color-palette">
+                                <th colspan="2">STT</th>
+                                <th colspan="2">Tên Chức Danh</th>
+                                <th colspan="2">Loại</th>
+                                <th colspan="2">Số người</th>
+                                <th colspan="24" class="text-center">Khung Giờ Sản Xuất</th>
+
+                            </tr>
+                            <tr class="bg-yellow text-primary color-palette">
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">&nbsp;</td>
+
+                                <td>8h-9h</td>
+                                <td>9h-10h</td>
+                                <td>10h-11h</td>
+                                <td>11h-12h</td>
+                                <td>12h-13h</td>
+                                <td>13h-14h</td>
+                                <td>14h-15h</td>
+                                <td>15h-16h</td>
+                                <td>16h-17h</td>
+                                <td>17h-18h</td>
+                                <td>18h-19h</td>
+                                <td>19h-20h</td>
+                                <td>20h-21h</td>
+                                <td>21h-22h</td>
+                                <td>22h-23h</td>
+                                <td>23h-24h</td>
+                                <td>24h-1h</td>
+                                <td>1h-2h</td>
+                                <td>2h-3h</td>
+                                <td>3h-4h</td>
+                                <td>4h-5h</td>
+                                <td>5h-6h</td>
+                                <td>6h-7h</td>
+                                <td>7h-8h</td>
+                            </tr>
+                        </thead>
+                        <tbody id="listtimekeepingtitlereport"></tbody>
+                        <tbody id="sumtimekeepingtitlereport"></tbody>
+                        <tbody id="sumslkltimekeepingtitlereport"></tbody>
+                    </table>
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title">Chi Tiết</h3>
+                </div>
+                <div style="overflow-x:auto;">
+                    @*<div class="table-responsive">*@
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-yellow text-primary color-palette">
+                                <th colspan="2">STT</th>
+                                <th colspan="2" class="hide">MA</th>
+                                <th colspan="4">Tên</th>
+                                <th colspan="4">Chức Danh</th>
+                                <th colspan="4">Loại</th>
+                                <th colspan="3">Ca</th>
+                                <th colspan="3">Từ-Đến</th>
+                                <th colspan="2">Tổng Giờ Làm</th>
+                                <th colspan="20" class="text-center">Tên Kíp</th>
+                                <th colspan="24" class="text-center">Khung Giờ Sản Xuất</th>
+                                <th colspan="4" class="text-center">Thời Gian Vào/Ra</th>
+
+                            </tr>
+                            <tr class="bg-yellow text-primary color-palette">
+                                <td colspan="2">STT</td>
+                                <td colspan="4">Tên</td>
+                                <td colspan="4">Chức Danh</td>
+                                <td colspan="4">Loại</td>
+                                <td colspan="3">Ca</td>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="2">Tổng Giờ Làm</td>
+
+                                <td>Kíp 1</td>
+                                <td>Kíp 2</td>
+                                <td>Kíp 3</td>
+                                <td>Kíp 4</td>
+                                <td>Kíp 5</td>
+                                <td>Kíp 6</td>
+                                <td>Kíp 7</td>
+                                <td>Kíp 8</td>
+                                <td>Kíp 9</td>
+                                <td>Kíp 10</td>
+                                <td>Kíp 11</td>
+                                <td>Kíp 12</td>
+                                <td>Kíp 13</td>
+                                <td>Kíp 14</td>
+                                <td>Kíp 15</td>
+                                <td>Kíp 16</td>
+                                <td>Kíp 17</td>
+                                <td>Kíp 18</td>
+                                <td>Kíp 19</td>
+                                <td>Kíp 20</td>
+
+                                <td>8h-9h</td>
+                                <td>9h-10h</td>
+                                <td>10h-11h</td>
+                                <td>11h-12h</td>
+                                <td>12h-13h</td>
+                                <td>13h-14h</td>
+                                <td>14h-15h</td>
+                                <td>15h-16h</td>
+                                <td>16h-17h</td>
+                                <td>17h-18h</td>
+                                <td>18h-19h</td>
+                                <td>19h-20h</td>
+                                <td>20h-21h</td>
+                                <td>21h-22h</td>
+                                <td>22h-23h</td>
+                                <td>23h-24h</td>
+                                <td>24h-1h</td>
+                                <td>1h-2h</td>
+                                <td>2h-3h</td>
+                                <td>3h-4h</td>
+                                <td>4h-5h</td>
+                                <td>5h-6h</td>
+                                <td>6h-7h</td>
+                                <td>7h-8h</td>
+                                <td>TG vào</td>
+                                <td>TG ra</td>
+                            </tr>
+                        </thead>
+                        <tbody id="sumtimekeepingreport"></tbody>
+                        <tbody id="listtimekeepingdetailreport"></tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    @*<div class="col-sm-5">
+                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"></div>
+                        </div>*@
+                    <div id="page-selection" class="col-sm-12 text-center">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+    <!-- /.box-body -->
+
+
+
+
+
+</section>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+
+<!--jquery.bootpag.min-->>
+
+
+<script>
+    
+
+    $(function () {
+        $('#datepicker').datepicker()
+        $("#datepicker").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+    var d = new Date();
+    document.getElementById("demo").innerHTML = "Thời Gian Kết Xuất Báo Cáo: " + d;
+
+    
+
+    $("#btnreport").click(function () {
+
+        KipDetail();
+
+        //SummaryKipDetail();
+        
+
+        SummarySLKLKipDetail();
+        
+
+        TitleDetail();
+        
+
+        //SummaryTitleDetail();
+        
+
+        SummarySLKLTitleDetail();
+        
+
+        Detail();
+        
+
+        //SummaryDetail();
+        
+
+    });
+
+    function KipDetail() {
+        
+        
+        var elm = document.getElementById('kipcheck');
+        var kipcheck = elm.checked ? 1 : 0;
+        
+        
+        $.ajax({
+            url: '@Url.Action("RealListDetailedTimekeepingKipReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                
+                {                 
+                    ngay:$('#datepicker').val(),
+                    donvi: $("#donvi").val(),
+                    ankip: kipcheck,
+                    kip: $("#kip").val()
+                },
+            success: function (result) {
+                 
+                $('#listtimekeepingkipreport').html(result);
+               // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummaryKipDetail() {
+        ////console.log("1");
+
+
+        $.ajax({
+            url: '@Url.Action("RealSumTimekeepingKipReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                     
+                    donvi: $("#donvi").val(),
+                    to: $('#buucuc').val()
+                },
+            success: function (result) {
+                 
+                $('#sumtimekeepingkipreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummarySLKLKipDetail() {
+        //console.log("1");
+        
+
+        $.ajax({
+            url: '@Url.Action("RealSumSLKLTimekeepingKipReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                    
+                    donvi: $("#donvi").val(),
+                    //mabc: '101000'
+                    //mabc: $('#buucuc').val()
+                },
+            success: function (result) {
+                 
+                $('#sumslkltimekeepingkipreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function TitleDetail() {
+        //console.log("1");
+        $.ajax({
+            url: '@Url.Action("RealListDetailedTimekeepingTitleReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                     
+                    donvi: $("#donvi").val(),
+                    kip: $('#kip').val()
+                },
+            success: function (result) {
+                 
+                $('#listtimekeepingtitlereport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummaryTitleDetail() {
+        //console.log("1");
+
+
+        $.ajax({
+            url: '@Url.Action("RealSumTimekeepingTitleReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                    
+                    donvi: $("#donvi").val(),
+                    to: $('#buucuc').val()
+                },
+            success: function (result) {
+                 
+                $('#sumtimekeepingtitlereport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummarySLKLTitleDetail() {
+        //console.log("1");
+
+
+        $.ajax({
+            url: '@Url.Action("RealSumSLKLTimekeepingTitleReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                     
+                    donvi: $("#donvi").val(),
+                    //mabc: '101000'
+                },
+            success: function (result) {
+                 
+                $('#sumslkltimekeepingtitlereport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function Detail() {
+        //console.log("1");
+
+        $.ajax({
+            url: '@Url.Action("RealListDetailedTimekeepingReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                    
+                    donvi: $("#donvi").val(),
+                    to: $('#buucuc').val(),
+                    kip: $('#kip').val()
+                },
+            success: function (result) {
+                 
+                $('#listtimekeepingdetailreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    function SummaryDetail() {
+        //console.log("1");
+
+
+        $.ajax({
+            url: '@Url.Action("RealSumTimekeepingReport", "RealTimekeeping")',
+            dataType: 'html',
+            data:
+                {
+                    ngay: $('#datepicker').val(),                    
+                    donvi: $("#donvi").val(),
+                },
+            success: function (result) {
+                 
+                $('#sumtimekeepingreport').html(result);
+                // if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+
+    //$(document).ready(function () {
+
+    //    $.getJSON("/RealTimekeeping/DMKip", function (data) {
+    //        $.each(data, function (i, data) {
+
+    //            $('<option>',
+    //               {
+    //                   value: data.MAKIP,
+    //                   text: data.TENKIP
+    //               }).html(data.MAKIP + '-' + data.TENKIP).appendTo("#kip");
+    //        });
+    //    })
+
+    //});
+</script>
+
+

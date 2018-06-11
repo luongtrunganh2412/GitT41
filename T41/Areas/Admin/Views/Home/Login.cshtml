@@ -38,7 +38,7 @@
             <p class="login-box-msg">Đăng nhập hệ thống</p>
             <p style="color:red;">@ViewBag.error</p>
             <form action="/Admin/Home/Login" method="post">
-                <div class="form-group has-feedback">
+            <div class="form-group has-feedback">
                     <input type="text" name="userid" class="form-control" placeholder="Nhập tên người dùng">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
@@ -48,11 +48,11 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <div class="checkbox icheck">
+                        @*<div class="checkbox icheck">
                             <label>
                                 <input type="checkbox"> Ghi nhớ
                             </label>
-                        </div>
+                        </div>*@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
@@ -61,16 +61,16 @@
                     <!-- /.col -->
                 </div>
             </form>
-            <div class="social-auth-links text-center">
+            @*<div class="social-auth-links text-center">
                 <p>- OR -</p>
                 <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
                     <i class="fa fa-facebook"></i> Sign in using
                     Facebook
                 </a>
             </div>
-            <!-- /.social-auth-links -->
+             /.social-auth-links 
             <a href="#">Quên mật khẩu</a><br>
-            <a href="register.html" class="text-center">Đăng ký tài khoản</a>
+            <a href="register.html" class="text-center">Đăng ký tài khoản</a>*@
         </div>
         <!-- /.login-box-body -->
     </div>

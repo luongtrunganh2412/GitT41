@@ -1,0 +1,328 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
+@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Quản Lý Người Dùng</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quản Lý Người Dùng</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tên:</label>
+                        <input type="text" id="myInputName" class="form-control" onkeyup="search_name()" placeholder="Search for names.." title="Type in a name">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Điện Thoại:</label>
+                        <input type="text" id="myInputTel" class="form-control" onkeyup="search_tel()" placeholder="Search for tel.." title="Type in a tel">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="text" id="myInputEmail" class="form-control" onkeyup="search_email()" placeholder="Search for email.." title="Type in a email">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Số Tham Chiếu:</label>
+                        <input type="text" id="myInputApi" class="form-control" onkeyup="search_api()" placeholder="Search for api key.." title="Type in a api_key">
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="box-header">
+                <h3 class="box-title">Bảng quản lý người dùng</h3>
+            </div>
+            <div class="col-md-12">
+                <a href="/Admin/UserManagement/CreateUser" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span> Create</a>
+                @*<p data-placement="top" data-toggle="tooltip" title="Add"><button class="btn btn-info btn-md" data-title="Add" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span></button></p>*@
+            </div>
+
+            <div class="col-md-12">
+                <div style="overflow-x:auto;">
+                    <table id="myTable" class="table table-bordered table-hover">
+
+                        <thead>
+                            <tr class="bg-light-blue color-palette">
+                                <th>STT</th>
+                                <th>Contact Name</th>
+                                <th>Contact Address</th>
+                                <th>Contact Phone Work</th>
+                                <th>General Email</th>
+                                <th>Street</th>
+                                <th>Api_Key</th>
+                                <th>ID</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list_user">
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <!--Phần modal Add thông tin người dùng-->
+            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h4 class="modal-title custom_align" id="Heading">Thêm thông tin người dùng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="ContactName">ContactName:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactAddress">ContactAddress:</label>
+                                <textarea rows="2" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactPhoneWork">ContactPhoneWork:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="GeneralEmail">GeneralEmail:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="Street">Street:</label>
+                                <textarea rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn btn-info btn-lg" id="btnreportadd" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+            <!--Phần modal Edit thông tin người dùng-->
+            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h4 class="modal-title custom_align" id="Heading">Sửa thông tin người dùng</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="ContactName">ContactName:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactAddress">ContactAddress:</label>
+                                <textarea rows="2" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactPhoneWork">ContactPhoneWork:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="GeneralEmail">GeneralEmail:</label>
+                                <input class="form-control " type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="Street">Street:</label>
+                                <textarea rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn btn-primary btn-lg" id="btnreportedit" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Sửa</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+
+            <!--Phần modal Delete thông tin người dùng-->
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h4 class="modal-title custom_align" id="Heading">Xóa thông tin người dùng</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Bạn có chắc chắn muốn xóa không ?</div>
+
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok-sign" id="btnreportdelete"></span> Có</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Không</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+</section>
+
+<script type="text/javascript">
+
+    //$("#btnreport").click(function () {
+
+    //    // goi ham Detail
+
+    //    detail();
+
+    //});
+
+    $(document).ready(function () {
+
+        // goi ham Detail
+
+        detail_user();
+
+    });
+
+
+
+
+    //Phần JS gọi đến dữ liệu của chi tiết bản kê E2
+    function detail_user() {
+        $.ajax({
+            url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
+            dataType: 'html',
+            data:{},
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('#list_user').html(result);
+
+            }
+        })
+    }
+
+    //Phần Js tìm kiếm theo tên
+    function search_name() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputName");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    //Phần Js tìm kiếm theo số điện thoại
+    function search_tel() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputTel");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    //Phần Js tìm kiếm theo email
+    function search_email() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputEmail");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    //Phần Js tìm kiếm theo Api Key
+    function search_api() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInputApi");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    
+    
+
+</script>
+
+
+
+
+
+
+

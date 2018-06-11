@@ -1,0 +1,199 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+
+<title>Create</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
+                            <input class="form-control " type="text" id="CUSTOMER_CODE">
+                        </div>
+                        <div class="form-group">
+                            <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
+                            <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE">
+                        </div>
+                        <div class="form-group">
+                            <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
+                            <input class="form-control " type="text" id="GENERAL_FULL_NAME">
+                        </div>
+                        <div class="form-group">
+                            <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
+                            <input class="form-control " type="text" id="GENERAL_SHORT_NAME">
+                        </div>
+                        <div class="form-group">
+                            <label for="CONTACT_NAME">CONTACT_NAME:</label>
+                            <input class="form-control " type="text" id="CONTACT_NAME">
+                        </div>
+                        <div class="form-group">
+                            <label for="ADDRESS">ADDRESS:</label>
+                            <textarea rows="2" class="form-control" id="ADDRESS"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="GENERAL_EMAIL">GENERAL_EMAIL:</label>
+                        <input class="form-control " type="text" id="GENERAL_EMAIL">
+                    </div>
+                    <div class="form-group">
+                        <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
+                        <input class="form-control " type="text" id="CONTACT_PHONE_WORK">
+                    </div>
+                    <div class="form-group">
+                        <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
+                        <input class="form-control " type="text" id="BUSINESS_TAX">
+                    </div>
+                    <div class="form-group">
+                        <label for="CONTRACT">CONTRACT:</label>
+                        <input class="form-control " type="text" id="CONTRACT">
+                    </div>
+                    <div class="form-group">
+                        <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
+                        <textarea rows="2" class="form-control" id="CONTACT_ADDRESS"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
+                        <textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
+                        <input class="form-control " type="text" id="CONTACT_DISTRICT">
+                    </div>
+                    <div class="form-group">
+                        <label for="STREET">STREET:</label>
+                        <textarea rows="2" class="form-control" id="STREET"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="UNIT_CODE">UNIT_CODE:</label>
+                        <input class="form-control " type="text" id="UNIT_CODE">
+                    </div>
+                    <div class="form-group">
+                        <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
+                        <input class="form-control " type="text" id="SYSTEM_REF_CODE">
+                    </div>
+                    @*<div class="form-group">
+                        <label for="API_KEY">API_KEY:</label>
+                        <textarea rows="2" class="form-control" id="API_KEY"></textarea>
+                    </div>*@
+                </div>
+            </div>
+
+            <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="/Admin/UserManagement/UserManagementDetailReport" class="btn btn-default btn-md" ><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-info btn-lrg ajax" id="btnreportadd"><span class="glyphicon glyphicon-plus"></span>Create </button>
+                        @*<button type="button" class="btn btn-default btn-lrg ajax" id="btnreportadd">Create </button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+            <!-- /.box-body -->
+
+
+
+</section>
+<script>
+
+    
+
+
+
+    //Phần dữ liệu chi tiết người dùng nhập vào
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("CreateUserReport", "UserManagement")',
+            dataType: 'html',
+            data:
+                {
+                    
+                    CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
+
+                    GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
+
+                    GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
+
+                    GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
+
+                    CONTACT_NAME: $('#CONTACT_NAME').val(),
+
+                    ADDRESS: $('#ADDRESS').val(),
+
+                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
+
+                    CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
+
+                    BUSINESS_TAX: $('#BUSINESS_TAX').val(),
+
+                    CONTRACT: $('#CONTRACT').val(),
+
+                    CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
+
+                    CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
+
+                    CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
+
+                    STREET: $('#STREET').val(),
+
+                    UNIT_CODE: $('#UNIT_CODE').val(),
+
+                    SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
+
+                    //API_KEY: $('#API_KEY').val(),
+                },
+            success: function (result) {
+                alert("Thêm Thành Công");
+                
+
+            }
+        })
+    }
+
+
+
+    $("#btnreportadd").on('click',function () {
+
+        // goi ham Detail
+        detail();
+
+    });
+</script>
+
+
+
+
+
+
+
+

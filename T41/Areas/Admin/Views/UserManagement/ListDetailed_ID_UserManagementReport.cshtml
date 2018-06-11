@@ -1,0 +1,176 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListUserManagementReport != null)
+{
+
+    int i = 0;
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListUserManagementReport)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
+                        <input class="form-control " type="text" id="CUSTOMER_CODE" placeholder="@c.CustomerCode">
+                    </div>
+                    <div class="form-group">
+                        <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
+                        <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE" placeholder="@c.GeneralAccountType">
+                    </div>
+                    <div class="form-group">
+                        <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
+                        <input class="form-control " type="text" id="GENERAL_FULL_NAME" placeholder="@c.GeneralFullName">
+                    </div>
+                    <div class="form-group">
+                        <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
+                        <input class="form-control " type="text" id="GENERAL_SHORT_NAME" placeholder="@c.GeneralShortName">
+                    </div>
+                    <div class="form-group">
+                        <label for="CONTACT_NAME">CONTACT_NAME:</label>
+                        <input class="form-control " type="text" id="CONTACT_NAME" placeholder="@c.ContactName">
+                    </div>
+                    <div class="form-group">
+                        <label for="ADDRESS">ADDRESS:</label>
+                        <textarea rows="2" class="form-control" id="ADDRESS" placeholder="@c.Address"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="GENERAL_EMAIL">GENERAL_EMAIL:</label>
+                    <input class="form-control " type="text" id="GENERAL_EMAIL" placeholder="@c.GeneralEmail">
+                </div>
+                <div class="form-group">
+                    <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
+                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" placeholder="@c.ContactPhoneWork">
+                </div>
+                <div class="form-group">
+                    <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
+                    <input class="form-control " type="text" id="BUSINESS_TAX" placeholder="@c.BusinessTax">
+                </div>
+                <div class="form-group">
+                    <label for="CONTRACT">CONTRACT:</label>
+                    <input class="form-control " type="text" id="CONTRACT" placeholder="@c.Contract">
+                </div>
+                <div class="form-group">
+                    <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
+                    <textarea rows="2" class="form-control" id="CONTACT_ADDRESS" placeholder="@c.ContactAddress"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
+                    <textarea rows="2" class="form-control" id="CONTACT_PROVINCE" placeholder="@c.ContactProvince"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
+                    <input class="form-control " type="text" id="CONTACT_DISTRICT" placeholder="@c.ContactDistrict">
+                </div>
+                <div class="form-group">
+                    <label for="STREET">STREET:</label>
+                    <textarea rows="2" class="form-control" id="STREET" placeholder="@c.Street"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="UNIT_CODE">UNIT_CODE:</label>
+                    <input class="form-control " type="text" id="UNIT_CODE" placeholder="@c.UnitCode">
+                </div>
+                <div class="form-group">
+                    <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
+                    <input class="form-control " type="text" id="SYSTEM_REF_CODE" placeholder="@c.SystemRefCode">
+                </div>
+                @*<div class="form-group">
+                        <label for="API_KEY">API_KEY:</label>
+                        <textarea rows="2" class="form-control" id="API_KEY"></textarea>
+                    </div>*@
+            </div>
+        </div>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/Admin/UserManagement/UserManagementDetailReport" class="btn btn-default btn-md"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-lrg ajax" id="btnreportedit"><span class="glyphicon glyphicon-ok"></span>Save </button>
+                </div>
+            </div>
+
+    }
+    <script>
+
+        var url_string = document.URL;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+        
+
+
+    //Phần dữ liệu chi tiết người dùng nhập vào
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("EditUserReport", "UserManagement")',
+            dataType: 'html',
+            data:
+                {
+                    EDIT_ID: id,
+
+                    CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
+
+                    GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
+
+                    GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
+
+                    GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
+
+                    CONTACT_NAME: $('#CONTACT_NAME').val(),
+
+                    ADDRESS: $('#ADDRESS').val(),
+
+                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
+
+                    CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
+
+                    BUSINESS_TAX: $('#BUSINESS_TAX').val(),
+
+                    CONTRACT: $('#CONTRACT').val(),
+
+                    CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
+
+                    CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
+
+                    CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
+
+                    STREET: $('#STREET').val(),
+
+                    UNIT_CODE: $('#UNIT_CODE').val(),
+
+                    SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
+
+                },
+            success: function (result) {
+                alert("Sửa Thành Công");
+                
+            }
+        })
+    }
+
+
+
+        $("#btnreportedit").on('click', function () {
+
+        // goi ham Detail
+        detail();
+
+    });
+    </script>
+
+}
+
+

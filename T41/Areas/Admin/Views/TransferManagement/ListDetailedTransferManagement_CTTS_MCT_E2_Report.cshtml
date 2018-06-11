@@ -1,0 +1,43 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListTransferManagement_CTTS_MCT_E2_Report != null)
+{
+
+    
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListTransferManagement_CTTS_MCT_E2_Report)
+    {
+        
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                   <td>Từ: @c.FromPos</td>
+                                    <td class="text-left">Gửi Đến: @c.ToPos</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td>Chuyến Thư: @c.MailTrip </td>
+                                    <td class="text-left">Ngày tháng: @c.PickUpDate</td>
+                                    <td class="text-left">Giờ: @c.PickUpTime</td>
+                                    <td class="text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td>Túi số: @c.PostBag </td>
+                                    <td class="text-left">Khối lượng: @c.TotalWeight kg</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"></td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                         </table>
+    }
+
+
+}
+
+

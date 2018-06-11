@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using T41.Areas.Admin.Model.BusinessModel;
 using T41.Areas.Admin.Model.DataModel;
-
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace T41.Areas.Admin.Controllers
 {
     public class CategoriesController : Controller
@@ -120,7 +121,36 @@ namespace T41.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult ExportExcel()
+        {
+            Excel.Application application = new Excel.Application();
+            Excel.Workbook workbook = application.Workbooks.Add(System.Reflection.Missing.Value);
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+            // Category category = new Category();
+            var category = db.Category.Include(c => c.Administrator).ToList();
+            worksheet.Cells[1, 1] = "CategoryName";
+            worksheet.Cells[1, 2] = "OrderNo";
+            worksheet.Cells[1, 3] = "Status";
+            worksheet.Cells[1, 4] = "UserId";
 
+            int row = 2;
+
+            foreach (Category c in category)
+            {
+                worksheet.Cells[row, 1] = c.CategoryName;
+                worksheet.Cells[row, 2] = c.OrderNo;
+                worksheet.Cells[row, 3] = c.Status;
+                worksheet.Cells[row, 4] = c.UserId;
+                row++;
+            }
+            workbook.SaveAs("C:\\Category.xls");
+            workbook.Close();
+            Marshal.ReleaseComObject(workbook);
+            application.Quit();
+            Marshal.FinalReleaseComObject(application);
+            ViewBag.Success = "Export thành công.";
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

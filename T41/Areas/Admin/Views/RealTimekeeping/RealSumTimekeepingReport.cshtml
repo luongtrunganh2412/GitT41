@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    int i = 0;
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model)
+    {
+        <tr class="bg-yellow text-primary color-palette">
+            <td colspan="2">Tổng:</td>
+            <td colspan="4"></td>
+            <td colspan="4"></td>
+            <td colspan="4"></td>
+            <td colspan="3"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td>@c.Kip1 </td>
+            <td>@c.Kip2 </td>
+            <td>@c.Kip3 </td>
+            <td>@c.Kip4 </td>
+            <td>@c.Kip5 </td>
+            <td>@c.Kip6 </td>
+            <td>@c.Kip7 </td>
+            <td>@c.Kip8 </td>
+            <td>@c.Kip9 </td>
+            <td>@c.Kip10 </td>
+            <td>@c.Kip11 </td>
+            <td>@c.Kip12 </td>
+            <td>@c.Kip13 </td>
+            <td>@c.Kip14 </td>
+            <td>@c.Kip15 </td>
+            <td>@c.Kip16 </td>
+            <td>@c.Kip17 </td>
+            <td>@c.Kip18 </td>
+            <td>@c.Kip19 </td>
+            <td>@c.Kip20 </td>
+            <td>@c.Den9h</td>
+            <td>@c.Den10h</td>
+            <td>@c.Den11h </td>
+            <td>@c.Den12h </td>
+            <td>@c.Den13h </td>
+            <td>@c.Den14h </td>
+            <td>@c.Den15h </td>
+            <td>@c.Den16h </td>
+            <td>@c.Den17h </td>
+            <td>@c.Den18h </td>
+            <td>@c.Den19h </td>
+            <td>@c.Den20h </td>
+            <td>@c.Den21h </td>
+            <td>@c.Den22h </td>
+            <td>@c.Den23h </td>
+            <td>@c.Den24h </td>
+            <td>@c.Den1h </td>
+            <td>@c.Den2h </td>
+            <td>@c.Den3h </td>
+            <td>@c.Den4h </td>
+            <td>@c.Den5h </td>
+            <td>@c.Den6h </td>
+            <td>@c.Den7h </td>
+            <td>@c.Den8h </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+        
+
+
+        i++;
+    }
+}
+        @*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+            <input type="hidden" id="total_page" value="@ViewBag.total_page" />
+            <input type="hidden" id="total" value="@ViewBag.total" />*@

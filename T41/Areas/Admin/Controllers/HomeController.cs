@@ -39,6 +39,7 @@ namespace T41.Areas.Admin.Controllers
                 Session["username"] = user.UserName;
                 Session["fullname"] = user.FullName;
                 Session["avatar"] = user.Avatar;
+                Session["isadmin"] = user.IsAdmin;
                 //  Response.Redirect("Index");
                 return RedirectToAction("Index");
             }
@@ -55,6 +56,10 @@ namespace T41.Areas.Admin.Controllers
             //else
             //    ViewBag.error = "Sai tên đăng nhập hoặc mật khẩu.";
             return View();
+        }
+        public EmptyResult Alive()
+        {
+            return new EmptyResult();
         }
     }
 }

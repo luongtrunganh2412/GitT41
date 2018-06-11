@@ -1,0 +1,316 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListQualityDeliveryReport != null)
+{
+
+    int i = 0;
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListQualityDeliveryReport)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.KhuVuc</td>
+            @*<td id="postcode" >@c.BuuCuc</td>*@
+
+            <td>@c.BuuCuc</td>
+            <td>@c.TenBuuCuc</td>
+            <td>@c.TongSL</td>
+            <td>@c.SanLuongPTC</td>
+            <td>@c.SanLuongPTC6H </td>
+            @*<a href="#" name="edit" id="edit" onclick="popup('');">@c.SanLuongPTC6H</a>*@
+            @*<button type="button" data-toggle="modal" data-target="#myModal">@c.SanLuongPTC6H</button>*@
+            @*<a href="javascript:;" id="show_click">@c.SanLuongPTC6H </a>*@
+            @*  <button type="button" class="btn btn-info btn-lg" id="show_click">Open Modal</button>*@
+
+            <td>
+                <a data-toggle="modal" data-id="@c.BuuCuc" class="modal-sanluong" data-target="#myModal" href="#myModal" rel="@c.BuuCuc">@c.SanLuongPTCQUA6H </a>
+            </td>
+            <td>@c.TyLeTrong6H</td>
+            <td>@c.TyLeQua6H</td>
+            <td>
+                <a data-toggle="modal" data-id="@c.TCKXD" class="modal-tckxd" data-target="#myModal" href="#myModal" rel="@c.BuuCuc">@c.TCKXD </a>
+            </td>
+
+        </tr>
+        i++;
+
+    }
+
+    //Thuộc tính attr sẽ gọi đến rel VD : $(this).attr("rel"); sẽ gọi đến rel , $(this).attr("data-id"); sẽ gọi đến data-id.
+    <script>
+        
+
+        $(document).ready(function () {
+            $('.modal-sanluong').click(function (e) {
+
+                var endpostcode = $(this).attr("rel");
+                var routecode = '@ViewBag.routecode';
+                @*var zone = '@ViewBag.zone';*@
+                var service = '@ViewBag.service';
+                var startdate = '@ViewBag.startdate';
+                var enddate = '@ViewBag.enddate';
+                var type = 1;
+
+
+                var da = {
+                    endpostcode: endpostcode,
+                    //zone: zone,
+                    routecode: routecode,
+                    service: service,
+                    startdate: startdate,
+                    enddate: enddate,
+                    type: type,
+                };
+                $.ajax({
+                    type: "POST",
+                    //url: "/QualityDelivery/QualityDeliverySuccess6HDetailReport",
+                    beforeSend: function () {
+                        $('.loading-element').show();
+                    },
+
+                    url: '@Url.Action("QualityDeliveryDetailReport_Success6H", "QualityDelivery")',
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(da),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //$('#myModal').on('show.bs.modal', function (e) { });
+                        var str_html = '<table id="GridView1" class="table table-bordered table-hover">';
+                        str_html += '<thead>';
+                        str_html += '<tr class="bg-light-blue color-palette">';
+                        str_html += '<th>STT</th>';
+                        str_html += '<th>Mã E1</th>';
+                        str_html += '<th>Bưu Cục Phát</th>';
+                        str_html += '<th>Tuyến Phát</th>';
+                        str_html += '<th>Ngày XNĐ</th>';
+                        str_html += '<th>Giờ XNĐ</th>';
+                        str_html += '<th>Ngày Phát</th>';
+                        str_html += '<th>Giờ Phát</th>';
+                        str_html += '<th>TG BQ</th>';
+                        str_html += '</tr>';
+                        str_html += '</thead>';
+                        str_html += '<tbody>';
+                        var str_body = "";
+                        var a = 1;
+                        $.each(data.ListQualityDeliverySuccess6HReport, function (i, item) {
+                            str_body += '<tr>';
+                            str_body += '<td>' + a++ + '</td>';
+                            //str_body += '<td>' + data[i].ItemCode + '</td>';
+
+                            str_body += '<td><a href="http://bccp.vnpost.vn/BCCP.aspx?act=Trace&id=' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '"target="_blank" "class="mae1" id="' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '">' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '</a></td>';
+
+
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].EndPostCode + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].RouteCode + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].C17StatusDate + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].C17StatusTime + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].StatusDate + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].StatusTime + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].TimeInterval + '</td>';
+                            str_body += '</tr>';
+                        });
+                        str_html += str_body;
+
+                        str_html += '</tbody>';
+                        str_html += '</table>';
+
+                        if (data.Code == '01') {
+                            $('.loading-element').hide();
+                            //Xóa session store của bảng chi tiết trước khi show ra
+                            $("#list_test tr").remove();
+                            @*window.location.href = "@Url.Action("QualityDeliveryDetailReport", "QualityDelivery")";*@
+                            //document.getElementById("demo").innerHTML = "Không Có Dữ Liệu";
+                            alert("Không Có Số Liệu");
+
+
+                        }
+                        else {
+                            $('.loading-element').hide();
+                            $('#list_test').html(str_html);
+
+
+                        }
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+        });
+
+        //var strLink = "http://bccp.vnpost.vn/BCCP.aspx?act=Trace&id=" + itemcode;
+        //document.getElementById("data[i].ItemCode").setAttribute("href", strLink);
+
+
+        $(document).ready(function () {
+            $('.modal-tckxd').click(function (e) {
+                var endpostcode = $(this).attr("rel");
+                var routecode = '@ViewBag.routecode';
+                @*var zone = '@ViewBag.zone';*@
+                var service = '@ViewBag.service';
+                var startdate = '@ViewBag.startdate';
+                var enddate = '@ViewBag.enddate';
+                var type = 2;
+                var da = {
+                    endpostcode: endpostcode,
+                    routecode: routecode,
+                    //zone: zone,
+                    service: service,
+                    startdate: startdate,
+                    enddate: enddate,
+                    type: type,
+                };
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function () {
+                        $('.loading-element').show();
+                    },
+                    //url: "/QualityDelivery/QualityDeliverySuccess6HDetailReport",
+                    url: '@Url.Action("QualityDeliveryDetailReport_Success6H", "QualityDelivery")',
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(da),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //$('#myModal').on('show.bs.modal', function (e) { });
+                        var str_html = '<table id="GridView1" class="table table-bordered table-hover">';
+                        str_html += '<thead>';
+                        str_html += '<tr class="bg-light-blue color-palette">';
+                        str_html += '<th>STT</th>';
+                        str_html += '<th>Mã E1</th>';
+                        str_html += '<th>Bưu Cục Phát</th>';
+                        str_html += '<th>Tuyến Phát</th>';
+                        str_html += '<th>Ngày XNĐ</th>';
+                        str_html += '<th>Giờ XNĐ</th>';
+                        str_html += '<th>Ngày Phát</th>';
+                        str_html += '<th>Giờ Phát</th>';
+                        str_html += '<th>TG BQ</th>';
+                        str_html += '</tr>';
+                        str_html += '</thead>';
+                        str_html += '<tbody>';
+                        var str_body = "";
+                        var a = 1;
+                        $.each(data.ListQualityDeliverySuccess6HReport, function (i, item) {
+                            str_body += '<tr>';
+                            str_body += '<td>' + a++ + '</td>';
+                            //str_body += '<td>' + data[i].ItemCode + '</td>';
+
+                            str_body += '<td><a href="http://bccp.vnpost.vn/BCCP.aspx?act=Trace&id=' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '"target="_blank" "class="mae1" id="' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '">' + data.ListQualityDeliverySuccess6HReport[i].ItemCode + '</a></td>';
+
+
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].EndPostCode + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].RouteCode + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].C17StatusDate + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].C17StatusTime + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].StatusDate + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].StatusTime + '</td>';
+                            str_body += '<td>' + data.ListQualityDeliverySuccess6HReport[i].TimeInterval + '</td>';
+                            str_body += '</tr>';
+                        });
+                        str_html += str_body;
+
+
+                        str_html += '</tbody>';
+                        str_html += '</table>';
+                        if (data.Code == '01') {
+                            $('.loading-element').hide();
+                            $("#list_test tr").remove();
+                            @*window.location.href = "@Url.Action("QualityDeliveryDetailReport", "QualityDelivery")";*@
+                            //document.getElementById("demo").innerHTML = "Không Có Dữ Liệu";
+                            alert("Không Có Số Liệu");
+                        }
+                        else {
+                            $('.loading-element').hide();
+                            $('#list_test').html(str_html);
+
+                        }
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+        });
+
+        @*$('#myModal').on('show.bs.modal', function (e) {
+            //  $("#show_click").click(function (e) {
+            var bookId = $(e.relatedTarget).data('book-id');
+            $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+            var service = '@ViewBag.service';
+            var startdate = '@ViewBag.startdate';
+            var enddate = '@ViewBag.enddate';
+            var data = {
+                service: service,
+                startdate: startdate,
+                enddate: enddate,
+            };
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "/QualityDelivery/QualityDeliveryDetailReport_List",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    //$('#myModal').on('show.bs.modal', function (e) { });
+                    var str_html = '<table class="table table-bordered table-hover">';
+                    str_html += '<thead>';
+                    str_html += '<tr class="bg-light-blue color-palette">';
+                    str_html += '<th>STT</th>';
+                    str_html += '<th>Names</th>';
+                    str_html += '</tr>';
+                    str_html += '</thead>';
+                    str_html += '<tbody>';
+                    var str_body = "";
+                    $.each(data, function (i, item) {
+                        str_body += '<tr>';
+                        str_body += '<td>' + data[i].Id + '</td>';
+                        str_body += '<td>' + data[i].Name + '</td>';
+                        str_body += '</tr>';
+                    });
+                    str_html += str_body;
+
+
+                    str_html += '</tbody>';
+                    str_html += '</table>';
+                    $('#list_test').html(str_html);
+
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        });*@
+
+        //function popup(url)
+        //{
+        //    window.open('ListDetailedQualityDeliveryReport', "#1", "dialogHeight:600px;dialogHeight:400px;dialogWidth:700px;dialogTop:300px;dialogLeft:400px;edge:Raised;center:Yes;help:No;Resiable:No;Status:No;");
+        //}
+
+
+        // goi ham Detail
+
+
+
+    </script>
+}
+else
+{
+    <script>
+        alert("Không Có Số Liệu");
+    </script>
+   
+}
+
+

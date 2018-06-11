@@ -47,7 +47,7 @@ namespace T41.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,UserName,PassWord,FullName,Email,Avatar,IsAdmin,Active")] Administrator administrator)
+        public ActionResult Create([Bind(Include = "UserId,UserName,PassWord,FullName,Email,Avatar,IsAdmin,Active,Role")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace T41.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,UserName,PassWord,FullName,Email,Avatar,IsAdmin,Active")] Administrator administrator)
+        public ActionResult Edit([Bind(Include = "UserId,UserName,PassWord,FullName,Email,Avatar,IsAdmin,Active,Role")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {

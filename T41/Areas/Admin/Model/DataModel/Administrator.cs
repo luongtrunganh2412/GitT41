@@ -51,6 +51,9 @@ namespace T41.Areas.Admin.Model.DataModel
         [Display(Name = "Kích hoạt")]
         public byte? Active { get; set; }
 
+        [Display(Name = "Nhóm chức năng")]
+        public int Role { get; set; }
+
         // Navigation: liên kêt, tham chiếu
         public ICollection<GrantPermission> GrantPermission { get; set; }
     }

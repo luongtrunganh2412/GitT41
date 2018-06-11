@@ -12,6 +12,7 @@
 html,
 body {
   height: 100%;
+  -webkit-print-color-adjust: exact;
 }
 .layout-boxed html,
 .layout-boxed body {
@@ -422,7 +423,7 @@ a:focus {
   left: 0;
   padding-top: 50px;
   min-height: 100%;
-  width: 230px;
+  width: 255px;
   z-index: 810;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -5671,3 +5672,6 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+        
+   

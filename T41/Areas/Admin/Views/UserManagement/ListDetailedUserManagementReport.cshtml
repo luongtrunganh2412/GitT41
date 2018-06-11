@@ -1,0 +1,93 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListUserManagementReport != null)
+{
+
+    int i = 0;
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListUserManagementReport)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.ContactName</td>
+            <td>@c.ContactAddress</td>
+            <td>@c.ContactPhoneWork</td>
+            <td>@c.GeneralEmail</td>
+            <td>@c.Street</td>
+            <td>@c.ApiKey </td>
+            <td>@c.Id</td>
+            @*<td><a href="/Admin/UserManagement/ID_USER_MANAGEMENT_DETAIL/?id=@c.Id" target="_blank">@c.Id</a></td>*@
+            <td><a href="/Admin/UserManagement/ID_USER_MANAGEMENT_DETAIL/?id=@c.Id" target="_blank" class="btn btn-primary btn-md" rel="@c.Id" id="btnreportedit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><button type="button" class="btn btn-danger btn-lrg ajax" id="btnreportdelete" rel="@c.Id"><span class="glyphicon glyphicon-remove"></span></button></td>
+        </tr>
+        <div id="list_user"></div>
+        i++;
+
+    }
+<script>
+    @*$(document).ready(function () {
+        $('[id*=btnreportedit]').click(function (e) {
+            var edit_id = $(this).attr('rel');
+            alert(edit_id);
+            $.ajax({
+                url: '@Url.Action("ListDetailed_ID_UserManagementReport", "UserManagement")',
+                dataType: "html",
+                data:
+                 {
+                     edit_id: edit_id
+
+                 },
+                success: function (result) {
+                    console.log(result);
+                    $('#list_user').html(result);
+                    return result;
+
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        });
+    });*@
+
+    $(document).ready(function () {
+        $('[id*=btnreportdelete]').click(function (e) {
+            var delete_id = $(this).attr('rel');
+            alert(delete_id);
+            if (confirm("Bạn có muốn xóa không ?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteUserReport", "UserManagement")',
+                    dataType: "html",
+                    data:
+                     {
+                         delete_id: delete_id
+
+                     },
+                    success: function (result) {
+                        location.reload();
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+            else {
+
+            }
+        });
+    });
+
+
+</script>
+
+}
+
+

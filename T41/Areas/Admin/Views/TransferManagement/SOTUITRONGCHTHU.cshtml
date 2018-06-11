@@ -1,0 +1,120 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
+@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Báo cáo tổng hợp dữ liệu truyền nhận EMS Center</title>
+
+<section class="content">
+
+    <div class="box box-default">
+
+
+
+
+        <div class="box-body">
+
+
+            <div class="box-header">
+                <h3 class="box-title">Số Túi Trong Chuyến Thư</h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th>STT</th>
+                            <th>Bưu Cục Đóng</th>
+                            <th>Tên Bưu Cục Đóng</th>
+                            <th>Bưu Cục Nhận</th>
+                            <th>Tên Bưu Cục Nhận</th>
+                            <th>Ngày</th>
+                            <th>Chuyến Thư</th>
+                            <th>Túi Số</th>
+                            <th>Tổng Số Bưu Gửi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listsotui"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+</section>
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+        // goi ham Detail
+         detail();
+
+    });
+
+    var url_string = document.URL;
+    var url = new URL(url_string);
+    var fromposcode = url.searchParams.get("fromposcode");
+    var toposcode = url.searchParams.get("toposcode");
+    var date = url.searchParams.get("date");
+    var mailtrip = url.searchParams.get("mailtrip");
+    var typecomunication = url.searchParams.get("typecomunication");
+    
+
+    //Phần chi tiết của bảng tổng hợp sản lượng đi phát
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("ListTransferManagement_SOTUI_Report", "TransferManagement")',
+            //beforeSend: function () {
+            //    $('.loading-element').show();
+            //},
+            dataType: 'html',
+            data:
+                {
+                    fromposcode: fromposcode,
+                    toposcode: toposcode,
+                    date: date,
+                    mailtrip: mailtrip,
+                    typecomunication: typecomunication
+
+                },
+            success: function (result) {
+                console.log(result.Code);
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listsotui
+                if (result.Code == '01') {
+                    alert("Không Có Dữ Liệu");
+
+                }
+                else {
+                    //$('.loading-element').hide();
+                    $('#listsotui').html(result);
+
+                }
+
+            }
+        })
+    }
+
+
+
+</script>
+
+

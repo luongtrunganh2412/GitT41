@@ -230,7 +230,7 @@
 // the nav the full height of the horizontal nav (above 768px).
 
 .navbar-nav {
-  margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
+  margin: navbar-padding-vertical / 2) -@navbar-padding-horizontal;
 
   > li > a {
     padding-top:    10px;
@@ -290,7 +290,7 @@
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   @shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1);
-  .box-shadow(@shadow);
+  .box-shadowshadow);
 
   // Mixin behavior for optimum display
   .form-inline();
@@ -306,7 +306,7 @@
   }
 
   // Vertically center in expanded, horizontal navbar
-  .navbar-vertical-align(@input-height-base);
+  .navbar-vertical-aligninput-height-base);
 
   // Undo 100% width for pull classes
   @media (min-width: @grid-float-breakpoint) {
@@ -331,7 +331,7 @@
 // Menu position and menu caret support for dropups via extra dropup class
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   margin-bottom: 0;
-  .border-top-radius(@navbar-border-radius);
+  .border-top-radiusnavbar-border-radius);
   .border-bottom-radius(0);
 }
 
@@ -341,10 +341,10 @@
 // Vertically center a button within a navbar (when *not* in a form).
 
 .navbar-btn {
-  .navbar-vertical-align(@input-height-base);
+  .navbar-vertical-aligninput-height-base);
 
   &.btn-sm {
-    .navbar-vertical-align(@input-height-small);
+    .navbar-vertical-aligninput-height-small);
   }
   &.btn-xs {
     .navbar-vertical-align(22);
@@ -357,7 +357,7 @@
 // Add a class to make any element properly align itself vertically within the navbars.
 
 .navbar-text {
-  .navbar-vertical-align(@line-height-computed);
+  .navbar-vertical-alignline-height-computed);
 
   @media (min-width: @grid-float-breakpoint) {
     float: left;
@@ -585,7 +585,7 @@
 
   .navbar-collapse,
   .navbar-form {
-    border-color: darken(@navbar-inverse-bg, 7%);
+    border-color: darkennavbar-inverse-bg, 7%);
   }
 
   // Dropdowns

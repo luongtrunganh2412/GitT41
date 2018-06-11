@@ -1,6 +1,6 @@
 .datepicker {
 	padding: 4px;
-	.border-radius(@baseBorderRadius);
+	.border-radiusbaseBorderRadius);
 	&-inline {
 		width: 220px;
 	}
@@ -99,8 +99,8 @@
 		&.today:hover,
 		&.today.disabled,
 		&.today.disabled:hover {
-			@todayBackground: lighten(@orange, 30%);
-			.buttonBackground(@todayBackground, spin(@todayBackground, 20));
+			@todayBackground: lightenorange, 30%);
+			.buttonBackgroundtodayBackground, spintodayBackground, 20));
 			color: #000;
 		}
 		&.today:hover:hover { // Thank bootstrap 2.0 for this selector...
@@ -121,15 +121,15 @@
 		&.range.today:hover,
 		&.range.today.disabled,
 		&.range.today.disabled:hover {
-			@todayBackground: mix(@orange, @grayLighter, 50%);
-			.buttonBackground(@todayBackground, spin(@todayBackground, 20));
+			@todayBackground: mixorange, @grayLighter, 50%);
+			.buttonBackgroundtodayBackground, spintodayBackground, 20));
 			.border-radius(0);
 		}
 		&.selected,
 		&.selected:hover,
 		&.selected.disabled,
 		&.selected.disabled:hover {
-			.buttonBackground(lighten(@grayLight, 10), darken(@grayLight, 10));
+			.buttonBackground(lightengrayLight, 10), darkengrayLight, 10));
 			color: #fff;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 		}
@@ -137,7 +137,7 @@
 		&.active:hover,
 		&.active.disabled,
 		&.active.disabled:hover {
-			.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
+			.buttonBackgroundbtnPrimaryBackground, spinbtnPrimaryBackground, 20));
 			color: #fff;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 		}
@@ -164,7 +164,7 @@
 			&.active:hover,
 			&.active.disabled,
 			&.active.disabled:hover {
-				.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
+				.buttonBackgroundbtnPrimaryBackground, spinbtnPrimaryBackground, 20));
 				color: #fff;
 				text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 			}

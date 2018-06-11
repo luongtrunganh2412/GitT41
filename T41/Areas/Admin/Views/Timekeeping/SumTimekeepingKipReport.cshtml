@@ -7,15 +7,16 @@
     //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model)
     {
-        <tr class="bg-light-blue color-palette">
-            <td>Tổng :</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td colspan="2">&nbsp;</td>
-            <td colspan="2">&nbsp;</td>
+        
+        <tr class="bg-yellow text-primary color-palette">
+            <td colspan="2">Tổng</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
             <td colspan="2">@c.SumSoNguoi </td>
             <td>@c.SumDen9h </td>
-            <td>@c.SumDen10h</td>
+            <td>@c.SumDen10h </td>
             <td>@c.SumDen11h </td>
             <td>@c.SumDen12h </td>
             <td>@c.SumDen13h </td>
@@ -39,9 +40,8 @@
             <td>@c.SumDen7h </td>
             <td>@c.SumDen8h </td>
 
-
         </tr>
-        
+
         i++;
     }
 }

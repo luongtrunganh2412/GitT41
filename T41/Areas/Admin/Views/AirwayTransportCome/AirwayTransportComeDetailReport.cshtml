@@ -1,0 +1,127 @@
+﻿@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+
+
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Báo cáo giao nhận vận chuyển hàng không chiều đến</title>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Báo cáo giao nhận vận chuyển hàng không chiều đến</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="date" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+           </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/AirwayTransportCome/ListAirwayTransportCome?date=' + document.getElementById('date').value + '&way=1'">Hiển Thị Báo Cáo</a>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btntotal">Tổng Hợp Dữ Liệu</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-lg-12 loading-element">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        Vui lòng chờ giây lát...
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+
+
+</section>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+
+<!--jquery.bootpag.min-->>
+
+
+<script>
+    $(document).ready(function () {
+        $("#date").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+
+        $('.loading-element').hide();
+    });
+
+    $("#btntotal").click(function () {
+            detail();
+
+    });
+
+    //Phần chi tiết của bảng tổng hợp sản lượng đi phát
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("TotalDataReport", "AirwayTransport")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    date: $('#date').val(),
+                },
+            success: function (result) {
+                alert("Tổng Hợp Dữ Liệu Thành Công");
+                $('.loading-element').hide();
+            }
+        })
+    }
+
+</script>
+
+
