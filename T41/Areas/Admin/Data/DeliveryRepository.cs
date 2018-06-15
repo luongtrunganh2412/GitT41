@@ -47,6 +47,79 @@ namespace T41.Areas.Admin.Data
             return listDeliveryPostCode;
         }
         #endregion
+
+        #region GetAllPostMan
+        public IEnumerable<PostMan> GetAllPostMan()
+        {
+            List<PostMan> listPostMan = null;
+            PostMan oPostMan = null;
+            try
+            {
+                using (OracleCommand cm = new OracleCommand())
+                {
+                    cm.Connection = Helper.OraDCOracleConnection;
+                    cm.CommandText = string.Format("SELECT ID_NHAN_VIEN, HO_TEN FROM Nguoi_Dung_Sale ORDER BY ID_NHAN_VIEN asc");
+                    cm.CommandType = CommandType.Text;
+                    using (OracleDataReader dr = cm.ExecuteReader())
+                    {
+                        listPostMan = new List<PostMan>();
+                        while (dr.Read())
+                        {
+                            oPostMan = new PostMan();
+                            //oPostMan.POSTMAN_ID = int.Parse(dr["ID_NHAN_VIEN"].ToString());
+                            oPostMan.POSTMAN_ID = dr["ID_NHAN_VIEN"].ToString();
+                            oPostMan.POSTMAN_NAME = dr["HO_TEN"].ToString();
+                            listPostMan.Add(oPostMan);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "GetAllDeliveryPostCode" + ex.Message);
+                listPostMan = null;
+            }
+
+            return listPostMan;
+        }
+        #endregion
+
+        #region GetDeliveryRouteCodeById
+        public IEnumerable<DeliveryPostCode> GetDeliveryRouteCodeById(int id)
+        {
+            List<DeliveryPostCode> listRoute = null;
+            DeliveryPostCode oRoute = null;
+
+            try
+            {
+                using (OracleCommand cm = new OracleCommand())
+                {
+                    cm.Connection = Helper.OraDCOracleConnection;
+                    cm.CommandText = string.Format("SELECT * FROM DELIVERY_ROUTE_CODE WHERE DELIVERY_ROUTE=" + id + " ORDER BY POST_CODE");
+                    cm.CommandType = CommandType.Text;
+                    using (OracleDataReader dr = cm.ExecuteReader())
+                    {
+                        listRoute = new List<DeliveryPostCode>();
+                        while (dr.Read())
+                        {
+                            oRoute = new DeliveryPostCode();
+                            oRoute.POST_CODE = int.Parse(dr["POST_CODE"].ToString());
+                            oRoute.POST_CODE_NAME = dr["POST_CODE_NAME"].ToString();
+                            listRoute.Add(oRoute);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "GetRouteById" + ex.Message);
+                listRoute = null;
+            }
+
+            return listRoute;
+        }
+        #endregion
+
         #region DELIVERY_DEPART_DETAIL
 
         public ReturnDelivery DELIVERY_DEPART_DETAIL(int channel, int post_man, int status, int from_date, int to_date, int delivery_post_code, int delivery_route_code, int page_size, int page_index)

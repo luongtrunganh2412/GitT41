@@ -51,7 +51,7 @@ namespace T41.Areas.Admin.Model.DataModel
     //Lấy mã tỉnh đóng , tỉnh nhận
     public class GETPROVINCE
     {
-        public int PROVINCECODE { get; set; }
+        public string PROVINCECODE { get; set; }
 
         public string PROVINCENAME { get; set; }
 
@@ -60,7 +60,7 @@ namespace T41.Areas.Admin.Model.DataModel
     //Lấy mã bưu cục đóng , bưu cục nhận, GETCRPOSCODE: GETCLOSERECEIVEPOSCODE
     public class GETCRPOSCODE
     {
-        public int POSCODE { get; set; }
+        public string POSCODE { get; set; }
 
         public string POSNAME { get; set; }
 
@@ -134,9 +134,10 @@ namespace T41.Areas.Admin.Model.DataModel
         public String MaE1 { get; set; }
         public int MaBCTra { get; set; }
         public String KhoiLuong { get; set; }
+        
         public String CuocCS { get; set; }
         public String Cuoc_DV { get; set; }
-        
+
         public String Tong_Cuoc { get; set; }
         public String TrangThai { get; set; }
         
@@ -164,6 +165,7 @@ namespace T41.Areas.Admin.Model.DataModel
         public String MaE1 { get; set; }
         public int MaBCTra { get; set; }
         public String KhoiLuong { get; set; }
+        
         public String CuocCS { get; set; }
         public String Cuoc_DV { get; set; }
 

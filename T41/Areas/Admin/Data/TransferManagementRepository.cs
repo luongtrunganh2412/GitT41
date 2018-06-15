@@ -34,7 +34,8 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oGetProvinceCode = new GETPROVINCE();
-                            oGetProvinceCode.PROVINCECODE = int.Parse(dr["PROVINCECODE"].ToString());
+                            //oGetProvinceCode.PROVINCECODE = int.Parse(dr["PROVINCECODE"].ToString());
+                            oGetProvinceCode.PROVINCECODE = dr["PROVINCECODE"].ToString();
                             oGetProvinceCode.PROVINCENAME = dr["PROVINCENAME"].ToString();
                             listGetProvinceCode.Add(oGetProvinceCode);
                         }
@@ -74,7 +75,8 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oGetPosCode = new GETCRPOSCODE();
-                            oGetPosCode.POSCODE = int.Parse(dr["POSCODE"].ToString());
+                            //oGetPosCode.POSCODE = int.Parse(dr["POSCODE"].ToString());
+                            oGetPosCode.POSCODE = dr["POSCODE"].ToString();
                             oGetPosCode.POSNAME = dr["POSNAME"].ToString();
                             listGetPosCode.Add(oGetPosCode);
                         }

@@ -27,16 +27,17 @@ namespace T41.Areas.Admin.Model.DataModel
     }
 
     //Dữ liệu lấy ra của Báo cáo giao nhận vận chuyển theo đường thư
-    public class RoadwayTransportDetail
+    public class RoadwayTransportDetail_CT
     {
-        
+
+
         public String NGAY { get; set; }
         public String BD10 { get; set; }
         public String SLTUI { get; set; }
         public String KL { get; set; }
         public String BCDONG { get; set; }
 
-        
+
         public String TENBCDONG { get; set; }
         public String BCNHAN { get; set; }
         public String TENBCNHAN { get; set; }
@@ -45,11 +46,20 @@ namespace T41.Areas.Admin.Model.DataModel
         public String CAP { get; set; }
         public String LOAIPT { get; set; }
 
-        
-        
+
+
     }
 
-    
+
+    public class RoadwayTransportDetail_TH
+    {
+        public String ID_HT { get; set; }
+        public String TEN_HT { get; set; }
+        public String SLBD10 { get; set; }
+        public String SLTUI { get; set; }
+        public String KL { get; set; }
+    }
+
     //Dữ liệu trả về sau khi gọi dữ liệu dưới DB
     public class ReturnRoadwayTransport
     {
@@ -66,10 +76,13 @@ namespace T41.Areas.Admin.Model.DataModel
         public int Total { get; set; }
 
         
-        public RoadwayTransportDetail RoadwayTransportReport { get; set; }
-        public List<RoadwayTransportDetail> ListRoadwayTransportReport;
+        public RoadwayTransportDetail_TH RoadwayTransportReport_TH { get; set; }
+        public List<RoadwayTransportDetail_TH> ListRoadwayTransportReport_TH;
 
-        
+        public RoadwayTransportDetail_CT RoadwayTransportReport_CT { get; set; }
+        public List<RoadwayTransportDetail_CT> ListRoadwayTransportReport_CT;
+
+
         public MetaData MetaData { get; set; }
 
 

@@ -10,7 +10,8 @@ namespace T41.Areas.Admin.Models.DataModel
     }
     public class PostMan
     {
-        public int POSTMAN_ID { get; set; }
+        //public int POSTMAN_ID { get; set; }
+        public string POSTMAN_ID { get; set; }
         public string POSTMAN_NAME { get; set; }
     }
     public class DeliveryPostCode

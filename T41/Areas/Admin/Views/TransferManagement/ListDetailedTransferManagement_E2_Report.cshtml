@@ -7,13 +7,15 @@
 {
 
     int i = 0;
-
+    
+    
 
 
 
     //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model.ListTransferManagement_E2_Report)
     {
+       
         <tr>
             <td>@(i + 1)</td>
             <td>@c.MaE1</td>
@@ -28,7 +30,7 @@
         </tr>
 
         i++;
-
+        
     }
 
 

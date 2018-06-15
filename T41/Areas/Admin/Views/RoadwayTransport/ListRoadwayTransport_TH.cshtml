@@ -35,6 +35,10 @@
                 <div class="col-lg-12">
                     <h3 class="text-center"><strong>BẢNG KÊ CHI TIẾT BD10 VẬN CHUYỂN DỊCH VỤ EMS THEO ĐƯỜNG THƯ</strong></h3>
                     <h3 class="text-center" id="fromdate"></h3>
+                    <h3 class="text-center" id="vung"></h3>
+                    <h3 class="text-center" id="cap"></h3>
+                    <h3 class="text-center" id="loaipt"></h3>
+                    <h3 class="text-center" id="mailroutecode"></h3>
                     @*<div style="overflow-x:auto;">*@
 
                 </div>
@@ -47,28 +51,33 @@
             
                 @*HƯỚNG HỒ CHÍ MINH ĐI CÁC TỈNH*@
                 @*BẢNG 1*@
+            
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>-Từ Hồ Chí Minh đi</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:9px;width:auto;border-collapse:collapse;margin-left:7px;">
+                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:15px;width:auto;border-collapse:collapse;margin-left:550px;">
                         <thead class="bg-light-blue">
+                            <tr>
+                                <th>STT</th>
+                                <th colspan="2" class="text-right">ID Hành Trình</th>
+                                <th colspan="2" class="text-left">Tên Hành Trình</th>
+                                <th  class="text-center">Số Lượng BD10</th>
+                                <th  class="text-center">Số Lượng Túi </th>
+                                <th  class="text-center">Khối Lượng(kg)</th>
+                            </tr>
+                        </thead>
+                        @*<thead class="bg-light-blue">
                             <tr>
                                 <th>STT</th>
                                 <th class="text-center">Ngày Phát Sinh</th>
                                 <th class="text-center">Số Hiệu BD10</th>
                                 <th colspan="2" class="text-center">Số Lượng Túi</th>
                                 <th colspan="2" class="text-center">Khối Lượng(kg) </th>
-                                <th class="text-center">BC Đóng</th>
-                                <th  class="text-center">BC Nhận</th>
+                                <th colspan="2" class="text-center">BC Đóng</th>
+                                <th colspan="2" class="text-center">BC Nhận</th>
                                 <th class="text-center">ID Hành Trình   </th>
-                                <th  class="text-center">Tên Hành Trình</th>
-                                <th  class="text-center">Cấp Đường Thư</th>
-                                <th  class="text-center">Loại Phương Tiện</th>
-                                <th  class="text-center">Hoạt Động Nhận Hàng</th>
+                                <th class="text-center">Tên Hành Trình</th>
+                                <th class="text-center">Cấp Đường Thư</th>
+                                <th class="text-center">Loại Phương Tiện</th>
                             </tr>
                             <tr>
                                 <th></th>
@@ -83,8 +92,9 @@
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>
                                 <th class="text-center"></th>
+                                <th class="text-center"></th>
                             </tr>
-                        </thead>
+                        </thead>*@
                         <tbody id="listroadwaytransport1"></tbody>
                     </table>
                 </div>
@@ -114,13 +124,38 @@
     var cap = url.searchParams.get("cap");
     var loaipt = url.searchParams.get("loaipt");
     var mailroutecode = url.searchParams.get("mailroutecode");
+    var checkvung = 0;
+    vung = checkvung;
+    
 
+    switch (checkvung) {
+        case 0:
+            checkvung = "Tất Cả"
+            console.log(checkvung);
+            break;
+            
+        case 1:
+            checkvung = "Miền Bắc"
+            console.log(checkvung);
+            break;
+        case 2:
+            checkvung = "Miền Trung"
+            console.log(checkvung);
+            break;
+        case 3:
+            checkvung = "Miền Nam"
+            console.log(checkvung);
+            break;
+        default: 
+            break;
+    }
 
     $(document).ready(function () {
-        document.getElementById("fromdate").innerHTML = "<strong>Thời Gian:" + date + "</strong>";
+        document.getElementById("fromdate").innerHTML = "<strong>Thời Gian:" + fromdate + "-" + todate + "</strong>";
         document.getElementById("date").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
+        document.getElementById("vung").innerHTML = "<strong>Vùng:" + checkvung + "</strong>";
         // goi ham Detail
-        detail_Airway1();
+        detail_Roadway1();
        
     });
 
@@ -155,9 +190,11 @@
 
 
     //Phần JS gọi đến dữ liệu của bảng 1
-    function detail_Airway1() {
+    function detail_Roadway1() {
+        console.log(fromdate);
+        console.log(todate);
         $.ajax({
-            url: '@Url.Action("LOAD_DATA1", "RoadwayTransport")',
+            url: '@Url.Action("ListDetailedRoadwayTransport_TH", "RoadwayTransport")',
             beforeSend: function () {
                 $('.loading-element').show();
             },

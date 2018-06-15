@@ -33,11 +33,15 @@ namespace T41.Areas.Admin.Controllers
         }
         public JsonResult ListDeliveryRouteByPostCode(int postcode)
         {
-            return Json(apiRepository.ListDeliveryRoute(postcode), JsonRequestBehavior.AllowGet);
+            DeliveryRepository deliveryRepository = new DeliveryRepository();
+            return Json(deliveryRepository.GetDeliveryRouteCodeById(postcode), JsonRequestBehavior.AllowGet);
+            //return Json(apiRepository.ListDeliveryRoute(postcode), JsonRequestBehavior.AllowGet);
         }
         public JsonResult ListPostMan()
         {
-            return Json(apiRepository.ListPostMan(), JsonRequestBehavior.AllowGet);
+            DeliveryRepository deliveryRepository = new DeliveryRepository();
+            return Json(deliveryRepository.GetAllPostMan(), JsonRequestBehavior.AllowGet);
+            //return Json(apiRepository.ListPostMan(), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListDetailedDeliveryReport(int channel, int postman, int postcode, int deliveryroute, int status, string fromdate, string todate, int? page)
         {

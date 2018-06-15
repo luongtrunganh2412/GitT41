@@ -31,6 +31,17 @@
         <!-- /.box-header -->
         <div class="box-header">
             <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Lựa Chọn In Bản Kê </label>
+                        <select class="form-control select2" style="width: 100%;" id="typecomunication">
+                            <option selected="selected" value="1">Bản Kê Giao Dịch</option>
+                            <option value="2">Bản Kê Đường Thư Bưu Tá </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Tỉnh Đóng </label>
@@ -65,6 +76,14 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
+                    <label>Từ Ngày </label>
+                </div>
+                <div class="col-md-4">
+                    <label>Đến Ngày</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
                     <div class="form-group">
                         @*<label>Khoảng thời gian</label>
                             <div class="input-group">
@@ -75,7 +94,7 @@
                             </div>*@
                         <!-- /.input group -->
 
-                        <label>Từ Ngày </label>
+                        
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -87,7 +106,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Đến Ngày</label>
+                        
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -98,45 +117,37 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
+                        <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="ide2">Mã Cổ Túi:</label>
+                            <div class="col-md-6">
+                                
+                                @*<a href="/Admin/TransferManagement/E2_TransferManagementDetailReport" target="_blank" id="btnreport" class="btn btn-default btn-md">Hiển thị dữ liệu</a>*@
+
+                                @*<a href='' target="_blank" id="btnreport" class="btn btn-default btn-md" onclick="this.href ='/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?fromposcode=' + document.getElementById('ide2').value + '&toposcode=' + document.getElementById('ide2').value + '&date=' + document.getElementById('ide2').value + '&mailtrip=' + document.getElementById('ide2').value + '&postbag=' + document.getElementById('ide2').value">Hiển thị dữ liệu</a>*@
+
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input class="form-control" type="text" id="ide2" name="ide2">
-                            </div>
-                            <div class="col-lg-6">
-                                <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Lựa Chọn In Bản Kê </label>
-                        <select class="form-control select2" style="width: 100%;" id="typecomunication">
-                            <option selected="selected" value="1">Bản Kê Giao Dịch</option>
-                            <option value="2">Bản Kê Đường Thư Bưu Tá </option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <div class="box-body">
 
             <!-- /.row -->
             <div class="row">
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
-                    @*<a href="/Admin/TransferManagement/E2_TransferManagementDetailReport" target="_blank" id="btnreport" class="btn btn-default btn-md">Hiển thị dữ liệu</a>*@
-
-                    @*<a href='' target="_blank" id="btnreport" class="btn btn-default btn-md" onclick="this.href ='/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?fromposcode=' + document.getElementById('ide2').value + '&toposcode=' + document.getElementById('ide2').value + '&date=' + document.getElementById('ide2').value + '&mailtrip=' + document.getElementById('ide2').value + '&postbag=' + document.getElementById('ide2').value">Hiển thị dữ liệu</a>*@
-
+                <div class="col-md-4">
+                    <label for="ide2">Mã Cổ Túi:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <input class="form-control" type="text" id="ide2" name="ide2">
+                </div>
+                <div class="col-lg-6">
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
                 </div>
 
             </div>

@@ -1,0 +1,224 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Areas/Admin/Content/dist/css/AdminLTE.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+<style>
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        border: 1px solid #2d2a2a;
+    }
+</style>
+</head>
+<body>
+    <form>
+        <div class="main">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-4">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>CÔNG TY CỔ PHẦN CHUYỂN PHÁT NHANH BƯU ĐIỆN</strong></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <h3 class="box-title" id="date"> </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-center"><strong>BẢNG KÊ CHI TIẾT BD10 VẬN CHUYỂN DỊCH VỤ EMS THEO ĐƯỜNG THƯ</strong></h3>
+                    <h3 class="text-center" id="fromdate"></h3>
+                    <h3 class="text-center" id="vung"></h3>
+                    <h3 class="text-center" id="cap"></h3>
+                    <h3 class="text-center" id="loaipt"></h3>
+                    <h3 class="text-center" id="mailroutecode"></h3>
+                    @*<div style="overflow-x:auto;">*@
+
+                </div>
+            </div>
+
+            <div class="row">
+                @*<div class="col-lg-12 no-print"><button type="submit" class="btn btn-default btn-lrg ajax" name="btnExport" id="btnExport">Xuất Excel</button></div>*@
+                <div class="col-lg-12"><input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Báo Cáo" onclick="printpage()" /></div>
+            </div>
+            
+                @*HƯỚNG HỒ CHÍ MINH ĐI CÁC TỈNH*@
+                @*BẢNG 1*@
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:15px;width:auto;border-collapse:collapse;margin-left:150px;">
+                        <thead class="bg-light-blue">
+                            <tr>
+                                <th>STT</th>
+                                <th class="text-center">Ngày Phát Sinh</th>
+                                <th class="text-center">Số Hiệu BD10</th>
+                                <th colspan="2" class="text-center">Số Lượng Túi</th>
+                                <th colspan="2" class="text-center">Khối Lượng(kg) </th>
+                                <th colspan="2" class="text-center">BC Đóng</th>
+                                <th colspan="2" class="text-center">BC Nhận</th>
+                                <th class="text-center">ID Hành Trình   </th>
+                                <th class="text-center">Tên Hành Trình</th>
+                                <th class="text-center">Cấp Đường Thư</th>
+                                <th class="text-center">Loại Phương Tiện</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th colspan="2" class="text-center"></th>
+                                <th colspan="2" class="text-center"> </th>
+                                <th class="text-center">Mã</th>
+                                <th  class="text-center">Tên BC Đóng</th>
+                                <th class="text-center">Mã   </th>
+                                <th class="text-center">Tên BC Nhận</th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listroadwaytransport1"></tbody>
+                    </table>
+                </div>
+                <div class="col-lg-12 loading-element">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    Vui lòng chờ giây lát...
+                </div>
+            </div>    
+            <div class="row">
+                <div id="page-selection" class="col-sm-12 text-center">
+                </div>
+            </div>
+            
+        </div>
+    </form>
+
+</body>
+</html>
+
+<script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/jquery.bootpag.min.js"></script>
+<script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+    var url_string = document.URL;
+    var url = new URL(url_string);
+    var fromdate = url.searchParams.get("fromdate");
+    var todate = url.searchParams.get("todate");
+    var vung = url.searchParams.get("vung");
+    var cap = url.searchParams.get("cap");
+    var loaipt = url.searchParams.get("loaipt");
+    var mailroutecode = url.searchParams.get("mailroutecode");
+    var checkvung = 0;
+    vung = checkvung;
+
+
+    switch (checkvung) {
+        case 0:
+            checkvung = "Tất Cả"
+            console.log(checkvung);
+            break;
+
+        case 1:
+            checkvung = "Miền Bắc"
+            console.log(checkvung);
+            break;
+        case 2:
+            checkvung = "Miền Trung"
+            console.log(checkvung);
+            break;
+        case 3:
+            checkvung = "Miền Nam"
+            console.log(checkvung);
+            break;
+        default:
+            break;
+    }
+
+    $(document).ready(function () {
+        document.getElementById("fromdate").innerHTML = "<strong>Thời Gian:" + fromdate + "-" + todate + "</strong>";
+        document.getElementById("date").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
+        document.getElementById("vung").innerHTML = "<strong>Vùng:" + checkvung + "</strong>";
+        // goi ham Detail
+        detail_Roadway(1);
+
+    });
+
+    //Phần JS để lấy dữ liệu date theo kiểu yyyyMMdddd
+    function ddmmyyyy() {
+        var x = new Date();
+        var y = x.getFullYear().toString();
+        var m = (x.getMonth() + 1).toString();
+        var d = x.getDate().toString();
+        var h = x.getHours().toString();
+        var mi = x.getMinutes().toString();
+        (d.length == 1) && (d = '0' + d);
+        (m.length == 1) && (m = '0' + m);
+        var ddmmyyyy = d + '/' + m + '/' + y + '&nbsp;' + h + ':' + mi
+        return ddmmyyyy;
+    }
+
+    //Phần bỏ button in E2 khi kích vào
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden'
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+
+
+
+
+    //Phần JS gọi đến dữ liệu của bảng 1
+    function detail_Roadway(p) {
+        $.ajax({
+            url: '@Url.Action("ListDetailedRoadwayTransport_CT", "RoadwayTransport")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    fromdate: fromdate,
+                    todate: todate,
+                    vung: vung,
+                    cap: cap,
+                    loaipt: loaipt,
+                    mailroutecode: mailroutecode,
+                    page: p
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listdeliveryreport
+                $('.loading-element').hide();
+                $('#listroadwaytransport1').html(result);
+                if (p == 1) refreshPaging();
+            }
+        })
+    }
+    function refreshPaging() {
+        $('#page-selection').bootpag({
+            total: $('#total_page').val(),
+            maxVisible: 10,
+        }).on("page", function (event, /* page number here */ num) {
+            detail_Roadway(num);
+        });
+    }
+
+
+</script>
+
+
+

@@ -1,0 +1,178 @@
+﻿@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+
+
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Báo cáo giao nhận vận chuyển đường bộ</title>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Báo cáo giao nhận vận chuyển đường bộ</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Từ Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Đến Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Vùng</label>
+                        <select class="form-control select2" style="width: 100%;" id="vung">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">Miền Bắc</option>
+                            <option value="2">Miền Trung</option>
+                            <option value="3">Miền Nam</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Cấp Đường Thư</label>
+                        <select class="form-control select2" style="width: 100%;" id="cap">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="DX">DX-Đường Thư Đột Xuất</option>
+                            <option value="LT">LT-Đường Thư Liên Tỉnh</option>
+                            <option value="NH">NH-Đường Thư Nội Huyện</option>
+                            <option value="NT">NH-Đường Thư Nội Tỉnh</option>
+                            <option value="PLT">NH-Đường Thư Phụ Trợ Liên Tỉnh</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Loại Phương Tiện</label>
+                        <select class="form-control select2" style="width: 100%;" id="loaipt">
+                            <option selected="selected" value="0">Tất cả</option>
+                            <option value="1">1-Xe máy</option>
+                            <option value="2">2-Otô</option>
+                            <option value="3">3-Tàu Hỏa</option>
+                            <option value="4">4-Máy Bay</option>
+                            <option value="7">7-Khác</option>
+                            <option value="9">9-Otô Xã Hội</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tuyến</label>
+                        <select class="form-control select2" style="width: 100%;" id="mailroutecode">
+                            <option selected="selected" value="0">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/RoadwayTransport/ListRoadwayTransport_CT?fromdate=' + document.getElementById('fromdate').value + '&todate=' + document.getElementById('todate').value + '&vung=' + document.getElementById('vung').value + '&cap=' + document.getElementById('cap').value + '&loaipt=' + document.getElementById('loaipt').value + '&mailroutecode=' + document.getElementById('mailroutecode').value ">Hiển Thị Báo Cáo</a>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btntotal">Tổng Hợp Dữ Liệu</button>
+                </div>
+                
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+
+
+</section>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+
+<!--jquery.bootpag.min-->>
+
+
+<script>
+    $(document).ready(function () {
+        $("#fromdate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+
+        $("#todate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+
+        
+    });
+
+    $("#btntotal").click(function () {
+            detail();
+
+    });
+
+    //Phần lấy dữ liệu của tuyến phát
+    
+    $(document).ready(function () {
+
+        $.getJSON("/RoadwayTransport/GetAllMailRouteCode", function (data) {
+            $.each(data, function (i, data) {
+
+                $('<option>',
+                   {
+                       value: data.MAILROUTECODE,
+                       text: data.MAILROUTENAME
+                   }).html(data.MAILROUTECODE + '-' + data.MAILROUTENAME).appendTo("#mailroutecode");
+            });
+        })
+
+    });
+    
+
+</script>
+
+

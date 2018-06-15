@@ -1,0 +1,60 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListRoadwayTransportReport_TH != null)
+{
+
+    int i = 0;
+    int a1 = 0;
+    int a2 = 0;
+    float a3 = 0;
+    int sumSLBD10=0;
+    int sumSLTUI=0;
+    float sumKHOILUONG = 0;
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListRoadwayTransportReport_TH)
+    {
+        a1 = int.Parse(@c.SLBD10);
+        a2 = int.Parse(@c.SLTUI);
+        a3 = float.Parse(@c.KL);
+
+        <tr>
+            <th>@(i + 1)</th>
+            @*<th colspan="2" class="text-right">@c.NGAY</th>
+            <th colspan="2" class="text-left">@c.BD10</th>
+            <th class="text-center">@c.SLTUI</th>
+            <th class="text-center">@c.KL </th>
+            <th class="text-center">@c.BCDONG</th>*@
+
+            <th colspan="2" class="text-right">@c.ID_HT</th>
+            <th colspan="2" class="text-left">@c.TEN_HT</th>
+            <th class="text-center">@c.SLBD10</th>
+            <th class="text-center">@c.SLTUI </th>
+            <th class="text-center">@c.KL</th>
+        </tr>
+
+
+
+        i++;
+        sumSLBD10 += a1;
+        sumSLTUI += a2;
+        sumKHOILUONG += a3;
+
+    }
+    <tr class="bg-light-blue">
+        <th>Tổng:</th>
+        <th colspan="2" class="text-right"></th>
+        <th colspan="2" class="text-left"></th>
+        <th class="text-center">@sumSLBD10</th>
+        <th class="text-center">@sumSLTUI </th>
+        <th class="text-center">@sumKHOILUONG</th>
+    </tr>
+
+}
+
+

@@ -3182,8 +3182,12 @@
     <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome7.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome8.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportCome\ListDetailedAirwayTransportCome9.cshtml" />
-    <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport.cshtml" />
-    <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport_TH.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport_TH.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListDetailedRoadwayTransport_TH.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport_CT.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport_CT.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListDetailedRoadwayTransport_CT.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

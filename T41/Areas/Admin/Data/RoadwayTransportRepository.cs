@@ -6,6 +6,7 @@ using Oracle.ManagedDataAccess.Client;
 using T41.Areas.Admin.Common;
 using System.Data;
 using T41.Areas.Admin.Model.DataModel;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace T41.Areas.Admin.Data
@@ -103,157 +104,160 @@ namespace T41.Areas.Admin.Data
             }
         }
 
-        //Phần chi tiết của bảng LOAD_DATA1
+        //Phần Gọi dữ liệu của bảng tổng hợp 
         #region LOAD_DATA1          
-        public ReturnRoadwayTransport LOAD_DATA1(string mailroutecode, int tungay, int denngay, int vung, string cap, int loaipt)
+        public ReturnRoadwayTransport LOAD_DATA1(string mailroutecode, int fromdate, int todate, int vung, string cap, int loaipt)
         {
+            int thang = 0;
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
             Convertion common = new Convertion();
             ReturnRoadwayTransport _returnRoadwayTransport = new ReturnRoadwayTransport();
-
-
-            List<RoadwayTransportDetail> listRoadwayTransportDetail = null;
-            RoadwayTransportDetail oRoadwayTransportDetail = null;
+            thang = Convert.ToInt32(fromdate.ToString().Substring(0, 6));
+            List<RoadwayTransportDetail_TH> listRoadwayTransportDetail_TH = null;
+            RoadwayTransportDetail_TH oRoadwayTransportDetail_TH = null;
             try
             {
 
                 // Gọi vào DB để lấy dữ liệu.
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    
+                    DataSet ds = new DataSet();                    
                     SqlConnection conn = new SqlConnection("Server= 192.168.68.90;Database= Ems_Enterprise;UID = sa;pwd= 12345678;");
                     cmd.Connection = conn;
-                    cmd.CommandText = string.Format(
-                    "Select CT.Ngay,CT.BD10,sum(CT.SLTui) as SLTui,sum(CT.KL)as KL,CT.BCDong,CT.TenBCDong,CT.BCNhan,CT.TenBCNhan,CT.IDHanhTrinh,CT.HanhTrinh,CT.Cap,CT.loaipt " +
-                    "From " +
-                             "(Select SUBSTRING(pos.BC37Date,7,2) + '/' + SUBSTRING(pos.BC37Date,5,2) + '/' + SUBSTRING(pos.BC37Date,1,4) as Ngay, " +
-                                "'A-'+ BC37Code as BD10,Count(*) as SLTui,Round(Sum(TotalWeight),2) as KL, " +
-                                "pos.StartPO as BCDong ,dbo.TimTenBC(pos.StartPO) as TenBCDong,pos.EndPO as BCNhan ,dbo.TimTenBC(pos.EndPO) as TenBCNhan, " +
-                                "code.MailrouteCode as IDHanhTrinh,code.MailRouteName as HanhTrinh, " +
-                                "(case when '" + cap + "' = '0' then 'Tât ca' else '" + cap + "' end) as Cap, " +
-                                "transport.TransporttypeName as loaipt " +
-                                "From " +
-                                "(Select bc37.BC37Date,bc37.BC37Code,bc37.BC37FromPosCode as StartPO,bc37.BC37ToPosCode as EndPO, " +
-                                    "bc37.MailRouteCode,bc37.MailRouteScheduleCode, " +
-                                    "bag.FromPosCode,bag.ToPosCode,bag.Year, " +
-                                    "bag.MailTripNumber,bag.PostBagIndex,bag.MailTripType,bag.ServiceCode, " +
-                                    "bag.Weight + bag.CaseWeight/1000 as TotalWeight,bag.Quantity " +
-                                "From Postbag bag " +
-                                "Inner Join  " +
-                                    "(Select A.Bc37Code,B.Bc37FromPosCode,B.Bc37ToPosCode,B.Bc37Date,B.Bc37Index,A.MailRouteCode,A.MailRouteScheduleCode, " +
-                                        "B.FromPosCode,B.ToPosCode,B.Year,B.MailTripNumber,B.PostBagIndex,B.MailTripType,B.ServiceCode " +
-                                    "From Bc37_TH A  " +
-                                    "Inner Join Mailtriptransportpostbag B " +
-                                    "On A.FromPosCode = B.Bc37FromPosCode And A.ToPosCode = B.Bc37ToPosCode " +
-                                        "And A.Bc37Date = B.Bc37Date And A.Bc37Index = B.Bc37Index " +
-                                    "Where A.Bc37Date Between " + tungay + "  and " + denngay + " " +
-                                        "And B.ServiceCode = 'E' " +
-                                        "And Substring(A.FromPosCode,1,2)<>Substring(A.ToPosCode,1,2) " +
-                                        GetConditionTuyen(mailroutecode) +
-                                        ") bc37 " +
-                                "On bag.FromPosCode = bc37.FromPosCode And bag.toPosCode = bc37.ToPosCode " +
-                                    "And bag.Year = bc37.Year And bag.MailTripNumber = bc37.MailTripNumber " +
-                                    "And bag.ServiceCode = bc37.ServiceCode And bag.PostBagIndex = bc37.PostBagIndex) pos " +
-                                "Left Join mailroute code " +
-                                "On pos.MailRouteCode = code.MailRouteCode " +
+                    //cmd.CommandText = string.Format("Select Ngay,BD10,SLTui,KL,BCDong,TenBCDong,BCNhan,TenBCNhan,IDHanhTrinh,HanhTrinh,Cap,loaipt From Bao_Cao_Chi_Tiet_Hanh_Trinh where thang = " + thang + "", conn);
+                    //cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = string.Format("[dbo].[BANGKETONGHOPBD10VANCHUYENTHEODUONGTHU]", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Thang", SqlDbType.Int)).Value = thang;
+                    
+                    
+                    cmd.CommandTimeout = 2000;
+                    cmd.Connection.Open();
 
-                                "Left Join mailrouteschedule schedule " +
-                                "On pos.MailRouteScheduleCode = schedule.MailRouteScheduleCode " +
-
-                                "Left Join MailrouteType typecode " +
-                                "On code.MailRoutetypeCode = typecode.MailRoutetypeCode " +
-
-                                "Left Join TransportType transport " +
-                                "On code.TransporttypeCode = transport.TransporttypeCode " +
-
-                                "Inner Join mailroutezone zone " +
-                                "On pos.MailRouteCode = zone.MailRouteCode " +
-
-                                "Where pos.BC37Date Between " + tungay + "  and " + denngay + " " +
-                                GetConditionCap(cap) +
-                                GetConditionLoaiPT(loaipt) +
-                                GetConditionVung(vung) +
-                                "Group by Pos.BC37Date,code.MailRouteName,pos.StartPO,dbo.TimTenBC(pos.StartPO), " +
-                                "pos.EndPO,dbo.TimTenBC(pos.EndPO),BC37Code,code.MailrouteCode,transport.TransporttypeName " +
-
-                              "Union All " +
-
-                              "Select SUBSTRING(pos.BC37Date,7,2) + '/' + SUBSTRING(pos.BC37Date,5,2) + '/' + SUBSTRING(pos.BC37Date,1,4) as Ngay, " +
-                                "'A-'+ BC37Code as BD10,Count(*) as SLTui,Round(Sum(TotalWeight),2) as KL, " +
-                                "pos.StartPO as BCDong ,dbo.TimTenBC(pos.StartPO) as TenBCDong,pos.EndPO as BCNhan ,dbo.TimTenBC(pos.EndPO) as TenBCNhan, " +
-                                "code.MailrouteCode as IDHanhTrinh,code.MailRouteName as HanhTrinh, " +
-                                "(case when '" + cap + "' = '0' then 'Tât ca' else '" + cap + "' end) as Cap, " +
-                                "transport.TransporttypeName as loaipt " +
-                                "From " +
-                                "(Select bc37.BC37Date,bc37.BC37Code,bc37.BC37FromPosCode as StartPO,bc37.BC37ToPosCode as EndPO, " +
-                                    "bc37.MailRouteCode,bc37.MailRouteScheduleCode, " +
-                                    "bag.FromPosCode,bag.ToPosCode,bag.Year, " +
-                                    "bag.MailTripNumber,bag.PostBagIndex,bag.MailTripType,bag.ServiceCode, " +
-                                    "bag.Weight + bag.CaseWeight/1000 as TotalWeight,bag.Quantity " +
-                                "From Postbag bag " +
-                                "Inner Join  " +
-                                    "(Select A.Bc37Code,B.Bc37FromPosCode,B.Bc37ToPosCode,B.Bc37Date,B.Bc37Index,A.MailRouteCode,A.MailRouteScheduleCode, " +
-                                        "B.FromPosCode,B.ToPosCode,B.Year,B.MailTripNumber,B.PostBagIndex,B.MailTripType,B.ServiceCode " +
-                                    "From Bc37_TH A  " +
-                                    "Inner Join Mailtriptransportpostbag B " +
-                                    "On A.FromPosCode = B.Bc37FromPosCode And A.ToPosCode = B.Bc37ToPosCode " +
-                                        "And A.Bc37Date = B.Bc37Date And A.Bc37Index = B.Bc37Index " +
-                                    "Where A.Bc37Date Between " + tungay + "  and " + denngay + " " +
-                                        "And B.ServiceCode = 'E' " +
-                                        "And A.TransportTypeCode <> 3 " +
-                                        " And A.FromPosCode in (100916,100915,550916,550915,700916,700915,100959,550959,700959,590959) " +
-                                        " And A.ToPosCode in (100916,100915,550916,550915,700916,700915,100959,550959,700959,590959) " +
-                                        GetConditionTuyen(mailroutecode) +
-                                        ") bc37 " +
-                                "On bag.FromPosCode = bc37.FromPosCode And bag.toPosCode = bc37.ToPosCode " +
-                                    "And bag.Year = bc37.Year And bag.MailTripNumber = bc37.MailTripNumber " +
-                                    "And bag.ServiceCode = bc37.ServiceCode And bag.PostBagIndex = bc37.PostBagIndex) pos " +
-                                "Left Join mailroute code " +
-                                "On pos.MailRouteCode = code.MailRouteCode " +
-
-                                "Left Join mailrouteschedule schedule " +
-                                "On pos.MailRouteScheduleCode = schedule.MailRouteScheduleCode " +
-
-                                "Left Join MailrouteType typecode " +
-                                "On code.MailRoutetypeCode = typecode.MailRoutetypeCode " +
-
-                                "Left Join TransportType transport " +
-                                "On code.TransporttypeCode = transport.TransporttypeCode " +
-
-                                "Inner Join mailroutezone zone " +
-                                "On pos.MailRouteCode = zone.MailRouteCode " +
-
-                                "Where pos.BC37Date Between " + tungay + "  and " + denngay + " " +
-                                GetConditionCap(cap) +
-                                GetConditionLoaiPT(loaipt) +
-                                GetConditionVung(vung) +
-                                "Group by Pos.BC37Date,code.MailRouteName,pos.StartPO,dbo.TimTenBC(pos.StartPO), " +
-                                "pos.EndPO,dbo.TimTenBC(pos.EndPO),BC37Code,code.MailrouteCode,transport.TransporttypeName) CT" +
-                            " Group By CT.Ngay,CT.BD10,CT.BCDong,CT.TenBCDong,CT.BCNhan,CT.TenBCNhan,CT.IDHanhTrinh,CT.HanhTrinh,CT.Cap,CT.loaipt", conn);
-                    cmd.CommandType = CommandType.Text;
+                    //SqlDataAdapter da1 = new SqlDataAdapter(cmd);
+                    //conn.Close();                    
+                    //da1.Fill(ds);
+                    
+                    
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        listRoadwayTransportDetail = new List<RoadwayTransportDetail>();
+                        listRoadwayTransportDetail_TH = new List<RoadwayTransportDetail_TH>();
                         while (dr.Read())
                         {
-                            oRoadwayTransportDetail = new RoadwayTransportDetail();
-                            oRoadwayTransportDetail.NGAY = dr["Ngay"].ToString();
-                            oRoadwayTransportDetail.BD10 = dr["BD10"].ToString();
-                            oRoadwayTransportDetail.BCDONG = dr["BCDong"].ToString();
-                            oRoadwayTransportDetail.TENBCDONG = dr["TenBCDong"].ToString();
-                            oRoadwayTransportDetail.BCNHAN = dr["BCNhan"].ToString();
-                            oRoadwayTransportDetail.TENBCNHAN = dr["TenBCNhan"].ToString();
-                            oRoadwayTransportDetail.IDHANHTRINH = dr["IDHanhTrinh"].ToString();
-                            oRoadwayTransportDetail.HANHTRINH = dr["HanhTrinh"].ToString();
-                            oRoadwayTransportDetail.CAP = dr["Cap"].ToString();
-                            oRoadwayTransportDetail.LOAIPT = dr["loaipt"].ToString();
-                            listRoadwayTransportDetail.Add(oRoadwayTransportDetail);
+                            oRoadwayTransportDetail_TH = new RoadwayTransportDetail_TH();
+                            //oRoadwayTransportDetail.NGAY = dr["NGAY"].ToString();
+                            //oRoadwayTransportDetail.BD10 = dr["BD10"].ToString();
+                            //oRoadwayTransportDetail.SLTUI = dr["SLTUI"].ToString();
+                            //oRoadwayTransportDetail.KL = dr["KL"].ToString();
+                            //oRoadwayTransportDetail.BCDONG = dr["BCDONG"].ToString();
+
+
+
+                            oRoadwayTransportDetail_TH.ID_HT = dr["ID_HT"].ToString();
+                            oRoadwayTransportDetail_TH.TEN_HT = dr["TEN_HT"].ToString();
+                            oRoadwayTransportDetail_TH.SLBD10 = dr["SLBD10"].ToString();
+                            oRoadwayTransportDetail_TH.SLTUI = dr["SLTUI"].ToString();
+                            oRoadwayTransportDetail_TH.KL = dr["KL"].ToString();
+                            listRoadwayTransportDetail_TH.Add(oRoadwayTransportDetail_TH);
                         }
                         _returnRoadwayTransport.Code = "00";
                         _returnRoadwayTransport.Message = "Lấy dữ liệu thành công.";
-                        _returnRoadwayTransport.ListRoadwayTransportReport = listRoadwayTransportDetail;
+                        _returnRoadwayTransport.ListRoadwayTransportReport_TH = listRoadwayTransportDetail_TH;
+                        cmd.Connection.Close();
                     }
 
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnRoadwayTransport.Code = "99";
+                _returnRoadwayTransport.Message = "Lỗi xử lý dữ liệu";
+
+            }
+            return _returnRoadwayTransport;
+        }
+
+
+
+        #endregion
+
+        //Phần Gọi dữ liệu của bảng chi tiết 
+        #region LOAD_DATA2          
+        public ReturnRoadwayTransport LOAD_DATA2(string mailroutecode, int fromdate, int todate, int vung, string cap, int loaipt, int page_size, int page_index)
+        {
+            int thang = 0;
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnRoadwayTransport _returnRoadwayTransport = new ReturnRoadwayTransport();
+            thang = Convert.ToInt32(fromdate.ToString().Substring(0, 6));
+            List<RoadwayTransportDetail_CT> listRoadwayTransportDetail_CT = null;
+            RoadwayTransportDetail_CT oRoadwayTransportDetail_CT = null;
+            try
+            {
+
+                // Gọi vào DB để lấy dữ liệu.
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    DataSet ds = new DataSet();
+                    SqlConnection conn = new SqlConnection("Server= 192.168.68.90;Database= Ems_Enterprise;UID = sa;pwd= 12345678;");
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    //cmd.CommandText = string.Format("Select Ngay,BD10,SLTui,KL,BCDong,TenBCDong,BCNhan,TenBCNhan,IDHanhTrinh,HanhTrinh,Cap,loaipt From Bao_Cao_Chi_Tiet_Hanh_Trinh where thang = " + thang + "", conn);
+                    //cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = string.Format("[dbo].[BANGKECHITIETBD10VANCHUYENTHEODUONGTHU]", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Thang", SqlDbType.Int)).Value = thang;
+                    cmd.Parameters.Add(new SqlParameter("@Pageindex", SqlDbType.Int)).Value = page_index;
+                    cmd.Parameters.Add(new SqlParameter("@Pagesize", SqlDbType.Int)).Value = page_size;
+                    //cmd.Parameters.Add("@Total", SqlDbType.Int);
+                    //cmd.Parameters["@Total"].Direction = ParameterDirection.Output;
+
+                    cmd.Parameters.Add(new SqlParameter("@Total", SqlDbType.Int, 0)).Direction = ParameterDirection.Output;
+                    cmd.ExecuteNonQuery(); // MISSING
+                    //int retunvalue = (int)cmd.Parameters["@Total"].Value;
+
+                    cmd.CommandTimeout = 2000;
+                    
+                    
+                    //SqlDataAdapter da1 = new SqlDataAdapter(cmd);
+                    //conn.Close();                    
+                    //da1.Fill(ds);
+
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        listRoadwayTransportDetail_CT = new List<RoadwayTransportDetail_CT>();
+                        while (dr.Read())
+                        {
+                            oRoadwayTransportDetail_CT = new RoadwayTransportDetail_CT();
+                            oRoadwayTransportDetail_CT.NGAY = dr["NGAY"].ToString();
+                            oRoadwayTransportDetail_CT.BD10 = dr["BD10"].ToString();
+                            oRoadwayTransportDetail_CT.SLTUI = dr["SLTUI"].ToString();
+                            oRoadwayTransportDetail_CT.KL = dr["KL"].ToString();
+                            oRoadwayTransportDetail_CT.BCDONG = dr["BCDONG"].ToString();
+                            oRoadwayTransportDetail_CT.TENBCDONG = dr["TENBCDONG"].ToString();
+                            oRoadwayTransportDetail_CT.BCNHAN = dr["BCNHAN"].ToString();
+                            oRoadwayTransportDetail_CT.TENBCNHAN = dr["TENBCNHAN"].ToString();
+                            oRoadwayTransportDetail_CT.IDHANHTRINH = dr["IDHANHTRINH"].ToString();
+                            oRoadwayTransportDetail_CT.HANHTRINH = dr["HANHTRINH"].ToString();
+                            oRoadwayTransportDetail_CT.CAP = dr["CAP"].ToString();
+                            oRoadwayTransportDetail_CT.LOAIPT = dr["LOAIPT"].ToString();
+                            listRoadwayTransportDetail_CT.Add(oRoadwayTransportDetail_CT);
+                        }
+                        cmd.Connection.Close();
+                        _returnRoadwayTransport.Code = "00";
+                        _returnRoadwayTransport.Message = "Lấy dữ liệu thành công.";
+                        _returnRoadwayTransport.ListRoadwayTransportReport_CT = listRoadwayTransportDetail_CT;
+                        //_returnRoadwayTransport.Total = retunvalue;
+                        _returnRoadwayTransport.Total = Convert.ToInt32(cmd.Parameters["@Total"].Value.ToString());
+
+                    }
+                    
 
                 }
             }

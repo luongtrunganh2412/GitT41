@@ -1,0 +1,41 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListRoadwayTransportReport_CT != null)
+{
+    
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListRoadwayTransportReport_CT)
+    {
+       
+
+        <tr>
+            <td>@(i + 1)</td>
+            <td class="text-center">@c.NGAY</td>
+            <td class="text-center">@c.BD10</td>
+            <td colspan="2" class="text-center">@c.SLTUI</td>
+            <td colspan="2" class="text-center">@c.KL </td>
+            <td class="text-center">@c.BCDONG</td>
+            <td  class="text-center">@c.TENBCDONG</td>
+            <td class="text-center">@c.BCNHAN   </td>
+            <td class="text-center">@c.TENBCNHAN</td>
+            <td class="text-center">@c.IDHANHTRINH</td>
+            <td class="text-center">@c.HANHTRINH</td>
+            <td class="text-center">@c.CAP</td>
+            <td class="text-center">@c.LOAIPT</td>
+        </tr>
+        i++;
+
+
+
+
+    }
+
+
+}
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />
+

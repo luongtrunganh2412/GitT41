@@ -1,6 +1,7 @@
 ﻿using System;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,7 @@ namespace T41.Areas.Admin.Controllers
 {
     public class RoadwayTransportController : Controller
     {
+        int page_size = int.Parse(ConfigurationManager.AppSettings["PAGE_SIZE"]);
         Convertion common = new Convertion();
         // GET: Admin/AirwayTransport
         public ActionResult Index()
@@ -20,11 +22,19 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
         //Phần Controller gọi đến Bảng Load_DATA1
-        public ActionResult RoadwayTransportDetailReport()
+        public ActionResult RoadwayTransportDetailReport_CT()
         {
             return View();
         }
-        public ActionResult ListRoadwayTransport()
+        public ActionResult RoadwayTransportDetailReport_TH()
+        {
+            return View();
+        }
+        public ActionResult ListRoadwayTransport_CT()
+        {
+            return View();
+        }
+        public ActionResult ListRoadwayTransport_TH()
         {
             return View();
         }
@@ -36,13 +46,30 @@ namespace T41.Areas.Admin.Controllers
             return Json(roadwaytransportRepository.GetAllMailRouteCode(), JsonRequestBehavior.AllowGet);
         }
         
-        //Phần Controller gọi đến Bảng Load_DATA1
-        public ActionResult LOAD_DATA1(string mailroutecode, string tungay, string denngay, int vung, string cap, int loaipt)
+        //Phần Controller gọi đến Bảng Tổng Hợp Load_DATA1
+        public ActionResult ListDetailedRoadwayTransport_TH(string mailroutecode, string fromdate, string todate, int vung, string cap, int loaipt)
         {
             RoadwayTransportRepository roadwaytransportRepository = new RoadwayTransportRepository();
             ReturnRoadwayTransport returnroadwaytransport = new ReturnRoadwayTransport();
-            returnroadwaytransport = roadwaytransportRepository.LOAD_DATA1(mailroutecode, common.DateToInt(tungay), common.DateToInt(denngay), vung, cap, loaipt);
-            return View(returnroadwaytransport.ListRoadwayTransportReport);
+            returnroadwaytransport = roadwaytransportRepository.LOAD_DATA1(mailroutecode, common.DateToInt(fromdate), common.DateToInt(todate), vung, cap, loaipt);
+            return View(returnroadwaytransport);
+        }
+
+        //Phần Controller gọi đến Bảng Chi Tiết Load_DATA2
+        public ActionResult ListDetailedRoadwayTransport_CT(string mailroutecode, string fromdate, string todate, int vung, string cap, int loaipt, int? page)
+        {
+            RoadwayTransportRepository roadwaytransportRepository = new RoadwayTransportRepository();
+            ReturnRoadwayTransport returnroadwaytransport = new ReturnRoadwayTransport();
+
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            ViewBag.currentPageIndex = currentPageIndex;
+            ViewBag.PageSize = page_size;
+
+            returnroadwaytransport = roadwaytransportRepository.LOAD_DATA2(mailroutecode, common.DateToInt(fromdate), common.DateToInt(todate), vung, cap, loaipt, page_size, currentPageIndex);
+            ViewBag.total = returnroadwaytransport.Total;
+            ViewBag.total_page = (returnroadwaytransport.Total + page_size - 1) / page_size;
+
+            return View(returnroadwaytransport);
         }
     }
 }
