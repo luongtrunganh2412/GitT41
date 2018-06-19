@@ -104,7 +104,7 @@ namespace T41.Areas.Admin.Data
             }
         }
 
-        //Phần Gọi dữ liệu của bảng tổng hợp 
+        //Phần Gọi dữ liệu của bảng tổng hợp theo đường thư
         #region LOAD_DATA1          
         public ReturnRoadwayTransport LOAD_DATA1(string mailroutecode, int fromdate, int todate, int vung, string cap, int loaipt)
         {
@@ -274,7 +274,72 @@ namespace T41.Areas.Admin.Data
 
         #endregion
 
+        //Phần Gọi dữ liệu của bảng tổng hợp theo thời gian
+        #region LOAD_DATA3          
+        public ReturnRoadwayTransport LOAD_DATA3(string mailroutecode, int fromdate, int todate, int vung, string cap, int loaipt)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnRoadwayTransport _returnRoadwayTransport = new ReturnRoadwayTransport();
+            List<RoadwayTransportDetail_TG> listRoadwayTransportDetail_TG = null;
+            RoadwayTransportDetail_TG oRoadwayTransportDetail_TG = null;
+            try
+            {
 
+                // Gọi vào DB để lấy dữ liệu.
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    DataSet ds = new DataSet();
+                    SqlConnection conn = new SqlConnection("Server= 192.168.68.90;Database= Ems_Enterprise;UID = sa;pwd= 12345678;");
+                    cmd.Connection = conn;
+                    cmd.CommandText = string.Format("[dbo].[BANGKETONGHOPBD10VANCHUYENTHEOTHOIGIAN]", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Tungay", SqlDbType.Int)).Value = fromdate;
+                    cmd.Parameters.Add(new SqlParameter("@Denngay", SqlDbType.Int)).Value = todate;
+
+                    cmd.CommandTimeout = 2000;
+                    cmd.Connection.Open();
+
+                    //SqlDataAdapter da1 = new SqlDataAdapter(cmd);
+                    //conn.Close();                    
+                    //da1.Fill(ds);
+
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        listRoadwayTransportDetail_TG = new List<RoadwayTransportDetail_TG>();
+                        while (dr.Read())
+                        {
+                            oRoadwayTransportDetail_TG = new RoadwayTransportDetail_TG();
+                            oRoadwayTransportDetail_TG.NGAY = dr["NGAY"].ToString();
+                            oRoadwayTransportDetail_TG.SLBD10 = Convert.ToInt32(dr["SLBD10"].ToString());
+                            oRoadwayTransportDetail_TG.SLTUI = Convert.ToInt32(dr["SLTUI"].ToString());
+                            oRoadwayTransportDetail_TG.KL = Convert.ToDecimal(dr["KL"].ToString());
+                            listRoadwayTransportDetail_TG.Add(oRoadwayTransportDetail_TG);
+                        }
+                        _returnRoadwayTransport.Code = "00";
+                        _returnRoadwayTransport.Message = "Lấy dữ liệu thành công.";
+                        _returnRoadwayTransport.ListRoadwayTransportReport_TG = listRoadwayTransportDetail_TG;
+                        cmd.Connection.Close();
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnRoadwayTransport.Code = "99";
+                _returnRoadwayTransport.Message = "Lỗi xử lý dữ liệu";
+
+            }
+            return _returnRoadwayTransport;
+        }
+
+
+
+        #endregion
     }
 
 }

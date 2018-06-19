@@ -3188,6 +3188,9 @@
     <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport_CT.cshtml" />
     <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport_CT.cshtml" />
     <Content Include="Areas\Admin\Views\RoadwayTransport\ListDetailedRoadwayTransport_CT.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport_TG.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListDetailedRoadwayTransport_TG.cshtml" />
+    <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport_TG.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

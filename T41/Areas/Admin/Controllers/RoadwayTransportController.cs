@@ -26,15 +26,30 @@ namespace T41.Areas.Admin.Controllers
         {
             return View();
         }
+        
+        //Phần Controller gọi đến Bảng Load_DATA2
         public ActionResult RoadwayTransportDetailReport_TH()
         {
             return View();
         }
+        
+        //Phần Controller gọi đến Bảng Load_DATA2
+        public ActionResult RoadwayTransportDetailReport_TG()
+        {
+            return View();
+        }
+
         public ActionResult ListRoadwayTransport_CT()
         {
             return View();
         }
+
         public ActionResult ListRoadwayTransport_TH()
+        {
+            return View();
+        }
+
+        public ActionResult ListRoadwayTransport_TG()
         {
             return View();
         }
@@ -71,5 +86,15 @@ namespace T41.Areas.Admin.Controllers
 
             return View(returnroadwaytransport);
         }
+
+        //Phần Controller gọi đến Bảng Tổng Hợp Load_DATA3
+        public ActionResult ListDetailedRoadwayTransport_TG(string mailroutecode, string fromdate, string todate, int vung, string cap, int loaipt)
+        {
+            RoadwayTransportRepository roadwaytransportRepository = new RoadwayTransportRepository();
+            ReturnRoadwayTransport returnroadwaytransport = new ReturnRoadwayTransport();
+            returnroadwaytransport = roadwaytransportRepository.LOAD_DATA3(mailroutecode, common.DateToInt(fromdate), common.DateToInt(todate), vung, cap, loaipt);
+            return View(returnroadwaytransport);
+        }
+
     }
 }

@@ -1,0 +1,48 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListRoadwayTransportReport_TG != null)
+{
+
+    int i = 0;
+    //int a1 = 0;
+    //int a2 = 0;
+    //int a3 = 0;
+    int sumSLBD10=0;
+    int sumSLTUI=0;
+    decimal sumKHOILUONG = 0;
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListRoadwayTransportReport_TG)
+    {
+        <tr>
+            <th>@(i + 1)</th>
+            <th>@c.NGAY</th>
+            <th class="text-right">@c.SLBD10</th>
+            <th class="text-right">@c.SLTUI </th>
+            <th class="text-right">@c.KL</th>
+        </tr>
+
+
+
+        i++;
+        sumSLBD10 += @c.SLBD10;
+        sumSLTUI += @c.SLTUI;
+        sumKHOILUONG += @c.KL;
+
+    }
+    <tr class="bg-light-blue">
+        <th>Tổng:</th>
+        <th class="text-right"></th>
+        <th class="text-right">@sumSLBD10</th>
+        <th class="text-right">@sumSLTUI </th>
+        <th class="text-right">@sumKHOILUONG</th>
+    </tr>
+
+}
+
+

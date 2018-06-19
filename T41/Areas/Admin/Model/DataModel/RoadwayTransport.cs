@@ -26,7 +26,7 @@ namespace T41.Areas.Admin.Model.DataModel
         public string MAILROUTENAME { get; set; }
     }
 
-    //Dữ liệu lấy ra của Báo cáo giao nhận vận chuyển theo đường thư
+    //Dữ liệu lấy ra của Báo cáo chi tiết giao nhận vận chuyển theo đường thư
     public class RoadwayTransportDetail_CT
     {
 
@@ -50,7 +50,7 @@ namespace T41.Areas.Admin.Model.DataModel
 
     }
 
-
+    //Dữ liệu lấy ra của Báo cáo tổng hợp giao nhận vận chuyển theo đường thư
     public class RoadwayTransportDetail_TH
     {
         public String ID_HT { get; set; }
@@ -58,6 +58,18 @@ namespace T41.Areas.Admin.Model.DataModel
         public String SLBD10 { get; set; }
         public String SLTUI { get; set; }
         public String KL { get; set; }
+    }
+
+    //Dữ liệu lấy ra của Báo cáo tổng hợp giao nhận vận chuyển theo thời gian
+    public class RoadwayTransportDetail_TG
+    {
+        public String NGAY { get; set; }
+        public int SLBD10 { get; set; }
+        public int SLTUI { get; set; }
+        public Decimal KL { get; set; }
+        //public String SLBD10 { get; set; }
+        //public String SLTUI { get; set; }
+        //public String KL { get; set; }
     }
 
     //Dữ liệu trả về sau khi gọi dữ liệu dưới DB
@@ -82,6 +94,8 @@ namespace T41.Areas.Admin.Model.DataModel
         public RoadwayTransportDetail_CT RoadwayTransportReport_CT { get; set; }
         public List<RoadwayTransportDetail_CT> ListRoadwayTransportReport_CT;
 
+        public RoadwayTransportDetail_TG RoadwayTransportReport_TG { get; set; }
+        public List<RoadwayTransportDetail_TG> ListRoadwayTransportReport_TG;
 
         public MetaData MetaData { get; set; }
 
