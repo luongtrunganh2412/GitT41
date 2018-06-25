@@ -6,114 +6,145 @@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-
+@*<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">*@
 <title>Create</title>
 
 <section class="content">
-
-    <div class="box box-default">
-        <div class="box-header with-border">
-            <h3 class="box-title">Create</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+    
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Create</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                </div>
             </div>
+
+
+            <!-- /.box-header -->
+
+            <div class="box-body">
+                @*<form class="form-control" id="createform"> </form>*@
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
+                                    <label id="CUSTOMER_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập CUSTOMER_CODE</label>
+                                    <input class="form-control " type="text" id="CUSTOMER_CODE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
+                                    <label id="GENERAL_ACCOUNT_TYPE_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_ACCOUNT_TYPE</label>
+                                    <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
+                                    <label id="GENERAL_FULL_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_FULL_NAME</label>
+                                    <input class="form-control " type="text" id="GENERAL_FULL_NAME">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
+                                    <label id="GENERAL_SHORT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_SHORT_NAME</label>
+                                    <input class="form-control " type="text" id="GENERAL_SHORT_NAME">
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTACT_NAME">CONTACT_NAME:</label>
+                                    <label id="CONTACT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_NAME</label>
+                                    <input class="form-control " type="text" id="CONTACT_NAME">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ADDRESS">ADDRESS:</label>
+                                    <label id="ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập ADDRESS</label>
+                                    <textarea rows="2" class="form-control" id="ADDRESS"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="GENERAL_EMAIL">GENERAL_EMAIL:</label>
+                                    <label id="GENERAL_EMAIL_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_EMAIL</label>
+                                    <label id="CHECK_GENERAL_EMAIL" style="color:#0094ff">Vui Lòng Nhập Email Đúng Định Dạng</label>
+                                    <input class="form-control " type="text" id="GENERAL_EMAIL" onkeyup="checkEmail('GENERAL_EMAIL')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
+                                    <label id="CONTACT_PHONE_WORK_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PHONE_WORK</label>
+                                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
+                                    <label id="BUSINESS_TAX_ERROR" style="color:#ff0000">Vui Lòng Nhập BUSINESS_TAX</label>
+                                    <input class="form-control " type="text" id="BUSINESS_TAX">
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTRACT">CONTRACT:</label>
+                                    <label id="CONTRACT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTRACT</label>
+                                    <input class="form-control " type="text" id="CONTRACT">
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
+                                    <label id="CONTACT_ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_ADDRESS</label>
+                                    <textarea rows="2" class="form-control" id="CONTACT_ADDRESS"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
+                                    <label id="CONTACT_PROVINCE_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PROVINCE</label>
+                                    <textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
+                                    <label id="CONTACT_DISTRICT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_DISTRICT</label>
+                                    <input class="form-control " type="text" id="CONTACT_DISTRICT">
+                                </div>
+                                <div class="form-group">
+                                    <label for="STREET">STREET:</label>
+                                    <label id="STREET_ERROR" style="color:#ff0000">Vui Lòng Nhập STREET</label>
+                                    <textarea rows="2" class="form-control" id="STREET"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="UNIT_CODE">UNIT_CODE:</label>
+                                    <label id="UNIT_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập UNIT_CODE</label>
+                                    <input class="form-control " type="text" id="UNIT_CODE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
+                                    <label id="SYSTEM_REF_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập SYSTEM_REF_CODE</label>
+                                    <input class="form-control " type="text" id="SYSTEM_REF_CODE">
+                                </div>
+                                @*<div class="form-group">
+                    <label for="API_KEY">API_KEY:</label>
+                    <textarea rows="2" class="form-control" id="API_KEY"></textarea>
+                </div>*@
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="/Admin/UserManagement/UserManagementDetailReport" class="btn btn-default btn-md"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-info btn-lrg ajax" id="btnreportadd"><span class="glyphicon glyphicon-plus"></span>Create </button>
+                                @*<button type="button" class="btn btn-default btn-lrg ajax" id="btnreportadd">Create </button>*@
+                            </div>
+                        </div>
+                    </div>
+                    
+               
+                
+            </div>
+
+
         </div>
-
-
-        <!-- /.box-header -->
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
-                            <input class="form-control " type="text" id="CUSTOMER_CODE">
-                        </div>
-                        <div class="form-group">
-                            <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
-                            <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE">
-                        </div>
-                        <div class="form-group">
-                            <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
-                            <input class="form-control " type="text" id="GENERAL_FULL_NAME">
-                        </div>
-                        <div class="form-group">
-                            <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
-                            <input class="form-control " type="text" id="GENERAL_SHORT_NAME">
-                        </div>
-                        <div class="form-group">
-                            <label for="CONTACT_NAME">CONTACT_NAME:</label>
-                            <input class="form-control " type="text" id="CONTACT_NAME">
-                        </div>
-                        <div class="form-group">
-                            <label for="ADDRESS">ADDRESS:</label>
-                            <textarea rows="2" class="form-control" id="ADDRESS"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="GENERAL_EMAIL">GENERAL_EMAIL:</label>
-                        <input class="form-control " type="text" id="GENERAL_EMAIL">
-                    </div>
-                    <div class="form-group">
-                        <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
-                        <input class="form-control " type="text" id="CONTACT_PHONE_WORK">
-                    </div>
-                    <div class="form-group">
-                        <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
-                        <input class="form-control " type="text" id="BUSINESS_TAX">
-                    </div>
-                    <div class="form-group">
-                        <label for="CONTRACT">CONTRACT:</label>
-                        <input class="form-control " type="text" id="CONTRACT">
-                    </div>
-                    <div class="form-group">
-                        <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
-                        <textarea rows="2" class="form-control" id="CONTACT_ADDRESS"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
-                        <textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
-                        <input class="form-control " type="text" id="CONTACT_DISTRICT">
-                    </div>
-                    <div class="form-group">
-                        <label for="STREET">STREET:</label>
-                        <textarea rows="2" class="form-control" id="STREET"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="UNIT_CODE">UNIT_CODE:</label>
-                        <input class="form-control " type="text" id="UNIT_CODE">
-                    </div>
-                    <div class="form-group">
-                        <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
-                        <input class="form-control " type="text" id="SYSTEM_REF_CODE">
-                    </div>
-                    @*<div class="form-group">
-                        <label for="API_KEY">API_KEY:</label>
-                        <textarea rows="2" class="form-control" id="API_KEY"></textarea>
-                    </div>*@
-                </div>
-            </div>
-
-            <!-- /.row -->
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="/Admin/UserManagement/UserManagementDetailReport" class="btn btn-default btn-md" ><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
-                    </div>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-info btn-lrg ajax" id="btnreportadd"><span class="glyphicon glyphicon-plus"></span>Create </button>
-                        @*<button type="button" class="btn btn-default btn-lrg ajax" id="btnreportadd">Create </button>*@
-                    </div>
-                </div>
-            </div>
-        </div>
+   
+    
 
 
 
@@ -124,71 +155,9 @@
 
 
 </section>
-<script>
+@*<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>*@
+<script src="/Areas/Admin/Content/bower_components/ValidateJS/CreateValidateJS.js"></script>
 
-    
-
-
-
-    //Phần dữ liệu chi tiết người dùng nhập vào
-    function detail(p) {
-        $.ajax({
-            url: '@Url.Action("CreateUserReport", "UserManagement")',
-            dataType: 'html',
-            data:
-                {
-                    
-                    CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
-
-                    GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
-
-                    GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
-
-                    GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
-
-                    CONTACT_NAME: $('#CONTACT_NAME').val(),
-
-                    ADDRESS: $('#ADDRESS').val(),
-
-                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
-
-                    CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
-
-                    BUSINESS_TAX: $('#BUSINESS_TAX').val(),
-
-                    CONTRACT: $('#CONTRACT').val(),
-
-                    CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
-
-                    CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
-
-                    CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
-
-                    STREET: $('#STREET').val(),
-
-                    UNIT_CODE: $('#UNIT_CODE').val(),
-
-                    SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
-
-                    //API_KEY: $('#API_KEY').val(),
-                },
-            success: function (result) {
-                alert("Thêm Thành Công");
-                
-
-            }
-        })
-    }
-
-
-
-    $("#btnreportadd").on('click',function () {
-
-        // goi ham Detail
-        detail();
-
-    });
-</script>
 
 
 

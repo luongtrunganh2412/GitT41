@@ -104,6 +104,60 @@ namespace T41.Areas.Admin.Data
             }
         }
 
+        //Phần gọi đến procedure [INSERTBAOCAOCHITIETHANHTRINH] để tổng hợp dữ liệu
+        #region TOTAL_DATA          
+        public ReturnRoadwayTransport TOTAL_DATA(int fromdate, int todate)
+        {
+            int thang = 0;
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            thang = Convert.ToInt32(fromdate.ToString().Substring(0, 6)) - 1;
+
+            ReturnRoadwayTransport _returnRoadwayTransport = new ReturnRoadwayTransport();
+            //List<RoadwayTransportDetail_TG> listRoadwayTransportDetail_TG = null;
+            //RoadwayTransportDetail_TG oRoadwayTransportDetail_TG = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    DataSet ds = new DataSet();
+                    SqlConnection conn = new SqlConnection("Server= 192.168.68.90;Database= Ems_Enterprise;UID = sa;pwd= 12345678;");
+                    cmd.Connection = conn;
+                    cmd.CommandText = string.Format("[dbo].[INSERTBAOCAOCHITIETHANHTRINH]", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Thang", SqlDbType.Int)).Value = thang;
+                    cmd.Parameters.Add(new SqlParameter("@Tungay", SqlDbType.Int)).Value = fromdate;
+                    cmd.Parameters.Add(new SqlParameter("@Denngay", SqlDbType.Int)).Value = todate;
+
+                    cmd.CommandTimeout = 2000;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    //SqlDataAdapter da1 = new SqlDataAdapter(cmd);
+                    //conn.Close();                    
+                    //da1.Fill(ds);
+                    _returnRoadwayTransport.Code = "00";
+                    _returnRoadwayTransport.Message = "Tổng dữ liệu thành công.";
+                    cmd.Connection.Close();
+ 
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnRoadwayTransport.Code = "99";
+                _returnRoadwayTransport.Message = "Lỗi xử lý dữ liệu";
+                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
+                _returnRoadwayTransport = null;
+            }
+            return _returnRoadwayTransport;
+        }
+
+
+
+        #endregion
+
         //Phần Gọi dữ liệu của bảng tổng hợp theo đường thư
         #region LOAD_DATA1          
         public ReturnRoadwayTransport LOAD_DATA1(string mailroutecode, int fromdate, int todate, int vung, string cap, int loaipt)

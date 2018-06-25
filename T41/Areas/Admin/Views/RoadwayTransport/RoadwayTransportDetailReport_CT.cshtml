@@ -106,7 +106,12 @@
                 @*<div class="col-md-4">
                     <button type="button" class="btn btn-default btn-lrg ajax" id="btntotal">Tổng Hợp Dữ Liệu</button>
                 </div>*@
-                
+                <div class="col-md-4">
+                    <div class="col-lg-12 loading-element">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        Vui lòng chờ giây lát...
+                    </div>
+                </div>
             </div>
 
 
@@ -147,7 +152,7 @@
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
 
-        
+        $('.loading-element').hide();
     });
 
     $("#btntotal").click(function () {
@@ -156,7 +161,7 @@
     });
 
     //Phần lấy dữ liệu của tuyến phát
-    
+
     $(document).ready(function () {
 
         $.getJSON("/RoadwayTransport/GetAllMailRouteCode", function (data) {
@@ -171,7 +176,26 @@
         })
 
     });
-    
+
+    //Phần tổng hợp dữ liệu
+    function detail(p) {
+        $.ajax({
+            url: '@Url.Action("TotalDataReport", "RoadwayTransport")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    fromdate: $('#fromdate').val(),
+                    todate: $('#todate').val(),
+                },
+            success: function (result) {
+                alert("Tổng Hợp Dữ Liệu Thành Công");
+                $('.loading-element').hide();
+            }
+        })
+    }
 
 </script>
 

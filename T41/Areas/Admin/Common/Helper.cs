@@ -22,6 +22,9 @@ namespace T41.Areas.Admin.Common
         private static string _OraDSConnectionString = string.Empty;
         private static OracleConnection _OraDSOracleConnection = null;
 
+        private static string _OraDCDevConnectionString = string.Empty;
+        private static OracleConnection _OraDCDevOracleConnection = null;
+
         private static string _schemaName = string.Empty;
 
         /// <summary>
@@ -96,6 +99,36 @@ namespace T41.Areas.Admin.Common
             set
             { _me24OracleConnection = value; }
         }
+
+        //Phần gọi vào Database Dev 
+        public static string OraDCDevConnectionString
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_OraDCDevConnectionString))
+                    _OraDCDevConnectionString = ConfigurationManager.ConnectionStrings["ORA_CONNECTION_STRING_DCDev"].ConnectionString;
+                return _OraDCDevConnectionString;
+            }
+            set { _OraDCDevConnectionString = value; }
+        }
+
+        /// <summary>
+        /// ME24OracleConnection
+        /// </summary>
+        public static OracleConnection OraDCDevOracleConnection
+        {
+            get
+            {
+                if (_OraDCDevOracleConnection == null)
+                    _OraDCDevOracleConnection = new OracleConnection(OraDCDevConnectionString);
+                if (_OraDCDevOracleConnection.State == System.Data.ConnectionState.Closed)
+                    _OraDCDevOracleConnection.Open();
+                return _OraDCDevOracleConnection;
+            }
+            set
+            { _me24OracleConnection = value; }
+        }
+
         //Phần gọi vào Database Đối Soát
         public static string OraDSConnectionString
         {

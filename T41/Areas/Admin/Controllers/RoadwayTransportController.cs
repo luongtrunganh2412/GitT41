@@ -60,7 +60,16 @@ namespace T41.Areas.Admin.Controllers
             RoadwayTransportRepository roadwaytransportRepository = new RoadwayTransportRepository();
             return Json(roadwaytransportRepository.GetAllMailRouteCode(), JsonRequestBehavior.AllowGet);
         }
-        
+
+        //Phần Controller gọi đến Repository Total_Data
+        public ActionResult TotalDataReport( string fromdate, string todate)
+        {
+            RoadwayTransportRepository roadwaytransportRepository = new RoadwayTransportRepository();
+            ReturnRoadwayTransport returnroadwaytransport = new ReturnRoadwayTransport();
+            returnroadwaytransport = roadwaytransportRepository.TOTAL_DATA(common.DateToInt(fromdate), common.DateToInt(todate));
+            return View(returnroadwaytransport);
+        }
+
         //Phần Controller gọi đến Bảng Tổng Hợp Load_DATA1
         public ActionResult ListDetailedRoadwayTransport_TH(string mailroutecode, string fromdate, string todate, int vung, string cap, int loaipt)
         {

@@ -30,7 +30,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
 
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_User", Helper.OraDCOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_User", Helper.OraDCDevOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -120,7 +120,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
 
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_Id_User", Helper.OraDCOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_Id_User", Helper.OraDCDevOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -205,7 +205,7 @@ namespace T41.Areas.Admin.Data
             {
                 using (cmd = new OracleCommand())
                 {
-                    cmd.Connection = Helper.OraDCOracleConnection;
+                    cmd.Connection = Helper.OraDCDevOracleConnection;
                     cmd.CommandText = Helper.SchemaName + "BUSINESS_PROFILE_PKG.BUSINESS_PROFILE_CREATE";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
@@ -265,7 +265,7 @@ namespace T41.Areas.Admin.Data
         }
         #endregion
 
-        //Phần gọi đến package BUSINESS_PROFILE_CREATE trong database oracle để thêm dữ liệu vào !
+        //Phần gọi đến package BUSINESS_PROFILE_CREATE trong database oracle để sửa dữ liệu !
         #region CREATE_USER_MANAGEMENT_DETAIL  
         public ReturnUserManagement EditBusinessProfile(PARAMETER_BUSINESS business)
         {
@@ -276,7 +276,7 @@ namespace T41.Areas.Admin.Data
             {
                 using (cmd = new OracleCommand())
                 {
-                    cmd.Connection = Helper.OraDCOracleConnection;
+                    cmd.Connection = Helper.OraDCDevOracleConnection;
                     cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.EDIT_USER";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
@@ -334,7 +334,7 @@ namespace T41.Areas.Admin.Data
                     if (id > 0)
                     {
                         oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Thêm dữ liệu thành công";
+                        oReturnUserManagement.Message = "Sửa dữ liệu thành công";
                         oReturnUserManagement.Value = id.ToString();
 
                     }
@@ -378,7 +378,7 @@ namespace T41.Areas.Admin.Data
             {
                 using (cmd = new OracleCommand())
                 {
-                    cmd.Connection = Helper.OraDCOracleConnection;
+                    cmd.Connection = Helper.OraDCDevOracleConnection;
                     cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.DELETE_USER";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);

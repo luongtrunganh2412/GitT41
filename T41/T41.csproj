@@ -2551,6 +2551,8 @@
     <Content Include="Areas\Admin\Content\bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="Areas\Admin\Content\bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="Areas\Admin\Content\bower_components\select2\vendor\jquery-2.1.0.js" />
+    <Content Include="Areas\Admin\Content\bower_components\ValidateJS\EditValidateJS.js" />
+    <Content Include="Areas\Admin\Content\bower_components\ValidateJS\CreateValidateJS.js" />
     <Content Include="Areas\Admin\Content\dist\css\AdminLTE.css" />
     <Content Include="Areas\Admin\Content\dist\css\AdminLTE.min.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\AdminLTE-bootstrap-social.css" />

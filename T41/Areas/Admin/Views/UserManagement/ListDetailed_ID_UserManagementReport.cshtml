@@ -16,74 +16,92 @@
     {
         <div class="row">
             <div class="col-md-4">
+
                 <div class="form-group">
-                    <div class="form-group">
-                        <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
-                        <input class="form-control " type="text" id="CUSTOMER_CODE" placeholder="@c.CustomerCode">
-                    </div>
-                    <div class="form-group">
-                        <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
-                        <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE" placeholder="@c.GeneralAccountType">
-                    </div>
-                    <div class="form-group">
-                        <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
-                        <input class="form-control " type="text" id="GENERAL_FULL_NAME" placeholder="@c.GeneralFullName">
-                    </div>
-                    <div class="form-group">
-                        <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
-                        <input class="form-control " type="text" id="GENERAL_SHORT_NAME" placeholder="@c.GeneralShortName">
-                    </div>
-                    <div class="form-group">
-                        <label for="CONTACT_NAME">CONTACT_NAME:</label>
-                        <input class="form-control " type="text" id="CONTACT_NAME" placeholder="@c.ContactName">
-                    </div>
-                    <div class="form-group">
-                        <label for="ADDRESS">ADDRESS:</label>
-                        <textarea rows="2" class="form-control" id="ADDRESS" placeholder="@c.Address"></textarea>
-                    </div>
+                    <label for="CUSTOMER_CODE">CUSTOMER_CODE:</label>
+                    <label id="CUSTOMER_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập CUSTOMER_CODE</label>
+                    <input class="form-control " type="text" id="CUSTOMER_CODE" placeholder="@c.CustomerCode">
                 </div>
+                <div class="form-group">
+                    <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
+                    <label id="GENERAL_ACCOUNT_TYPE_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_ACCOUNT_TYPE</label>
+                    <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE" placeholder="@c.GeneralAccountType">
+                </div>
+                <div class="form-group">
+                    <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
+                    <label id="GENERAL_FULL_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_FULL_NAME</label>
+                    <input class="form-control " type="text" id="GENERAL_FULL_NAME" placeholder="@c.GeneralFullName">
+                </div>
+
+                <div class="form-group">
+                    <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
+                    <label id="GENERAL_SHORT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_SHORT_NAME</label>
+                    <input class="form-control " type="text" id="GENERAL_SHORT_NAME" placeholder="@c.GeneralShortName">
+                </div>
+                <div class="form-group">
+                    <label for="CONTACT_NAME">CONTACT_NAME:</label>
+                    <label id="CONTACT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_NAME</label>
+                    <input class="form-control " type="text" id="CONTACT_NAME" placeholder="@c.ContactName">
+                </div>
+                <div class="form-group">
+                    <label for="ADDRESS">ADDRESS:</label>
+                    <label id="ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập ADDRESS</label>
+                    <textarea rows="2" class="form-control" id="ADDRESS" placeholder="@c.Address"></textarea>
+                </div>
+
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="GENERAL_EMAIL">GENERAL_EMAIL:</label>
-                    <input class="form-control " type="text" id="GENERAL_EMAIL" placeholder="@c.GeneralEmail">
+                    <label id="GENERAL_EMAIL_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_EMAIL</label>
+                    <label id="CHECK_GENERAL_EMAIL" style="color:#0094ff">Vui Lòng Nhập Email Đúng Định Dạng</label>
+                    <input class="form-control " type="text" id="GENERAL_EMAIL" onkeyup="checkEmail('GENERAL_EMAIL')" placeholder="@c.GeneralEmail">
                 </div>
                 <div class="form-group">
                     <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
-                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" placeholder="@c.ContactPhoneWork">
+                    <label id="CONTACT_PHONE_WORK_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PHONE_WORK</label>
+                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="@c.ContactPhoneWork">
                 </div>
                 <div class="form-group">
                     <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
+                    <label id="BUSINESS_TAX_ERROR" style="color:#ff0000">Vui Lòng Nhập BUSINESS_TAX</label>
                     <input class="form-control " type="text" id="BUSINESS_TAX" placeholder="@c.BusinessTax">
                 </div>
                 <div class="form-group">
                     <label for="CONTRACT">CONTRACT:</label>
+                    <label id="CONTRACT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTRACT</label>
                     <input class="form-control " type="text" id="CONTRACT" placeholder="@c.Contract">
                 </div>
                 <div class="form-group">
                     <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
+                    <label id="CONTACT_ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_ADDRESS</label>
                     <textarea rows="2" class="form-control" id="CONTACT_ADDRESS" placeholder="@c.ContactAddress"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
+                    <label id="CONTACT_PROVINCE_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PROVINCE</label>
                     <textarea rows="2" class="form-control" id="CONTACT_PROVINCE" placeholder="@c.ContactProvince"></textarea>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
+                    <label id="CONTACT_DISTRICT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_DISTRICT</label>
                     <input class="form-control " type="text" id="CONTACT_DISTRICT" placeholder="@c.ContactDistrict">
                 </div>
                 <div class="form-group">
                     <label for="STREET">STREET:</label>
+                    <label id="STREET_ERROR" style="color:#ff0000">Vui Lòng Nhập STREET</label>
                     <textarea rows="2" class="form-control" id="STREET" placeholder="@c.Street"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="UNIT_CODE">UNIT_CODE:</label>
+                    <label id="UNIT_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập UNIT_CODE</label>
                     <input class="form-control " type="text" id="UNIT_CODE" placeholder="@c.UnitCode">
                 </div>
                 <div class="form-group">
                     <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
+                    <label id="SYSTEM_REF_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập SYSTEM_REF_CODE</label>
                     <input class="form-control " type="text" id="SYSTEM_REF_CODE" placeholder="@c.SystemRefCode">
                 </div>
                 @*<div class="form-group">
@@ -104,72 +122,7 @@
             </div>
 
     }
-    <script>
-
-        var url_string = document.URL;
-        var url = new URL(url_string);
-        var id = url.searchParams.get("id");
-        
-
-
-    //Phần dữ liệu chi tiết người dùng nhập vào
-    function detail(p) {
-        $.ajax({
-            url: '@Url.Action("EditUserReport", "UserManagement")',
-            dataType: 'html',
-            data:
-                {
-                    EDIT_ID: id,
-
-                    CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
-
-                    GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
-
-                    GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
-
-                    GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
-
-                    CONTACT_NAME: $('#CONTACT_NAME').val(),
-
-                    ADDRESS: $('#ADDRESS').val(),
-
-                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
-
-                    CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
-
-                    BUSINESS_TAX: $('#BUSINESS_TAX').val(),
-
-                    CONTRACT: $('#CONTRACT').val(),
-
-                    CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
-
-                    CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
-
-                    CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
-
-                    STREET: $('#STREET').val(),
-
-                    UNIT_CODE: $('#UNIT_CODE').val(),
-
-                    SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
-
-                },
-            success: function (result) {
-                alert("Sửa Thành Công");
-                
-            }
-        })
-    }
-
-
-
-        $("#btnreportedit").on('click', function () {
-
-        // goi ham Detail
-        detail();
-
-    });
-    </script>
+    <script src="~/Areas/Admin/Content/bower_components/ValidateJS/EditValidateJS.js"></script>
 
 }
 

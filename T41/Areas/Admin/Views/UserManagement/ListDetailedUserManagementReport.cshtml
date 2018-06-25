@@ -60,7 +60,7 @@
     $(document).ready(function () {
         $('[id*=btnreportdelete]').click(function (e) {
             var delete_id = $(this).attr('rel');
-            alert(delete_id);
+            //alert(delete_id);
             if (confirm("Bạn có muốn xóa không ?")) {
                 $.ajax({
                     url: '@Url.Action("DeleteUserReport", "UserManagement")',
