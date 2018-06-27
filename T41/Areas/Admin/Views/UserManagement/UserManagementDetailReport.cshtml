@@ -90,6 +90,11 @@
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <div id="page-selection" class="col-sm-12 text-center">
+                </div>
+            </div>
+
 
             <!--Phần modal Add thông tin người dùng-->
             <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
@@ -218,7 +223,7 @@
 
         // goi ham Detail
 
-        detail_user();
+        detail_user(1);
 
     });
 
@@ -226,17 +231,29 @@
 
 
     //Phần JS gọi đến dữ liệu của chi tiết bản kê E2
-    function detail_user() {
+    function detail_user(p) {
         $.ajax({
             url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
             dataType: 'html',
-            data:{},
+            data: {
+                page: p
+            },
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
                 $('#list_user').html(result);
-
+                if (p == 1) refreshPaging();
             }
         })
+    }
+
+    //Phần Phân Trang
+    function refreshPaging() {
+        $('#page-selection').bootpag({
+            total: $('#total_page').val(),
+            maxVisible: 10,
+        }).on("page", function (event, /* page number here */ num) {
+            detail_user(num);
+        });
     }
 
     //Phần Js tìm kiếm theo tên

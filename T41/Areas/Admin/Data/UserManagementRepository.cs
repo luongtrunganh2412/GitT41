@@ -15,7 +15,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng business_profile
         #region USER_MANAGEMENT_DETAIL          
-        public ReturnUserManagement USER_MANAGEMENT_DETAIL()
+        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index)
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -30,18 +30,18 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
 
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_User", Helper.OraDCDevOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Page_Detail_User", Helper.OraDCDevOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    //myCommand.Parameters.Add("v_Zone", OracleDbType.Int32).Value = zone;
-                    //myCommand.Parameters.Add("v_StartDate", OracleDbType.Int32).Value = startdate;
-                    //myCommand.Parameters.Add("v_EndDate", OracleDbType.Int32).Value = enddate;
+                    myCommand.Parameters.Add("P_PAGE_INDEX", OracleDbType.Int32).Value = page_index;
+                    myCommand.Parameters.Add("P_PAGE_SIZE", OracleDbType.Int32).Value = page_size;
+                    myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
                     mAdapter.Fill(da);
-
+                    myCommand.ExecuteNonQuery();
                     DataTableReader dr = da.CreateDataReader();
                     if (dr.HasRows)
                     {
@@ -76,6 +76,7 @@ namespace T41.Areas.Admin.Data
                         }
                         _returnUserManagement.Code = "00";
                         _returnUserManagement.Message = "Lấy dữ liệu thành công.";
+                        _returnUserManagement.Total = Convert.ToInt32(myCommand.Parameters["P_TOTAL"].Value.ToString());
                         _returnUserManagement.ListUserManagementReport = listUserManagementDetail;
                     }
                     else

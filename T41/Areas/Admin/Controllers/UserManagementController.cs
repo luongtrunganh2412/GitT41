@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,7 @@ namespace T41.Areas.Admin.Controllers
 {
     public class UserManagementController : Controller
     {
+        int page_size = int.Parse(ConfigurationManager.AppSettings["PAGE_SIZE"]);
         // GET: Admin/UserManagement
         public ActionResult Index()
         {
@@ -70,13 +72,16 @@ namespace T41.Areas.Admin.Controllers
         }
 
         //Phần show ra dữ liệu của bảng người dùng
-        public ActionResult ListDetailedUserManagementReport()
+        public ActionResult ListDetailedUserManagementReport(int? page)
         {
-            
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            ViewBag.currentPageIndex = currentPageIndex;
+            ViewBag.PageSize = page_size;
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL();
-            
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(page_size, currentPageIndex);
+            ViewBag.total = returnusermanagement.Total;
+            ViewBag.total_page = (returnusermanagement.Total + page_size - 1) / page_size;
             return View(returnusermanagement);
             
         }

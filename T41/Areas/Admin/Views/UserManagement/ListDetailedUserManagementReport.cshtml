@@ -5,13 +5,8 @@
 }
 @if (Model.ListUserManagementReport != null)
 {
-
-    int i = 0;
-
-
-
-
-    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
     foreach (var c in Model.ListUserManagementReport)
     {
         <tr>
@@ -32,31 +27,7 @@
 
     }
 <script>
-    @*$(document).ready(function () {
-        $('[id*=btnreportedit]').click(function (e) {
-            var edit_id = $(this).attr('rel');
-            alert(edit_id);
-            $.ajax({
-                url: '@Url.Action("ListDetailed_ID_UserManagementReport", "UserManagement")',
-                dataType: "html",
-                data:
-                 {
-                     edit_id: edit_id
-
-                 },
-                success: function (result) {
-                    console.log(result);
-                    $('#list_user').html(result);
-                    return result;
-
-                },
-                failure: function (errMsg) {
-                    alert(errMsg);
-                }
-            });
-        });
-    });*@
-
+    
     $(document).ready(function () {
         $('[id*=btnreportdelete]').click(function (e) {
             var delete_id = $(this).attr('rel');
@@ -89,5 +60,8 @@
 </script>
 
 }
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />
 
 
