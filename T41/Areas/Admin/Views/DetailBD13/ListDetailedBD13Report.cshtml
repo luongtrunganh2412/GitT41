@@ -1,0 +1,61 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListBD13Report != null)
+{
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    <tr class="bg-light-blue color-palette">
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th colspan="2">Tổng Số Bưu Gửi:@ViewBag.Total</th>
+    </tr>
+    foreach (var c in Model.ListBD13Report)
+    {
+
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.MAE1</td>
+            <td>@c.MABCTRA</td>
+            <td>@c.MABCNHAN</td>
+            <td>@c.KHOILUONG</td>
+            <td>@c.CUOCCS</td>
+            <td>@c.CUOCDV</td>
+            <td>@c.TRANGTHAI</td>
+            <td>@c.DIACHI</td>
+            <td>@c.MABC</td>
+            <td>@c.CHTHU</td>
+            <td>@c.TUISO</td>
+            <td>@c.NGAY</td>
+            <td>@c.MABC_KT</td>
+            
+        </tr>
+        i++;
+
+    }
+    
+}
+else
+{
+    <script>
+        alert("Không Có Số Liệu");
+    </script>
+
+}
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />
+
+
+

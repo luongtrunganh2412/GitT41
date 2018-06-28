@@ -193,6 +193,8 @@
     <Compile Include="Areas\Admin\Common\Security.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessesController.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Areas\Admin\Data\RealTimeKeepingRepository.cs" />
     <Compile Include="Areas\Admin\Data\QualityDeliveryRepository.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportRepository.cs" />
+    <Compile Include="Areas\Admin\Data\DetailBD13Repository.cs" />
     <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\DetailBD13.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\UserManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3193,6 +3197,10 @@
     <Content Include="Areas\Admin\Views\RoadwayTransport\RoadwayTransportDetailReport_TG.cshtml" />
     <Content Include="Areas\Admin\Views\RoadwayTransport\ListDetailedRoadwayTransport_TG.cshtml" />
     <Content Include="Areas\Admin\Views\RoadwayTransport\ListRoadwayTransport_TG.cshtml" />
+    <Content Include="Areas\Admin\Views\DetailBD13\ListDetailedBD13Report.cshtml" />
+    <Content Include="Areas\Admin\Views\DetailBD13\BD13DetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportManagement\AirwayTransportManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
