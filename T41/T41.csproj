@@ -192,6 +192,7 @@
     <Compile Include="Areas\Admin\Common\LoggerGeneral.cs" />
     <Compile Include="Areas\Admin\Common\Security.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministratorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AirwayTransportComeManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
@@ -3200,6 +3201,8 @@
     <Content Include="Areas\Admin\Views\DetailBD13\ListDetailedBD13Report.cshtml" />
     <Content Include="Areas\Admin\Views\DetailBD13\BD13DetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\AirwayTransportManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\ListAirwayTransportComeManagement.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\AirwayTransportComeManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
