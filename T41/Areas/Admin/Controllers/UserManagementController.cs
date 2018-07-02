@@ -29,6 +29,20 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
+        //Controller lấy dữ liệu tỉnh đóng, tỉnh nhận
+        public JsonResult ProvinceCode()
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            return Json(usermanagementRepository.GETPROVINCE(), JsonRequestBehavior.AllowGet);
+        }
+
+        //Controller lấy dữ liệu quận
+        public JsonResult DistrictCode(int provincecode)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            return Json(usermanagementRepository.GETDISTRICT(provincecode), JsonRequestBehavior.AllowGet);
+        }
+
         //Phần controller xử lý để thêm dữ liệu dưới database
         public ActionResult CreateUserReport(PARAMETER_BUSINESS para)
         {

@@ -12,6 +12,85 @@ namespace T41.Areas.Admin.Data
 {
     public class UserManagementRepository
     {
+        #region GETPROVINCE
+        //Lấy mã bưu cục phát dưới DB Procedure USER_MANAGEMENT.Detail_Province
+        public IEnumerable<GETPROVINCE> GETPROVINCE()
+        {
+            List<GETPROVINCE> listGetProvinceCode = null;
+            GETPROVINCE oGetProvinceCode = null;
+
+            try
+            {
+                using (OracleCommand cm = new OracleCommand())
+                {
+                    cm.Connection = Helper.OraDCDevOracleConnection;
+                    cm.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Detail_Province";
+                    cm.CommandType = CommandType.StoredProcedure;
+
+                    cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
+                    using (OracleDataReader dr = cm.ExecuteReader())
+                    {
+                        listGetProvinceCode = new List<GETPROVINCE>();
+                        while (dr.Read())
+                        {
+                            oGetProvinceCode = new GETPROVINCE();
+                            //oGetProvinceCode.PROVINCECODE = int.Parse(dr["PROVINCECODE"].ToString());
+                            oGetProvinceCode.PROVINCECODE = dr["PROVINCECODE"].ToString();
+                            oGetProvinceCode.PROVINCENAME = dr["PROVINCENAME"].ToString();
+                            listGetProvinceCode.Add(oGetProvinceCode);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "GETPROVINCE" + ex.Message);
+                listGetProvinceCode = null;
+            }
+
+            return listGetProvinceCode;
+        }
+        #endregion
+
+
+        #region GETDISTRICT
+        //Lấy mã bưu cục phát dưới DB Procedure USER_MANAGEMENT.Detail_District
+        public IEnumerable<GETDISTRICT> GETDISTRICT(int provincecode)
+        {
+            List<GETDISTRICT> listGetDistrictCode = null;
+            GETDISTRICT oGetDistrictCode = null;
+
+            try
+            {
+                using (OracleCommand cm = new OracleCommand())
+                {
+                    cm.Connection = Helper.OraDCDevOracleConnection;
+                    cm.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Detail_District";
+                    cm.CommandType = CommandType.StoredProcedure;
+                    cm.Parameters.Add(new OracleParameter("P_PROVINCECODE", OracleDbType.Int32)).Value = provincecode;
+                    cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
+                    using (OracleDataReader dr = cm.ExecuteReader())
+                    {
+                        listGetDistrictCode = new List<GETDISTRICT>();
+                        while (dr.Read())
+                        {
+                            oGetDistrictCode = new GETDISTRICT();
+                            oGetDistrictCode.DISTRICTCODE = dr["DISTRICTCODE"].ToString();
+                            oGetDistrictCode.DISTRICTNAME = dr["DISTRICTNAME"].ToString();
+                            listGetDistrictCode.Add(oGetDistrictCode);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "GETDISTRICT" + ex.Message);
+                listGetDistrictCode = null;
+            }
+
+            return listGetDistrictCode;
+        }
+        #endregion
 
         // Phần lấy dữ liệu từ bảng business_profile
         #region USER_MANAGEMENT_DETAIL          

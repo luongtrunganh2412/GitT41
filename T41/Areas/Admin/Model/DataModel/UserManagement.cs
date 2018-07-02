@@ -36,6 +36,15 @@ namespace T41.Areas.Admin.Model.DataModel
         public int edit_id { get; set; }
     }
 
+    //Lấy mã quận 
+    public class GETDISTRICT
+    {
+        public string DISTRICTCODE { get; set; }
+
+        public string DISTRICTNAME { get; set; }
+
+    }
+
     //Parameter truyền vào DB để delete theo thông tin người dùng
     public class PARAMETER_DELETE
     {

@@ -92,14 +92,16 @@
                                 <div class="form-group">
                                     <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
                                     <label id="CONTACT_PROVINCE_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PROVINCE</label>
-                                    <textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>
+                                    <select class="form-control select2" style="width: 100%;" id="CONTACT_PROVINCE"></select>
+                                    @*<textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>*@
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
                                     <label id="CONTACT_DISTRICT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_DISTRICT</label>
-                                    <input class="form-control " type="text" id="CONTACT_DISTRICT">
+                                    <select class="form-control select2" style="width: 100%;" id="CONTACT_DISTRICT"></select>
+                                    @*<input class="form-control " type="text" id="CONTACT_DISTRICT">*@
                                 </div>
                                 <div class="form-group">
                                     <label for="STREET">STREET:</label>
@@ -158,6 +160,55 @@
 @*<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>*@
 <script src="/Areas/Admin/Content/bower_components/ValidateJS/CreateValidateJS.js"></script>
 <script>
+    //Phần lấy dữ liệu tỉnh Nhận
+    $(document).ready(function () {
+
+        $.getJSON("/UserManagement/ProvinceCode", function (data) {
+            $.each(data, function (i, data) {
+
+                $('<option>',
+                   {
+                       value: data.PROVINCECODE,
+                       text: data.PROVINCENAME
+                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#CONTACT_PROVINCE");
+            });
+        })
+
+    });
+
+    ////Lần đầu load quận= 10
+    $(document).ready(function () {
+        $.ajax({
+            url: "/UserManagement/DistrictCode",
+            dataType: "json",
+            data: { provincecode: 10 },
+            success: function (data) {
+                $('#CONTACT_DISTRICT').html('<option>DISTRICT </option>');
+                jQuery.each(data, function (i, val) {
+                    $('#CONTACT_DISTRICT').html($('#CONTACT_DISTRICT').html() +
+                        "<option value='" + val.DISTRICTCODE + "'>" + val.DISTRICTCODE + '-' + val.DISTRICTNAME + "</option>");
+                });
+            }
+        });
+    });
+    //Sự kiện thay đổi quận theo tỉnh
+    $(document).ready(function () {
+        $('#CONTACT_PROVINCE').change(function () {
+            $.ajax({
+                url: "/UserManagement/DistrictCode",
+                dataType: "json",
+                data: { provincecode: $("#CONTACT_PROVINCE").val() },
+                success: function (data) {
+                    $('#CONTACT_DISTRICT').html('<option>DISTRICT </option>');
+                    jQuery.each(data, function (i, val) {
+                        $('#CONTACT_DISTRICT').html($('#CONTACT_DISTRICT').html() +
+                            "<option value='" + val.DISTRICTCODE + "'>" + val.DISTRICTCODE + '-' + val.DISTRICTNAME + "</option>");
+                    });
+                }
+            });
+        })
+    });
+
     //Phần dữ liệu chi tiết người dùng nhập vào
     function detail(p) {
         $.ajax({
