@@ -30,54 +30,7 @@ var url_string = document.URL;
 var url = new URL(url_string);
 var id = url.searchParams.get("id");
 
-//Phần dữ liệu chi tiết người dùng nhập vào
-function detail(p) {
-    $.ajax({
-        url: '@Url.Action("EditUserReport", "UserManagement")',
-        dataType: 'html',
-        data:
-            {
-                EDIT_ID: id,
 
-                CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
-
-                GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
-
-                GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
-
-                GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
-
-                CONTACT_NAME: $('#CONTACT_NAME').val(),
-
-                ADDRESS: $('#ADDRESS').val(),
-
-                GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
-
-                CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
-
-                BUSINESS_TAX: $('#BUSINESS_TAX').val(),
-
-                CONTRACT: $('#CONTRACT').val(),
-
-                CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
-
-                CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
-
-                CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
-
-                STREET: $('#STREET').val(),
-
-                UNIT_CODE: $('#UNIT_CODE').val(),
-
-                SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
-
-            },
-        success: function (result) {
-            alert("Sửa Thành Công");
-
-        }
-    })
-}
 
 function checkCUSTOMER_CODE() {
     if (document.getElementById('CUSTOMER_CODE').value == ""

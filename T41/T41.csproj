@@ -3204,6 +3204,7 @@
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\ListAirwayTransportComeManagement.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\AirwayTransportComeManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\EditUserReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
