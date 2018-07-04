@@ -12,6 +12,7 @@ namespace T41.Areas.Admin.Controllers
 {
     public class AirwayTransportManagementController : Controller
     {
+        Convertion common = new Convertion();
         // GET: Admin/AirwayTransportManagement
         public ActionResult Index()
         {
@@ -25,6 +26,17 @@ namespace T41.Areas.Admin.Controllers
         public ActionResult ListAirwayTransportManagement()
         {
             return View();
+        }
+
+        //Phần controller xử lý để thêm dữ liệu dưới database
+        [HttpGet]
+        public ActionResult CreateAirwaytransportManagementReport(string NGAY, int CHIEU, string TAICUNG_TH, string TAIMEM_TH, string GIOGIAO_TT, string GIOBAY_TT, string SOHIEUCHUYENBAY, string GIONHAN_TT, int ID_VNP)
+        {
+            AirwaytransportManagementRepository airwaytransportmanagementRepository = new AirwaytransportManagementRepository();
+            ReturnAirwaytransportManagement returnairwaytransportmanagement = new ReturnAirwaytransportManagement();
+            returnairwaytransportmanagement = airwaytransportmanagementRepository.InsertAirwaytransportManagement(common.DateToInt(NGAY), CHIEU, TAICUNG_TH, TAIMEM_TH, GIOGIAO_TT, GIOBAY_TT, SOHIEUCHUYENBAY, GIONHAN_TT, ID_VNP);
+            return View(returnairwaytransportmanagement);
+            
         }
     }
 }

@@ -220,6 +220,7 @@
     <Compile Include="Areas\Admin\Data\QualityDeliveryRepository.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportRepository.cs" />
     <Compile Include="Areas\Admin\Data\DetailBD13Repository.cs" />
+    <Compile Include="Areas\Admin\Data\AirwaytransportManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\DetailBD13.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\AirwaytransportManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\UserManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -258,6 +260,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\bootstrap.css" />
     <Content Include="Areas\Admin\Content\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Content\bower_components\AirwaytransportManagement\AirwaytransportManagementJS.js" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -3205,6 +3208,7 @@
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\AirwayTransportComeManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\EditUserReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportManagement\CreateAirwaytransportManagementReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
