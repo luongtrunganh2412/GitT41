@@ -213,6 +213,7 @@
     <Compile Include="Areas\Admin\Controllers\TransferManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
+    <Compile Include="Areas\Admin\Data\AirwaytransportComeManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\RoadwayTransportRepository.cs" />
     <Compile Include="Areas\Admin\Data\ApiRepository.cs" />
     <Compile Include="Areas\Admin\Data\DeliveryRepository.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Areas\Admin\Model\BusinessModel\DTPowerDBContext.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\ReflectionController.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Administrator.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\AirwaytransportComeManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\RoadwayTransport.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransportCome.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Business.cs" />
@@ -3209,6 +3211,7 @@
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\EditUserReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\CreateAirwaytransportManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\CreateAirwaytransportComeManagementReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

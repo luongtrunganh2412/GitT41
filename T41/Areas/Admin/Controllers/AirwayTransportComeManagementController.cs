@@ -29,6 +29,15 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
+        //Phần controller xử lý để thêm dữ liệu dưới database
+        [HttpGet]
+        public ActionResult CreateAirwaytransportComeManagementReport(string NGAY, int CHIEU, string TAICUNG_TH, string TAIMEM_TH, string GIOGIAO_TT, string GIOBAY_TT, string SOHIEUCHUYENBAY, string GIONHAN_TT, int ID_VNP)
+        {
+            AirwaytransportComeManagementRepository airwaytransportcomemanagementRepository = new AirwaytransportComeManagementRepository();
+            ReturnAirwaytransportComeManagement returnairwaytransportcomemanagement = new ReturnAirwaytransportComeManagement();
+            returnairwaytransportcomemanagement = airwaytransportcomemanagementRepository.InsertAirwaytransportComeManagement(common.DateToInt(NGAY), CHIEU, TAICUNG_TH, TAIMEM_TH, GIOGIAO_TT, GIOBAY_TT, SOHIEUCHUYENBAY, GIONHAN_TT, ID_VNP);
+            return View(returnairwaytransportcomemanagement);
 
+        }
     }
 }
