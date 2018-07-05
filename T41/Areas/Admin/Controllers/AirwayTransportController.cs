@@ -41,16 +41,14 @@ namespace T41.Areas.Admin.Controllers
         public ActionResult ListDetailedAirwayTransport1(String date, int way)
         {
             
-
             AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
             ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
             returnairwaytransport = airwaytransportRepository.LOAD_DATA1(common.DateToInt(date), way);
             
-
             return View(returnairwaytransport.ListAirwayTransportReport);
         }
 
-        //Phần Controller gọi đến Bảng Load_DATA1
+        //Phần Controller gọi đến Bảng Load_DATA2
         public ActionResult ListDetailedAirwayTransport2(String date, int way)
         {
             AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
@@ -272,6 +270,24 @@ namespace T41.Areas.Admin.Controllers
             AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
             ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
             returnairwaytransport = airwaytransportRepository.LOAD_DATA26(common.DateToInt(date), way);
+            return View(returnairwaytransport.ListAirwayTransportReport);
+        }
+
+        //Phần Controller gọi đến Bảng Load_DATA27
+        public ActionResult ListDetailedAirwayTransport27(String date, int way)
+        {
+            AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
+            ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
+            returnairwaytransport = airwaytransportRepository.LOAD_DATA27(common.DateToInt(date), way);
+            return View(returnairwaytransport.ListAirwayTransportReport);
+        }
+
+        //Phần Controller gọi đến Bảng Load_DATA28
+        public ActionResult ListDetailedAirwayTransport28(String date, int way)
+        {
+            AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
+            ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
+            returnairwaytransport = airwaytransportRepository.LOAD_DATA28(common.DateToInt(date), way);
             return View(returnairwaytransport.ListAirwayTransportReport);
         }
     }

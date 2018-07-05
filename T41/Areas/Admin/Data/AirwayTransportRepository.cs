@@ -62,7 +62,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA1", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA1", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -154,7 +154,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA2", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA2", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -251,7 +251,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA3", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA3", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -348,7 +348,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA4", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA4", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -445,7 +445,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA5", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA5", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -542,7 +542,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA6", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA6", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -639,7 +639,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA7", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA7", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -736,7 +736,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA8", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA8", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -833,7 +833,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA9", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA9", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -930,7 +930,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA10", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA10", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1027,7 +1027,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA11", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA11", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1124,7 +1124,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA12", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA12", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1221,7 +1221,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA13", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA13", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1318,7 +1318,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA14", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA14", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1415,7 +1415,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA15", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA15", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1512,7 +1512,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA16", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA16", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1609,7 +1609,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA17", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA17", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1706,7 +1706,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA18", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA18", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1803,7 +1803,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA19", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA19", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1900,7 +1900,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA20", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA20", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1997,7 +1997,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA21", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA21", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -2094,7 +2094,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA22", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA22", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -2191,7 +2191,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA23", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA23", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -2288,7 +2288,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA24", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA24", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -2385,7 +2385,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA25", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA25", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -2482,7 +2482,201 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT.LOAD_DATA26", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA26", Helper.OraDSOracleConnection);
+                    //xử lý tham số truyền vào data table
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    myCommand.Parameters.Add("P_CHIEU", OracleDbType.Int32).Value = way;
+                    myCommand.Parameters.Add("P_NGAY", OracleDbType.Int32).Value = date;
+                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+
+                    DataTableReader dr = da.CreateDataReader();
+                    if (dr.HasRows)
+                    {
+                        listAirwayTransportDetail = new List<AirwayTransportDetail>();
+                        while (dr.Read())
+                        {
+                            oAirwayTransportDetail = new AirwayTransportDetail();
+                            //oAirwayTransportDetail.SO = Convert.ToInt32(dr["1"].ToString());
+                            oAirwayTransportDetail.STT = Convert.ToInt32(dr["STT"].ToString());
+                            oAirwayTransportDetail.CHANGBAY = dr["CHANGBAY"].ToString();
+                            oAirwayTransportDetail.DONVIVANCHUYEN = dr["DONVIVANCHUYEN"].ToString();
+                            oAirwayTransportDetail.DICHVUVANCHUYEN = dr["DICHVUVANCHUYEN"].ToString();
+                            oAirwayTransportDetail.KHUNGGIO = dr["KHUNGGIO"].ToString();
+                            oAirwayTransportDetail.TONGTAITHEOHOPDONG = dr["TONGTAITHEOHOPDONG"].ToString();
+                            //oAirwayTransportDetail.ID = Convert.ToInt32(dr["ID"].ToString());
+                            //oAirwayTransportDetail.NGAY = Convert.ToInt32(dr["NGAY"].ToString());
+                            //oAirwayTransportDetail.MABC = Convert.ToInt32(dr["MABC"].ToString());
+                            //oAirwayTransportDetail.CHIEU = Convert.ToInt32(dr["CHIEU"].ToString());
+                            //oAirwayTransportDetail.HUONG = Convert.ToInt32(dr["HUONG"].ToString());
+                            oAirwayTransportDetail.TAICUNG_KH = dr["TAICUNG_KH"].ToString();
+                            oAirwayTransportDetail.TAIMEM_KH = dr["TAIMEM_KH"].ToString();
+                            oAirwayTransportDetail.MASP = dr["MASP"].ToString();
+                            oAirwayTransportDetail.TAICUNG_TH = dr["TAICUNG_TH"].ToString();
+                            oAirwayTransportDetail.TAIMEM_TH = dr["TAIMEM_TH"].ToString();
+                            oAirwayTransportDetail.TAICUNG_LK = dr["TAICUNG_LK"].ToString();
+                            oAirwayTransportDetail.TAIMEM_LK = dr["TAIMEM_LK"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_QD = dr["GIOGIAO_QD"].ToString();
+                            oAirwayTransportDetail.GIOBAY_QD = dr["GIOBAY_QD"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_TT = dr["GIOGIAO_TT"].ToString();
+                            oAirwayTransportDetail.GIOBAY_TT = dr["GIOBAY_TT"].ToString();
+                            oAirwayTransportDetail.SOHIEUCHUYENBAY = dr["SOHIEUCHUYENBAY"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_CL = dr["GIOGIAO_CL"].ToString();
+                            oAirwayTransportDetail.GIOBAY_CL = dr["GIOBAY_CL"].ToString();
+                            oAirwayTransportDetail.GIODAP_QD = dr["GIODAP_QD"].ToString();
+                            oAirwayTransportDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
+                            //oAirwayTransportDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
+                            oAirwayTransportDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
+                            oAirwayTransportDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            listAirwayTransportDetail.Add(oAirwayTransportDetail);
+
+                        }
+                        _returnAirwayTransport.Code = "00";
+                        _returnAirwayTransport.Message = "Lấy dữ liệu thành công.";
+                        _returnAirwayTransport.ListAirwayTransportReport = listAirwayTransportDetail;
+                    }
+                    else
+                    {
+                        _returnAirwayTransport.Code = "01";
+                        _returnAirwayTransport.Message = "Không có dữ liệu";
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnAirwayTransport.Code = "99";
+                _returnAirwayTransport.Message = "Lỗi xử lý dữ liệu";
+
+            }
+            return _returnAirwayTransport;
+        }
+
+
+
+        #endregion
+
+        //Phần chi tiết của bảng LOAD_DATA27
+        #region LOAD_DATA27          
+        public ReturnAirwayTransport LOAD_DATA27(int date, int way)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnAirwayTransport _returnAirwayTransport = new ReturnAirwayTransport();
+
+
+            List<AirwayTransportDetail> listAirwayTransportDetail = null;
+            AirwayTransportDetail oAirwayTransportDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    //Helper.OraDSOracleConnection gọi đến database đối soát
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA27", Helper.OraDSOracleConnection);
+                    //xử lý tham số truyền vào data table
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    myCommand.Parameters.Add("P_CHIEU", OracleDbType.Int32).Value = way;
+                    myCommand.Parameters.Add("P_NGAY", OracleDbType.Int32).Value = date;
+                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+
+                    DataTableReader dr = da.CreateDataReader();
+                    if (dr.HasRows)
+                    {
+                        listAirwayTransportDetail = new List<AirwayTransportDetail>();
+                        while (dr.Read())
+                        {
+                            oAirwayTransportDetail = new AirwayTransportDetail();
+                            //oAirwayTransportDetail.SO = Convert.ToInt32(dr["1"].ToString());
+                            oAirwayTransportDetail.STT = Convert.ToInt32(dr["STT"].ToString());
+                            oAirwayTransportDetail.CHANGBAY = dr["CHANGBAY"].ToString();
+                            oAirwayTransportDetail.DONVIVANCHUYEN = dr["DONVIVANCHUYEN"].ToString();
+                            oAirwayTransportDetail.DICHVUVANCHUYEN = dr["DICHVUVANCHUYEN"].ToString();
+                            oAirwayTransportDetail.KHUNGGIO = dr["KHUNGGIO"].ToString();
+                            oAirwayTransportDetail.TONGTAITHEOHOPDONG = dr["TONGTAITHEOHOPDONG"].ToString();
+                            //oAirwayTransportDetail.ID = Convert.ToInt32(dr["ID"].ToString());
+                            //oAirwayTransportDetail.NGAY = Convert.ToInt32(dr["NGAY"].ToString());
+                            //oAirwayTransportDetail.MABC = Convert.ToInt32(dr["MABC"].ToString());
+                            //oAirwayTransportDetail.CHIEU = Convert.ToInt32(dr["CHIEU"].ToString());
+                            //oAirwayTransportDetail.HUONG = Convert.ToInt32(dr["HUONG"].ToString());
+                            oAirwayTransportDetail.TAICUNG_KH = dr["TAICUNG_KH"].ToString();
+                            oAirwayTransportDetail.TAIMEM_KH = dr["TAIMEM_KH"].ToString();
+                            oAirwayTransportDetail.MASP = dr["MASP"].ToString();
+                            oAirwayTransportDetail.TAICUNG_TH = dr["TAICUNG_TH"].ToString();
+                            oAirwayTransportDetail.TAIMEM_TH = dr["TAIMEM_TH"].ToString();
+                            oAirwayTransportDetail.TAICUNG_LK = dr["TAICUNG_LK"].ToString();
+                            oAirwayTransportDetail.TAIMEM_LK = dr["TAIMEM_LK"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_QD = dr["GIOGIAO_QD"].ToString();
+                            oAirwayTransportDetail.GIOBAY_QD = dr["GIOBAY_QD"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_TT = dr["GIOGIAO_TT"].ToString();
+                            oAirwayTransportDetail.GIOBAY_TT = dr["GIOBAY_TT"].ToString();
+                            oAirwayTransportDetail.SOHIEUCHUYENBAY = dr["SOHIEUCHUYENBAY"].ToString();
+                            oAirwayTransportDetail.GIOGIAO_CL = dr["GIOGIAO_CL"].ToString();
+                            oAirwayTransportDetail.GIOBAY_CL = dr["GIOBAY_CL"].ToString();
+                            oAirwayTransportDetail.GIODAP_QD = dr["GIODAP_QD"].ToString();
+                            oAirwayTransportDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
+                            //oAirwayTransportDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
+                            oAirwayTransportDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
+                            oAirwayTransportDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            listAirwayTransportDetail.Add(oAirwayTransportDetail);
+
+                        }
+                        _returnAirwayTransport.Code = "00";
+                        _returnAirwayTransport.Message = "Lấy dữ liệu thành công.";
+                        _returnAirwayTransport.ListAirwayTransportReport = listAirwayTransportDetail;
+                    }
+                    else
+                    {
+                        _returnAirwayTransport.Code = "01";
+                        _returnAirwayTransport.Message = "Không có dữ liệu";
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnAirwayTransport.Code = "99";
+                _returnAirwayTransport.Message = "Lỗi xử lý dữ liệu";
+
+            }
+            return _returnAirwayTransport;
+        }
+
+
+
+        #endregion
+
+        //Phần chi tiết của bảng LOAD_DATA28
+        #region LOAD_DATA28          
+        public ReturnAirwayTransport LOAD_DATA28(int date, int way)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnAirwayTransport _returnAirwayTransport = new ReturnAirwayTransport();
+
+
+            List<AirwayTransportDetail> listAirwayTransportDetail = null;
+            AirwayTransportDetail oAirwayTransportDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    //Helper.OraDSOracleConnection gọi đến database đối soát
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_2.LOAD_DATA28", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
