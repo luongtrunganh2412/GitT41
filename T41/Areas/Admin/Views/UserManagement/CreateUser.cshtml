@@ -35,30 +35,38 @@
                                     <input class="form-control " type="text" id="CUSTOMER_CODE">
                                 </div>
                                 <div class="form-group">
-                                    <label for="GENERAL_ACCOUNT_TYPE">GENERAL_ACCOUNT_TYPE:</label>
-                                    <label id="GENERAL_ACCOUNT_TYPE_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_ACCOUNT_TYPE</label>
-                                    <input class="form-control " type="text" id="GENERAL_ACCOUNT_TYPE">
-                                </div>
-                                <div class="form-group">
-                                    <label for="GENERAL_FULL_NAME">GENERAL_FULL_NAME:</label>
-                                    <label id="GENERAL_FULL_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_FULL_NAME</label>
-                                    <input class="form-control " type="text" id="GENERAL_FULL_NAME">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="GENERAL_SHORT_NAME">GENERAL_SHORT_NAME:</label>
-                                    <label id="GENERAL_SHORT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập GENERAL_SHORT_NAME</label>
-                                    <input class="form-control " type="text" id="GENERAL_SHORT_NAME">
-                                </div>
-                                <div class="form-group">
                                     <label for="CONTACT_NAME">CONTACT_NAME:</label>
                                     <label id="CONTACT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_NAME</label>
                                     <input class="form-control " type="text" id="CONTACT_NAME">
                                 </div>
                                 <div class="form-group">
-                                    <label for="ADDRESS">ADDRESS:</label>
-                                    <label id="ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập ADDRESS</label>
-                                    <textarea rows="2" class="form-control" id="ADDRESS"></textarea>
+                                    <label for="DATE_CREATE">DATE_CREATE:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input class="form-control pull-right" id="DATE_CREATE" type="text" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="DATE_END">DATE_END:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input class="form-control pull-right" id="DATE_END" type="text" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
+                                    <label id="CONTACT_PHONE_WORK_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PHONE_WORK</label>
+                                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
+                                    <label id="BUSINESS_TAX_ERROR" style="color:#ff0000">Vui Lòng Nhập BUSINESS_TAX</label>
+                                    <input class="form-control " type="text" id="BUSINESS_TAX" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 </div>
 
                             </div>
@@ -70,24 +78,42 @@
                                     <input class="form-control " type="text" id="GENERAL_EMAIL" onkeyup="checkEmail('GENERAL_EMAIL')">
                                 </div>
                                 <div class="form-group">
-                                    <label for="CONTACT_PHONE_WORK">CONTACT_PHONE_WORK:</label>
-                                    <label id="CONTACT_PHONE_WORK_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_PHONE_WORK</label>
-                                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                                    <label for="UNIT_CODE">UNIT_CODE:</label>
+                                    <label id="UNIT_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập UNIT_CODE</label>
+                                    <input class="form-control " type="text" id="UNIT_CODE" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 </div>
                                 <div class="form-group">
-                                    <label for="BUSINESS_TAX">BUSINESS_TAX:</label>
-                                    <label id="BUSINESS_TAX_ERROR" style="color:#ff0000">Vui Lòng Nhập BUSINESS_TAX</label>
-                                    <input class="form-control " type="text" id="BUSINESS_TAX">
+                                    <label for="CONTRACT_NUMBER">CONTRACT_NUMBER:</label>
+                                    <label id="CONTRACT_NUMBER_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTRACT_NUMBER</label>
+                                    <input class="form-control " type="text" id="CONTRACT_NUMBER">
                                 </div>
                                 <div class="form-group">
-                                    <label for="CONTRACT">CONTRACT:</label>
-                                    <label id="CONTRACT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTRACT</label>
-                                    <input class="form-control " type="text" id="CONTRACT">
+                                    <label for="CUSTOMER_ACTIVE">CUSTOMER_ACTIVE:</label>
+                                    <select class="form-control select2" style="width: 100%;" id="CUSTOMER_ACTIVE">
+                                        <option selected="selected" value="0">Chưa Kích Hoạt</option>
+                                        <option value="1">Kích Hoạt </option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="CONTACT_ADDRESS">CONTACT_ADDRESS:</label>
-                                    <label id="CONTACT_ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_ADDRESS</label>
-                                    <textarea rows="2" class="form-control" id="CONTACT_ADDRESS"></textarea>
+                                    <label for="TOTAL_CUSTOMER_CODE">TOTAL_CUSTOMER_CODE:</label>
+                                    <label id="TOTAL_CUSTOMER_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập TOTAL_CUSTOMER_CODE</label>
+                                    <textarea rows="2" class="form-control" id="TOTAL_CUSTOMER_CODE"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PAYMENT_ADDRESS">PAYMENT_ADDRESS:</label>
+                                    <label id="PAYMENT_ADDRESS_ERROR" style="color:#ff0000">Vui Lòng Nhập PAYMENT_ADDRESS</label>
+                                    <input class="form-control " type="text" id="PAYMENT_ADDRESS">
+                                    @*<textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>*@
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="PAYMENT_METHOD">PAYMENT_METHOD:</label>
+                                    <select class="form-control select2" style="width: 100%;" id="PAYMENT_METHOD">
+                                        <option selected="selected" value="TM">Tiền Mặt</option>
+                                        <option value="CK">Chuyển Khoản </option>
+                                    </select>
+                                    @*<input class="form-control " type="text" id="CONTACT_DISTRICT">*@
                                 </div>
                                 <div class="form-group">
                                     <label for="CONTACT_PROVINCE">CONTACT_PROVINCE:</label>
@@ -95,33 +121,21 @@
                                     <select class="form-control select2" style="width: 100%;" id="CONTACT_PROVINCE"></select>
                                     @*<textarea rows="2" class="form-control" id="CONTACT_PROVINCE"></textarea>*@
                                 </div>
-                            </div>
-                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="CONTACT_DISTRICT">CONTACT_DISTRICT:</label>
                                     <label id="CONTACT_DISTRICT_ERROR" style="color:#ff0000">Vui Lòng Nhập CONTACT_DISTRICT</label>
                                     <select class="form-control select2" style="width: 100%;" id="CONTACT_DISTRICT"></select>
-                                    @*<input class="form-control " type="text" id="CONTACT_DISTRICT">*@
                                 </div>
                                 <div class="form-group">
-                                    <label for="STREET">STREET:</label>
-                                    <label id="STREET_ERROR" style="color:#ff0000">Vui Lòng Nhập STREET</label>
-                                    <textarea rows="2" class="form-control" id="STREET"></textarea>
+                                    <label for="EMPLOYEE_DEBT_CODE">EMPLOYEE_DEBT_CODE:</label>
+                                    <label id="EMPLOYEE_DEBT_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập EMPLOYEE_DEBT_CODE</label>
+                                    <input class="form-control " type="text" id="EMPLOYEE_DEBT_CODE">
                                 </div>
                                 <div class="form-group">
-                                    <label for="UNIT_CODE">UNIT_CODE:</label>
-                                    <label id="UNIT_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập UNIT_CODE</label>
-                                    <input class="form-control " type="text" id="UNIT_CODE">
+                                    <label for="EMPLOYEE_SALE_CODE">EMPLOYEE_SALE_CODE:</label>
+                                    <label id="EMPLOYEE_SALE_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập EMPLOYEE_SALE_CODE</label>
+                                    <input class="form-control " type="text" id="EMPLOYEE_SALE_CODE">
                                 </div>
-                                <div class="form-group">
-                                    <label for="SYSTEM_REF_CODE">SYSTEM_REF_CODE:</label>
-                                    <label id="SYSTEM_REF_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập SYSTEM_REF_CODE</label>
-                                    <input class="form-control " type="text" id="SYSTEM_REF_CODE">
-                                </div>
-                                @*<div class="form-group">
-                    <label for="API_KEY">API_KEY:</label>
-                    <textarea rows="2" class="form-control" id="API_KEY"></textarea>
-                </div>*@
                             </div>
                         </div>
 
@@ -158,8 +172,25 @@
 
 </section>
 @*<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>*@
-<script src="/Areas/Admin/Content/bower_components/ValidateJS/CreateValidateJS.js"></script>
-<script>
+<script type="text/javascript" src="~/Areas/Admin/Content/bower_components/ValidateJS/CreateValidateJS.js"></script>
+<script type="text/javascript">
+    
+    
+    $(function () {
+        $('#DATE_CREATE').datepicker()
+        $("#DATE_CREATE").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+
+    $(function () {
+        $('#DATE_END').datepicker()
+        $("#DATE_END").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
     //Phần lấy dữ liệu tỉnh Nhận
     $(document).ready(function () {
 
@@ -219,37 +250,39 @@
 
                     CUSTOMER_CODE: $('#CUSTOMER_CODE').val(),
 
-                    GENERAL_ACCOUNT_TYPE: $('#GENERAL_ACCOUNT_TYPE').val(),
-
-                    GENERAL_FULL_NAME: $('#GENERAL_FULL_NAME').val(),
-
-                    GENERAL_SHORT_NAME: $('#GENERAL_SHORT_NAME').val(),
-
                     CONTACT_NAME: $('#CONTACT_NAME').val(),
 
-                    ADDRESS: $('#ADDRESS').val(),
+                    DATE_CREATE: $('#DATE_CREATE').val(),
 
-                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
+                    DATE_END: $('#DATE_END').val(),
 
                     CONTACT_PHONE_WORK: $('#CONTACT_PHONE_WORK').val(),
 
                     BUSINESS_TAX: $('#BUSINESS_TAX').val(),
 
-                    CONTRACT: $('#CONTRACT').val(),
+                    GENERAL_EMAIL: $('#GENERAL_EMAIL').val(),
 
-                    CONTACT_ADDRESS: $('#CONTACT_ADDRESS').val(),
+                    UNIT_CODE: $('#UNIT_CODE').val(),
+
+                    CONTRACT_NUMBER: $('#CONTRACT_NUMBER').val(),
+
+                    CUSTOMER_ACTIVE: $('#CUSTOMER_ACTIVE').val(),
+
+                    TOTAL_CUSTOMER_CODE: $('#TOTAL_CUSTOMER_CODE').val(),
+
+                    PAYMENT_ADDRESS: $('#PAYMENT_ADDRESS').val(),
+
+                    PAYMENT_METHOD: $('#PAYMENT_METHOD').val(),
 
                     CONTACT_PROVINCE: $('#CONTACT_PROVINCE').val(),
 
                     CONTACT_DISTRICT: $('#CONTACT_DISTRICT').val(),
 
-                    STREET: $('#STREET').val(),
+                    EMPLOYEE_DEBT_CODE: $('#EMPLOYEE_DEBT_CODE').val(),
 
-                    UNIT_CODE: $('#UNIT_CODE').val(),
+                    EMPLOYEE_SALE_CODE: $('#EMPLOYEE_SALE_CODE').val(),
 
-                    SYSTEM_REF_CODE: $('#SYSTEM_REF_CODE').val(),
-
-                    //API_KEY: $('#API_KEY').val(),
+                    
                 },
             success: function (result) {
                 alert("Thêm Thành Công");

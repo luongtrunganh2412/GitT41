@@ -32,30 +32,23 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Tên:</label>
-                        <input type="text" id="myInputName" class="form-control" onkeyup="search_name()" placeholder="Search for names.." title="Type in a name">
+                        <label>ID:</label>
+                        <input type="text" id="InputID" class="form-control"  placeholder="Search for names.." title="Type in a name">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Điện Thoại:</label>
-                        <input type="text" id="myInputTel" class="form-control" onkeyup="search_tel()" placeholder="Search for tel.." title="Type in a tel">
+                        <label>Mã Khách hàng:</label>
+                        <input type="text" id="InputCode" class="form-control"  placeholder="Search for tel.." title="Type in a tel">
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Điện Thoại:</label>
+                    <input type="text" id="InputTel" class="form-control" placeholder="Search for tel.." title="Type in a tel">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Email:</label>
-                        <input type="text" id="myInputEmail" class="form-control" onkeyup="search_email()" placeholder="Search for email.." title="Type in a email">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Số Tham Chiếu:</label>
-                        <input type="text" id="myInputApi" class="form-control" onkeyup="search_api()" placeholder="Search for api key.." title="Type in a api_key">
-                    </div>
-                </div>
+                <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
             </div>
             <!-- /.row -->
             <div class="box-header">
@@ -73,13 +66,11 @@
                         <thead>
                             <tr class="bg-light-blue color-palette">
                                 <th>STT</th>
+                                <th>Mã Khách Hàng</th>
                                 <th>Tên</th>
-                                <th>Địa Chỉ</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Email</th>
                                 <th>Địa Chỉ</th>
-                                <th>Api_Key</th>
-                                <th>ID</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -211,13 +202,7 @@
 
 <script type="text/javascript">
 
-    //$("#btnreport").click(function () {
 
-    //    // goi ham Detail
-
-    //    detail();
-
-    //});
 
     $(document).ready(function () {
 
@@ -227,19 +212,75 @@
 
     });
 
+    $("#btnreport").click(function () {
+        $("#list_user tr").remove();
+        detail_user_search(1);
+    });
 
 
-
-    //Phần JS gọi đến dữ liệu của chi tiết bản kê E2
+    //Phần JS gọi đến dữ liệu của chi tiết người dùng
     function detail_user(p) {
         $.ajax({
             url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
+            method: 'GET',
             dataType: 'html',
             data: {
-                page: p
+                page: p,
+                user_id: 0,
+                user_customer_code: 0,
+                user_contact_phone_work: 0,
             },
             success: function (result) {
-                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('#list_user').html(result);
+                if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+
+    //Phần JS gọi đến dữ liệu của chi tiết người dùng
+    function detail_user_search(p) {
+        var user_id;
+        var user_customer_code;
+        var user_contact_phone_work;
+
+        if (document.getElementById('InputID').value == ""
+        || document.getElementById('InputID').value == undefined) {
+            user_id = 0;
+        }
+        else {
+            user_id = document.getElementById('InputID').value;
+        }
+
+        if (document.getElementById('InputCode').value == ""
+            || document.getElementById('InputCode').value == undefined) {
+            user_customer_code = 0;
+        }
+        else {
+            user_customer_code = document.getElementById('InputCode').value;
+        }
+
+        if (document.getElementById('InputTel').value == ""
+            || document.getElementById('InputTel').value == undefined) {
+            user_contact_phone_work = 0;
+        }
+        else {
+            user_contact_phone_work = document.getElementById('InputTel').value;
+        }
+
+        
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
+            method: 'GET',
+            dataType: 'html',
+            data: {
+                page: p,
+                user_id: user_id,
+                user_customer_code: user_customer_code,
+                user_contact_phone_work: user_contact_phone_work,
+            },
+            success: function (result) {
                 $('#list_user').html(result);
                 if (p == 1) refreshPaging();
             }
@@ -256,84 +297,48 @@
         });
     }
 
-    //Phần Js tìm kiếm theo tên
-    function search_name() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInputName");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    ////Phần Js tìm kiếm theo tên
+    //function search_name() {
+    //    var input, filter, table, tr, td, i;
+    //    input = document.getElementById("myInputName");
+    //    filter = input.value.toUpperCase();
+    //    table = document.getElementById("myTable");
+    //    tr = table.getElementsByTagName("tr");
+    //    for (i = 0; i < tr.length; i++) {
+    //        td = tr[i].getElementsByTagName("td")[1];
+    //        if (td) {
+    //            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    //                tr[i].style.display = "";
+    //            } else {
+    //                tr[i].style.display = "none";
+    //            }
+    //        }
+    //    }
+    //}
 
-    //Phần Js tìm kiếm theo số điện thoại
-    function search_tel() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInputTel");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[3];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    ////Phần Js tìm kiếm theo số điện thoại
+    //function search_tel() {
+    //    var input, filter, table, tr, td, i;
+    //    input = document.getElementById("myInputTel");
+    //    filter = input.value.toUpperCase();
+    //    table = document.getElementById("myTable");
+    //    tr = table.getElementsByTagName("tr");
+    //    for (i = 0; i < tr.length; i++) {
+    //        td = tr[i].getElementsByTagName("td")[3];
+    //        if (td) {
+    //            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    //                tr[i].style.display = "";
+    //            } else {
+    //                tr[i].style.display = "none";
+    //            }
+    //        }
+    //    }
+    //}
 
-    //Phần Js tìm kiếm theo email
-    function search_email() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInputEmail");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[4];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
 
-    //Phần Js tìm kiếm theo Api Key
-    function search_api() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInputApi");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[6];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
 
-    
-    
+
+
 
 </script>
 

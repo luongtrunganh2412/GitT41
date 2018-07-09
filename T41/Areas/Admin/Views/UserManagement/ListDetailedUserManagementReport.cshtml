@@ -11,16 +11,15 @@
     {
         <tr>
             <td>@(i + 1)</td>
-            <td>@c.ContactName</td>
-            <td>@c.ContactAddress</td>
-            <td>@c.ContactPhoneWork</td>
-            <td>@c.GeneralEmail</td>
-            <td>@c.Street</td>
-            <td>@c.ApiKey </td>
-            <td>@c.Id</td>
+            @*<td>@c.CUSTOMER_ID</td>*@
+            <td>@c.CUSTOMER_CODE</td>
+            <td>@c.CONTACT_NAME</td>
+            <td>@c.CONTACT_PHONE_WORK</td>
+            <td>@c.GENERAL_EMAIL</td>
+            <td>@c.CONTACT_ADDRESS </td>
             @*<td><a href="/Admin/UserManagement/ID_USER_MANAGEMENT_DETAIL/?id=@c.Id" target="_blank">@c.Id</a></td>*@
-            <td><a href="/Admin/UserManagement/ID_USER_MANAGEMENT_DETAIL/?id=@c.Id" target="_blank" class="btn btn-primary btn-md" rel="@c.Id" id="btnreportedit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td><button type="button" class="btn btn-danger btn-lrg ajax" id="btnreportdelete" rel="@c.Id"><span class="glyphicon glyphicon-remove"></span></button></td>
+            <td><a href="/Admin/UserManagement/ID_USER_MANAGEMENT_DETAIL/?id=@c.CUSTOMER_ID" target="_blank" class="btn btn-primary btn-md" rel="@c.CUSTOMER_ID" id="btnreportedit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><button type="button" class="btn btn-danger btn-lrg ajax" id="btnreportdelete" rel="@c.CUSTOMER_ID"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
         <div id="list_user"></div>
         i++;

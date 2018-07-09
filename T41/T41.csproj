@@ -210,6 +210,7 @@
     <Compile Include="Areas\Admin\Controllers\RealTimekeepingController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShipmentManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimekeepingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrackingOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\TransferManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
@@ -2561,8 +2562,8 @@
     <Content Include="Areas\Admin\Content\bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="Areas\Admin\Content\bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="Areas\Admin\Content\bower_components\select2\vendor\jquery-2.1.0.js" />
-    <Content Include="Areas\Admin\Content\bower_components\ValidateJS\EditValidateJS.js" />
     <Content Include="Areas\Admin\Content\bower_components\ValidateJS\CreateValidateJS.js" />
+    <Content Include="Areas\Admin\Content\bower_components\ValidateJS\EditValidateJS.js" />
     <Content Include="Areas\Admin\Content\dist\css\AdminLTE.css" />
     <Content Include="Areas\Admin\Content\dist\css\AdminLTE.min.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\AdminLTE-bootstrap-social.css" />
@@ -3214,6 +3215,7 @@
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\CreateAirwaytransportComeManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport27.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport28.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackingOrder\TrackingOrderDetailReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

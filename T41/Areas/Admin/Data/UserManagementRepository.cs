@@ -92,9 +92,9 @@ namespace T41.Areas.Admin.Data
         }
         #endregion
 
-        // Phần lấy dữ liệu từ bảng business_profile
+        // Phần lấy dữ liệu từ bảng business_profile_temp
         #region USER_MANAGEMENT_DETAIL          
-        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index)
+        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index,int user_id, string user_customer_code, int user_contact_phone_work )
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -116,6 +116,9 @@ namespace T41.Areas.Admin.Data
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
                     myCommand.Parameters.Add("P_PAGE_INDEX", OracleDbType.Int32).Value = page_index;
                     myCommand.Parameters.Add("P_PAGE_SIZE", OracleDbType.Int32).Value = page_size;
+                    myCommand.Parameters.Add("p_ID", OracleDbType.Int32).Value = user_id;
+                    myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.Int32).Value = user_customer_code;
+                    myCommand.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Int32).Value = user_contact_phone_work;
                     myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
@@ -128,26 +131,12 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oUserManagementDetail = new UserManagementDetail();
-                            oUserManagementDetail.Id = Convert.ToInt32(dr["Id"].ToString());
-                            oUserManagementDetail.Address = dr["ADDRESS"].ToString();
-                            oUserManagementDetail.BusinessTax = dr["BUSINESS_TAX"].ToString();
-                            oUserManagementDetail.ContactName = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.ContactAddress = dr["CONTACT_ADDRESS"].ToString();
-                            oUserManagementDetail.ContactDistrict = dr["CONTACT_DISTRICT"].ToString();
-                            oUserManagementDetail.ContactProvince = dr["CONTACT_PROVINCE"].ToString();
-                            oUserManagementDetail.ContactPhoneWork = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.GeneralShortName = dr["GENERAL_SHORT_NAME"].ToString();
-                            oUserManagementDetail.CustomerCode = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.GeneralEmail = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.GeneralAccountType = dr["GENERAL_ACCOUNT_TYPE"].ToString();
-                            oUserManagementDetail.GeneralFullName = dr["GENERAL_FULL_NAME"].ToString();
-                            oUserManagementDetail.Contract = dr["CONTRACT"].ToString();
-                            oUserManagementDetail.UnitCode = dr["UNIT_CODE"].ToString();
-                            oUserManagementDetail.Street = dr["STREET"].ToString();
-                            oUserManagementDetail.SystemRefCode = dr["SYSTEM_REF_CODE"].ToString();
-                            oUserManagementDetail.ApiKey = dr["API_KEY"].ToString();
-
-                            
+                            oUserManagementDetail.CUSTOMER_ID = Convert.ToInt32(dr["CUSTOMER_ID"].ToString());
+                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
+                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
+                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
+                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
+                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
                             //Phần mã hóa api key 
                             //oUserManagementDetail.ApiKey = Common.Security.CreatPassWordHash(oUserManagementDetail.ApiKey + "6688");
                             listUserManagementDetail.Add(oUserManagementDetail);
@@ -183,7 +172,7 @@ namespace T41.Areas.Admin.Data
         #endregion
 
 
-        // Phần lấy dữ liệu từ bảng business_profile theo id người dùng
+        // Phần lấy dữ liệu từ bảng business_profile_temp theo id người dùng
         #region ID_USER_MANAGEMENT_DETAIL          
         public ReturnUserManagement ID_USER_MANAGEMENT_DETAIL(int edit_id)
         {
@@ -205,7 +194,7 @@ namespace T41.Areas.Admin.Data
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("P_ID", OracleDbType.Int32).Value = edit_id;
+                    myCommand.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32).Value = edit_id;
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
                     mAdapter.Fill(da);
@@ -217,28 +206,22 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oUserManagementDetail = new UserManagementDetail();
-                            oUserManagementDetail.Id = Convert.ToInt32(dr["Id"].ToString());
-                            oUserManagementDetail.Address = dr["ADDRESS"].ToString();
-                            oUserManagementDetail.BusinessTax = dr["BUSINESS_TAX"].ToString();
-                            oUserManagementDetail.ContactName = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.ContactAddress = dr["CONTACT_ADDRESS"].ToString();
-                            oUserManagementDetail.ContactDistrict = dr["CONTACT_DISTRICT"].ToString();
-                            oUserManagementDetail.ContactProvince = dr["CONTACT_PROVINCE"].ToString();
-                            oUserManagementDetail.ContactPhoneWork = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.GeneralShortName = dr["GENERAL_SHORT_NAME"].ToString();
-                            oUserManagementDetail.CustomerCode = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.GeneralEmail = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.GeneralAccountType = dr["GENERAL_ACCOUNT_TYPE"].ToString();
-                            oUserManagementDetail.GeneralFullName = dr["GENERAL_FULL_NAME"].ToString();
-                            oUserManagementDetail.Contract = dr["CONTRACT"].ToString();
-                            oUserManagementDetail.UnitCode = dr["UNIT_CODE"].ToString();
-                            oUserManagementDetail.Street = dr["STREET"].ToString();
-                            oUserManagementDetail.SystemRefCode = dr["SYSTEM_REF_CODE"].ToString();
-                            oUserManagementDetail.ApiKey = dr["API_KEY"].ToString();
-
-
-                            //Phần mã hóa api key 
-                            //oUserManagementDetail.ApiKey = Common.Security.CreatPassWordHash(oUserManagementDetail.ApiKey + "6688");
+                            oUserManagementDetail.CUSTOMER_ID = Convert.ToInt32(dr["CUSTOMER_ID"].ToString());
+                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
+                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
+                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
+                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
+                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
+                            oUserManagementDetail.BUSINESS_TAX = dr["BUSINESS_TAX"].ToString();
+                            oUserManagementDetail.UNIT_CODE = dr["UNIT_CODE"].ToString();
+                            oUserManagementDetail.CONTRACT_NUMBER = dr["CONTRACT_NUMBER"].ToString();
+                            oUserManagementDetail.TOTAL_CUSTOMER_CODE = dr["TOTAL_CUSTOMER_CODE"].ToString();
+                            oUserManagementDetail.PAYMENT_ADDRESS = dr["PAYMENT_ADDRESS"].ToString();
+                            oUserManagementDetail.PAYMENT_METHOD = dr["PAYMENT_METHOD"].ToString();
+                            oUserManagementDetail.CONTACT_PROVINCE = dr["CONTACT_PROVINCE"].ToString();
+                            oUserManagementDetail.CONTACT_DISTRICT = dr["CONTACT_DISTRICT"].ToString();
+                            oUserManagementDetail.EMPLOYEE_DEBT_CODE = dr["EMPLOYEE_DEBT_CODE"].ToString();
+                            oUserManagementDetail.EMPLOYEE_SALE_CODE = dr["EMPLOYEE_SALE_CODE"].ToString();
                             listUserManagementDetail.Add(oUserManagementDetail);
 
                         }
@@ -286,27 +269,28 @@ namespace T41.Areas.Admin.Data
                 using (cmd = new OracleCommand())
                 {
                     cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "BUSINESS_PROFILE_PKG.BUSINESS_PROFILE_CREATE";
+                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Insert_User";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_CUSTOMER_TYPE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_ACCOUNT_TYPE;
-                    cmd.Parameters.Add("P_COMPANY_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_FULL_NAME;
-                    cmd.Parameters.Add("P_SHORTNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_SHORT_NAME;
+                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
                     cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    cmd.Parameters.Add("P_EMAIL", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    cmd.Parameters.Add("P_PHONE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_TAX", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
-                    cmd.Parameters.Add("P_CONTRACT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT;
-                    cmd.Parameters.Add("P_ADDRESS", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    cmd.Parameters.Add("P_PROVINCE_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_DISTRICT_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    cmd.Parameters.Add("P_STREET", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.STREET;
-                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_SYSTEM_REF_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.SYSTEM_REF_CODE;
-                    //cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.API_KEY;
-                    //Phần mã hóa api_key , dữ liệu truyền vào para P_API_KEY = mahoa md5(email nhap vao + "6688")
-                    cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688");
+                    cmd.Parameters.Add("P_DATE_CREATE", OracleDbType.Int32, ParameterDirection.Input).Value = business.DATE_CREATE;
+                    cmd.Parameters.Add("P_DATE_END", OracleDbType.Int32, ParameterDirection.Input).Value = business.DATE_END;
+                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
+                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
+                    cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
+                    cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
+                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.UNIT_CODE;
+                    cmd.Parameters.Add("P_CONTRACT_NUMBER", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT_NUMBER;
+                    cmd.Parameters.Add("P_CUSTOMER_ACTIVE", OracleDbType.Int32, ParameterDirection.Input).Value = business.CUSTOMER_ACTIVE;
+                    cmd.Parameters.Add("P_TOTAL_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.TOTAL_CUSTOMER_CODE;
+                    cmd.Parameters.Add("P_PAYMENT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.PAYMENT_ADDRESS;
+                    cmd.Parameters.Add("P_PAYMENT_METHOD", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.PAYMENT_METHOD;
+                    cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
+                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
+                    cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
+                    cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
+                    //cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688");
 
                     cmd.ExecuteNonQuery();
                     id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
@@ -360,41 +344,26 @@ namespace T41.Areas.Admin.Data
                     cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.EDIT_USER";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.ADDRESS;
-                    cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
-                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
+                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
+                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
+                    cmd.Parameters.Add("P_DATE_CREATE", OracleDbType.Int32, ParameterDirection.Input).Value = business.DATE_CREATE;
+                    cmd.Parameters.Add("P_DATE_END", OracleDbType.Int32, ParameterDirection.Input).Value = business.DATE_END;
+                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
+                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
                     cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
+                    cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
+                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.UNIT_CODE;
+                    cmd.Parameters.Add("P_CONTRACT_NUMBER", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT_NUMBER;
+                    cmd.Parameters.Add("P_CUSTOMER_ACTIVE", OracleDbType.Int32, ParameterDirection.Input).Value = business.CUSTOMER_ACTIVE;
+                    cmd.Parameters.Add("P_TOTAL_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.TOTAL_CUSTOMER_CODE;
+                    cmd.Parameters.Add("P_PAYMENT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.PAYMENT_ADDRESS;
+                    cmd.Parameters.Add("P_PAYMENT_METHOD", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.PAYMENT_METHOD;
                     cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_GENERAL_SHORT_NAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_SHORT_NAME;
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    cmd.Parameters.Add("P_GENERAL_ACCOUNT_TYPE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_ACCOUNT_TYPE;
-                    cmd.Parameters.Add("P_GENERAL_FULL_NAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_FULL_NAME;
-                    cmd.Parameters.Add("P_CONTRACT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT;
-                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_STREET", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.STREET;
-                    cmd.Parameters.Add("P_SYSTEM_REF_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.SYSTEM_REF_CODE;
-                    cmd.Parameters.Add("P_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.EDIT_ID;
+                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
+                    cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
+                    cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
+                    cmd.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.EDIT_ID;
 
-
-                    //cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    //cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    //cmd.Parameters.Add("P_GENERAL_ACCOUNT_TYPE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_ACCOUNT_TYPE;
-                    //cmd.Parameters.Add("P_GENERAL_FULL_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_FULL_NAME;
-                    //cmd.Parameters.Add("P_GENERAL_SHORT_NAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_SHORT_NAME;
-                    //cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    //cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    //cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    //cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
-                    //cmd.Parameters.Add("P_CONTRACT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT;
-                    //cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    //cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    //cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    //cmd.Parameters.Add("P_STREET", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.STREET;
-                    //cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    //cmd.Parameters.Add("P_SYSTEM_REF_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.SYSTEM_REF_CODE;
                     cmd.ExecuteNonQuery();
 
                     Oracle.ManagedDataAccess.Types.OracleDecimal P_return = (Oracle.ManagedDataAccess.Types.OracleDecimal)cmd.Parameters["P_RETURN"].Value;
@@ -462,7 +431,7 @@ namespace T41.Areas.Admin.Data
                     cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.DELETE_USER";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("p_id", OracleDbType.Int32, ParameterDirection.Input).Value = delete_id;
+                    cmd.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32, ParameterDirection.Input).Value = delete_id;
                     
                     cmd.ExecuteNonQuery();
                     id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());

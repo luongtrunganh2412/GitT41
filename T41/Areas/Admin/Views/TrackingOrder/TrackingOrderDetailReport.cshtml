@@ -1,0 +1,191 @@
+﻿
+@{
+//  Layout = null;
+}
+
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
+@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+<title>Theo Dõi Đơn Hàng</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Theo Dõi Đơn Hàng</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Từ Ngày </label>
+                </div>
+                <div class="col-md-4">
+                    <label>Đến Ngày</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="ide2">Mã Khách Hàng:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    @*<input class="form-control" type="text" id="ide2" name="ide2">*@
+                    <select class="form-control select2" style="width: 100%;" id="customercode">
+                        <option selected="selected" value="0">Tất cả</option>
+                    </select>
+                </div>
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
+                    @*<a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>*@
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <table  id="example2" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px">
+                    <thead>
+                        <tr>
+                            <td>Mã Khách Hàng:</td>
+                            <td class="text-left">Tên Khách hàng:</td>
+                        </tr>
+                        <tr>
+                            <td id="chuyen_thu">Tổng Số: </td>
+                            <td class="text-left">Đã Phát:</td>
+                        </tr>
+                        <tr>
+                            <td>Tổng Cước: </td>
+                            <td class="text-left">Tổng Số Tiền Thu Hộ:</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="ide2">Trạng Thái</label>
+                    <select class="form-control select2" style="width: 100%;" id="customercode">
+                        <option selected="selected" value="0">Tất cả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="box-header">
+                <h3 class="box-title">Thông Tin Đơn Hàng</h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example2" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th>STT</th>
+                            <th>Mã E1</th>
+                            <th>Mã KH</th>
+                            <th>Mã đối tác</th>
+                            <th>Ngày gửi</th>
+                            <th>Tỉnh nhận</th>
+                            <th>Địa chỉ nhận</th>
+                            <th>Điện thoại nhận</th>
+                            <th>Khối lượng</th>
+                            <th>Cước E1</th>
+                            <th>Số tiền thu hộ</th>
+                            <th>Ngày phát</th>
+                            <th>Giờ phát</th>
+                            <th>Trạng thái</th>
+                            <th>Người nhận/ lý do chưa phát</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listtrackingorder"></tbody>
+                </table>
+            </div>
+            <div class="loading-element">
+                <i class="fa fa-spinner fa-spin"></i>
+                Vui lòng chờ giây lát...
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+</section>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $('.loading-element').hide();
+    });
+    
+
+    $(function () {
+        $('#fromdate').datepicker()
+        $("#fromdate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+
+    $(function () {
+        $('#todate').datepicker()
+        $("#todate").datepicker({
+            dateFormat: "dd/mm/yyyy"
+        }).datepicker("setDate", "0");
+    })
+
+
+    
+
+    
+    
+</script>
+
+

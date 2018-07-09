@@ -26,49 +26,11 @@ function checkEmail(element) {
 }
 
 
-var url_string = document.URL;
-var url = new URL(url_string);
-var id = url.searchParams.get("id");
-
-
 
 function checkCUSTOMER_CODE() {
     if (document.getElementById('CUSTOMER_CODE').value == ""
         || document.getElementById('CUSTOMER_CODE').value == undefined) {
         $("#CUSTOMER_CODE_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkGENERAL_ACCOUNT_TYPE() {
-    if (document.getElementById('GENERAL_ACCOUNT_TYPE').value == ""
-        || document.getElementById('GENERAL_ACCOUNT_TYPE').value == undefined) {
-        $("#GENERAL_ACCOUNT_TYPE_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkGENERAL_FULL_NAME() {
-    if (document.getElementById('GENERAL_FULL_NAME').value == ""
-        || document.getElementById('GENERAL_FULL_NAME').value == undefined) {
-        $("#GENERAL_FULL_NAME_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkGENERAL_SHORT_NAME() {
-    if (document.getElementById('GENERAL_SHORT_NAME').value == ""
-        || document.getElementById('GENERAL_SHORT_NAME').value == undefined) {
-        $("#CGENERAL_SHORT_NAME_ERROR").show();
         return false;
     }
     else {
@@ -87,10 +49,10 @@ function checkCONTACT_NAME() {
     }
 }
 
-function checkADDRESS() {
-    if (document.getElementById('ADDRESS').value == ""
-       || document.getElementById('ADDRESS').value == undefined) {
-        $("#ADDRESS_ERROR").show();
+function checkDATE_CREATE() {
+    if (document.getElementById('DATE_CREATE').value == ""
+        || document.getElementById('DATE_CREATE').value == undefined) {
+        $("#DATE_CREATE_ERROR").show();
         return false;
     }
     else {
@@ -98,10 +60,10 @@ function checkADDRESS() {
     }
 }
 
-function checkGENERAL_EMAIL() {
-    if (document.getElementById('GENERAL_EMAIL').value == ""
-        || document.getElementById('GENERAL_EMAIL').value == undefined) {
-        $("#GENERAL_EMAIL_ERROR").show();
+function checkDATE_END() {
+    if (document.getElementById('DATE_END').value == ""
+        || document.getElementById('DATE_END').value == undefined) {
+        $("#DATE_END_ERROR").show();
         return false;
     }
     else {
@@ -122,7 +84,7 @@ function checkCONTACT_PHONE_WORK() {
 
 function checkBUSINESS_TAX() {
     if (document.getElementById('BUSINESS_TAX').value == ""
-        || document.getElementById('BUSINESS_TAX').value == undefined) {
+       || document.getElementById('BUSINESS_TAX').value == undefined) {
         $("#BUSINESS_TAX_ERROR").show();
         return false;
     }
@@ -131,54 +93,10 @@ function checkBUSINESS_TAX() {
     }
 }
 
-function checkCONTRACT() {
-    if (document.getElementById('CONTRACT').value == ""
-        || document.getElementById('CONTRACT').value == undefined) {
-        $("#CONTRACT_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkCONTACT_ADDRESS() {
-    if (document.getElementById('CONTACT_ADDRESS').value == ""
-        || document.getElementById('CONTACT_ADDRESS').value == undefined) {
-        $("#CONTACT_ADDRESS_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkCONTACT_PROVINCE() {
-    if (document.getElementById('CONTACT_PROVINCE').value == ""
-        || document.getElementById('CONTACT_PROVINCE').value == undefined) {
-        $("#CONTACT_PROVINCE_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkCONTACT_DISTRICT() {
-    if (document.getElementById('CONTACT_DISTRICT').value == ""
-        || document.getElementById('CONTACT_DISTRICT').value == undefined) {
-        $("#CONTACT_DISTRICTE_ERROR").show();
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function checkSTREET() {
-    if (document.getElementById('STREET').value == ""
-        || document.getElementById('STREET').value == undefined) {
-        $("#STREET_ERROR").show();
+function checkGENERAL_EMAIL() {
+    if (document.getElementById('GENERAL_EMAIL').value == ""
+        || document.getElementById('GENERAL_EMAIL').value == undefined) {
+        $("#GENERAL_EMAIL_ERROR").show();
         return false;
     }
     else {
@@ -197,10 +115,88 @@ function checkUNIT_CODE() {
     }
 }
 
-function checkSYSTEM_REF_CODE() {
-    if (document.getElementById('SYSTEM_REF_CODE').value == ""
-        || document.getElementById('SYSTEM_REF_CODE').value == undefined) {
-        $("#SYSTEM_REF_CODE_ERROR").show();
+function checkCONTRACT_NUMBER() {
+    if (document.getElementById('CONTRACT_NUMBER').value == ""
+        || document.getElementById('CONTRACT_NUMBER').value == undefined) {
+        $("#CONTRACT_NUMBER_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkCUSTOMER_ACTIVE() {
+    if (document.getElementById('CUSTOMER_ACTIVE').value == ""
+        || document.getElementById('CUSTOMER_ACTIVE').value == undefined) {
+        $("#CUSTOMER_ACTIVE_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkTOTAL_CUSTOMER_CODE() {
+    if (document.getElementById('TOTAL_CUSTOMER_CODE').value == ""
+        || document.getElementById('TOTAL_CUSTOMER_CODE').value == undefined) {
+        $("#TOTAL_CUSTOMER_CODE_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkPAYMENT_ADDRESS() {
+    if (document.getElementById('PAYMENT_ADDRESS').value == ""
+        || document.getElementById('PAYMENT_ADDRESS').value == undefined) {
+        $("#PAYMENT_ADDRESS_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+function checkCONTACT_PROVINCE() {
+    if (document.getElementById('CONTACT_PROVINCE').value == ""
+        || document.getElementById('CONTACT_PROVINCE').value == undefined) {
+        $("#CONTACT_PROVINCE_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkCONTACT_DISTRICT() {
+    if (document.getElementById('CONTACT_DISTRICT').value == ""
+        || document.getElementById('CONTACT_DISTRICT').value == undefined) {
+        $("#CONTACT_DISTRICT_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkEMPLOYEE_DEBT_CODE() {
+    if (document.getElementById('EMPLOYEE_DEBT_CODE').value == ""
+        || document.getElementById('EMPLOYEE_DEBT_CODE').value == undefined) {
+        $("#EMPLOYEE_DEBT_CODE_ERROR").show();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function checkEMPLOYEE_SALE_CODE() {
+    if (document.getElementById('EMPLOYEE_SALE_CODE').value == ""
+        || document.getElementById('EMPLOYEE_SALE_CODE').value == undefined) {
+        $("#EMPLOYEE_SALE_CODE_ERROR").show();
         return false;
     }
     else {
@@ -216,35 +212,36 @@ $(document).ready(function () {
 
     $("#CUSTOMER_CODE_ERROR").hide();
 
-    $("#GENERAL_ACCOUNT_TYPE_ERROR").hide();
-
-    $("#GENERAL_FULL_NAME_ERROR").hide();
-
-    $("#GENERAL_SHORT_NAME_ERROR").hide();
-
     $("#CONTACT_NAME_ERROR").hide();
 
-    $("#ADDRESS_ERROR").hide();
+    $("#DATE_CREATE_ERROR").hide();
 
-    $("#GENERAL_EMAIL_ERROR").hide();
+    $("#DATE_END_ERROR").hide();
 
     $("#CONTACT_PHONE_WORK_ERROR").hide();
 
     $("#BUSINESS_TAX_ERROR").hide();
 
-    $("#CONTRACT_ERROR").hide();
+    $("#GENERAL_EMAIL_ERROR").hide();
 
-    $("#CONTACT_ADDRESS_ERROR").hide();
+    $("#UNIT_CODE_ERROR").hide();
+
+    $("#CONTRACT_NUMBER_ERROR").hide();
+
+    $("#CUSTOMER_ACTIVE_ERROR").hide();
+
+    $("#TOTAL_CUSTOMER_CODE_ERROR").hide();
+
+    $("#PAYMENT_ADDRESS_ERROR").hide();
+
 
     $("#CONTACT_PROVINCE_ERROR").hide();
 
     $("#CONTACT_DISTRICT_ERROR").hide();
 
-    $("#STREET_ERROR").hide();
+    $("#EMPLOYEE_DEBT_CODE_ERROR").hide();
 
-    $("#UNIT_CODE_ERROR").hide();
-
-    $("#SYSTEM_REF_CODE_ERROR").hide();
+    $("#EMPLOYEE_SALE_CODE_ERROR").hide();
 
 });
 
@@ -254,7 +251,7 @@ $("#btnreportedit").on('click', function () {
     //$("#EMAIL_ERROR").hide();
     //check();
     // goi ham Detail
-    if (checkCUSTOMER_CODE() == true && checkGENERAL_ACCOUNT_TYPE() == true && checkGENERAL_FULL_NAME() == true && checkGENERAL_SHORT_NAME() == true && checkCONTACT_NAME() == true && checkADDRESS() == true && checkGENERAL_EMAIL() == true && checkCONTACT_PHONE_WORK() == true && checkBUSINESS_TAX() == true && checkCONTRACT() == true && checkCONTACT_ADDRESS() == true && checkCONTACT_PROVINCE() == true && checkCONTACT_DISTRICT() == true && checkSYSTEM_REF_CODE() == true) {
+    if (checkCUSTOMER_CODE() == true && checkCONTACT_NAME() == true && checkDATE_CREATE() == true && checkDATE_END() == true && checkCONTACT_PHONE_WORK() == true && checkBUSINESS_TAX() == true && checkGENERAL_EMAIL() == true && checkUNIT_CODE() == true && checkCONTRACT_NUMBER() == true && checkCUSTOMER_ACTIVE() == true && checkTOTAL_CUSTOMER_CODE() == true && checkPAYMENT_ADDRESS() == true && checkCONTACT_PROVINCE() == true && checkCONTACT_DISTRICT() == true && checkEMPLOYEE_DEBT_CODE() == true && checkEMPLOYEE_SALE_CODE == true) {
         detail();
     }
 
@@ -266,31 +263,6 @@ $("#btnreportedit").on('click', function () {
 
     }
 
-    if (checkGENERAL_ACCOUNT_TYPE() == true) {
-        $("#GENERAL_ACCOUNT_TYPE_ERROR").hide();
-    }
-    else {
-        $("#GENERAL_ACCOUNT_TYPE_ERROR").show();
-
-    }
-
-
-    if (checkGENERAL_FULL_NAME() == true) {
-        $("#GENERAL_FULL_NAME_ERROR").hide();
-    }
-    else {
-        $("#GENERAL_FULL_NAME_ERROR").show();
-
-    }
-
-    if (checkGENERAL_SHORT_NAME() == true) {
-        $("#GENERAL_SHORT_NAME_ERROR").hide();
-    }
-    else {
-        $("#GENERAL_SHORT_NAME_ERROR").show();
-
-    }
-
     if (checkCONTACT_NAME() == true) {
         $("#CONTACT_NAME_ERROR").hide();
     }
@@ -299,19 +271,20 @@ $("#btnreportedit").on('click', function () {
 
     }
 
-    if (checkADDRESS() == true) {
-        $("#ADDRESS_ERROR").hide();
+
+    if (checkDATE_CREATE() == true) {
+        $("#DATE_CREATE_ERROR").hide();
     }
     else {
-        $("#ADDRESS_ERROR").show();
+        $("#DATE_CREATE_ERROR").show();
 
     }
 
-    if (checkGENERAL_EMAIL() == true) {
-        $("#GENERAL_EMAIL_ERROR").hide();
+    if (checkDATE_END() == true) {
+        $("#DATE_END_ERROR").hide();
     }
     else {
-        $("#GENERAL_EMAIL_ERROR").show();
+        $("#DATE_END_ERROR").show();
 
     }
 
@@ -331,21 +304,55 @@ $("#btnreportedit").on('click', function () {
 
     }
 
-    if (checkCONTRACT() == true) {
-        $("#CONTRACT_ERROR").hide();
+    if (checkGENERAL_EMAIL() == true) {
+        $("#GENERAL_EMAIL_ERROR").hide();
     }
     else {
-        $("#CONTRACT_ERROR").show();
+        $("#GENERAL_EMAIL_ERROR").show();
 
     }
 
-    if (checkCONTACT_ADDRESS() == true) {
-        $("#CONTACT_ADDRESS_ERROR").hide();
+    if (checkUNIT_CODE() == true) {
+        $("#UNIT_CODE_ERROR").hide();
     }
     else {
-        $("#CONTACT_ADDRESS_ERROR").show();
+        $("#UNIT_CODE_ERROR").show();
 
     }
+
+    if (checkCONTRACT_NUMBER() == true) {
+        $("#CONTRACT_NUMBER_ERROR").hide();
+    }
+    else {
+        $("#CONTRACT_NUMBER_ERROR").show();
+
+    }
+
+    if (checkCUSTOMER_ACTIVE() == true) {
+        $("#CUSTOMER_ACTIVE_ERROR").hide();
+    }
+    else {
+        $("#CUSTOMER_ACTIVE_ERROR").show();
+
+    }
+
+    if (checkTOTAL_CUSTOMER_CODE() == true) {
+        $("#TOTAL_CUSTOMER_CODE_ERROR").hide();
+    }
+    else {
+        $("#TOTAL_CUSTOMER_CODE_ERROR").show();
+
+    }
+
+    if (checkPAYMENT_ADDRESS() == true) {
+        $("#PAYMENT_ADDRESS_ERROR").hide();
+    }
+    else {
+        $("#PAYMENT_ADDRESS_ERROR").show();
+
+    }
+
+
 
     if (checkCONTACT_PROVINCE() == true) {
         $("#CONTACT_PROVINCE_ERROR").hide();
@@ -363,27 +370,19 @@ $("#btnreportedit").on('click', function () {
 
     }
 
-    if (checkCONTACT_DISTRICT() == true) {
-        $("#STREET_ERROR").hide();
+    if (checkEMPLOYEE_DEBT_CODE() == true) {
+        $("#EMPLOYEE_DEBT_CODE_ERROR").hide();
     }
     else {
-        $("#STREET_ERROR").show();
+        $("#EMPLOYEE_DEBT_CODE_ERROR").show();
 
     }
 
-    if (checkUNIT_CODE() == true) {
-        $("#UNIT_CODE_ERROR").hide();
-    }
-    else {
-        $("#UNIT_CODE_ERROR").show();
-
-    }
-
-    if (checkSYSTEM_REF_CODE() == true) {
-        $("#SYSTEM_REF_CODE_ERROR").hide();
+    if (checkEMPLOYEE_SALE_CODE() == true) {
+        $("#EMPLOYEE_SALE_CODE_ERROR").hide();
     }
     else {
-        $("#SYSTEM_REF_CODE_ERROR").show();
+        $("#EMPLOYEE_SALE_CODE_ERROR").show();
 
     }
 

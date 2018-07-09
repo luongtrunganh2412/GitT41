@@ -10,23 +10,23 @@ namespace T41.Areas.Admin.Model.DataModel
     {
         public int EDIT_ID { get; set; }
         public string CUSTOMER_CODE { get; set; }
-        public string GENERAL_ACCOUNT_TYPE { get; set; }
-        public string GENERAL_FULL_NAME { get; set; }
-        public string GENERAL_SHORT_NAME { get; set; }
         public string CONTACT_NAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string GENERAL_EMAIL { get; set; }
+        public string DATE_CREATE { get; set; }
+        public string DATE_END { get; set; }
         public string CONTACT_PHONE_WORK { get; set; }
-        public string BUSINESS_TAX { get; set; }
-        public string CONTRACT { get; set; }
+        public string GENERAL_EMAIL { get; set; }
         public string CONTACT_ADDRESS { get; set; }
+        public string BUSINESS_TAX { get; set; }
+        public string UNIT_CODE { get; set; }
+        public string CONTRACT_NUMBER { get; set; }
+        public string CUSTOMER_ACTIVE { get; set; }
+        public string TOTAL_CUSTOMER_CODE { get; set; }
+        public string PAYMENT_ADDRESS { get; set; }
+        public string PAYMENT_METHOD { get; set; }
         public string CONTACT_PROVINCE { get; set; }
         public string CONTACT_DISTRICT { get; set; }
-        public string STREET { get; set; }
-        public string UNIT_CODE { get; set; }
-        public string SYSTEM_REF_CODE { get; set; }
-        
-        
+        public string EMPLOYEE_DEBT_CODE { get; set; }
+        public string EMPLOYEE_SALE_CODE { get; set; }
         
     }
 
@@ -54,25 +54,27 @@ namespace T41.Areas.Admin.Model.DataModel
     //Phần lấy dữ iệu của bảng business_profile
     public class UserManagementDetail
     {
-        public int Id { get; set; }
-        public String Address { get; set; }
-        public String BusinessTax { get; set; }
-        public String ContactName { get; set; }
-        public String ContactAddress { get; set; }
-        public String ContactDistrict { get; set; }
-        public String ContactProvince { get; set; }
-        public String ContactPhoneWork { get; set; }
-        public String GeneralShortName { get; set; }
-        public String CustomerCode { get; set; }
-        public String GeneralEmail { get; set; }
-        public String GeneralAccountType { get; set; }
-        public String GeneralFullName { get; set; }
-        public String Contract { get; set; }
-        public String UnitCode { get; set; }
-        public String Street { get; set; }
-        public String SystemRefCode { get; set; }
-        public String ApiKey { get; set; }
-        
+        public int CUSTOMER_ID { get; set; }
+        public String CUSTOMER_CODE { get; set; }
+        public String CONTACT_NAME { get; set; }
+        public String DATE_CREATE { get; set; }
+        public String DATE_END { get; set; }
+        public String CONTACT_PHONE_WORK { get; set; }
+        public String GENERAL_EMAIL { get; set; }
+        public String CONTACT_ADDRESS { get; set; }
+        public String BUSINESS_TAX { get; set; }
+        public String UNIT_CODE { get; set; }
+        public String CONTRACT_NUMBER { get; set; }
+        public String CUSTOMER_ACTIVE { get; set; }
+        public String TOTAL_CUSTOMER_CODE { get; set; }
+        public String PAYMENT_ADDRESS { get; set; }
+        public String PAYMENT_METHOD { get; set; }
+        public String CONTACT_PROVINCE { get; set; }
+        public String CONTACT_DISTRICT { get; set; }
+        public String EMPLOYEE_DEBT_CODE { get; set; }
+        public String EMPLOYEE_SALE_CODE { get; set; }
+
+
 
     }
 
