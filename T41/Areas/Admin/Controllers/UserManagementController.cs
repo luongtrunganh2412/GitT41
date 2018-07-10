@@ -44,6 +44,7 @@ namespace T41.Areas.Admin.Controllers
         }
 
         //Phần controller xử lý để thêm dữ liệu dưới database
+        [HttpGet]
         public ActionResult CreateUserReport(PARAMETER_BUSINESS para)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
@@ -53,6 +54,7 @@ namespace T41.Areas.Admin.Controllers
         }
 
         //Phần controller xử lý để sửa dữ liệu dưới database
+        [HttpGet]
         public ActionResult EditUserReport(PARAMETER_BUSINESS business)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
