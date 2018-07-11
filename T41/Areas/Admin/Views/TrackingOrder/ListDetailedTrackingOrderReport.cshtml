@@ -1,0 +1,46 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListTrackingOrderReport != null)
+{
+
+    int i = 0;
+    
+    
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListTrackingOrderReport)
+    {
+       
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.CustomerCode</td>
+            <td>@c.ItemCode</td>
+            <td>@c.ItemCodePartner</td>
+            <td>@c.SenderDate</td>
+            <td>@c.ReceivePhone</td>
+            <td>@c.ReceiveAddress</td>
+            <td>@c.ToProvince</td>
+            <td>@c.Weight</td>
+            <td>@c.Charge_E1</td>
+            <td>@c.TotalAmount</td>
+            <td>@c.DeliveryName</td>
+            <td>@c.DeliveryDate</td>
+            <td>@c.DeliveryTime</td>
+            <td>@c.State</td>
+            <td>@c.Note</td>
+            
+        </tr>
+
+        i++;
+        
+    }
+
+
+}
+
+

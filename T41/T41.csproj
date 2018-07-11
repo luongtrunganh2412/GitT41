@@ -196,6 +196,7 @@
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\TotalDataCustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessesController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Areas\Admin\Data\AirwayTransportRepository.cs" />
     <Compile Include="Areas\Admin\Data\DetailBD13Repository.cs" />
     <Compile Include="Areas\Admin\Data\AirwaytransportManagementRepository.cs" />
+    <Compile Include="Areas\Admin\Data\TrackingOrderRepository.cs" />
     <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\RealTimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\QualityDelivery.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\TrackingOrder.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\DetailBD13.cs" />
@@ -3216,6 +3219,10 @@
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport27.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport28.cshtml" />
     <Content Include="Areas\Admin\Views\TrackingOrder\TrackingOrderDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TotalDataCustomer\TotalDataCustomerDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackingOrder\ListTrackingOrderDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackingOrder\ListDetailedHeaderTrackingOrderReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackingOrder\ListDetailedTrackingOrderReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

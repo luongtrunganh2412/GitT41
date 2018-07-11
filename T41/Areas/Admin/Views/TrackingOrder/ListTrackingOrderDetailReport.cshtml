@@ -1,0 +1,214 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Areas/Admin/Content/dist/css/AdminLTE.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    @*<style>
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            border: 1px solid #2d2a2a;
+        }
+    </style>*@
+</head>
+<body>
+    <form>
+        <div class="main">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-4">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong>CÔNG TY CỔ PHẦN CHUYỂN PHÁT NHANH BƯU ĐIỆN</strong></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <h3 class="box-title" id="demo1"> </h3>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-center"><strong>Theo Dõi Đơn Hàng</strong></h3>
+                    <h3 class="text-center" id="demo"></h3>
+                </div>
+            </div>*@
+
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="table-responsive" id="listheadertrackingorder">
+                        </div>
+                        <div class="loading-element">
+                            <i class="fa fa-spinner fa-spin"></i>
+                            Vui lòng chờ giây lát...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="ide2">Trạng Thái</label>
+                    <select class="form-control select2" style="width: 100%;" id="type">
+                        <option selected="selected" value="0">Tất Cả</option>
+                        <option value="1">Đang Vận Chuyển</option>
+                        <option value="2">Phát Không Thành Công</option>
+                        <option value="3">Phát Thành Công</option>
+                        <option value="4">Đang Hoàn</option>
+                        <option value="5">Phát Hoàn Thành Công</option>
+                    </select>
+                </div>
+            </div>
+            @*<div class="box-header">
+                <h3 class="box-title">Thông Tin Đơn Hàng</h3>
+            </div>*@
+            <div style="overflow-x:auto;">
+                <table id="example2" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px;border: 1px solid #2d2a2a;">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th>STT</th>
+                            <th>Mã KH</th>
+                            <th>Mã E1</th>
+                            <th>Mã đối tác</th>
+                            <th>Ngày gửi</th>
+                            <th>Điện thoại nhận</th>
+                            <th>Địa chỉ nhận</th>
+                            <th>Tỉnh nhận</th>
+                            <th>Khối lượng</th>
+                            <th>Cước E1</th>
+                            <th>Số tiền thu hộ</th>
+                            <th>Người nhận/ lý do chưa phát</th>
+                            <th>Ngày phát</th>
+                            <th>Giờ phát</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listtrackingorder"></tbody>
+                </table>
+            </div>
+            <div class="loading-element">
+                <i class="fa fa-spinner fa-spin"></i>
+                Vui lòng chờ giây lát...
+            </div>
+           
+        </div>
+    </form>
+
+</body>
+</html>
+
+<script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/jquery.bootpag.min.js"></script>
+<script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.loading-element').hide();
+    });
+
+    $(document).ready(function () {
+
+        // goi ham Detail
+
+
+        detail_headertrackingorder();
+
+    });
+
+
+    //var url_string = "http://localhost:55374/Admin/TransferManagement/E2_TransferManagementDetailReport?fromposcode=101006&toposcode=100915&date=20180508&mailtrip=160&postbag=1"; //window.location.href
+    var url_string = document.URL;
+    var url = new URL(url_string);
+
+    var startdate = url.searchParams.get("startdate");
+    var enddate = url.searchParams.get("enddate");
+    var customercode = url.searchParams.get("customercode");
+
+
+    $('#type').change(function () {
+        detail_trackingorder();
+    })
+
+    
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedTrackingOrderReport", "TrackingOrder")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    startdate: startdate,
+                    enddate: enddate,
+                    customercode: customercode,
+                    type: 0,
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('.loading-element').hide();
+                $('#listtrackingorder').html(result);
+
+            }
+        })
+    
+
+
+
+    //Phần JS gọi đến dữ liệu của chi tiết theo dõi đơn hàng
+    function detail_trackingorder() {
+        $.ajax({
+            url: '@Url.Action("ListDetailedTrackingOrderReport", "TrackingOrder")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    startdate: startdate,
+                    enddate: enddate,
+                    customercode: customercode,
+                    type: $("#type").val(),
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('.loading-element').hide();
+                $('#listtrackingorder').html(result);
+
+            }
+        })
+    }
+
+   //Phần JS gọi đến dữ liệu của chi tiết theo dõi đơn hàng
+    function detail_headertrackingorder() {
+        $.ajax({
+            url: '@Url.Action("ListDetailedHeaderTrackingOrderReport", "TrackingOrder")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    startdate: startdate,
+                    enddate: enddate,
+                    customercode: customercode
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('.loading-element').hide();
+                $('#listheadertrackingorder').html(result);
+
+            }
+        })
+    }
+</script>
+
+
+

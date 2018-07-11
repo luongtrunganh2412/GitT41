@@ -1,0 +1,37 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListHeaderTrackingOrderReport != null)
+{
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListHeaderTrackingOrderReport)
+    {
+
+        <table id="example2" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px">
+            <thead>
+                <tr>
+                    <td>Mã Khách Hàng:@c.CustomerCode</td>
+                    <td class="text-left">Tên Khách hàng:@c.CustomerName</td>
+                </tr>
+                <tr>
+                    <td id="chuyen_thu">Tổng Số:@c.TotalItem (Bưu Gửi)</td>
+                    <td class="text-left">Đã Phát:@c.TotalSuccess (Bưu Gửi)</td>
+                </tr>
+                <tr>
+                    <td>Tổng Cước:@c.TotalCharge_E1 (đ) </td>
+                    <td class="text-left">Tổng Số Tiền Thu Hộ:@c.TotalAmount (đ)</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
+
+
+}
+
+
