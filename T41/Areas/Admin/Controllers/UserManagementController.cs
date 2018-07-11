@@ -88,14 +88,14 @@ namespace T41.Areas.Admin.Controllers
         }
         [HttpGet]
         //Phần show ra dữ liệu của bảng người dùng
-        public ActionResult ListDetailedUserManagementReport(int? page, int user_id, string user_customer_code, int user_contact_phone_work)
+        public ActionResult ListDetailedUserManagementReport(int? page, int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
             ViewBag.currentPageIndex = currentPageIndex;
             ViewBag.PageSize = page_size;
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(page_size, currentPageIndex,user_id , user_customer_code, user_contact_phone_work);
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(page_size, currentPageIndex,user_id , user_customer_code, user_contact_phone_work, user_general_email);
             ViewBag.total = returnusermanagement.Total;
             ViewBag.total_page = (returnusermanagement.Total + page_size - 1) / page_size;
             return View(returnusermanagement);

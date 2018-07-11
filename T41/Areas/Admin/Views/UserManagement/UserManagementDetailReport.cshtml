@@ -30,21 +30,25 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>ID:</label>
                         <input type="text" id="InputID" class="form-control"  placeholder="Search for names.." title="Type in a name">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Mã Khách hàng:</label>
-                        <input type="text" id="InputCode" class="form-control"  placeholder="Search for tel.." title="Type in a tel">
+                        <input type="text" id="InputCode" class="form-control"  placeholder="Search for code.." title="Type in a code">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label>Điện Thoại:</label>
                     <input type="text" id="InputTel" class="form-control" placeholder="Search for tel.." title="Type in a tel">
+                </div>
+                <div class="col-md-3">
+                    <label>Email:</label>
+                    <input type="text" id="InputMail" class="form-control" placeholder="Search for email.." title="Type in a email">
                 </div>
             </div>
             <div class="row">
@@ -231,6 +235,7 @@
                 user_id: 0,
                 user_customer_code: 0,
                 user_contact_phone_work: 0,
+                user_general_email: 0,
             },
             success: function (result) {
                 $('#list_user').html(result);
@@ -270,6 +275,14 @@
             user_contact_phone_work = document.getElementById('InputTel').value;
         }
 
+        if (document.getElementById('InputMail').value == ""
+            || document.getElementById('InputMail').value == undefined) {
+            user_general_email = 0;
+        }
+        else {
+            user_general_email = document.getElementById('InputMail').value;
+        }
+
         
 
         $.ajax({
@@ -281,6 +294,7 @@
                 user_id: user_id,
                 user_customer_code: user_customer_code,
                 user_contact_phone_work: user_contact_phone_work,
+                user_general_email: user_general_email,
             },
             success: function (result) {
                 $('#list_user').html(result);

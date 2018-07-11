@@ -95,7 +95,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng business_profile_temp
         #region USER_MANAGEMENT_DETAIL          
-        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index,int user_id, string user_customer_code, int user_contact_phone_work )
+        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index,int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email )
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -120,6 +120,7 @@ namespace T41.Areas.Admin.Data
                     myCommand.Parameters.Add("p_ID", OracleDbType.Int32).Value = user_id;
                     myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_customer_code;
                     myCommand.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Int32).Value = user_contact_phone_work;
+                    myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_general_email;
                     myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);

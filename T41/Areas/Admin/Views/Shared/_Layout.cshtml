@@ -305,6 +305,31 @@ desired effect
                         }
                     }
 
+                    
+
+                    @{
+
+                        if (Convert.ToInt32(Session["userid"]) == 23 || Convert.ToInt32(Session["userid"]) == 1)
+                        {
+
+                            <!-- Group 5 -->
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Hỗ Trợ Khách Hàng</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/TotalDataCustomer/TotalDataCustomerDetailReport">Tổng Hợp Dữ Liệu KHL</a></li>
+                                    <li><a href="/Admin/TrackingOrder/TrackingOrderDetailReport">Theo Dõi Đơn Hàng</a></li>
+                                </ul>
+                            </li>
+
+
+                        }
+                    }
+
                     <!-- Group 3 -->
                     <li class="treeview">
                         <a href="#">
@@ -349,19 +374,7 @@ desired effect
                         </ul>
                     </li>
 
-                    <!-- Group 5 -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span>Hỗ Trợ Khách Hàng</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Admin/TrackingOrder/TrackingOrderDetailReport">Theo Dõi Đơn Hàng</a></li>
-                            <li><a href="/Admin/TotalDataCustomer/TotalDataCustomerDetailReport">Tổng Hợp Dữ Liệu KHL</a></li>
-                        </ul>
-                    </li>
+                    
                     
                     <!-- Group 7 -->
                     <li class="treeview">

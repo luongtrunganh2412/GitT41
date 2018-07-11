@@ -35,19 +35,19 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                            <input class="form-control pull-right" id="startdate" type="text" data-date-format="dd/mm/yyyy">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Bưu Cục Gốc PH</label>
-                        <select class="form-control select2" style="width: 100%;" id="channel">
+                        <select class="form-control select2" style="width: 100%;" id="startpostcode">
                             <option selected="selected" value="0">Tất Cả</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Dịch Vụ</label>
-                        <select class="form-control select2" style="width: 100%;" id="routecode">
+                        <select class="form-control select2" style="width: 100%;" id="isservice">
                             <option selected="selected" value="0">EMS</option>
                         </select>
                     </div>
@@ -68,21 +68,19 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                            <input class="form-control pull-right" id="enddate" type="text" data-date-format="dd/mm/yyyy">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Tỉnh Nhận</label>
-                        <select class="form-control select2" style="width: 100%;" id="zone">
-                            <option selected="selected" value="1">Hà Nội</option>
-                            <option value="2">Đà Nẵng</option>
-                            <option value="3">Hồ Chí Minh</option>
+                        <select class="form-control select2" style="width: 100%;" id="endpostcode">
+                            <option selected="selected" value="0">Tất cả</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Phạm Vi</label>
-                        <select class="form-control select2" style="width: 100%;" id="zone">
+                        <select class="form-control select2" style="width: 100%;" id="country">
                             <option selected="selected" value="0">Tất cả</option>
                             <option value="1">Trong Nước</option>
                             <option value="2">Quốc Tế</option>
@@ -90,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label>Khách Hàng</label>
-                        <textarea rows="2" class="form-control" id="customer"></textarea>
+                        <input class="form-control " type="text" id="listcusotmer" placeholder="Nhập Mã Khách Hàng">
                     </div>
                     <!-- /.form-group -->
                     <!-- /.form-group -->
@@ -141,16 +139,14 @@
                             <th class="text-center">Tỷ Lệ</th>
                         </tr>
                     </thead>
-                    <tbody id="listqualityreport"></tbody>
+                    <tbody id="listtotaldatacustomer"></tbody>
                 </table>
             </div>
             <div class="loading-element">
                 <i class="fa fa-spinner fa-spin"></i>
                 Vui lòng chờ giây lát...
             </div>
-            <div>
-                <p id="demo1"></p>
-            </div>
+            
 
 
 
@@ -170,11 +166,11 @@
 
 <script>
     $(document).ready(function () {
-        $("#fromdate").datepicker({
+        $("#startdate").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
 
-        $("#todate").datepicker({
+        $("#enddate").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
     });
@@ -183,10 +179,40 @@
     $("#btnreport").click(function () {
 
         // goi ham Detail
-        $("#listqualityreport tr").remove();
+        $("#listtotaldatacustomer tr").remove();
         detail();
+        
+    });
 
+    //Phần lấy dữ liệu tỉnh nhận
+    $(document).ready(function () {
 
+        $.getJSON("/TotalDataCustomer/ProvinceCode", function (data) {
+            $.each(data, function (i, data) {
+
+                $('<option>',
+                   {
+                       value: data.PROVINCECODE,
+                       text: data.PROVINCENAME
+                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#endpostcode");
+            });
+        })
+
+    });
+
+    //Phần lấy dữ liệu bưu cục gốc phát hành
+    $(document).ready(function () {
+
+        $.getJSON("/TotalDataCustomer/PosCode", function (data) {
+            $.each(data, function (i, data) {
+
+                $('<option>',
+                   {
+                       value: data.POSTCODE,
+                       text: data.POSNAME
+                   }).html(data.POSTCODE + '-' + data.POSNAME).appendTo("#startpostcode");
+            });
+        })
 
     });
 
@@ -197,33 +223,28 @@
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     function detail(p) {
         $.ajax({
-            url: '@Url.Action("ListDetailedQualityDeliveryReport", "QualityDelivery")',
+            url: '@Url.Action("ListDetailedTotalDataCustomerReport", "TotalDataCustomer")',
             beforeSend: function () {
                 $('.loading-element').show();
             },
+            method:'GET',
             dataType: 'html',
             data:
                 {
-                    zone: $("#zone").val(),
-                    endpostcode: $("#endpostcode").val(),
-                    routecode: $("#routecode").val(),
-                    startdate: $('#fromdate').val(),
-                    enddate: $('#todate').val(),
-                    service: $("#service").val()
+                    listcusotmer: $("#listcusotmer").val(),
+                    startdate: $("#startdate").val(),
+                    enddate: $("#enddate").val(),
+                    startpostcode: $('#startpostcode').val(),
+                    endpostcode: $('#endpostcode').val(),
+                    isservice: $("#isservice").val(),
+                    country: $("#country").val(),
                     
                 },
             success: function (result) {
-                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listqualityreport
-                console.log(result.Code);
-                if (result.Code == 99) {
-                    document.getElementById("demo1").innerHTML = "Không Có Dữ Liệu";
-
-                }
-                else {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listtotaldatacustomer
                     $('.loading-element').hide();
-                    $('#listqualityreport').html(result);
-                }
-
+                    $('#listtotaldatacustomer').html(result);
+                
             }
         })
     }
