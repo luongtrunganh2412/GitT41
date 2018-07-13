@@ -69,7 +69,6 @@ namespace T41.Areas.Admin.Controllers
             return View(returntransfermanagement);
 
         }
-
         //Controller gọi đến chi tiết theo từng chuyến thư hoặc túi số của bảng chi tiết
         public ActionResult ListTransferManagement_CTTS_Report(int fromposcode, int toposcode, string date, int type, int typecomunication)
         {

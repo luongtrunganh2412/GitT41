@@ -32,13 +32,13 @@
                 </div>
             </div>
             @*<div class="row">
-                <div class="col-lg-12">
-                    <h3 class="text-center"><strong>Theo Dõi Đơn Hàng</strong></h3>
-                    <h3 class="text-center" id="demo"></h3>
-                </div>
-            </div>*@
+                    <div class="col-lg-12">
+                        <h3 class="text-center"><strong>Theo Dõi Đơn Hàng</strong></h3>
+                        <h3 class="text-center" id="demo"></h3>
+                    </div>
+                </div>*@
 
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -64,10 +64,14 @@
                         <option value="5">Phát Hoàn Thành Công</option>
                     </select>
                 </div>
+                <div class="col-lg-6">
+                    <input type="button" class="btn btn-default btn-lrg ajax" onclick="tableToExcel('example2', 'Trạng Thái Bưu Gửi')" value="Xuất Excel">
+                    @*<input type="button" class="btn btn-default btn-lrg ajax" onclick="ExportToExcel('example2', 'Trạng Thái Bưu Gửi')" value="Xuất Excel">*@
+                </div>
             </div>
             @*<div class="box-header">
-                <h3 class="box-title">Thông Tin Đơn Hàng</h3>
-            </div>*@
+                    <h3 class="box-title">Thông Tin Đơn Hàng</h3>
+                </div>*@
             <div style="overflow-x:auto;">
                 <table id="example2" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px;border: 1px solid #2d2a2a;">
                     <thead>
@@ -97,7 +101,7 @@
                 <i class="fa fa-spinner fa-spin"></i>
                 Vui lòng chờ giây lát...
             </div>
-           
+
         </div>
     </form>
 
@@ -109,6 +113,53 @@
 <script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
+    //Phần Xuất excel của bảng chi tiết 
+
+    //function ExportToExcel(Id) {
+    //    var tab_text = "<table border='2px'><tr>";
+    //    var textRange;
+    //    var j = 0;
+    //    tab = document.getElementById(Id);
+    //    var headerRow = $('[id*=example2] tr:first');
+    //    tab_text += headerRow.html() + '</tr><tr>';
+    //    var rows = $('[id*=example2] tr:not(:has(th))');
+    //    for (j = 0; j < rows.length; j++) {
+    //        if ($(rows[j]).css('display') != 'none') {
+    //            tab_text = tab_text + rows[j].innerHTML + "</tr>";
+    //        }
+    //    }
+    //    tab_text = tab_text + "</table>";
+    //    tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+    //    tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+    //    tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+    //    var ua = window.navigator.userAgent;
+    //    var msie = ua.indexOf("MSIE ");
+    //    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    //    {
+    //        txtArea1.document.open("txt/html", "replace");
+    //        txtArea1.document.write(tab_text);
+    //        txtArea1.document.close();
+    //        txtArea1.focus();
+    //        sa = txtArea1.document.execCommand("SaveAs", true, Id + ".xls");
+    //    }
+    //    else {                 //other browser not tested on IE 11
+    //        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+    //    }
+    //    return (sa);
+    //}
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+          , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
     $(document).ready(function(){
         $('.loading-element').hide();
     });
@@ -117,27 +168,7 @@
 
         // goi ham Detail
 
-
         detail_headertrackingorder();
-
-    });
-
-
-    //var url_string = "http://localhost:55374/Admin/TransferManagement/E2_TransferManagementDetailReport?fromposcode=101006&toposcode=100915&date=20180508&mailtrip=160&postbag=1"; //window.location.href
-    var url_string = document.URL;
-    var url = new URL(url_string);
-
-    var startdate = url.searchParams.get("startdate");
-    var enddate = url.searchParams.get("enddate");
-    var customercode = url.searchParams.get("customercode");
-
-
-    $('#type').change(function () {
-        detail_trackingorder();
-    })
-
-    
-
         $.ajax({
             url: '@Url.Action("ListDetailedTrackingOrderReport", "TrackingOrder")',
             beforeSend: function () {
@@ -158,7 +189,24 @@
 
             }
         })
-    
+    });
+
+
+
+
+    //var url_string = "http://localhost:55374/Admin/TransferManagement/E2_TransferManagementDetailReport?fromposcode=101006&toposcode=100915&date=20180508&mailtrip=160&postbag=1"; //window.location.href
+    var url_string = document.URL;
+    var url = new URL(url_string);
+
+    var startdate = url.searchParams.get("startdate");
+    var enddate = url.searchParams.get("enddate");
+    var customercode = url.searchParams.get("customercode");
+
+
+    $('#type').change(function () {
+        detail_trackingorder();
+        $("#listtrackingorder tr").remove();
+    })
 
 
 

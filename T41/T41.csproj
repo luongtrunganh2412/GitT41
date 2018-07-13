@@ -212,6 +212,7 @@
     <Compile Include="Areas\Admin\Controllers\ShipmentManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimekeepingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrackingOrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TransferManagementVNPOSTController.cs" />
     <Compile Include="Areas\Admin\Controllers\TransferManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Areas\Admin\Data\AirwaytransportManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TrackingOrderRepository.cs" />
     <Compile Include="Areas\Admin\Data\TotalDataCustomerRepository .cs" />
+    <Compile Include="Areas\Admin\Data\TransferManagementVNPOSTRepository.cs" />
     <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
@@ -248,6 +250,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TrackingOrder.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TotalDataCustomer.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\TransferManagement_VNPOST.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\DetailBD13.cs" />
@@ -3226,6 +3229,16 @@
     <Content Include="Areas\Admin\Views\TrackingOrder\ListDetailedHeaderTrackingOrderReport.cshtml" />
     <Content Include="Areas\Admin\Views\TrackingOrder\ListDetailedTrackingOrderReport.cshtml" />
     <Content Include="Areas\Admin\Views\TotalDataCustomer\ListDetailedTotalDataCustomerReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\E2_TransferManagementVNPOSTDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListDetailedTransferManagement_CTTS_E2_VNPOST_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListDetailedTransferManagement_CTTS_MCT_E2_VNPOST_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListDetailedTransferManagement_E2_VNPOST_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListDetailedTransferManagement_MCT_E2_VNPOST_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListDetailedTransferManagementVNPOSTReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\ListTransferManagement_SOTUI_VNPOST_Report.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\MCT_E2_TransferManagementVNPOSTDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\SOTUITRONGCHTHUVNPOST.cshtml" />
+    <Content Include="Areas\Admin\Views\TransferManagementVNPOST\TransferManagementVNPOSTDetailReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

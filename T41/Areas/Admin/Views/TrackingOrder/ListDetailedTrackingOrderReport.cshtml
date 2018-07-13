@@ -19,7 +19,9 @@
         <tr>
             <td>@(i + 1)</td>
             <td>@c.CustomerCode</td>
-            <td>@c.ItemCode</td>
+            <td>
+                <a href="http://bccp.vnpost.vn/BCCP.aspx?act=Trace&id= @c.ItemCode" target="_blank">@c.ItemCode</a>
+            </td>
             <td>@c.ItemCodePartner</td>
             <td>@c.SenderDate</td>
             <td>@c.ReceivePhone</td>

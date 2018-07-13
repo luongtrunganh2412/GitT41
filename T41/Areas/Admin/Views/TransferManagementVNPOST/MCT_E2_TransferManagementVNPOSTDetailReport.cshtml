@@ -1,0 +1,331 @@
+﻿
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    @*<style>
+        .height {
+            min-height: 200px;
+        }
+
+        .icon {
+            font-size: 47px;
+            color: #5CB85C;
+        }
+
+        .iconbig {
+            font-size: 77px;
+            color: #5CB85C;
+        }
+
+        .table > tbody > tr > .emptyrow {
+            border-top: none;
+        }
+
+        .table > thead > tr > .emptyrow {
+            border-bottom: none;
+        }
+
+        .table > tbody > tr > .highrow {
+            border-top: 3px solid;
+        }
+
+    </style>*@
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-4">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">BƯU CHÍNH VIỆT NAM</h4>
+                        <h4><em>Dịch vụ Chuyển Phát Nhanh</em> /EMS</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-lg-offset-4">
+                    <div class="no-print">
+                        <input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Bản Kê" onclick="printpage()" />
+                        @*<button type="button" class="btn btn-default btn-lrg ajax" onclick="window.print()">Print</button>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    @*<div class="panel-heading">*@
+                    <div class="table-responsive" id="list_ctts">
+                    </div>
+                    @*<table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Từ:</td>
+                                    <td class="text-center">Gửi Đến:</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td id="chuyen_thu">Chuyến Thư: </td>
+                                    <td class="text-center">Ngày tháng:</td>
+                                    <td class="text-center">Giờ:</td>
+                                    <td class="text-right">Ca:</td>
+                                </tr>
+                                <tr>
+                                    <td>Túi số: </td>
+                                    <td class="text-center">Khối lượng:</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"></td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>*@
+
+                    @*</div>*@
+                    @*<div class="panel-body">*@
+
+                    @*</div>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h4 class="text-center"><strong>Các Bưu Phẩm Gửi Đi</strong></h4>
+                <div style="overflow-x:auto;">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-light-blue color-palette">
+                                <th class="text-center">TT</th>
+                                <th>Số Hiệu Bưu Gửi</th>
+                                <th class="text-center">BC nhận</th>
+                                <th class="text-center">Khối lượng(g)</th>
+                                <th>GT Khai </th>
+                                <th class="text-center">Cước Chính </th>
+                                <th class="text-center">Cước Dịch Vụ </th>
+                                <th class="text-center">Tổng Cước</th>
+                                <th>Ghi Chú</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody id="list_e2"></tbody>
+                    </table>
+                </div>
+            </div>
+            @*<div class="col-lg-12">
+                    <h3 style="text-decoration-style:solid"><em>Doanh thu tính thuế:</em></h3>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><strong>Tiền mặt:</strong></td>
+                                    <td class="text-left">Cước Chính:</td>
+                                    <td class="text-left">0 (BP)</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-left">Cước Dịch Vụ:</td>
+                                    <td class="text-left">0 (BP)</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-left">Dịch vụ khai giá:</td>
+                                    <td class="text-left">0 (BP)</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tiền nợ:</strong></td>
+                                    <td class="text-left">Cước Chính:</td>
+                                    <td class="text-left">1 (BP)</td>
+                                    <td class="text-left">100.000 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">10.000 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">110.000</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-left">Cước Dịch Vụ:</td>
+                                    <td class="text-left">0 (BP)</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-left">Dịch vụ khai giá:</td>
+                                    <td class="text-left">0 (BP)</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left">0 </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right">0</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-left">Tổng Cộng:</td>
+                                    <td class="text-left"><strong>1</strong> (BP)</td>
+                                    <td class="text-left"><strong>100.000</strong> </td>
+                                    <td class="text-left">+</td>
+                                    <td class="text-left"><strong>10.000</strong> </td>
+                                    <td class="text-left">(VAT)=</td>
+                                    <td class="text-right"><strong>110.000</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>*@
+            @*<div class="col-lg-12">
+                    <div class="col-lg-4">
+                        <h4>Chữ ký nhân viên đóng túi</h4>
+                        <h4>Dấu Bưu Cục đóng chuyến thư</h4>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <h4>Chữ ký nhân viên mở túi</h4>
+                        <h4>Dấu Bưu Cục mở chuyến thư</h4>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/jquery.bootpag.min.js"></script>
+<script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+
+    
+
+    $(document).ready(function () {
+
+        // goi ham Detail
+        
+        detail_E2();
+        detail_CTTS();
+        yyyymmdd();
+    });
+
+    
+
+    //var url_string = "http://localhost:55374/Admin/TransferManagement/E2_TransferManagementDetailReport?fromposcode=101006100915201805081601&toposcode=101006100915201805081601&date=101006100915201805081601&mailtrip=101006100915201805081601&postbag=101006100915201805081601"; //window.location.href
+    //101000736102BEA80002006000000
+    var url_string = document.URL;
+    var url = new URL(url_string);
+    var ide2 = url.searchParams.get("ide2");
+    //Phần cắt chuỗi ie2 , hàm to string sẽ convert kiểu int sang kiểu string , hàm substring sẽ cắt ký tự 
+    
+
+    var fromposcode = ide2.toString();
+    var parafromposcode = fromposcode.substring(0, 6);
+
+    var toposcode = ide2.toString();
+    var paratoposcode = toposcode.substring(12, 6);
+
+    var mailtrip = ide2.toString();
+    var paramailtrip = mailtrip.substring(20, 16);
+
+    var date = yyyymmdd();
+
+    var postbag = ide2.toString(); 
+    var parapostbag = postbag.substring(23, 20);
+
+    var typecomunication = url.searchParams.get("typecomunication");
+
+    console.log(fromposcode);
+    console.log(toposcode);
+    console.log(mailtrip);
+    console.log(postbag);
+    
+
+    //Phần JS để lấy dữ liệu date theo kiểu yyyyMMdddd
+    function yyyymmdd() {
+        var x = new Date();
+        var y = x.getFullYear().toString();
+        var m = (x.getMonth() + 1).toString();
+        var d = x.getDate().toString();
+        (d.length == 1) && (d = '0' + d);
+        (m.length == 1) && (m = '0' + m);
+        var yyyymmdd = y + m + d;
+        return yyyymmdd;
+    }
+
+    //Phần JS gọi đến dữ liệu của chi tiết bản kê E2 theo chuyến thư túi số
+    function detail_E2() {
+        $.ajax({
+            url: '@Url.Action("ListDetailedTransferManagement_MCT_E2_Report", "TransferManagement")',
+            dataType: 'html',
+            data:
+                {
+                    
+                    fromposcode: parafromposcode,
+                    toposcode: paratoposcode,
+                    date: date,
+                    mailtrip: paramailtrip,
+                    postbag: parapostbag,
+                    typecomunication: typecomunication
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('#list_e2').html(result);
+
+            }
+        })
+    }
+
+    //Phần JS gọi đến dữ liệu của chuyến thư túi số bản kê E2 theo chuyến thư túi số
+    function detail_CTTS() {
+        $.ajax({
+            url: '@Url.Action("ListDetailedTransferManagement_CTTS_MCT_E2_Report", "TransferManagement")',
+            dataType: 'html',
+            data:
+                {
+                    fromposcode: parafromposcode,
+                    toposcode: paratoposcode,
+                    date: date,
+                    mailtrip: paramailtrip,
+                    postbag: parapostbag,
+                    typecomunication: typecomunication
+                },
+            success: function (result) {
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('#list_ctts').html(result);
+            }
+        })
+    }
+
+    
+    //Phần bỏ button in E2 khi kích vào
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden'
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+
+</script>
+
+
+

@@ -211,8 +211,10 @@ namespace T41.Areas.Admin.Data
                             oUserManagementDetail.CUSTOMER_ID = Convert.ToInt32(dr["CUSTOMER_ID"].ToString());
                             oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
                             oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.DATE_CREATE = dr["DATE_CREATE"].ToString();
-                            oUserManagementDetail.DATE_END = dr["DATE_END"].ToString();
+                            //oUserManagementDetail.DATE_CREATE = dr["DATE_CREATE"].ToString();
+                            //oUserManagementDetail.DATE_END = dr["DATE_END"].ToString();
+                            oUserManagementDetail.DATE_CREATE = common.Convert_Date(Convert.ToInt32(dr["DATE_CREATE"].ToString()));
+                            oUserManagementDetail.DATE_END = common.Convert_Date(Convert.ToInt32(dr["DATE_END"].ToString()));
                             oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
                             oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
                             oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();

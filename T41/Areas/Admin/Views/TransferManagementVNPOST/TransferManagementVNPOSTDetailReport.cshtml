@@ -14,13 +14,13 @@
 <!-- Bootstrap Color Picker -->
 @*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
 
-<title>Báo cáo tổng hợp dữ liệu truyền nhận EMS Center</title>
+<title>Báo cáo tổng hợp dữ liệu truyền nhận VNPOST</title>
 
 <section class="content">
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Báo cáo tổng hợp dữ liệu truyền nhận EMS Center</h3>
+            <h3 class="box-title">Báo cáo tổng hợp dữ liệu truyền nhận VNPOST</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -35,8 +35,8 @@
                     <div class="form-group">
                         <label>Lựa Chọn In Bản Kê </label>
                         <select class="form-control select2" style="width: 100%;" id="typecomunication">
-                            <option selected="selected" value="1">Bản Kê Giao Dịch</option>
-                            <option value="2">Bản Kê Đường Thư Bưu Tá </option>
+                            <option selected="selected" value="1">Bản Kê Liên Tỉnh</option>
+                            <option value="2">Bản Kê Nội Tỉnh </option>
                         </select>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     <input class="form-control" type="text" id="ide2" name="ide2">
                 </div>
                 <div class="col-lg-6">
-                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagementVNPOST/MCT_E2_TransferManagementVNPOSTDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
                 </div>
 
             </div>
@@ -185,7 +185,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Chi tiết tổng hợp dữ liệu truyền nhận EMS Center</h4>
+                            <h4 class="modal-title">Chi tiết tổng hợp dữ liệu truyền nhận VNPOST</h4>
                         </div>
                         <div class="modal-body edit-content">
                             <div type="reset" id="list_test"></div>
@@ -209,7 +209,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Chi tiết tổng hợp dữ liệu truyền nhận EMS Center</h4>
+                            <h4 class="modal-title">Chi tiết tổng hợp dữ liệu truyền nhận VNPOST</h4>
                         </div>
                         <div class="modal-body edit-content">
                             <div type="reset" id="list_sotui"></div>
@@ -262,7 +262,7 @@
     //Phần lấy dữ liệu tỉnh đóng
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -279,7 +279,7 @@
     //Phần lấy dữ liệu tỉnh Nhận
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -296,7 +296,7 @@
     //Lần đầu load bưu cục đóng = HN
 
     $.ajax({
-        url: "/TransferManagement/PosCode",
+        url: "/TransferManagementVNPOST/PosCode",
         dataType: "json",
         data: { province:10 },
         success: function (data) {
@@ -312,7 +312,7 @@
     $(document).ready(function () {
         $('#fromprovince').change(function () {
             $.ajax({
-                url: "/TransferManagement/PosCode",
+                url: "/TransferManagementVNPOST/PosCode",
                 dataType: "json",
                 data: { province: $("#fromprovince").val() },
                 success: function (data) {
@@ -330,7 +330,7 @@
     //Lần đầu load bưu cục nhận = HN
 
     $.ajax({
-        url: "/TransferManagement/PosCode",
+        url: "/TransferManagementVNPOST/PosCode",
         dataType: "json",
         data: { province: 10 },
         success: function (data) {
@@ -346,7 +346,7 @@
     $(document).ready(function () {
         $('#toprovince').change(function () {
             $.ajax({
-                url: "/TransferManagement/PosCode",
+                url: "/TransferManagementVNPOST/PosCode",
                 dataType: "json",
                 data: { province: $("#toprovince").val() },
                 success: function (data) {
@@ -377,7 +377,7 @@
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     function detail(p) {
         $.ajax({
-            url: '@Url.Action("ListDetailedTransferManagementReport", "TransferManagement")',
+            url: '@Url.Action("ListDetailedTransferManagementVNPOSTReport", "TransferManagementVNPOST")',
             beforeSend: function () {
                 $('.loading-element').show();
             },
