@@ -36,7 +36,7 @@
                         <label>Lựa Chọn In Bản Kê </label>
                         <select class="form-control select2" style="width: 100%;" id="typecomunication">
                             <option selected="selected" value="1">Bản Kê Liên Tỉnh</option>
-                            <option value="2">Bản Kê Nội Tỉnh </option>
+                            <option value="2">Bản Kê Nội Tỉnh</option>
                         </select>
                     </div>
                 </div>
@@ -44,13 +44,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Tỉnh Đóng </label>
-                        <select class="form-control select2" style="width: 100%;" id="fromprovince"></select>
+                        <label>Tỉnh  Đóng </label>
+                        <select class="form-control select2" style="width: 100%;" id="fromprovince">
+                            <option selected="selected" value="0">Chọn Tỉnh Đóng</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Bưu Cục Đóng </label>
+                        <div class="col-md-6">
+                            <label>Bưu Cục Đóng </label>
+                        </div>
+                        <div class="col-md-6 loading-element-fromprovince">
+                            <i class="fa fa-spinner fa-spin"></i>
+                            Vui lòng chờ giây lát...
+                        </div>
                         <select class="form-control select2" style="width: 100%;" id="fromposcode">
                             <option selected="selected" value="0">Tất cả</option>
                         </select>
@@ -61,13 +69,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Tỉnh Nhận </label>
-                        <select class="form-control select2" style="width: 100%;" id="toprovince"></select>
+                        <label>Tỉnh  Nhận </label>
+                        <select class="form-control select2" style="width: 100%;" id="toprovince">
+                            <option selected="selected" value="0">Chọn Tỉnh Nhận</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Bưu Cục Nhận </label>
+                        <div class="col-md-6">
+                            <label>Bưu Cục Nhận </label>
+                        </div>
+                        <div class="col-md-6 loading-element-toprovince">
+                            <i class="fa fa-spinner fa-spin"></i>
+                            Vui lòng chờ giây lát...
+                        </div>
                         <select class="form-control select2" style="width: 100%;" id="toposcode">
                             <option selected="selected" value="0">Tất cả</option>
                         </select>
@@ -94,7 +110,7 @@
                             </div>*@
                         <!-- /.input group -->
 
-                        
+
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -106,7 +122,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        
+
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -120,19 +136,19 @@
                         <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
                         <div class="row">
                             <div class="col-md-6">
-                                
+
                                 @*<a href="/Admin/TransferManagement/E2_TransferManagementDetailReport" target="_blank" id="btnreport" class="btn btn-default btn-md">Hiển thị dữ liệu</a>*@
 
                                 @*<a href='' target="_blank" id="btnreport" class="btn btn-default btn-md" onclick="this.href ='/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?fromposcode=' + document.getElementById('ide2').value + '&toposcode=' + document.getElementById('ide2').value + '&date=' + document.getElementById('ide2').value + '&mailtrip=' + document.getElementById('ide2').value + '&postbag=' + document.getElementById('ide2').value">Hiển thị dữ liệu</a>*@
 
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
         <div class="box-body">
 
@@ -147,11 +163,11 @@
                     <input class="form-control" type="text" id="ide2" name="ide2">
                 </div>
                 <div class="col-lg-6">
-                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagementVNPOST/MCT_E2_TransferManagementVNPOSTDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?ide2=' + document.getElementById('ide2').value + '&typecomunication=' + document.getElementById('typecomunication').value  ">Xem Bản kê E2</a>
                 </div>
 
             </div>
-            
+
             <div class="box-header">
                 <h3 class="box-title">Báo Cáo Tổng hợp</h3>
             </div>
@@ -170,8 +186,7 @@
                             <th>Tổng Số Bưu Gửi</th>
                         </tr>
                     </thead>
-                    <tbody id="listtransfermanagement">
-                    </tbody>
+                    <tbody id="listtransfermanagement"></tbody>
                 </table>
             </div>
             <div class="loading-element">
@@ -240,8 +255,8 @@
 
 <script>
 
-    
-    
+
+
 
     $(function () {
         $('#fromdate').datepicker()
@@ -262,7 +277,7 @@
     //Phần lấy dữ liệu tỉnh đóng
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -279,7 +294,7 @@
     //Phần lấy dữ liệu tỉnh Nhận
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -296,9 +311,9 @@
     //Lần đầu load bưu cục đóng = HN
 
     $.ajax({
-        url: "/TransferManagementVNPOST/PosCode",
+        url: "/TransferManagement/PosCode",
         dataType: "json",
-        data: { province:10 },
+        data: { province:0 },
         success: function (data) {
             $('#fromposcode').html('<option value=0>Tất Cả </option>');
             jQuery.each(data, function (i, val) {
@@ -312,10 +327,14 @@
     $(document).ready(function () {
         $('#fromprovince').change(function () {
             $.ajax({
-                url: "/TransferManagementVNPOST/PosCode",
+                url: "/TransferManagement/PosCode",
+                beforeSend: function () {
+                    $('.loading-element-fromprovince').show();
+                },
                 dataType: "json",
                 data: { province: $("#fromprovince").val() },
                 success: function (data) {
+                    $('.loading-element-fromprovince').hide();
                     $('#fromposcode').html('<option value=0>Tất Cả </option>');
                     jQuery.each(data, function (i, val) {
                         $('#fromposcode').html($('#fromposcode').html() +
@@ -330,9 +349,9 @@
     //Lần đầu load bưu cục nhận = HN
 
     $.ajax({
-        url: "/TransferManagementVNPOST/PosCode",
+        url: "/TransferManagement/PosCode",
         dataType: "json",
-        data: { province: 10 },
+        data: { province: 0 },
         success: function (data) {
             $('#toposcode').html('<option value=0>Tất Cả </option>');
             jQuery.each(data, function (i, val) {
@@ -346,10 +365,14 @@
     $(document).ready(function () {
         $('#toprovince').change(function () {
             $.ajax({
-                url: "/TransferManagementVNPOST/PosCode",
+                url: "/TransferManagement/PosCode",
+                beforeSend: function () {
+                    $('.loading-element-toprovince').show();
+                },
                 dataType: "json",
                 data: { province: $("#toprovince").val() },
                 success: function (data) {
+                    $('.loading-element-toprovince').hide();
                     $('#toposcode').html('<option value=0>Tất Cả </option>');
                     jQuery.each(data, function (i, val) {
                         $('#toposcode').html($('#toposcode').html() +
@@ -361,17 +384,19 @@
     });
 
     $("#btnreport").click(function () {
-        
-        
+
+
         $("#listtransfermanagement tr").remove();
         // goi ham Detail
         detail();
-        
+
 
     });
 
     $(document).ready(function () {
         $('.loading-element').hide();
+        $('.loading-element-fromprovince').hide();
+        $('.loading-element-toprovince').hide();
     });
 
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
@@ -398,7 +423,7 @@
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listtransfermanagement
                 if (result.Code == '01') {
                     alert("Không Có Dữ Liệu");
-                    
+
                 }
                 else {
                     $('.loading-element').hide();
@@ -410,8 +435,8 @@
         })
     }
 
-    
-    
+
+
 </script>
 
 

@@ -270,7 +270,7 @@
     //Phần JS gọi đến dữ liệu của chi tiết bản kê E2 theo chuyến thư túi số
     function detail_E2() {
         $.ajax({
-            url: '@Url.Action("ListDetailedTransferManagement_MCT_E2_Report", "TransferManagement")',
+            url: '@Url.Action("ListDetailedTransferManagement_MCT_E2_VNPOST_Report", "TransferManagementVNPOST")',
             dataType: 'html',
             data:
                 {
@@ -293,7 +293,7 @@
     //Phần JS gọi đến dữ liệu của chuyến thư túi số bản kê E2 theo chuyến thư túi số
     function detail_CTTS() {
         $.ajax({
-            url: '@Url.Action("ListDetailedTransferManagement_CTTS_MCT_E2_Report", "TransferManagement")',
+            url: '@Url.Action("ListDetailedTransferManagement_CTTS_MCT_E2_VNPOST_Report", "TransferManagementVNPOST")',
             dataType: 'html',
             data:
                 {

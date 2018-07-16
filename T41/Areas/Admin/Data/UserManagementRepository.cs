@@ -211,10 +211,10 @@ namespace T41.Areas.Admin.Data
                             oUserManagementDetail.CUSTOMER_ID = Convert.ToInt32(dr["CUSTOMER_ID"].ToString());
                             oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
                             oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            //oUserManagementDetail.DATE_CREATE = dr["DATE_CREATE"].ToString();
-                            //oUserManagementDetail.DATE_END = dr["DATE_END"].ToString();
-                            oUserManagementDetail.DATE_CREATE = common.Convert_Date(Convert.ToInt32(dr["DATE_CREATE"].ToString()));
-                            oUserManagementDetail.DATE_END = common.Convert_Date(Convert.ToInt32(dr["DATE_END"].ToString()));
+                            oUserManagementDetail.DATE_CREATE = dr["DATE_CREATE"].ToString();
+                            oUserManagementDetail.DATE_END = dr["DATE_END"].ToString();
+                            //oUserManagementDetail.DATE_CREATE = common.Convert_Date(Convert.ToInt32(dr["DATE_CREATE"].ToString()));
+                            //oUserManagementDetail.DATE_END = common.Convert_Date(Convert.ToInt32(dr["DATE_END"].ToString()));
                             oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
                             oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
                             oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
@@ -297,7 +297,7 @@ namespace T41.Areas.Admin.Data
                     cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
                     cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
                     cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
-                    //cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688");
+                    cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.DATE_CREATE));
 
                     cmd.ExecuteNonQuery();
                     id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
@@ -370,6 +370,7 @@ namespace T41.Areas.Admin.Data
                     cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
                     cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
                     cmd.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.EDIT_ID;
+                    cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.DATE_CREATE));
 
                     cmd.ExecuteNonQuery();
 

@@ -27,7 +27,8 @@ namespace T41.Areas.Admin.Model.DataModel
         public string CONTACT_DISTRICT { get; set; }
         public string EMPLOYEE_DEBT_CODE { get; set; }
         public string EMPLOYEE_SALE_CODE { get; set; }
-        
+        public string API_KEY { get; set; }
+
     }
 
     //Parameter truyền vào DB để edit theo thông tin người dùng
