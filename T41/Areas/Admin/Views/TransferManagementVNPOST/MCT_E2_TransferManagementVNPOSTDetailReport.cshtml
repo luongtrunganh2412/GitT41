@@ -7,6 +7,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
     @*<style>
         .height {
             min-height: 200px;
@@ -89,6 +91,10 @@
                     @*</div>*@
                 </div>
             </div>
+            <div class="loading-element">
+                <i class="fa fa-spinner fa-spin"></i>
+                Vui lòng chờ giây lát...
+            </div>
             <div class="col-lg-12">
                 <h4 class="text-center"><strong>Các Bưu Phẩm Gửi Đi</strong></h4>
                 <div style="overflow-x:auto;">
@@ -110,6 +116,10 @@
                         <tbody id="list_e2"></tbody>
                     </table>
                 </div>
+            </div>
+            <div class="loading-element">
+                <i class="fa fa-spinner fa-spin"></i>
+                Vui lòng chờ giây lát...
             </div>
             @*<div class="col-lg-12">
                     <h3 style="text-decoration-style:solid"><em>Doanh thu tính thuế:</em></h3>
@@ -217,7 +227,7 @@
     $(document).ready(function () {
 
         // goi ham Detail
-        
+        $('.loading-element').hide();
         detail_E2();
         detail_CTTS();
         yyyymmdd();
@@ -249,10 +259,7 @@
 
     var typecomunication = url.searchParams.get("typecomunication");
 
-    console.log(fromposcode);
-    console.log(toposcode);
-    console.log(mailtrip);
-    console.log(postbag);
+    
     
 
     //Phần JS để lấy dữ liệu date theo kiểu yyyyMMdddd
@@ -271,6 +278,9 @@
     function detail_E2() {
         $.ajax({
             url: '@Url.Action("ListDetailedTransferManagement_MCT_E2_VNPOST_Report", "TransferManagementVNPOST")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
             dataType: 'html',
             data:
                 {
@@ -284,6 +294,7 @@
                 },
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('.loading-element').hide();
                 $('#list_e2').html(result);
 
             }
@@ -294,6 +305,9 @@
     function detail_CTTS() {
         $.ajax({
             url: '@Url.Action("ListDetailedTransferManagement_CTTS_MCT_E2_VNPOST_Report", "TransferManagementVNPOST")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
             dataType: 'html',
             data:
                 {
@@ -306,6 +320,7 @@
                 },
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                $('.loading-element').hide();
                 $('#list_ctts').html(result);
             }
         })

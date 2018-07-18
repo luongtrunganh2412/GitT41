@@ -266,20 +266,9 @@ desired effect
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="/Admin/ShipmentManagement/ShipmentManagementDetail">Quản Lý Shipment</a></li>
+                                            <li><a href="/Admin/ShipmentManagement/ShipmentManagementDetail"> Shipment</a></li>
                                         </ul>
                                     </li>
-                                    @*<li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>Quản Lý Người Dùng </span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="/Admin/UserManagement/UserManagementDetailReport">Quản Lý người dùng</a></li>
-                                </ul>
-                            </li>*@
                                 </ul>
                             </li>
 
@@ -303,8 +292,11 @@ desired effect
 
                     
 
-                    @{
+                    
 
+
+
+                    @{
                         if (Convert.ToInt32(Session["userid"]) == 23 || Convert.ToInt32(Session["userid"]) == 1)
                         {
 
@@ -365,8 +357,20 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Admin/TransferManagement/TransferManagementDetailReport">Quản lý truyền nhận EMS</a></li>
-                            <li><a href="/Admin/TransferManagementVNPOST/TransferManagementVNPOSTDetailReport">Quản lý truyền nhận VNPOST</a></li>
+                            @{
+                                if (Convert.ToInt32(Session["Role"]) == 1 || Convert.ToInt32(Session["Role"]) == 2)
+                                {
+                                    <li><a href="/Admin/TransferManagement/TransferManagementDetailReport">Quản lý truyền nhận EMS</a></li>
+                                }
+                            }
+                            @{
+
+                                if (Convert.ToInt32(Session["Role"]) == 1 || Convert.ToInt32(Session["Role"]) == 3)
+                                {
+                                <li><a href="/Admin/TransferManagementVNPOST/TransferManagementVNPOSTDetailReport">Quản lý truyền nhận VNPOST</a></li>
+                                }
+                            }
+                            
                         </ul>
                     </li>
 

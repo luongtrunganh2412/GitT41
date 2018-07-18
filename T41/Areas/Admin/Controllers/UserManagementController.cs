@@ -28,7 +28,6 @@ namespace T41.Areas.Admin.Controllers
         {
             return View();
         }
-
         //Controller lấy dữ liệu tỉnh đóng, tỉnh nhận
         public JsonResult ProvinceCode()
         {

@@ -40,6 +40,7 @@ namespace T41.Areas.Admin.Controllers
                 Session["fullname"] = user.FullName;
                 Session["avatar"] = user.Avatar;
                 Session["isadmin"] = user.IsAdmin;
+                Session["Role"] = user.Role;
                 //  Response.Redirect("Index");
                 return RedirectToAction("Index");
             }

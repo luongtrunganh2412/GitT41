@@ -20,12 +20,12 @@
                 <div class="form-group">
                     <label for="CUSTOMER_CODE">Mã Khách Hàng:</label>
                     <label id="CUSTOMER_CODE_ERROR" style="color:#ff0000">Vui Lòng Nhập Mã Khách Hàng</label>
-                    <input class="form-control " type="text" id="CUSTOMER_CODE" placeholder="@c.CUSTOMER_CODE">
+                    <input class="form-control " type="text" id="CUSTOMER_CODE" value="@c.CUSTOMER_CODE">
                 </div>
                 <div class="form-group">
                     <label for="CONTACT_NAME">Tên Khách Hàng:</label>
                     <label id="CONTACT_NAME_ERROR" style="color:#ff0000">Vui Lòng Nhập Tên Khách Hàng</label>
-                    <input class="form-control " type="text" id="CONTACT_NAME" placeholder="@c.CONTACT_NAME">
+                    <input class="form-control " type="text" id="CONTACT_NAME" value="@c.CONTACT_NAME">
                 </div>
                 <div class="form-group">
                     <label for="DATE_CREATE">Ngày Khởi Tạo:'@c.DATE_CREATE'</label>
@@ -49,11 +49,11 @@
                 <div class="form-group">
                     <label for="CONTACT_PHONE_WORK">Số Điện Thoại:</label>
                     <label id="CONTACT_PHONE_WORK_ERROR" style="color:#ff0000">Vui Lòng Nhập Số Điện Thoại</label>
-                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="@c.CONTACT_PHONE_WORK">
+                    <input class="form-control " type="text" id="CONTACT_PHONE_WORK" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" value="@c.CONTACT_PHONE_WORK">
                 </div>
                 <div class="form-group">
                     <label for="BUSINESS_TAX">Mã Số Thuế:</label>
-                    <input class="form-control " type="text" id="BUSINESS_TAX" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="@c.BUSINESS_TAX">
+                    <input class="form-control " type="text" id="BUSINESS_TAX" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" value="@c.BUSINESS_TAX">
                 </div>
 
             </div>
@@ -62,19 +62,19 @@
                     <label for="GENERAL_EMAIL">Email:</label>
                     <label id="GENERAL_EMAIL_ERROR" style="color:#ff0000">Vui Lòng Nhập Email</label>
                     <label id="CHECK_GENERAL_EMAIL" style="color:#0094ff">Vui Lòng Nhập Email Đúng Định Dạng</label>
-                    <input class="form-control " type="text" id="GENERAL_EMAIL" onkeyup="checkEmail('GENERAL_EMAIL')" placeholder="@c.GENERAL_EMAIL">
+                    <input class="form-control " type="text" id="GENERAL_EMAIL" onkeyup="checkEmail('GENERAL_EMAIL')" value="@c.GENERAL_EMAIL">
                 </div>
                 <div class="form-group">
                     <label for="CONTACT_ADDRESS">Địa Chỉ Liên Hệ:</label>
-                    <textarea rows="2" class="form-control" id="CONTACT_ADDRESS" placeholder="@c.CONTACT_ADDRESS"></textarea>
+                    <textarea rows="2" class="form-control" id="CONTACT_ADDRESS" value="@c.CONTACT_ADDRESS"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="UNIT_CODE">Mã Bưu Cục Khai Thác:</label>
-                    <input class="form-control " type="text" id="UNIT_CODE" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" placeholder="@c.UNIT_CODE">
+                    <input class="form-control " type="text" id="UNIT_CODE" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" value="@c.UNIT_CODE">
                 </div>
                 <div class="form-group">
                     <label for="CONTRACT_NUMBER">Số Hợp Đồng:</label>
-                    <input class="form-control " type="text" id="CONTRACT_NUMBER" placeholder="@c.CONTRACT_NUMBER">
+                    <input class="form-control " type="text" id="CONTRACT_NUMBER" value="@c.CONTRACT_NUMBER">
                 </div>
                 <div class="form-group">
                     <label for="CUSTOMER_ACTIVE">Trạng Thái Kích Hoạt:'@c.CUSTOMER_ACTIVE'</label>
@@ -85,13 +85,13 @@
                 </div>
                 <div class="form-group">
                     <label for="TOTAL_CUSTOMER_CODE">Mã Khách Hàng Tổng:</label>
-                    <input class="form-control " type="text" id="TOTAL_CUSTOMER_CODE" placeholder="@c.TOTAL_CUSTOMER_CODE">
+                    <input class="form-control " type="text" id="TOTAL_CUSTOMER_CODE" value="@c.TOTAL_CUSTOMER_CODE">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="PAYMENT_ADDRESS">Địa Chỉ Thanh Toán:</label>
-                    <textarea rows="2" class="form-control" id="PAYMENT_ADDRESS" placeholder="@c.PAYMENT_ADDRESS"></textarea>
+                    <textarea rows="2" class="form-control" id="PAYMENT_ADDRESS" value="@c.PAYMENT_ADDRESS"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="PAYMENT_METHOD">Hình Thức Thanh Toán:'@c.PAYMENT_METHOD'</label>
@@ -113,11 +113,11 @@
                 </div>
                 <div class="form-group">
                     <label for="EMPLOYEE_DEBT_CODE">Mã Nhân Viên Thu Nợ:</label>
-                    <input class="form-control " type="text" id="EMPLOYEE_DEBT_CODE" placeholder="@c.EMPLOYEE_DEBT_CODE">
+                    <input class="form-control " type="text" id="EMPLOYEE_DEBT_CODE" value="@c.EMPLOYEE_DEBT_CODE">
                 </div>
                 <div class="form-group">
                     <label for="EMPLOYEE_SALE_CODE">Mã Nhân Viên SALE:</label>
-                    <input class="form-control " type="text" id="EMPLOYEE_SALE_CODE" placeholder="@c.EMPLOYEE_SALE_CODE">
+                    <input class="form-control " type="text" id="EMPLOYEE_SALE_CODE" value="@c.EMPLOYEE_SALE_CODE">
                 </div>
             </div>
         </div>
