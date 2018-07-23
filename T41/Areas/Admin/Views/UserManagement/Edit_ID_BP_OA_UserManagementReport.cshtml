@@ -3,16 +3,13 @@
 @{
     Layout = null;
 }
-@if (Model.ListUserManagementReport != null)
+@if (Model.ListUserManagement_BP_OA_Report != null)
 {
 
     int i = 0;
 
-
-
-
-    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
-    foreach (var c in Model.ListUserManagementReport)
+    
+    foreach (var c in Model.ListUserManagement_BP_OA_Report)
     {
         <div class="row">
             <div class="col-md-4">
@@ -557,6 +554,10 @@
                     },
                 success: function (result) {
                     alert("Sửa Thành Công");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000
+                    );
 
                 }
             })

@@ -71,14 +71,13 @@
 
                         <thead>
                             <tr class="bg-light-blue color-palette">
-                                <th>STT</th>
-                                <th>Mã Khách Hàng</th>
-                                <th>Tên</th>
-                                <th>Số Điện Thoại</th>
-                                <th>Email</th>
-                                <th>Địa Chỉ</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Mã Khách Hàng</th>
+                                <th class="text-center">Tên Khách Hàng</th>
+                                <th class="text-center">Số Điện Thoại</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Địa Chỉ</th>
+                                <th class="text-center">Edit / Delete / Add Channel</th>
                             </tr>
                         </thead>
                         <tbody id="list_user">
@@ -224,7 +223,7 @@
     });
 
 
-    //Phần JS gọi đến dữ liệu của chi tiết người dùng
+    @*//Phần JS gọi đến dữ liệu của chi tiết người dùng
     function detail_user(p) {
         $.ajax({
             url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
@@ -242,7 +241,7 @@
                 if (p == 1) refreshPaging();
             }
         })
-    }
+    }*@
 
 
     //Phần JS gọi đến dữ liệu của chi tiết người dùng

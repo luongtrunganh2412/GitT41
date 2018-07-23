@@ -24,8 +24,8 @@
         <!-- /.box-header -->
         <div class="box-body" id="list_id_user">
             
-            </div>
         </div>
+    </div>
 
 
 
@@ -53,16 +53,16 @@
 
 
 
-    //Phần JS gọi đến dữ liệu của chi tiết bản kê E2
+    //Phần JS gọi đến dữ liệu của bảng business_profile_oa
     function detail_id_user() {
         $.ajax({
-            url: '@Url.Action("ListDetailed_ID_UserManagementReport", "UserManagement")',
+            url: '@Url.Action("Edit_ID_BP_OA_UserManagementReport", "UserManagement")',
             dataType: 'html',
             data: {
                 edit_id: id
             },
             success: function (result) {
-                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_e2
+                // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id list_id_user
                 $('#list_id_user').html(result);
 
             }

@@ -5,8 +5,8 @@ using System.Web;
 
 namespace T41.Areas.Admin.Model.DataModel
 {
-    //Parameter truyền vào DB để tạo mới dữ liệu bảng business_profile
-    public class PARAMETER_BUSINESS
+    //Parameter truyền vào DB để tạo mới dữ liệu bảng business_profile_oa
+    public class PARAMETER_BUSINESS_OA
     {
         public int EDIT_ID { get; set; }
         public string CUSTOMER_CODE { get; set; }
@@ -31,6 +31,23 @@ namespace T41.Areas.Admin.Model.DataModel
 
     }
 
+    //Parameter truyền vào DB để tạo mới dữ liệu bảng business_profile
+    public class PARAMETER_BUSINESS
+    {
+        public int EDIT_ID { get; set; }
+        public string CUSTOMER_CODE { get; set; }
+        public string CONTACT_NAME { get; set; }
+        public string CONTACT_PHONE_WORK { get; set; }
+        public string GENERAL_EMAIL { get; set; }
+        public string CONTACT_ADDRESS { get; set; }
+        public string UNIT_CODE { get; set; }
+        public int CONTACT_PROVINCE { get; set; }
+        public int CONTACT_DISTRICT { get; set; }
+        public string API_KEY { get; set; }
+        public string CUSTOMER_ID { get; set; }
+
+    }
+
     //Parameter truyền vào DB để edit theo thông tin người dùng
     public class PARAMETER_EDIT
     {
@@ -52,10 +69,10 @@ namespace T41.Areas.Admin.Model.DataModel
         public int delete_id { get; set; }
     }
 
-    //Phần lấy dữ iệu của bảng business_profile
-    public class UserManagementDetail
+    //Phần lấy dữ liệu của bảng business_profile_oa
+    public class UserManagement_BP_OA_Detail
     {
-        public int CUSTOMER_ID { get; set; }
+        public int ID { get; set; }
         public String CUSTOMER_CODE { get; set; }
         public String CONTACT_NAME { get; set; }
         public String DATE_CREATE { get; set; }
@@ -75,8 +92,25 @@ namespace T41.Areas.Admin.Model.DataModel
         public String EMPLOYEE_DEBT_CODE { get; set; }
         public String EMPLOYEE_SALE_CODE { get; set; }
 
+        
+    }
 
-
+    //Phần lấy dữ liệu của bảng business_profile
+    public class UserManagement_BP_Detail
+    {
+        public int ID { get; set; }
+        public String CONTACT_NAME { get; set; }
+        public String CONTACT_ADDRESS { get; set; }
+        public String GENERAL_EMAIL { get; set; }
+        public String CONTACT_PHONE_WORK { get; set; }
+        public String CONTACT_PROVINCE { get; set; }
+        public String CONTACT_DISTRICT { get; set; }
+        public String CUSTOMER_CODE { get; set; }
+        public String UNIT_CODE { get; set; }
+        public String API_KEY { get; set; }
+        public String CUSTOMER_ID { get; set; }
+        
+        
     }
 
     public class ReturnUserManagement
@@ -94,10 +128,13 @@ namespace T41.Areas.Admin.Model.DataModel
         /// </summary>
         public int Total { get; set; }
 
-        public UserManagementDetail UserManagementReport { get; set; }
-        public List<UserManagementDetail> ListUserManagementReport;
+        public UserManagement_BP_OA_Detail UserManagement_BP_OA_Report { get; set; }
+        public List<UserManagement_BP_OA_Detail> ListUserManagement_BP_OA_Report;
 
-       
+        public UserManagement_BP_Detail UserManagement_BP_Report { get; set; }
+        public List<UserManagement_BP_Detail> ListUserManagement_BP_Report;
+
+
         public MetaData MetaData { get; set; }
 
 

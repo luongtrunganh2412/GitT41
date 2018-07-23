@@ -1,0 +1,49 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListExpressRoadReport != null)
+{
+
+    int i = 0;
+
+
+
+
+
+    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListExpressRoadReport)
+    {
+       
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.EVENT</td>
+            <td>@c.POSTTIMEVIEW</td>
+            <td>@c.MAILROUTEARRIVE</td>
+            <td>@c.MAILROUTEARRIVENAME</td>
+            <td>@c.ARRIVETIME</td>
+            <td>@c.MAILROUTE_TYPE</td>
+            <td>@c.MAILROUTE_CLASSIFY</td>
+            <td>@c.TRANSPORT_TYPE</td>
+            <td>@c.MAILLEAVE</td>
+            <td>@c.MAILROUTENAME</td>
+            <td>@c.LEAVE</td>
+            <td>@c.SERVICE</td>
+            <td>@c.MAILROUTELEAVE</td>
+            <td>@c.MAILROUTELEAVENAME</td>
+            <td>@c.LEAVETIME</td>
+            <td>@c.MAILROUTE_TYPE1</td>
+            <td>@c.MAILROUTE_CLASSIFY1</td>
+            <td>@c.TRANSPORT_TYPE1</td>
+            
+        </tr>
+
+        i++;
+        
+    }
+
+
+}
+
+

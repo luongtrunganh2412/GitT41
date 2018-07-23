@@ -195,6 +195,7 @@
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExpressRoadController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\TotalDataCustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Areas\Admin\Data\AirwayTransportRepository.cs" />
     <Compile Include="Areas\Admin\Data\DetailBD13Repository.cs" />
     <Compile Include="Areas\Admin\Data\AirwaytransportManagementRepository.cs" />
+    <Compile Include="Areas\Admin\Data\ExpressRoadRepository.cs" />
     <Compile Include="Areas\Admin\Data\TrackingOrderRepository.cs" />
     <Compile Include="Areas\Admin\Data\TotalDataCustomerRepository .cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementVNPOSTRepository.cs" />
@@ -248,6 +250,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\RealTimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\QualityDelivery.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\ExpressRoad.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TrackingOrder.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TotalDataCustomer.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement_VNPOST.cs" />
@@ -3149,7 +3152,7 @@
     <Content Include="Areas\Admin\Views\TransferManagement\ListTransferManagement_SOTUI_Report.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\SOTUITRONGCHTHU.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\DeleteUserReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\ListDetailed_ID_UserManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Edit_ID_BP_OA_UserManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\AirwayTransportDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListAirwayTransport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport1.cshtml" />
@@ -3239,6 +3242,13 @@
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\MCT_E2_TransferManagementVNPOSTDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\SOTUITRONGCHTHUVNPOST.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\TransferManagementVNPOSTDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\CreateChannel.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\CreateChannelReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\ListDetailed_ID_BP_UserManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\ExpressRoad\ExpressRoadDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\ExpressRoad\ListDetailedExpressRoadReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\EditChannelReport.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\DeleteChannelReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -42,9 +42,19 @@ namespace T41.Areas.Admin.Controllers
             return Json(usermanagementRepository.GETDISTRICT(provincecode), JsonRequestBehavior.AllowGet);
         }
 
-        //Phần controller xử lý để thêm dữ liệu dưới database
+        //Phần controller xử lý để thêm dữ liệu vào bảng business_profile_oa dưới database
         [HttpGet]
-        public ActionResult CreateUserReport(PARAMETER_BUSINESS para)
+        public ActionResult CreateUserReport(PARAMETER_BUSINESS_OA para)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+            returnusermanagement = usermanagementRepository.CreatBusinessProfile_OA(para);
+            return View(returnusermanagement);
+        }
+
+        //Phần controller xử lý để thêm dữ liệu vào bảng business_profile dưới database
+        [HttpGet]
+        public ActionResult CreateChannelReport(PARAMETER_BUSINESS para)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
@@ -52,9 +62,19 @@ namespace T41.Areas.Admin.Controllers
             return View(returnusermanagement);
         }
 
-        //Phần controller xử lý để sửa dữ liệu dưới database
+        //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE_OA dưới database
         [HttpGet]
-        public ActionResult EditUserReport(PARAMETER_BUSINESS business)
+        public ActionResult EditUserReport(PARAMETER_BUSINESS_OA business)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+            returnusermanagement = usermanagementRepository.EditBusinessProfile_OA(business);
+            return View(returnusermanagement);
+        }
+
+        //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE_OA dưới database
+        [HttpGet]
+        public ActionResult EditChannelReport(PARAMETER_BUSINESS business)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
@@ -62,8 +82,30 @@ namespace T41.Areas.Admin.Controllers
             return View(returnusermanagement);
         }
 
-        //Phần controller xử lý để xóa dữ liệu người dùng theo ID
+        //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE dưới database
+        [HttpGet]
+        public ActionResult GET_DATA_BUSINESS_PROFILE(int get_data_id)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+            returnusermanagement = usermanagementRepository.GET_DATA_BUSINESS_PROFILE(get_data_id);
+            return Json(returnusermanagement.ListUserManagement_BP_Report, JsonRequestBehavior.AllowGet);
+            
+            //return Json(returnquality, JsonRequestBehavior.AllowGet);
+
+        }
+
+        //Phần controller xử lý để xóa dữ liệu người dùng theo ID trong bảng BUSINESS_PROFILE_OA
         public ActionResult DeleteUserReport(int delete_id)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+            returnusermanagement = usermanagementRepository.DeleteBusinessProfile_OA(delete_id);
+            return View(returnusermanagement);
+        }
+
+        //Phần controller xử lý để xóa dữ liệu người dùng theo ID trong bảng BUSINESS_PROFILE
+        public ActionResult DeleteChannelReport(int delete_id)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
@@ -75,6 +117,10 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult CreateChannel()
+        {
+            return View();
+        }
 
         public ActionResult EditUser()
         {
@@ -86,7 +132,7 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        //Phần show ra dữ liệu của bảng người dùng
+        //Phần show ra dữ liệu của bảng BUSINESS_PROFILE_OA
         public ActionResult ListDetailedUserManagementReport(int? page, int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
@@ -101,12 +147,21 @@ namespace T41.Areas.Admin.Controllers
             
         }
 
-        //Phần controller show ra dữ liệu theo ID người dùng
-        public ActionResult ListDetailed_ID_UserManagementReport(int edit_id)
+        //Phần controller show ra dữ liệu theo ID người dùng bảng BUSINESS_PROFILE_OA
+        public ActionResult EDIT_ID_BP_OA_UserManagementReport(int edit_id)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.ID_USER_MANAGEMENT_DETAIL(edit_id);
+            returnusermanagement = usermanagementRepository.ID_BUSINESS_PROFILE_OA_DETAIL(edit_id);
+            return View(returnusermanagement);
+        }
+
+        //Phần controller show ra dữ liệu theo ID người dùng bảng BUSINESS_PROFILE
+        public ActionResult ListDetailed_ID_BP_UserManagementReport(int customer_id)
+        {
+            UserManagementRepository usermanagementRepository = new UserManagementRepository();
+            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+            returnusermanagement = usermanagementRepository.ID_BUSINESS_PROFILE_DETAIL(customer_id);
             return View(returnusermanagement);
         }
 

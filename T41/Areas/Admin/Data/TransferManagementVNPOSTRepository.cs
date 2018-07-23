@@ -53,7 +53,7 @@ namespace T41.Areas.Admin.Data
         #endregion
 
         #region GetAllPOSCODE
-        //Lấy mã bưu cục phát dưới DB Procedure Detail_DeliveryPosCode_Ems , phần GETALLPOSCODE này đã được get; set; trong data model Qualty Delivery
+        //Lấy mã bưu cục phát dưới DB Procedure GetPosCode_Vnpost 
         public IEnumerable<GETCRPOSCODE> GetCRPOSCODE(int province)
         {
             List<GETCRPOSCODE> listGetPosCode = null;
@@ -64,7 +64,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cm = new OracleCommand())
                 {
                     cm.Connection = Helper.OraDCOracleConnection;
-                    cm.CommandText = Helper.SchemaName + "transfer_management_ems.GetPosCode_Ems";
+                    cm.CommandText = Helper.SchemaName + "transfer_management_ems.GetPosCode_Vnpost";
                     cm.CommandType = CommandType.StoredProcedure;
 
                     cm.Parameters.Add(new OracleParameter("v_Province", OracleDbType.Int32)).Value = province;

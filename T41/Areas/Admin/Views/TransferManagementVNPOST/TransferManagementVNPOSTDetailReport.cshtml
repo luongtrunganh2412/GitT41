@@ -300,7 +300,7 @@
     //Phần lấy dữ liệu tỉnh đóng
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -317,7 +317,7 @@
     //Phần lấy dữ liệu tỉnh Nhận
     $(document).ready(function () {
 
-        $.getJSON("/TransferManagement/ProvinceCode", function (data) {
+        $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
             $.each(data, function (i, data) {
 
                 $('<option>',
@@ -334,7 +334,7 @@
     //Lần đầu load bưu cục đóng = HN
 
     $.ajax({
-        url: "/TransferManagement/PosCode",
+        url: "/TransferManagementVNPOST/PosCode",
         dataType: "json",
         data: { province:0 },
         success: function (data) {
@@ -350,7 +350,7 @@
     $(document).ready(function () {
         $('#fromprovince').change(function () {
             $.ajax({
-                url: "/TransferManagement/PosCode",
+                url: "/TransferManagementVNPOST/PosCode",
                 beforeSend: function () {
                     $('.loading-element-fromprovince').show();
                 },
@@ -372,7 +372,7 @@
     //Lần đầu load bưu cục nhận = HN
 
     $.ajax({
-        url: "/TransferManagement/PosCode",
+        url: "/TransferManagementVNPOST/PosCode",
         dataType: "json",
         data: { province: 0 },
         success: function (data) {
@@ -388,7 +388,7 @@
     $(document).ready(function () {
         $('#toprovince').change(function () {
             $.ajax({
-                url: "/TransferManagement/PosCode",
+                url: "/TransferManagementVNPOST/PosCode",
                 beforeSend: function () {
                     $('.loading-element-toprovince').show();
                 },
