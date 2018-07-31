@@ -143,6 +143,7 @@ namespace T41.Areas.Admin.Data
                             //oQualityDeliveryDetail.BuuCuc = Convert.ToInt32(dr["BUUCUC"].ToString());
                             oQualityDeliveryDetail.BuuCuc = dr["BUUCUC"].ToString();
                             oQualityDeliveryDetail.TenBuuCuc = dr["TENBUUCUC"].ToString();
+                            oQualityDeliveryDetail.TongSLHub = dr["TONGSLHUB"].ToString();
                             oQualityDeliveryDetail.TongSL = Convert.ToInt32(dr["TONGSL"].ToString());
                             oQualityDeliveryDetail.SanLuongPTC = Convert.ToInt32(dr["SANLUONGPTC"].ToString());
                             oQualityDeliveryDetail.SanLuongPTC6H = Convert.ToInt32(dr["SANLUONGPTC6H"].ToString());

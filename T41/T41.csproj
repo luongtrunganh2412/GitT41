@@ -197,6 +197,7 @@
     <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExpressRoadController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusinessManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\TotalDataCustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Areas\Admin\Controllers\TrackingOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\TransferManagementVNPOSTController.cs" />
     <Compile Include="Areas\Admin\Controllers\TransferManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SaleUserManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
     <Compile Include="Areas\Admin\Data\AirwaytransportComeManagementRepository.cs" />
@@ -227,9 +229,11 @@
     <Compile Include="Areas\Admin\Data\DetailBD13Repository.cs" />
     <Compile Include="Areas\Admin\Data\AirwaytransportManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\ExpressRoadRepository.cs" />
+    <Compile Include="Areas\Admin\Data\BusinessManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TrackingOrderRepository.cs" />
     <Compile Include="Areas\Admin\Data\TotalDataCustomerRepository .cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementVNPOSTRepository.cs" />
+    <Compile Include="Areas\Admin\Data\SaleUserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\UserManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TransferManagementRepository.cs" />
     <Compile Include="Areas\Admin\Data\TimeKeepingRepository.cs" />
@@ -251,6 +255,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\QualityDelivery.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\ExpressRoad.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\BusinessManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TrackingOrder.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TotalDataCustomer.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement_VNPOST.cs" />
@@ -258,6 +263,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\TimeKeeping.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\DetailBD13.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwaytransportManagement.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\SaleUserManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\UserManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3249,6 +3255,10 @@
     <Content Include="Areas\Admin\Views\ExpressRoad\ListDetailedExpressRoadReport.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\EditChannelReport.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\DeleteChannelReport.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleUserManagement\ListDetailedSaleUserManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleUserManagement\SaleUserManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessManagement\ListDetailedBusinessManagementReport.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessManagement\BusinessManagementDetailReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

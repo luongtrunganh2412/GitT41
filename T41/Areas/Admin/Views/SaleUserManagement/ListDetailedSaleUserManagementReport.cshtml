@@ -1,0 +1,30 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListSaleUserManagement_Report != null)
+{
+    
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListSaleUserManagement_Report)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@c.ID_NGUOI_DUNG</td>
+            <td>@c.ID_DON_VI</td>
+            <td>@c.HO_TEN</td>
+            <td>@c.CHUC_VU</td>
+            <td>@c.DIEN_THOAI </td>
+            <td>@c.EMAIL</td>
+        </tr>
+        i++;
+
+    }
+
+}
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />
+
+

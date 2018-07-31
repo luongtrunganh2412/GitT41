@@ -1,0 +1,186 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
+@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
+<!-- bootstrap datepicker -->
+@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
+<!-- Bootstrap Color Picker -->
+@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
+<title>Quản Lý Nhân Viên Kinh Doanh</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quản Lý Nhân Viên Kinh Doanh</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>ID Người Dùng:</label>
+                        <input type="text" id="InputIDNguoiDung" class="form-control" placeholder="Search for names.." title="Type in a name">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label> ID Đơn Vị:</label>
+                        <select class="form-control select2" style="width: 100%;" id="InputIDDonVi">
+                            <option selected="selected" value="0">Tất Cả</option>
+                            <option value="100000">HN</option>
+                            <option value="550000">ĐN</option>
+                            <option value="700000">HCM</option>
+                            <option value="736108">HCM 1 </option>
+                            <option value="736115">HCM 2 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Điện Thoại:</label>
+                    <input type="text" id="InputTel" class="form-control" placeholder="Search for tel.." title="Type in a tel">
+                </div>
+                <div class="col-md-3">
+                    <label>Email:</label>
+                    <input type="text" id="InputMail" class="form-control" placeholder="Search for email.." title="Type in a email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="box-header">
+                <h3 class="box-title">Bảng quản lý người dùng</h3>
+            </div>
+            <div class="col-md-12">
+                <div style="overflow-x:auto;">
+                    <table id="myTable" class="table table-bordered table-hover">
+
+                        <thead>
+                            <tr class="bg-light-blue color-palette">
+                                <th class="text-center">STT</th>
+                                <th class="text-center">ID Người Dùng</th>
+                                <th class="text-center">ID Đơn Vị</th>
+                                <th class="text-center">Họ Tên</th>
+                                <th class="text-center">Chức Vụ</th>
+                                <th class="text-center">Điện Thoại</th>
+                                <th class="text-center">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list_user">
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div id="page-selection" class="col-sm-12 text-center">
+                </div>
+            </div>
+
+
+            
+
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+
+
+</section>
+
+<script type="text/javascript">
+
+    $("#btnreport").click(function () {
+        $("#list_user tr").remove();
+        detail_user_search(1);
+    });
+
+
+    //Phần JS gọi đến dữ liệu của chi tiết người dùng
+    function detail_user_search(p) {
+        var id_nguoi_dung;
+        var id_don_vi;
+        var dien_thoai;
+        var email;
+
+        if (document.getElementById('InputIDNguoiDung').value == ""
+        || document.getElementById('InputIDNguoiDung').value == undefined) {
+            id_nguoi_dung = 0;
+        }
+        else {
+            id_nguoi_dung = document.getElementById('InputIDNguoiDung').value;
+        }
+
+        var id_don_vi = document.getElementById('InputIDDonVi').value;
+        
+        if (document.getElementById('InputTel').value == ""
+            || document.getElementById('InputTel').value == undefined) {
+            dien_thoai = 0;
+        }
+        else {
+            dien_thoai = document.getElementById('InputTel').value;
+        }
+
+        if (document.getElementById('InputMail').value == ""
+            || document.getElementById('InputMail').value == undefined) {
+            email = 0;
+        }
+        else {
+            email = document.getElementById('InputMail').value;
+        }
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedSaleUserManagementReport", "SaleUserManagement")',
+            method: 'GET',
+            dataType: 'html',
+            data: {
+                page: p,
+                id_nguoi_dung: id_nguoi_dung,
+                id_don_vi: id_don_vi,
+                dien_thoai: dien_thoai,
+                email: email,
+            },
+            success: function (result) {
+                $('#list_user').html(result);
+                if (p == 1) refreshPaging();
+            }
+        })
+    }
+
+    //Phần Phân Trang
+    function refreshPaging() {
+        $('#page-selection').bootpag({
+            total: $('#total_page').val(),
+            maxVisible: 10,
+        }).on("page", function (event, /* page number here */ num) {
+            detail_user_search(num);
+        });
+    }
+
+</script>
+
+
+
+
+
+
+

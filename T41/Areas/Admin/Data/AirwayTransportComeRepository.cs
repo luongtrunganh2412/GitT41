@@ -61,7 +61,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA1", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA1", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -157,7 +157,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA2", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA2", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -254,7 +254,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA3", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA3", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -351,7 +351,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA4", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA4", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -448,7 +448,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA5", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA5", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -545,7 +545,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA6", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA6", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -642,7 +642,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA7", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA7", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -739,7 +739,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA8", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA8", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -836,7 +836,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA9", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA9", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -933,7 +933,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA10", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA10", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1030,7 +1030,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA11", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA11", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1127,7 +1127,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA12", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA12", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1224,7 +1224,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA13", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA13", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1321,7 +1321,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA14", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA14", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1418,7 +1418,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA15", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA15", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1515,7 +1515,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA16", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA16", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1612,7 +1612,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA17", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA17", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1709,7 +1709,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA18", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA18", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1806,7 +1806,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA19", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA19", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1903,7 +1903,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA20", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA20", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;

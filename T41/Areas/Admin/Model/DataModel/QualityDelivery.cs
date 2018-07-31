@@ -38,6 +38,7 @@ namespace T41.Areas.Admin.Models.DataModel
         //public int BuuCuc { get; set; }
         public String BuuCuc { get; set; }
         public String TenBuuCuc { get; set; }
+        public String TongSLHub { get; set; }
         public int TongSL { get; set; }
         public int SanLuongPTC { get; set; }
         public int SanLuongPTC6H { get; set; }
