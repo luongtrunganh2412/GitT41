@@ -68,6 +68,11 @@
                 <h3 class="box-title">Bảng quản lý người dùng</h3>
             </div>
             <div class="col-md-12">
+                <a href="/Admin/SaleUserManagement/CreateSaleUser" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span> Create</a>
+                @*<p data-placement="top" data-toggle="tooltip" title="Add"><button class="btn btn-info btn-md" data-title="Add" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span></button></p>*@
+            </div>
+
+            <div class="col-md-12">
                 <div style="overflow-x:auto;">
                     <table id="myTable" class="table table-bordered table-hover">
 
@@ -80,6 +85,7 @@
                                 <th class="text-center">Chức Vụ</th>
                                 <th class="text-center">Điện Thoại</th>
                                 <th class="text-center">Email</th>
+                                <th class="text-center">Edit/Delete</th>
                             </tr>
                         </thead>
                         <tbody id="list_user">

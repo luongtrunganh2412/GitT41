@@ -17,10 +17,55 @@
             <td>@c.CHUC_VU</td>
             <td>@c.DIEN_THOAI </td>
             <td>@c.EMAIL</td>
+            <td>
+                <div class="col-md-2">
+                    <a href="/Admin/SaleUserManagement/ID_SALE_USER_MANAGEMENT_DETAIL/?id=@c.ID_NGUOI_DUNG" target="_blank" class="btn btn-primary btn-md" rel="@c.ID_NGUOI_DUNG" id="btnreportedit" ><span class="glyphicon glyphicon-pencil"></span></a>
+                </div>
+                <div class="col-md-2 col-md-offset-2">
+                    <button type="button" class="btn btn-danger btn-lrg ajax" id="btnreportdelete" rel="@c.ID_NGUOI_DUNG" ><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+            </td>
         </tr>
         i++;
 
     }
+    <script>
+
+    $(document).ready(function () {
+        $('[id*=btnreportdelete]').click(function (e) {
+            var delete_id = $(this).attr('rel');
+            //alert(delete_id);
+            if (confirm("Bạn có muốn xóa không ?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteNguoiDungSaleProfile", "SaleUserManagement")',
+                    dataType: "html",
+                    data:
+                     {
+                         delete_id: delete_id
+
+                     },
+                    success: function (result) {
+                        alert("Xóa Thành Công");
+                        location.reload();
+                        //setTimeout(function () {
+                        //        location.reload();
+                        //    }, 3000
+                        //);
+
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+            else {
+
+            }
+        });
+    });
+
+
+    </script>
 
 }
 <input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />

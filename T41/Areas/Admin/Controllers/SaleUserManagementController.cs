@@ -24,6 +24,15 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult CreateSaleUser()
+        {
+            return View();
+        }
+
+        public ActionResult ID_SALE_USER_MANAGEMENT_DETAIL()
+        {
+            return View();
+        }
         [HttpGet]
         //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE
         public ActionResult ListDetailedSaleUserManagementReport(int? page, int id_nguoi_dung, int id_don_vi, int dien_thoai, string email)
@@ -39,8 +48,50 @@ namespace T41.Areas.Admin.Controllers
             return View(returnsaleusermanagement);
 
         }
+        
+        //Phần controller xử lý để thêm dữ liệu vào bảng nguoi_dung_sale dưới database
+        [HttpGet]
+        public ActionResult CreatNguoiDungSaleProfile(PARAMETER_NGUOI_DUNG_SALE para)
+        {
+            SaleUserManagementRepository saleusermanagementRepository = new SaleUserManagementRepository();
+            ReturnSaleUserManagement returnsaleusermanagement = new ReturnSaleUserManagement();
+            returnsaleusermanagement = saleusermanagementRepository.CreatNguoiDungSaleProfile(para);
+            return RedirectToAction("SaleUserManagementDetailReport");
+            //return View(returnsaleusermanagement);
+        }
 
+        //Phần controller xử lý để lấy dữ liệu bảng nguoi_dung_sale theo ID
+        [HttpGet]
+        public JsonResult GetNguoiDungSaleProfile(int id_nguoi_dung)
+        {
+            SaleUserManagementRepository saleusermanagementRepository = new SaleUserManagementRepository();
+            ReturnSaleUserManagement returnsaleusermanagement = new ReturnSaleUserManagement();
+            returnsaleusermanagement = saleusermanagementRepository.SALE_USER_MANAGEMENT_BYID_DETAIL(id_nguoi_dung);
+            return Json(returnsaleusermanagement.ListSaleUserManagement_Report, JsonRequestBehavior.AllowGet);
+            
+        }
 
+        //Phần controller xử lý để sửa dữ liệu vào bảng nguoi_dung_sale dưới database
+        [HttpGet]
+        public ActionResult EditNguoiDungSaleProfile(PARAMETER_NGUOI_DUNG_SALE para)
+        {
+            SaleUserManagementRepository saleusermanagementRepository = new SaleUserManagementRepository();
+            ReturnSaleUserManagement returnsaleusermanagement = new ReturnSaleUserManagement();
+            returnsaleusermanagement = saleusermanagementRepository.EditNguoiDungSaleProfile(para);
+            return RedirectToAction("SaleUserManagementDetailReport");
+            
+        }
+
+        //Phần controller xử lý để xóa dữ liệu vào bảng nguoi_dung_sale dưới database
+        [HttpGet]
+        public ActionResult DeleteNguoiDungSaleProfile(int delete_id)
+        {
+            SaleUserManagementRepository saleusermanagementRepository = new SaleUserManagementRepository();
+            ReturnSaleUserManagement returnsaleusermanagement = new ReturnSaleUserManagement();
+            returnsaleusermanagement = saleusermanagementRepository.DeleteNguoiDungSaleProfile(delete_id);
+            return RedirectToAction("SaleUserManagementDetailReport");
+
+        }
 
     }
 }

@@ -3259,6 +3259,8 @@
     <Content Include="Areas\Admin\Views\SaleUserManagement\SaleUserManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessManagement\ListDetailedBusinessManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessManagement\BusinessManagementDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleUserManagement\CreateSaleUser.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleUserManagement\ID_SALE_USER_MANAGEMENT_DETAIL.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

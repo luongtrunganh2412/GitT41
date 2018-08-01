@@ -30,17 +30,37 @@ namespace T41.Areas.Admin.Controllers
             return View();
 
         }
+        //Controller lấy dữ liệu đơn vị
+        public JsonResult UnitCode()
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            return Json(businessmanagementRepository.GETUNIT(), JsonRequestBehavior.AllowGet);
+        }
+
+        //Controller lấy dữ liệu dịch vụ
+        public JsonResult ServiceCode()
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            return Json(businessmanagementRepository.GETSERVICE(), JsonRequestBehavior.AllowGet);
+        }
+
+        //Controller lấy dữ liệu bưu cục
+        public JsonResult PosCode(int id_don_vi)
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            return Json(businessmanagementRepository.GET_BM_POSCODE(id_don_vi), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE
-        public ActionResult ListDetailedBusinessManagementReport(int? page)
+        public ActionResult ListDetailedBusinessManagementReport(int? page , int ma_don_vi, int ma_bc_khai_thac)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
             ViewBag.currentPageIndex = currentPageIndex;
             ViewBag.PageSize = page_size;
             BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
             ReturnBusinessManagement returnbusinessmanagement = new ReturnBusinessManagement();
-            returnbusinessmanagement = businessmanagementRepository.BUSINESS_MANAGEMENT_Detail(page_size, currentPageIndex);
+            returnbusinessmanagement = businessmanagementRepository.BUSINESS_MANAGEMENT_Detail(page_size, currentPageIndex, ma_don_vi, ma_bc_khai_thac);
             ViewBag.total = returnbusinessmanagement.Total;
             ViewBag.total_page = (returnbusinessmanagement.Total + page_size - 1) / page_size;
             return View(returnbusinessmanagement);

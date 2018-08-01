@@ -1,0 +1,365 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+
+<title>Edit</title>
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Edit</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+
+        <!-- /.box-header -->
+        <div class="box-body" id="list_id_user">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ID_NGUOI_DUNG">Mã Người Dùng:</label>
+                            @*<label id="ID_NGUOI_DUNG_ERROR" style="color:#ff0000">Vui Lòng Nhập Mã Người Dùng</label>*@
+                            <input class="form-control " type="text" id="ID_NGUOI_DUNG" disabled="disabled">
+                        </div>
+                        <div class="form-group">
+                            <label for="ID_DON_VI">Mã Đơn Vị:</label>
+                            <label id="ID_DON_VI_ERROR" style="color:#ff0000">Vui Lòng Nhập Mã Đơn Vị</label>
+                            <input class="form-control " type="text" id="ID_DON_VI" disabled="disabled" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                        </div>
+                        <div class="form-group">
+                            <label for="HO_TEN">Họ Và Tên:</label>
+                            <label id="HO_TEN_ERROR" style="color:#ff0000">Vui Lòng Nhập Họ Và Tên</label>
+                            <input class="form-control " type="text" id="HO_TEN">
+                        </div>
+                        <div class="form-group">
+                            <label for="CHUC_VU">Chức Vụ:</label>
+                            <label id="CHUC_VU_ERROR" style="color:#ff0000">Vui Lòng Nhập Chức Vụ</label>
+                            <input class="form-control " type="text" id="CHUC_VU">
+                        </div>
+                        <div class="form-group">
+                            <label for="DIEN_THOAI">Số Điện Thoại</label>
+                            <label id="DIEN_THOAI_ERROR" style="color:#ff0000">Vui Lòng Nhập Số Điện Thoại</label>
+                            <input class="form-control " type="text" id="DIEN_THOAI" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                        </div>
+                        <div class="form-group">
+                            <label for="EMAIL">Email:</label>
+                            <label id="EMAIL_ERROR" style="color:#ff0000">Vui Lòng Nhập Email</label>
+                            <label id="CHECK_EMAIL" style="color:#0094ff">Vui Lòng Nhập Email Đúng Định Dạng</label>
+                            <input class="form-control " type="text" id="EMAIL" onkeyup="checkEmail('EMAIL')">
+                        </div>
+                        @*<div class="form-group">
+                            <label for="ID_NHAN_VIEN">Mã Nhân Viên</label>
+                            <label id="ID_NHAN_VIEN_ERROR" style="color:#ff0000">Vui Lòng Nhập Mã Nhân Viên</label>
+                            <input class="form-control " type="text" id="ID_NHAN_VIEN" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                        </div>*@
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+
+
+
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="/Admin/SaleUserManagement/SaleUserManagementDetailReport" class="btn btn-default btn-md"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btn-md" id="btnreportedit"><span class="glyphicon glyphicon-plus"></span>Edit </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+            <!-- /.box-body -->
+
+
+
+</section>
+<script type="text/javascript">
+    var url_string = document.URL;
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    
+
+    $(document).ready(function () {
+
+        detail_id_user();
+
+    });
+
+    //Phần JS gọi đến dữ liệu của bảng business_profile_oa
+    function detail_id_user() {
+        $.ajax({
+            url: "/SaleUserManagement/GetNguoiDungSaleProfile",
+            medthod: 'GET',
+            dataType: 'json',
+            data: {
+                id_nguoi_dung: id
+            },
+            success: function (data) {
+                jQuery.each(data, function (i, val) {
+                    $('#ID_NGUOI_DUNG').val(val.ID_NGUOI_DUNG);
+                    $('#ID_DON_VI').val(val.ID_DON_VI);
+                    $('#HO_TEN').val(val.HO_TEN);
+                    $('#CHUC_VU').val(val.CHUC_VU);
+                    $('#DIEN_THOAI').val(val.DIEN_THOAI);
+                    $('#EMAIL').val(val.EMAIL);
+                    $('#ID_NHAN_VIEN').val(val.ID_NHAN_VIEN);
+                });
+
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        })
+    }
+
+
+    function checkEmail(element) {
+        if ($("#" + element).val() != "") {
+            if (!validateEmail($("#" + element).val())) {
+                var emails = document.getElementById("EMAIL");
+                $("#EMAIL_ERROR").hide();
+                $("#CHECK_EMAIL").show();
+                emails.focus();
+                return false;
+            }
+        }
+        $("#CHECK_EMAIL").hide();
+        return true;
+    }
+
+
+
+    //function checkID_NGUOI_DUNG() {
+    //    if (document.getElementById('ID_NGUOI_DUNG').value == ""
+    //        || document.getElementById('ID_NGUOI_DUNG').value == undefined) {
+    //        $("#ID_NGUOI_DUNG_ERROR").show();
+    //        return false;
+    //    }
+    //    else {
+    //        return true;
+    //    }
+    //}
+
+    function checkID_DON_VI() {
+        if (document.getElementById('ID_DON_VI').value == ""
+            || document.getElementById('ID_DON_VI').value == undefined) {
+            $("#ID_DON_VI_ERROR").show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+    function checkHO_TEN() {
+        if (document.getElementById('HO_TEN').value == ""
+            || document.getElementById('HO_TEN').value == undefined) {
+            $("#HO_TEN_ERROR").show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+
+    function checkEMAIL() {
+        if (document.getElementById('EMAIL').value == ""
+            || document.getElementById('EMAIL').value == undefined) {
+            $("#EMAIL_ERROR").show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function checkCHUC_VU() {
+        if (document.getElementById('CHUC_VU').value == ""
+            || document.getElementById('CHUC_VU').value == undefined) {
+            $("#CHUC_VU_ERROR").show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function checkDIEN_THOAI() {
+        if (document.getElementById('DIEN_THOAI').value == ""
+            || document.getElementById('DIEN_THOAI').value == undefined) {
+            $("#DIEN_THOAI_ERROR").show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    //function checkID_NHAN_VIEN() {
+    //    if (document.getElementById('ID_NHAN_VIEN').value == ""
+    //        || document.getElementById('ID_NHAN_VIEN').value == undefined) {
+    //        $("#ID_NHAN_VIEN_ERROR").show();
+    //        return false;
+    //    }
+    //    else {
+    //        return true;
+    //    }
+    //}
+
+
+
+
+
+    $(document).ready(function () {
+        $("#CHECK_EMAIL").hide();
+
+        $("#ID_NGUOI_DUNG_ERROR").hide();
+
+        $("#ID_DON_VI_ERROR").hide();
+
+        $("#HO_TEN_ERROR").hide();
+
+        $("#CHUC_VU_ERROR").hide();
+
+        $("#EMAIL_ERROR").hide();
+
+        $("#DIEN_THOAI_ERROR").hide();
+
+        $("#ID_NHAN_VIEN_ERROR").hide();
+
+    });
+
+    $("#btnreportedit").on('click', function () {
+
+
+        if (checkID_DON_VI() == true && checkHO_TEN() == true && checkEMAIL() == true && checkCHUC_VU() == true && checkDIEN_THOAI() == true) {
+            detail();
+        }
+
+        //if (checkID_NGUOI_DUNG() == true) {
+        //    $("#ID_NGUOI_DUNG_ERROR").hide();
+        //}
+        //else {
+        //    $("#ID_NGUOI_DUNG_ERROR").show();
+
+        //}
+
+        if (checkID_DON_VI() == true) {
+            $("#ID_DON_VI_ERROR").hide();
+        }
+        else {
+            $("#ID_DON_VI_ERROR").show();
+
+        }
+
+
+        if (checkHO_TEN() == true) {
+            $("#HO_TEN_ERROR").hide();
+        }
+        else {
+            $("#HO_TEN_ERROR").show();
+
+        }
+
+
+        if (checkEMAIL() == true) {
+            $("#EMAIL_ERROR").hide();
+        }
+        else {
+            $("#EMAIL_ERROR").show();
+
+        }
+
+        if (checkCHUC_VU() == true) {
+            $("#CHUC_VU_ERROR").hide();
+        }
+        else {
+            $("#CHUC_VU_ERROR").show();
+
+        }
+
+        if (checkDIEN_THOAI() == true) {
+            $("#DIEN_THOAI_ERROR").hide();
+        }
+        else {
+            $("#DIEN_THOAI_ERROR").show();
+
+        }
+
+        //if (checkID_NHAN_VIEN() == true) {
+        //    $("#ID_NHAN_VIEN_ERROR").hide();
+        //}
+        //else {
+        //    $("#ID_NHAN_VIEN_ERROR").show();
+
+        //}
+
+
+    });
+
+
+    //Phần dữ liệu chi tiết người dùng nhập vào
+    function detail() {
+        $.ajax({
+            url: '@Url.Action("EditNguoiDungSaleProfile", "SaleUserManagement")',
+            method: 'GET',
+            dataType: 'html',
+            data:
+                {
+
+                    ID_NGUOI_DUNG: $('#ID_NGUOI_DUNG').val(),
+
+                    HO_TEN: $('#HO_TEN').val(),
+
+                    CHUC_VU: $('#CHUC_VU').val(),
+
+                    DIEN_THOAI: $('#DIEN_THOAI').val(),
+
+                    EMAIL: $('#EMAIL').val(),
+
+                },
+            success: function (result) {
+                alert("Sửa Người Dùng Thành Công");
+                //setTimeout(function () {
+                //    location.reload();
+                //}, 3000
+                //);
+
+
+            }
+        })
+    }
+</script>
+
+
+
+
+
+
+
+
+

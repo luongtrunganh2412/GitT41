@@ -14,6 +14,7 @@
             <td class="text-center">@c.NGAY_HD</td>
             <td>@c.MA_KH</td>
             <td>@c.TEN_KHACH_HANG</td>
+            <td>@c.Ma_NV_Sale</td>
             <td class="text-center">@c.MA_BC_KHAI_THAC</td>
             <td class="text-right">@c.TONG_SO </td>
             <td class="text-right">@c.TONG_KHOI_LUONG_QD</td>
@@ -30,6 +31,13 @@
 
     }
 
+}
+else
+{
+    <script type="text/javascript">
+        alert("Không Có Dữ Liệu");
+    </script>
+    
 }
 <input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
 <input type="hidden" id="total_page" value="@ViewBag.total_page" />

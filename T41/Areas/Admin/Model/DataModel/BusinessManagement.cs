@@ -5,14 +5,41 @@ using System.Web;
 
 namespace T41.Areas.Admin.Model.DataModel
 {
+    //Phần lấy dữ liệu đơn vị
+    public class GETUNIT
+    {
 
-    
+        public String UNIT_CODE { get; set; }
+        public String UNIT_NAME { get; set; }
+
+    }
+
+
+    //Phần lấy dữ liệu dịch vụ
+    public class GETSERVICE
+    {
+
+        public String SERVICE_CODE { get; set; }
+        public String SERVICE_NAME { get; set; }
+
+    }
+
+    //Phần lấy dữ liệu bưu cục
+    public class GET_BM_POSCODE
+    {
+
+        public String POS_CODE { get; set; }
+        public String POS_NAME { get; set; }
+
+    }
+
     //Phần lấy dữ liệu của bảng business_profile
     public class BUSINESS_MANAGEMENT_Detail
     {
         public String NGAY_HD { get; set; }
         public String MA_KH { get; set; }
         public String TEN_KHACH_HANG { get; set; }
+        public String Ma_NV_Sale { get; set; }
         public String MA_BC_KHAI_THAC { get; set; }
         public String TONG_SO { get; set; }
         public String TONG_KHOI_LUONG_QD { get; set; }

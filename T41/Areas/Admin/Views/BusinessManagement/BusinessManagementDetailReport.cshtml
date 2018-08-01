@@ -14,6 +14,16 @@
 <!-- Bootstrap Color Picker -->
 @*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
 
+<style>
+    .table > thead > tr > td {
+    padding: 0px;
+    }
+
+    
+    .divcolor {
+    padding:8px !important;
+    }
+</style>
 <title>Báo cáo chi tiết theo khách hàng</title>
 <section class="content">
     <div class="box box-default">
@@ -37,6 +47,12 @@
                             <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Bưu Cục </label>
+                        <select class="form-control select2" style="width: 100%;" id="posoffice">
+                            <option selected="selected" value="0">Tất cả</option>
+                        </select>
+                    </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label>Mã Nhân Viên Kinh Doanh</label>
@@ -57,8 +73,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Bưu Cục </label>
-                        <select class="form-control select2" style="width: 100%;" id="buucuc">
+                        <label>Mã Khách Hàng</label>
+                        <select class="form-control select2" style="width: 100%;" id="makh">
                             <option selected="selected" value="0">Tất cả</option>
                         </select>
                     </div>
@@ -66,19 +82,15 @@
                 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Dịch Vụ</label>
-                        <select class="form-control select2" style="width: 100%;" id="service">
-                            <option selected="selected" value="10">Tất Cả</option>
-                            <option value="0">EMS Thường</option>
-                            <option value="1">COD</option>
-                            <option value="2">Hỏa Tốc</option>
-                            <option value="3">PT9</option>
+                        <label>Đơn Vị</label>
+                        <select class="form-control select2" style="width: 100%;" id="unit">
+                            @*<option selected="selected" value="0">Tất Cả</option>*@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Mã Khách Hàng</label>
-                        <select class="form-control select2" style="width: 100%;" id="makh">
-                            <option selected="selected" value="0">Tất cả</option>
+                        <label>Dịch Vụ</label>
+                        <select class="form-control select2" style="width: 100%;" id="service">
+                            <option selected="selected" value="0">Tất Cả</option>
                         </select>
                     </div>
                 </div>
@@ -102,22 +114,56 @@
             <div style="overflow-x:auto;">
                 <table id="example1" class="table table-bordered table-hover">
                     <thead>
-                        <tr class="bg-light-blue color-palette">
-                            <th class="text-center">STT</th>
-                            <th class="text-center">Ngày HĐ</th>
-                            <th class="text-center">Mã Khách Hàng</th>
-                            <th class="text-center">Tên Khách Hàng</th>
-                            <th class="text-center">Mã Bưu Cục</th>
-                            <th class="text-center">Tổng Số Bưu Gửi</th>
-                            <th class="text-center">Tổng Khối Lượng QĐ(g)</th>
-                            <th class="text-center">Tổng Cước Chính(đ)</th>
-                            <th class="text-center">Tổng Cước Dịch Vụ(đ)</th>
-                            <th class="text-center">Tổng Cước COD(đ)</th>
-                            <th class="text-center">VAT(đ)</th>
-                            <th class="text-center">Tổng Cước E1(đ)</th>
-                            <th class="text-center">Chiết Khấu</th>
-                            <th class="text-center">Trích Thưởng</th>
-                            <th class="text-center">Tổng Nợ(đ)</th>
+                        @*<tr class="bg-light-blue color-palette">*@
+                        <tr>
+                            <td class="text-center">
+                               <div class="bg-light-blue color-palette divcolor">STT</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Ngày HĐ</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Mã KH</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tên KH</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Mã NV Tiếp Thị</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Mã BC</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Số Bưu Gửi</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Khối Lượng QĐ(g)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Cước Chính(đ)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Cước Dịch Vụ(đ)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Cước COD(đ)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">VAT(đ)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Cước E1(đ)</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Chiết Khấu</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Trích Thưởng</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="bg-light-blue color-palette divcolor">Tổng Nợ(đ)</div>
+                            </td>
                         </tr>
                     </thead>
                     <tbody id="listbusinessmanagement"></tbody>
@@ -165,6 +211,71 @@
         detail_user_search(1);
     });
 
+    //Phần lấy dữ liệu đơn vị
+    $(document).ready(function () {
+
+        $.getJSON("/BusinessManagement/UnitCode", function (data) {
+            $.each(data, function (i, data) {
+                $('<option>',
+                           {
+                               value: data.UNIT_CODE,
+                               text: data.UNIT_NAME
+                           }).html(data.UNIT_CODE + '-' + data.UNIT_NAME).appendTo("#unit");
+            });
+        })
+
+    });
+
+    //Phần lấy dữ liệu dịch vụ
+    $(document).ready(function () {
+
+        $.getJSON("/BusinessManagement/ServiceCode", function (data) {
+            $.each(data, function (i, data) {
+        $('<option>',
+                   {
+                       value: data.SERVICE_CODE,
+                       text: data.SERVICE_NAME
+                   }).html(data.SERVICE_CODE + '-' + data.SERVICE_NAME).appendTo("#service");
+            });
+        })
+
+    });
+
+    //Phần lấy dữ liệu bưu cục
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "/BusinessManagement/PosCode",
+            dataType: "json",
+            data: { id_don_vi: 100000 },
+            success: function (data) {
+                $('#posoffice').html('<option value=0>Tất Cả </option>');
+                jQuery.each(data, function (i, val) {
+                    $('#posoffice').html($('#posoffice').html() +
+                        "<option value='" + val.POS_CODE + "'>" + val.POS_CODE + '-' + val.POS_NAME + "</option>");
+                });
+            }
+        })
+
+    });
+
+    //Sự kiện thay đổi mã bưu cục theo mã đơn vị
+    $(document).ready(function () {
+        $('#unit').change(function () {
+            $.ajax({
+                url: "/BusinessManagement/PosCode",
+                dataType: "json",
+                data: { id_don_vi: $("#unit").val() },
+                success: function (data) {
+                    $('#posoffice').html('<option value=0>Tất Cả </option>');
+                    jQuery.each(data, function (i, val) {
+                        $('#posoffice').html($('#posoffice').html() +
+                            "<option value='" + val.POS_CODE + "'>" + val.POS_CODE + '-' + val.POS_NAME + "</option>");
+                    });
+                }
+            });
+        })
+    });
 
     //Phần JS gọi đến dữ liệu của chi tiết người dùng
     function detail_user_search(p) {
@@ -178,6 +289,8 @@
             dataType: 'html',
             data: {
                 page: p,
+                ma_don_vi: $("#unit").val(),
+                ma_bc_khai_thac: $("#posoffice").val(),
             },
             success: function (result) {
                 $('#listbusinessmanagement').html(result);
