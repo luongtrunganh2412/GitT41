@@ -1,0 +1,76 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListSumBusinessManagement_Report != null)
+{
+    
+    int i = 0; 
+    foreach (var c in Model.ListSumBusinessManagement_Report)
+    {
+        <tr class="sumdivcolor text-center">
+            <th>
+                <div class="divcolor text-center text-center"><br />Tổng:</div>
+            </th>
+            <th class="text-center">
+                <div class="divcolor text-center"><br />&nbsp</div>
+            </th>
+            <th class="text-center">
+                <div class="divcolor text-center"><br />&nbsp</div>
+            </th>
+            <th class="text-center">
+                <div class="divcolor text-center"><br />&nbsp</div>
+            </th>
+            <th class="text-center">
+                <div class="divcolor text-center"><br />&nbsp</div>
+            </th>
+            <th class="text-center">
+                <div class="divcolor text-center"><br />&nbsp</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongSo</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongKLQD</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongCC</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongCuocDV</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongCuocCOD</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumVat</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongCuocE1</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumChietKhau</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />0</div>
+            </th>
+            <th class="text-right">
+                <div class="divcolor text-right"><br />@c.sumTongNo</div>
+            </th>
+        </tr>
+        i++;
+
+    }
+
+}
+else
+{
+    <script type="text/javascript">
+        alert("Không Có Dữ Liệu");
+    </script>
+    
+}
+
+
+

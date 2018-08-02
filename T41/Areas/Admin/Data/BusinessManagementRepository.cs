@@ -127,7 +127,7 @@ namespace T41.Areas.Admin.Data
         }
         #endregion
 
-        // Phần lấy dữ liệu từ bảng doikiem_kh_th_ngay và bảng Khach_Hang
+        // Phần lấy dữ liệu từ bảng doikiem_kh_th_ngay và bảng Khach_Hang ĐÃ PHÂN TRANG
         #region BUSINESS_MANAGEMENT_Detail          
         public ReturnBusinessManagement BUSINESS_MANAGEMENT_Detail(int page_size, int page_index,int ma_don_vi, int ma_bc_khai_thac )
         {
@@ -209,10 +209,167 @@ namespace T41.Areas.Admin.Data
         }
 
 
+        #endregion
+
+        // Phần lấy dữ liệu từ bảng doikiem_kh_th_ngay và bảng Khach_Hang CHƯA PHÂN TRANG
+        #region BUSINESS_MANAGEMENT_2_Detail          
+        public ReturnBusinessManagement BUSINESS_MANAGEMENT_2_Detail(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, int tu_ngay, int den_ngay)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnBusinessManagement _ReturnBusinessManagement = new ReturnBusinessManagement();
+
+            List<BUSINESS_MANAGEMENT_Detail> listBusinessManagementDetail = null;
+            BUSINESS_MANAGEMENT_Detail oBusinessManagementDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+
+                    OracleCommand myCommand = new OracleCommand("BUSINESS_MANAGEMENT.Detail_User", Helper.OraDCOracleConnection);
+                    //xử lý tham số truyền vào data table
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    myCommand.Parameters.Add("p_ID_DON_VI", OracleDbType.Int32).Value = ma_don_vi;
+                    myCommand.Parameters.Add("p_ID_BUU_CUC", OracleDbType.Int32).Value = ma_bc_khai_thac;
+                    myCommand.Parameters.Add("p_XD_KH", OracleDbType.Int32).Value = ngay_xac_dinh_khach_hang;
+                    myCommand.Parameters.Add("p_TU_NGAY", OracleDbType.Int32).Value = tu_ngay;
+                    myCommand.Parameters.Add("p_DEN_NGAY", OracleDbType.Int32).Value = den_ngay;
+                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+                    myCommand.ExecuteNonQuery();
+                    DataTableReader dr = da.CreateDataReader();
+                    if (dr.HasRows)
+                    {
+                        listBusinessManagementDetail = new List<BUSINESS_MANAGEMENT_Detail>();
+                        while (dr.Read())
+                        {
+                            oBusinessManagementDetail = new BUSINESS_MANAGEMENT_Detail();
+                            oBusinessManagementDetail.NGAY_HD = dr["NGAY_HD"].ToString();
+                            oBusinessManagementDetail.MA_KH = dr["MA_KH"].ToString();
+                            oBusinessManagementDetail.TEN_KHACH_HANG = dr["TEN_KHACH_HANG"].ToString();
+                            oBusinessManagementDetail.Ma_NV_Sale = dr["Ma_NV_Sale"].ToString();
+                            oBusinessManagementDetail.MA_BC_KHAI_THAC = dr["MA_BC_KHAI_THAC"].ToString();
+                            oBusinessManagementDetail.TONG_SO = dr["TONG_SO"].ToString();
+                            oBusinessManagementDetail.TONG_KHOI_LUONG_QD = dr["TONG_KHOI_LUONG_QD"].ToString();
+                            oBusinessManagementDetail.TONG_CUOC_CHINH = dr["TONG_CUOC_CHINH"].ToString();
+                            oBusinessManagementDetail.TONG_CUOC_DV = dr["TONG_CUOC_DV"].ToString();
+                            oBusinessManagementDetail.TONG_CUOC_COD = dr["TONG_CUOC_COD"].ToString();
+                            oBusinessManagementDetail.VAT = dr["VAT"].ToString();
+                            oBusinessManagementDetail.TONG_CUOC_E1 = dr["TONG_CUOC_E1"].ToString();
+                            oBusinessManagementDetail.CHIET_KHAU = dr["CHIET_KHAU"].ToString();
+                            oBusinessManagementDetail.TRICH_THUONG = dr["TRICH_THUONG"].ToString();
+                            oBusinessManagementDetail.TONG_NO = dr["TONG_NO"].ToString();
+                            listBusinessManagementDetail.Add(oBusinessManagementDetail);
+
+                        }
+                        _ReturnBusinessManagement.Code = "00";
+                        _ReturnBusinessManagement.Message = "Lấy dữ liệu thành công.";
+                        _ReturnBusinessManagement.ListBusinessManagement_Report = listBusinessManagementDetail;
+                    }
+                    else
+                    {
+                        _ReturnBusinessManagement.Code = "01";
+                        _ReturnBusinessManagement.Message = "Không có dữ liệu";
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _ReturnBusinessManagement.Code = "99";
+                _ReturnBusinessManagement.Message = "Lỗi xử lý dữ liệu";
+                //_returnQuality.Total = 0;
+                //_returnQuality.ListQualityDeliveryReport = null;
+            }
+            return _ReturnBusinessManagement;
+        }
+
 
         #endregion
 
-        
+        // Phần lấy dữ liệu từ bảng doikiem_kh_th_ngay và bảng Khach_Hang CHƯA PHÂN TRANG
+        #region SUM_BUSINESS_MANAGEMENT_Detail          
+        public ReturnBusinessManagement SUM_BUSINESS_MANAGEMENT_Detail(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, int tu_ngay, int den_ngay)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnBusinessManagement _ReturnBusinessManagement = new ReturnBusinessManagement();
+
+            List<SUM_BUSINESS_MANAGEMENT_Detail> listSumBusinessManagementDetail = null;
+            SUM_BUSINESS_MANAGEMENT_Detail oSumBusinessManagementDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    OracleCommand myCommand = new OracleCommand("BUSINESS_MANAGEMENT.List_Sum", Helper.OraDCOracleConnection);
+                    //xử lý tham số truyền vào data table
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    myCommand.Parameters.Add("p_ID_DON_VI", OracleDbType.Int32).Value = ma_don_vi;
+                    myCommand.Parameters.Add("p_ID_BUU_CUC", OracleDbType.Int32).Value = ma_bc_khai_thac;
+                    myCommand.Parameters.Add("p_XD_KH", OracleDbType.Int32).Value = ngay_xac_dinh_khach_hang;
+                    myCommand.Parameters.Add("p_TU_NGAY", OracleDbType.Int32).Value = tu_ngay;
+                    myCommand.Parameters.Add("p_DEN_NGAY", OracleDbType.Int32).Value = den_ngay;
+                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+                    myCommand.ExecuteNonQuery();
+                    DataTableReader dr = da.CreateDataReader();
+                    if (dr.HasRows)
+                    {
+                        listSumBusinessManagementDetail = new List<SUM_BUSINESS_MANAGEMENT_Detail>();
+                        while (dr.Read())
+                        {
+                            oSumBusinessManagementDetail = new SUM_BUSINESS_MANAGEMENT_Detail();
+                            oSumBusinessManagementDetail.sumTongSo = dr["sumTongSo"].ToString();
+                            oSumBusinessManagementDetail.sumTongKLQD = dr["sumTongKLQD"].ToString();
+                            oSumBusinessManagementDetail.sumTongCC = dr["sumTongCC"].ToString();
+                            oSumBusinessManagementDetail.sumTongCuocDV = dr["sumTongCuocDV"].ToString();
+                            oSumBusinessManagementDetail.sumTongCuocCOD = dr["sumTongCuocCOD"].ToString();
+                            oSumBusinessManagementDetail.sumVat = dr["sumVat"].ToString();
+                            oSumBusinessManagementDetail.sumTongCuocE1 = dr["sumTongCuocE1"].ToString();
+                            oSumBusinessManagementDetail.sumChietKhau = dr["sumChietKhau"].ToString();
+                            oSumBusinessManagementDetail.sumTongNo = dr["sumTongNo"].ToString();
+                            listSumBusinessManagementDetail.Add(oSumBusinessManagementDetail);
+
+                        }
+                        _ReturnBusinessManagement.Code = "00";
+                        _ReturnBusinessManagement.Message = "Lấy dữ liệu thành công.";
+                        _ReturnBusinessManagement.ListSumBusinessManagement_Report = listSumBusinessManagementDetail;
+                    }
+                    else
+                    {
+                        _ReturnBusinessManagement.Code = "01";
+                        _ReturnBusinessManagement.Message = "Không có dữ liệu";
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _ReturnBusinessManagement.Code = "99";
+                _ReturnBusinessManagement.Message = "Lỗi xử lý dữ liệu";
+                //_returnQuality.Total = 0;
+                //_returnQuality.ListQualityDeliveryReport = null;
+            }
+            return _ReturnBusinessManagement;
+        }
+
+
+        #endregion
+
     }
 
 

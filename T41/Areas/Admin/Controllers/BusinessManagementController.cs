@@ -52,7 +52,7 @@ namespace T41.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE
+        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE ĐÃ PHÂN TRANG
         public ActionResult ListDetailedBusinessManagementReport(int? page , int ma_don_vi, int ma_bc_khai_thac)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
@@ -63,6 +63,28 @@ namespace T41.Areas.Admin.Controllers
             returnbusinessmanagement = businessmanagementRepository.BUSINESS_MANAGEMENT_Detail(page_size, currentPageIndex, ma_don_vi, ma_bc_khai_thac);
             ViewBag.total = returnbusinessmanagement.Total;
             ViewBag.total_page = (returnbusinessmanagement.Total + page_size - 1) / page_size;
+            return View(returnbusinessmanagement);
+
+        }
+
+        [HttpGet]
+        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE CHƯA PHÂN TRANG
+        public ActionResult ListDetailedBusinessManagement2Report(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay)
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            ReturnBusinessManagement returnbusinessmanagement = new ReturnBusinessManagement();
+            returnbusinessmanagement = businessmanagementRepository.BUSINESS_MANAGEMENT_2_Detail(ma_don_vi, ma_bc_khai_thac, ngay_xac_dinh_khach_hang, common.DateToInt(tu_ngay), common.DateToInt(den_ngay));
+            return View(returnbusinessmanagement);
+
+        }
+
+        [HttpGet]
+        //Phần show ra dữ liệu của tổng chân trang
+        public ActionResult ListSumBusinessManagementReport(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay)
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            ReturnBusinessManagement returnbusinessmanagement = new ReturnBusinessManagement();
+            returnbusinessmanagement = businessmanagementRepository.SUM_BUSINESS_MANAGEMENT_Detail(ma_don_vi, ma_bc_khai_thac, ngay_xac_dinh_khach_hang, common.DateToInt(tu_ngay), common.DateToInt(den_ngay));
             return View(returnbusinessmanagement);
 
         }

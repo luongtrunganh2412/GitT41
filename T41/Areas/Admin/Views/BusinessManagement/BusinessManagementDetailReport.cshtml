@@ -15,83 +15,150 @@
 @*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
 
 <style>
-    .table > thead > tr > td {
+    .table > thead > tr > th {
     padding: 0px;
     }
 
+    .table > tbody > tr > th {
+    padding: 0px;
+    }
+    
     
     .divcolor {
     padding:8px !important;
+    background-color: orange !important;
+    color:blue;
+    font-weight:bold;
     }
 </style>
-<title>Báo cáo chi tiết theo khách hàng</title>
+<title>Báo cáo doanh thu theo mã khách hàng</title>
 <section class="content">
     <div class="box box-default">
-        <div class="box-header with-border">
-            <h3 class="box-title">Báo cáo chi tiết theo khách hàng</h3>
+        @*<div class="box-header with-border">
+            <h3 class="box-title text-center">Báo cáo doanh thu theo mã khách hàng</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
             </div>
+        </div>*@
+        <div class="box-header with-border">
+            <h3 class="text-center" style="font-weight:bold;">Báo cáo doanh thu theo mã khách hàng</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label>Từ Ngày </label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Từ Ngày: </label>
                             </div>
-                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                            <div class="col-md-10 ">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Đơn Vị: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="unit">
+                                    @*<option selected="selected" value="0">Tất Cả</option>*@
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Bưu Cục </label>
-                        <select class="form-control select2" style="width: 100%;" id="posoffice">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Dịch Vụ: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="service">
+                                    <option selected="selected" value="0">Tất Cả</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label>Mã Nhân Viên Kinh Doanh</label>
-                        <select class="form-control select2" style="width: 100%;" id="manvkinhdoanh">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Mã NVTT: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="manvtt">
+                                    <option selected="selected" value="0">Tất cả</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label>Đến Ngày</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Đến Ngày: </label>
                             </div>
-                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                            <div class="col-md-10 ">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Mã Khách Hàng</label>
-                        <select class="form-control select2" style="width: 100%;" id="makh">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Bưu Cục: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="posoffice">
+                                    <option selected="selected" value="0">Tất cả</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="col-md-4">
+
                     <div class="form-group">
-                        <label>Đơn Vị</label>
-                        <select class="form-control select2" style="width: 100%;" id="unit">
-                            @*<option selected="selected" value="0">Tất Cả</option>*@
-                        </select>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Khách Hàng: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="getdate">
+                                    <option selected="selected" value="0">Tất cả</option>
+                                    <option value="1">Hiện Hữu</option>
+                                    <option value="2">KH Mới</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label>Dịch Vụ</label>
-                        <select class="form-control select2" style="width: 100%;" id="service">
-                            <option selected="selected" value="0">Tất Cả</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="float:right">Mã KH: </label>
+                            </div>
+                            <div class="col-md-10 ">
+                                <select class="form-control select2" style="width: 100%;" id="makh">
+                                    <option selected="selected" value="0">Tất cả</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -100,73 +167,75 @@
             
             <div class="row">
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển Thị</button>
+                    
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
+                    <button type="button" class="btn btn-default btn-lrg ajax no-print" id="btnreport">Hiển Thị</button>
                 </div>
                 <div class="col-md-4">
 
                 </div>
             </div>
             <div class="box-header">
-                <h3 class="box-title">Báo Cáo Tổng Hợp SLDT Theo Khách Hàng </h3>
+                @*<h3 class="box-title">Báo cáo doanh thu theo mã khách hàng </h3>*@
             </div>
             <div style="overflow-x:auto;">
                 <table id="example1" class="table table-bordered table-hover">
                     <thead>
                         @*<tr class="bg-light-blue color-palette">*@
                         <tr>
-                            <td class="text-center">
-                               <div class="bg-light-blue color-palette divcolor">STT</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Ngày HĐ</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Mã KH</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tên KH</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Mã NV Tiếp Thị</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Mã BC</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Số Bưu Gửi</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Khối Lượng QĐ(g)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Cước Chính(đ)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Cước Dịch Vụ(đ)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Cước COD(đ)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">VAT(đ)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Cước E1(đ)</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Chiết Khấu</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Trích Thưởng</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="bg-light-blue color-palette divcolor">Tổng Nợ(đ)</div>
-                            </td>
+                            <th class="text-center">
+                               <div class="divcolor">STT<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Ngày HĐ<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Mã KH<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tên KH<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Mã NVTT<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Mã BC<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng<br />Số BG</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng<br />KL(g)</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng Cước<br /> Chính(đ)</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng Cước<br /> Dịch Vụ(đ)</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng Cước<br /> COD(đ)</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">VAT(đ)<br />&nbsp</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng<br /> Cước E1(đ)</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Chiết<br /> Khấu</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Trích<br /> Thưởng</div>
+                            </th>
+                            <th class="text-center">
+                                <div class="divcolor">Tổng<br /> Nợ(đ)</div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody id="listbusinessmanagement"></tbody>
+                    <tbody id="listsumbusinessmanagement"></tbody>
                 </table>
             </div>
             <div class="loading-element">
@@ -209,6 +278,7 @@
     $("#btnreport").click(function () {
         $("#listbusinessmanagement tr").remove();
         detail_user_search(1);
+        sum_detail_user_search();
     });
 
     //Phần lấy dữ liệu đơn vị
@@ -277,7 +347,7 @@
         })
     });
 
-    //Phần JS gọi đến dữ liệu của chi tiết người dùng
+    @*//Phần JS gọi đến dữ liệu của chi tiết người dùng ĐÃ PHÂN TRANG
     function detail_user_search(p) {
         
         $.ajax({
@@ -300,6 +370,7 @@
         })
     }
 
+
     //Phần Phân Trang
     function refreshPaging() {
         $('#page-selection').bootpag({
@@ -309,7 +380,59 @@
             detail_user_search(num);
             $("#listbusinessmanagement tr").remove();
         });
+    }*@
+
+    //Phần JS gọi đến dữ liệu của chi tiết người dùng CHƯA PHÂN TRANG
+    function detail_user_search(p) {
+
+        $.ajax({
+            url: '@Url.Action("ListDetailedBusinessManagement2Report", "BusinessManagement")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            method: 'GET',
+            dataType: 'html',
+            data: {
+                ngay_xac_dinh_khach_hang: $("#getdate").val(),
+                ma_don_vi: $("#unit").val(),
+                ma_bc_khai_thac: $("#posoffice").val(),
+                tu_ngay: $("#fromdate").val(),
+                den_ngay: $("#todate").val(),
+            },
+            success: function (result) {
+                $('#listbusinessmanagement').html(result);
+                $('.loading-element').hide();
+                
+            }
+        })
     }
+
+    //Phần JS gọi đến dữ liệu của tổng chân trang
+    function sum_detail_user_search(p) {
+
+        $.ajax({
+            url: '@Url.Action("ListSumBusinessManagementReport", "BusinessManagement")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            method: 'GET',
+            dataType: 'html',
+            data: {
+                ngay_xac_dinh_khach_hang: $("#getdate").val(),
+                ma_don_vi: $("#unit").val(),
+                ma_bc_khai_thac: $("#posoffice").val(),
+                tu_ngay: $("#fromdate").val(),
+                den_ngay: $("#todate").val(),
+            },
+            success: function (result) {
+                $('#listsumbusinessmanagement').html(result);
+                $('.loading-element').hide();
+
+            }
+        })
+    }
+
+    
 
 </script>
 

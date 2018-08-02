@@ -61,10 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 background-color: #239036 !important;
                 outline-style: outset;
             }
-            /*table{
-                color: red !important;
-            }*/
-
+            
             .bg-blue {
                 color: white !important;
             }
@@ -248,19 +245,7 @@ desired effect
                                 </ul>
                             </li>
 
-                            <!-- Group 6 -->
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>Quản Lý Khách Hàng</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="/Admin/UserManagement/UserManagementDetailReport">Thông Tin Khách Hàng</a></li>
-                                    <li><a href="/Admin/SaleUserManagement/SaleUserManagementDetailReport">Thông Tin Nhân Viên KD</a></li>
-                                </ul>
-                            </li>
+                            
 
 
 
@@ -317,9 +302,24 @@ desired effect
                         }
                     }
 
-                    
-
-                    
+                    @{
+                        if (Convert.ToInt32(Session["userid"]) == 25 || Convert.ToInt32(Session["userid"]) == 1)
+                        {
+                            <!-- Group 6 -->
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Quản Lý Khách Hàng</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @*<li><a href="/Admin/UserManagement/UserManagementDetailReport">Thông Tin Khách Hàng</a></li>*@
+                                    <li><a href="/Admin/SaleUserManagement/SaleUserManagementDetailReport">Thông Tin Nhân Viên KD</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
 
 
 

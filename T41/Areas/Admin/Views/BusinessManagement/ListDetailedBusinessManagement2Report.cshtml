@@ -1,0 +1,218 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListBusinessManagement_Report != null)
+{
+
+    int i = 0;
+    //int a1 = 0;
+    //int a2 = 0;
+    //int a3 = 0;
+    //int a4 = 0;
+    //int a5 = 0;
+    //int a6 = 0;
+    //int a7 = 0;
+    //int a8 = 0;
+    //int a9 = 0;
+    //int a10 = 0;
+    //long sumTongSo = 0;
+    //long sumTongKLQD = 0;
+    //long sumTongCC = 0;
+    //long sumTongCuocDV = 0;
+    //long sumTongCuocCOD = 0;
+    //long sumVat = 0;
+    //long sumTongCuocE1 = 0;
+    //long sumChietKhau = 0;
+    //long sumTrichThuong = 0;
+    //long sumTongNo = 0;
+
+    foreach (var c in Model.ListBusinessManagement_Report)
+    {
+        //try
+        //{
+        //    a1 = int.Parse(@c.sumTongSo);
+        //}
+        //catch
+        //{
+        //    a1 = 0;
+        //}
+
+        //try
+        //{
+        //    a2 = int.Parse(@c.sumTongKLQD);
+        //}
+        //catch
+        //{
+        //    a2 = 0;
+        //}
+
+        //try
+        //{
+        //    a3 = int.Parse(@c.sumTongCC);
+        //}
+        //catch
+        //{
+        //    a3 = 0;
+        //}
+
+        //try
+        //{
+        //    a4 = int.Parse(@c.sumTongCuocDV);
+        //}
+        //catch
+        //{
+        //    a4 = 0;
+        //}
+
+        //try
+        //{
+        //    a5 = int.Parse(@c.sumTongCuocCOD);
+        //}
+        //catch
+        //{
+        //    a5 = 0;
+        //}
+
+        //try
+        //{
+        //    a6 = int.Parse(@c.sumVat);
+        //}
+        //catch
+        //{
+        //    a6 = 0;
+        //}
+
+        //try
+        //{
+        //    a7 = int.Parse(@c.sumTongCuocE1);
+        //}
+        //catch
+        //{
+        //    a7 = 0;
+        //}
+
+        //try
+        //{
+        //    a8 = int.Parse(@c.sumChietKhau);
+        //}
+        //catch
+        //{
+        //    a8 = 0;
+        //}
+
+        //try
+        //{
+        //    a9 = int.Parse(@c.sumTrichThuong);
+        //}
+        //catch
+        //{
+        //    a9 = 0;
+        //}
+
+        //try
+        //{
+        //    a10 = int.Parse(@c.sumTongNo);
+        //}
+        //catch
+        //{
+        //    a10 = 0;
+        //}
+
+
+        
+        <tr>
+            <td class="text-center">@(i + 1)</td>
+            <td class="text-center">@c.NGAY_HD</td>
+            <td class="text-center">@c.MA_KH</td>
+            <td class="text-center">@c.TEN_KHACH_HANG</td>
+            <td class="text-center">@c.Ma_NV_Sale</td>
+            <td class="text-center">@c.MA_BC_KHAI_THAC</td>
+            <td class="text-right">@c.TONG_SO </td>
+            <td class="text-right">@c.TONG_KHOI_LUONG_QD</td>
+            <td class="text-right">@c.TONG_CUOC_CHINH</td>
+            <td class="text-right">@c.TONG_CUOC_DV</td>
+            <td class="text-right">@c.TONG_CUOC_COD</td>
+            <td class="text-right">@c.VAT</td>
+            <td class="text-right">@c.TONG_CUOC_E1</td>
+            <td class="text-right">@c.CHIET_KHAU</td>
+            <td class="text-right">@c.TRICH_THUONG</td>
+            <td class="text-right">@c.TONG_NO</td>
+        </tr>
+        i++;
+        //sumTongSo += a1;
+        //sumTongKLQD += a2;
+        //sumTongCC += a3;
+        //sumTongCuocDV += a4;
+        //sumTongCuocCOD += a5;
+        //sumVat += a6;
+        //sumTongCuocE1 += a7;
+        //sumChietKhau += a8;
+        //sumTrichThuong += a9;
+        //sumTongNo += a10;
+
+
+    }
+
+    @*<tr>
+        <td class="text-center">
+            <div class="divcolor"><br />Tổng</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br /></div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br /></div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br /></div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br /></div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br /></div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br />@sumTongSo</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor"><br />@sumTongKLQD</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTongCC</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTongCuocDV</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTongCuocCOD</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumVat</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTongCuocE1</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumChietKhau</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTrichThuong</div>
+        </td>
+        <td class="text-center">
+            <div class="divcolor">@sumTongNo</div>
+        </td>
+    </tr>*@
+}
+else
+{
+    <script type="text/javascript">
+        alert("Không Có Dữ Liệu");
+    </script>
+    
+}
+
+
+

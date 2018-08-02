@@ -55,6 +55,22 @@ namespace T41.Areas.Admin.Model.DataModel
 
     }
 
+    //Phần lấy dữ liệu tổng chân trang
+    public class SUM_BUSINESS_MANAGEMENT_Detail
+    {
+        public String sumTongSo { get; set; }
+        public String sumTongKLQD { get; set; }
+        public String sumTongCC { get; set; }
+        public String sumTongCuocDV { get; set; }
+        public String sumTongCuocCOD { get; set; }
+        public String sumVat { get; set; }
+        public String sumTongCuocE1 { get; set; }
+        public String sumChietKhau { get; set; }
+        public String sumTongNo { get; set; }
+        
+
+    }
+
     public class ReturnBusinessManagement
     {
         public string Code { get; set; }
@@ -73,7 +89,8 @@ namespace T41.Areas.Admin.Model.DataModel
         public BUSINESS_MANAGEMENT_Detail BusinessManagement_Report { get; set; }
         public List<BUSINESS_MANAGEMENT_Detail> ListBusinessManagement_Report;
 
-        
+        public SUM_BUSINESS_MANAGEMENT_Detail Sum_BusinessManagement_Report { get; set; }
+        public List<SUM_BUSINESS_MANAGEMENT_Detail> ListSumBusinessManagement_Report;
         public MetaData MetaData { get; set; }
 
 
