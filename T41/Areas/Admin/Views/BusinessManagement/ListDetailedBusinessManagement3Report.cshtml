@@ -1,0 +1,51 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListBusinessManagement_Report != null)
+{
+
+    int i = 0;
+    
+
+    foreach (var c in Model.ListBusinessManagement_Report)
+    {
+        
+        <tr>
+            <td class="text-center">@(i + 1)</td>
+            <td class="text-center">@c.NGAY_HD</td>
+            <td class="text-center">@c.MA_KH</td>
+            <td class="text-center">@c.THOI_GIAN_HD</td>
+            <td class="text-left">@c.TEN_KHACH_HANG</td>
+            <td class="text-center">@c.Ma_NV_Sale</td>
+            <td class="text-center">@c.MA_BC_KHAI_THAC</td>
+            <td class="text-right">@c.TONG_SO </td>
+            <td class="text-right">@c.TONG_KHOI_LUONG_QD</td>
+            <td class="text-right">@c.TONG_TIEN_COD</td>
+            <td class="text-right">@c.TONG_CUOC_CHINH</td>
+            <td class="text-right">@c.TONG_CUOC_DV</td>
+            <td class="text-right">@c.TONG_CUOC_COD</td>
+            <td class="text-right">@c.VAT</td>
+            <td class="text-right">@c.TONG_CUOC_E1</td>
+            <td class="text-right">@c.CHIET_KHAU</td>
+            <td class="text-right">@c.TRICH_THUONG</td>
+            <td class="text-right">@c.TONG_NO</td>
+        </tr>
+        i++;
+        
+
+
+    }
+   
+}
+else
+{
+    <script type="text/javascript">
+        alert("Không Có Dữ Liệu");
+    </script>
+    
+}
+
+
+

@@ -5,25 +5,25 @@
 }
 @if (Model != null)
 {
-    int i = 0;
-    int a1 = 0;
-    int a2 = 0;
-    int a3 = 0;
-    int a4 = 0;
-    int a5 = 0;
-    int a6 = 0;
-    long sumtaicungKH = 0;
-    long sumtaimemKH = 0;
-    long sumtaicungTH = 0;
-    long sumtaimemTH = 0;
-    long sumtaicungLK = 0;
-    long sumtaimemLK = 0;
+    float i = 0;
+    float a1 = 0;
+    float a2 = 0;
+    float a3 = 0;
+    float a4 = 0;
+    float a5 = 0;
+    float a6 = 0;
+    float sumtaicungKH = 0;
+    float sumtaimemKH = 0;
+    float sumtaicungTH = 0;
+    float sumtaimemTH = 0;
+    float sumtaicungLK = 0;
+    float sumtaimemLK = 0;
 
     foreach (var c in Model)
     {
         try
         {
-            a1 = int.Parse(@c.TAICUNG_KH);
+            a1 = float.Parse(@c.TAICUNG_KH);
         }
         catch
         {
@@ -33,7 +33,7 @@
 
         try
         {
-            a2 = int.Parse(@c.TAIMEM_KH);
+            a2 = float.Parse(@c.TAIMEM_KH);
         }
         catch
         {
@@ -42,7 +42,7 @@
 
         try
         {
-            a3 = int.Parse(@c.TAICUNG_TH);
+            a3 = float.Parse(@c.TAICUNG_TH);
         }
         catch
         {
@@ -51,7 +51,7 @@
 
         try
         {
-            a4 = int.Parse(@c.TAIMEM_TH);
+            a4 = float.Parse(@c.TAIMEM_TH);
         }
         catch
         {
@@ -59,7 +59,7 @@
         }
         try
         {
-            a5 = int.Parse(@c.TAICUNG_LK);
+            a5 = float.Parse(@c.TAICUNG_LK);
         }
         catch
         {
@@ -67,7 +67,7 @@
         }
         try
         {
-            a6 = int.Parse(@c.TAIMEM_LK);
+            a6 = float.Parse(@c.TAIMEM_LK);
         }
         catch
         {

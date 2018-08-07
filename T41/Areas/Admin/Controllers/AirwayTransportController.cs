@@ -274,21 +274,30 @@ namespace T41.Areas.Admin.Controllers
         }
 
         //Phần Controller gọi đến Bảng Load_DATA27
-        //public ActionResult ListDetailedAirwayTransport27(String date, int way)
-        //{
-        //    AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
-        //    ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
-        //    returnairwaytransport = airwaytransportRepository.LOAD_DATA27(common.DateToInt(date), way);
-        //    return View(returnairwaytransport.ListAirwayTransportReport);
-        //}
+        public ActionResult ListDetailedAirwayTransport27(String date, int way)
+        {
+            AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
+            ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
+            returnairwaytransport = airwaytransportRepository.LOAD_DATA27(common.DateToInt(date), way);
+            return View(returnairwaytransport.ListAirwayTransportReport);
+        }
 
-        ////Phần Controller gọi đến Bảng Load_DATA28
-        //public ActionResult ListDetailedAirwayTransport28(String date, int way)
-        //{
-        //    AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
-        //    ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
-        //    returnairwaytransport = airwaytransportRepository.LOAD_DATA28(common.DateToInt(date), way);
-        //    return View(returnairwaytransport.ListAirwayTransportReport);
-        //}
+        //Phần Controller gọi đến Bảng Load_DATA28
+        public ActionResult ListDetailedAirwayTransport28(String date, int way)
+        {
+            AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
+            ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
+            returnairwaytransport = airwaytransportRepository.LOAD_DATA28(common.DateToInt(date), way);
+            return View(returnairwaytransport.ListAirwayTransportReport);
+        }
+
+        //Phần Controller gọi đến Bảng Load_DATA29
+        public ActionResult ListDetailedAirwayTransport29(String date, int way)
+        {
+            AirwayTransportRepository airwaytransportRepository = new AirwayTransportRepository();
+            ReturnAirwayTransport returnairwaytransport = new ReturnAirwayTransport();
+            returnairwaytransport = airwaytransportRepository.LOAD_DATA29(common.DateToInt(date), way);
+            return View(returnairwaytransport.ListAirwayTransportReport);
+        }
     }
 }

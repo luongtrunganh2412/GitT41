@@ -46,7 +46,7 @@ namespace T41.Areas.Admin.Controllers
             return View(ReturnAirwayTransportCome.ListAirwayTransportComeReport);
         }
 
-        //Phần Controller gọi đến Bảng Load_DATA1
+        //Phần Controller gọi đến Bảng Load_DATA2
         public ActionResult ListDetailedAirwayTransportCome2(String date, int way)
         {
             AirwayTransportComeRepository AirwayTransportComeRepository = new AirwayTransportComeRepository();

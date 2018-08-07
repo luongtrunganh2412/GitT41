@@ -23,9 +23,9 @@ namespace T41.Areas.Admin.Data
                 using (cmd = new OracleCommand())
                 {
                     cmd.Connection = Helper.OraDSOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "ems.merger_ds_mailtrip";
+                    cmd.CommandText = Helper.SchemaName + "ems.AIRWAY_TRANSPORT_COME_2_TOTAL";
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("v_Date", OracleDbType.Int32, ParameterDirection.Input).Value = date;
+                    cmd.Parameters.Add("P_NGAY", OracleDbType.Int32, ParameterDirection.Input).Value = date;
                     cmd.ExecuteNonQuery();
                     oAirwayTransportComeDetail.Code = "00";
                     oAirwayTransportComeDetail.Message = "Tổng Hợp Dữ Liệu Thành Công";
@@ -61,7 +61,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA1", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA1", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -79,18 +79,12 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oAirwayTransportComeDetail = new AirwayTransportComeDetail();
-                            //oAirwayTransportComeDetail.SO = Convert.ToInt32(dr["1"].ToString());
                             oAirwayTransportComeDetail.STT = Convert.ToInt32(dr["STT"].ToString());
                             oAirwayTransportComeDetail.CHANGBAY = dr["CHANGBAY"].ToString();
                             oAirwayTransportComeDetail.DONVIVANCHUYEN = dr["DONVIVANCHUYEN"].ToString();
                             oAirwayTransportComeDetail.DICHVUVANCHUYEN = dr["DICHVUVANCHUYEN"].ToString();
                             oAirwayTransportComeDetail.KHUNGGIO = dr["KHUNGGIO"].ToString();
                             oAirwayTransportComeDetail.TONGTAITHEOHOPDONG = dr["TONGTAITHEOHOPDONG"].ToString();
-                            //oAirwayTransportComeDetail.ID = Convert.ToInt32(dr["ID"].ToString());
-                            //oAirwayTransportComeDetail.NGAY = Convert.ToInt32(dr["NGAY"].ToString());
-                            //oAirwayTransportComeDetail.MABC = Convert.ToInt32(dr["MABC"].ToString());
-                            //oAirwayTransportComeDetail.CHIEU = Convert.ToInt32(dr["CHIEU"].ToString());
-                            //oAirwayTransportComeDetail.HUONG = Convert.ToInt32(dr["HUONG"].ToString());
                             oAirwayTransportComeDetail.TAICUNG_KH = dr["TAICUNG_KH"].ToString();
                             oAirwayTransportComeDetail.TAIMEM_KH = dr["TAIMEM_KH"].ToString();
                             oAirwayTransportComeDetail.MASP = dr["MASP"].ToString();
@@ -108,7 +102,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIODAP_QD = dr["GIODAP_QD"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -157,7 +151,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA2", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA2", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -205,7 +199,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -254,7 +248,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA3", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA3", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -302,7 +296,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -351,7 +345,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA4", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA4", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -399,7 +393,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -448,7 +442,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA5", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA5", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -496,7 +490,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -545,7 +539,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA6", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA6", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -593,7 +587,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -642,7 +636,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA7", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA7", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -690,7 +684,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -739,7 +733,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA8", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA8", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -787,7 +781,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -836,7 +830,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA9", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA9", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -884,7 +878,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -933,7 +927,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA10", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA10", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -981,7 +975,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1030,7 +1024,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA11", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA11", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1078,7 +1072,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1127,7 +1121,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA12", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA12", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1175,7 +1169,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1224,7 +1218,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA13", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA13", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1272,7 +1266,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1321,7 +1315,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA14", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA14", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1369,7 +1363,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1418,7 +1412,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA15", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA15", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1466,7 +1460,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1515,7 +1509,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA16", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA16", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1563,7 +1557,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1612,7 +1606,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA17", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA17", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1660,7 +1654,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1709,7 +1703,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA18", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA18", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1757,7 +1751,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1806,7 +1800,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA19", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA19", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1854,7 +1848,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }
@@ -1903,7 +1897,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //Helper.OraDSOracleConnection gọi đến database đối soát
-                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME.LOAD_DATA20", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("AIRWAY_TRANSPORT_COME_2.LOAD_DATA20", Helper.OraDSOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
@@ -1951,7 +1945,7 @@ namespace T41.Areas.Admin.Data
                             oAirwayTransportComeDetail.GIONHAN_QD = dr["GIONHAN_QD"].ToString();
                             //oAirwayTransportComeDetail.GIODAP_TT = dr["GIODAP_TT"].ToString();
                             oAirwayTransportComeDetail.GIONHAN_TT = dr["GIONHAN_TT"].ToString();
-                            oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
+                            //oAirwayTransportComeDetail.GIONHAN_CL = dr["GIONHAN_CL"].ToString();
                             listAirwayTransportComeDetail.Add(oAirwayTransportComeDetail);
 
                         }

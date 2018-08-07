@@ -38,11 +38,13 @@ namespace T41.Areas.Admin.Model.DataModel
     {
         public String NGAY_HD { get; set; }
         public String MA_KH { get; set; }
+        public String THOI_GIAN_HD { get; set; }
         public String TEN_KHACH_HANG { get; set; }
         public String Ma_NV_Sale { get; set; }
         public String MA_BC_KHAI_THAC { get; set; }
         public String TONG_SO { get; set; }
         public String TONG_KHOI_LUONG_QD { get; set; }
+        public String TONG_TIEN_COD { get; set; }
         public String TONG_CUOC_CHINH { get; set; }
         public String TONG_CUOC_DV { get; set; }
         public String TONG_CUOC_COD { get; set; }
@@ -58,8 +60,10 @@ namespace T41.Areas.Admin.Model.DataModel
     //Phần lấy dữ liệu tổng chân trang
     public class SUM_BUSINESS_MANAGEMENT_Detail
     {
+        public String sumThoiGianHD { get; set; }
         public String sumTongSo { get; set; }
         public String sumTongKLQD { get; set; }
+        public String sumTongTienCOD { get; set; }
         public String sumTongCC { get; set; }
         public String sumTongCuocDV { get; set; }
         public String sumTongCuocCOD { get; set; }

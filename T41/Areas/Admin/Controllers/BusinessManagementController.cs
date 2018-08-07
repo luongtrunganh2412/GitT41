@@ -68,7 +68,7 @@ namespace T41.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE CHƯA PHÂN TRANG
+        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE CHƯA PHÂN TRANG THEO BẢNG DOIKIEM_KH_TH_NGAY
         public ActionResult ListDetailedBusinessManagement2Report(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay)
         {
             BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
@@ -79,7 +79,18 @@ namespace T41.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        //Phần show ra dữ liệu của tổng chân trang
+        //Phần show ra dữ liệu của bảng NGUOI_DUNG_SALE CHƯA PHÂN TRANG THEO BẢNG E1E2_PH
+        public ActionResult ListDetailedBusinessManagement3Report(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay, string dich_vu, int id_nguoi_dung)
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            ReturnBusinessManagement returnbusinessmanagement = new ReturnBusinessManagement();
+            returnbusinessmanagement = businessmanagementRepository.BUSINESS_MANAGEMENT_3_Detail(ma_don_vi, ma_bc_khai_thac, ngay_xac_dinh_khach_hang, common.DateToInt(tu_ngay), common.DateToInt(den_ngay),dich_vu,id_nguoi_dung);
+            return View(returnbusinessmanagement);
+
+        }
+
+        [HttpGet]
+        //Phần show ra dữ liệu của tổng chân trang THEO BẢNG DOIKIEM_KH_TH_NGAY
         public ActionResult ListSumBusinessManagementReport(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay)
         {
             BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
@@ -89,6 +100,16 @@ namespace T41.Areas.Admin.Controllers
 
         }
 
+        [HttpGet]
+        //Phần show ra dữ liệu của tổng chân trang THEO BẢNG E1E2_PH
+        public ActionResult ListSumBusinessManagement2Report(int ma_don_vi, int ma_bc_khai_thac, int ngay_xac_dinh_khach_hang, string tu_ngay, string den_ngay, string dich_vu, int id_nguoi_dung)
+        {
+            BusinessManagementRepository businessmanagementRepository = new BusinessManagementRepository();
+            ReturnBusinessManagement returnbusinessmanagement = new ReturnBusinessManagement();
+            returnbusinessmanagement = businessmanagementRepository.SUM_BUSINESS_MANAGEMENT_2_Detail(ma_don_vi, ma_bc_khai_thac, ngay_xac_dinh_khach_hang, common.DateToInt(tu_ngay), common.DateToInt(den_ngay),dich_vu,id_nguoi_dung);
+            return View(returnbusinessmanagement);
+
+        }
 
     }
 }
