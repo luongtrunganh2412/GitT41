@@ -7,12 +7,7 @@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
-@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+
 
 <title>Shipment Magement</title>
 
@@ -26,84 +21,38 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
             </div>
         </div>
-
-
+        
         <!-- /.box-header -->
         <div class="box-header">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Tỉnh Đóng </label>
-                        <select class="form-control select2" style="width: 100%;" id="fromprovince"></select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Mã Khách hàng </label>
-                        <select class="form-control select2" style="width: 100%;" id="fromposcode">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Tỉnh Nhận </label>
-                        <select class="form-control select2" style="width: 100%;" id="toprovince"></select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Số Điện Thoại Nhận </label>
-                        <select class="form-control select2" style="width: 100%;" id="toposcode">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Từ Ngày </label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Đến Ngày</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
-
-            </div>
+            <table id="myTable" class="table table-bordered table-hover" >
+                <tr>
+                    <td>EMS DA NANG</td>
+                    <td>557557</td>
+                    <td>BCP DA NANG</td>
+                    <td>7623</td>
+                    <td>7480</td>
+                    <td>143	</td>
+                    <td>7350</td>
+                </tr>
+                <tr>
+                    <td>EMS DA NANG</td>
+                    <td>558360</td>
+                    <td>BCP TMDT DN</td>
+                    <td>3017</td>
+                    <td>2663</td>
+                    <td>354</td>
+                    <td>2381</td>
+                </tr>
+                
+                
+            </table>
         </div>
         <div class="box-body">
-
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
-                </div>
-
+            <div class="col-md-12">
+                <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
             </div>
-            
-            <div class="box-header">
-                <h3 class="box-title">Báo Cáo Tổng hợp</h3>
+            <div class="col-md-12">
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
             </div>
             
         </div>
@@ -116,34 +65,148 @@
 
 
 </section>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        chartContainer1();
+        chartContainer2();
+    });
+    var title = document.getElementById("myTable").rows[0].cells[2].innerHTML;
+    var title1 = "Biểu Đồ Tổng Hợp SL Đi Phát Của " + title;
+
+    try {
+        var a = document.getElementById("myTable").rows[0].cells[2].innerHTML;
+    }
+    catch (e) {
+        var a = "Null";
+    }
+
+    try {
+        var b = parseInt(document.getElementById("myTable").rows[0].cells[3].innerHTML);
+    }
+    catch (e) {
+        var b = "Null";
+    }
+
+    try {
+        var c = document.getElementById("myTable").rows[1].cells[2].innerHTML;
+    }
+    catch (e) {
+        var c = "Null";
+    }
+
+    try {
+        var d = parseInt(document.getElementById("myTable").rows[1].cells[3].innerHTML);
+    }
+    catch (e) {
+        var d = "Null";
+    }
+
+    function chartContainer1() {
+        
+        var chart = new CanvasJS.Chart("chartContainer1",
+        {
+            title: {
+                text: title1,
+                fontFamily: "tahoma",
+            },
+
+            axisY:{
+                title: "Sản Lượng Bưu Gửi Đến",
+                //titleMaxWidth: 150 //**change the value of titleMaxWidth
+            },
+
+            data: [
+            {
+                type: "column",
+                dataPoints: [
+                { label: a, y:b },
+                { label: c, y: d },
+                { label: "BC 115080", y: 24974 },
+                { label: "BC 117140", y: 4887 },
+                { label: "BC 122160", y: 27989 },
+                { label: "BC 557557", y: 7623 },
+                { label: "BC 558360", y: 3017 },
+                { label: "BC 736106", y: 9634 },
+                { label: "BC 736107", y: 31488 },
+                { label: "BC 736108", y: 32958 },
+                { label: "BC 736115", y: 12462 },
+                { label: "BC 737900", y: 1694 },
+                { label: "BC 737910", y: 1580 },
+                ]
+            }
+            ]
+        });
+
+        chart.render();
+    }
+
+        function chartContainer2() {
+
+            var chart = new CanvasJS.Chart("chartContainer2", {
+                exportEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "BIỂU ĐỒ SL PTC",
+                    fontFamily: "tahoma",
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: explodePie
+                },
+                data: [{
+                    type: "pie",
+                    showInLegend: true,
+                    toolTipContent: "{name}: <strong>{y}%</strong>",
+                    indexLabel: "{name} - {y}%",
+                    dataPoints: [
+                        { y: 4, name: "Bưu Cục 100043", exploded: true },
+                        { y: 26, name: "Bưu Cục 110040" },
+                        { y: 30, name: "Bưu Cục 115080" },
+                        { y: 6, name: "Bưu Cục 117140" },
+                        { y: 34, name: "Bưu Cục 122160" },
+
+                    ]
+                }]
+            });
+            chart.render();
+        }
+
+        function explodePie (e) {
+            if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+            } else {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+            }
+            e.chart.render();
+
+        }
 
 
 
-<script>
 
-    
-    
-
-    $(function () {
-        $('#fromdate').datepicker()
-        $("#fromdate").datepicker({
-            dateFormat: "dd/mm/yyyy"
-        }).datepicker("setDate", "0");
-    })
+        $(function () {
+            $('#fromdate').datepicker()
+            $("#fromdate").datepicker({
+                dateFormat: "dd/mm/yyyy"
+            }).datepicker("setDate", "0");
+        })
 
 
-    $(function () {
-        $('#todate').datepicker()
-        $("#todate").datepicker({
-            dateFormat: "dd/mm/yyyy"
-        }).datepicker("setDate", "0");
-    })
+        $(function () {
+            $('#todate').datepicker()
+            $("#todate").datepicker({
+                dateFormat: "dd/mm/yyyy"
+            }).datepicker("setDate", "0");
+        })
 
 
-    
 
-    
-    
+
+
+
 </script>
 
 

@@ -47,7 +47,7 @@
            </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 btnview">
                     <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/AirwayTransport/ListAirwayTransport?date=' + document.getElementById('date').value + '&way=0'">Hiển Thị Báo Cáo</a>
                 </div>
                 <div class="col-md-4">
@@ -73,20 +73,7 @@
 
 
 </section>
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <!-- ./wrapper -->
-    <!-- REQUIRED JS SCRIPTS -->
-    <!-- jQuery 3 -->
-    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/Content/dist/js/adminlte.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
-    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
 
-<!--jquery.bootpag.min-->>
 
 
 <script>
@@ -95,7 +82,12 @@
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
 
+        $('#date').change(function () {
+            $('.btnview').hide();
+        });
+
         $('.loading-element').hide();
+        $('.btnview').hide();
     });
 
     $("#btntotal").click(function () {
@@ -118,6 +110,7 @@
             success: function (result) {
                 alert("Tổng Hợp Dữ Liệu Thành Công");
                 $('.loading-element').hide();
+                $('.btnview').show();
             }
         })
     }

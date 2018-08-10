@@ -6,13 +6,7 @@
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
 
-
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
 
 <style>
     .table > thead > tr > th {
@@ -283,6 +277,7 @@
 
     $("#btnreport").click(function () {
         $("#listbusinessmanagement tr").remove();
+        $("#listsumbusinessmanagement tr").remove();
         detail_user_search(1);
         sum_detail_user_search();
     });

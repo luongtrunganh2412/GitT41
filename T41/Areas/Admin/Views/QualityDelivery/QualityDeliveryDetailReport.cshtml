@@ -6,45 +6,42 @@
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
-
-
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
-
+<style type="text/css">
+    .p {
+        font-weight:bold;
+    }
+</style>
 <title>Báo cáo chi tiết hoạt động phát</title>
 <section class="content">
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Báo cáo chất lượng phát</h3>
+            
+            <h3 class="box-title">Báo cáo Tổng hợp sản lượng đi phát</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
             </div>
+            
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row">
                 <div class="col-md-4">
+                    @*<div class="form-group">
+                    <label>Báo Cáo</label>
+                    <select class="form-control select2" style="width: 100%;" id="channel">
+                        <option selected="selected" value="0">Tổng Hợp</option>
+                    </select>
+                </div>*@
                     <div class="form-group">
-                        <label>Báo Cáo</label>
-                        <select class="form-control select2" style="width: 100%;" id="channel">
-                            <option selected="selected" value="0">Tổng Hợp</option>
-                        </select>
+                        <label>Từ Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
                     </div>
-                    <!-- /.form-group -->
-                    <div class="form-group">
-                        <label>Bưu cục phát</label>
-                        <select class="form-control select2" style="width: 100%;" id="endpostcode">
-                            <option selected="selected" value="0">Tất cả</option>
-
-                        </select>
-                    </div>
-                    <!-- /.form-group -->
-                </div>
-                <div class="col-md-4">
                     <div class="form-group">
                         <label>Khu Vực</label>
                         <select class="form-control select2" style="width: 100%;" id="zone">
@@ -54,16 +51,27 @@
                             <option value="3">Hồ Chí Minh</option>
                         </select>
                     </div>
+
+
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label>Tuyến phát</label>
-                        <select class="form-control select2" style="width: 100%;" id="routecode">
+                        <label>Đến Ngày</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bưu cục phát</label>
+                        <select class="form-control select2" style="width: 100%;" id="endpostcode">
                             <option selected="selected" value="0">Tất cả</option>
 
                         </select>
                     </div>
-                    <!-- /.form-group -->
-                    <!-- /.form-group -->
-
                 </div>
                 <!-- /.col -->
                 <div class="col-md-4">
@@ -77,96 +85,70 @@
                             <option value="3">PT9</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Tuyến phát</label>
+                        <select class="form-control select2" style="width: 100%;" id="routecode">
+                            <option selected="selected" value="0">Tất cả</option>
 
-                    <!-- /.form-group -->
-                    <!-- /.form-group -->
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <p>Ghi Chú: Thời gian phát thành công quy định</p>
-                        <p>
-                            +EMS Thường,COD: 6H
-                        </p>
-                        <p>+HỎA TỐC: 2H</p>
 
-                    </div>
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Từ Ngày </label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Đến Ngày</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4">
                     <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển Thị</button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <p>
+                            Ghi Chú: Thời Gian PTC quy định<br />
+                            +EMS Thường,COD: 6H<br />
+                            +HỎA TỐC: 2H
+                        </p>
+                    </div>
                 </div>
-                <p>Sản Lượng Được Cập Nhật 6h Sáng Hàng Ngày</p>
-                <div class="col-md-4">
 
-                </div>
             </div>
-            <div class="box-header">
-                <h3 class="box-title">Tổng hợp sản lượng đi phát</h3>
-            </div>
+
+            @*<div class="box-header">
+            <h3 class="box-title text-center">Tổng hợp sản lượng đi phát</h3>
+        </div>*@
             <div style="overflow-x:auto;">
-                <table id="example1" class="table table-bordered table-hover">
+                <p style="float:right;">Sản Lượng Được Cập Nhật 6h Sáng Hàng Ngày</p>
+                <table id="ExcelView" class="table table-bordered table-hover">
                     <thead>
                         <tr class="bg-light-blue color-palette">
-                            <th>STT</th>
-                            <th>Đơn Vị</th>
-                            <th>Bưu Cục</th>
-                            <th>Tên Bưu Cục</th>
-                            @*<th>SL KT Đóng Sang</th>*@
-                            <th>SL Bưu Gửi Đến</th>
-                            <th>SL Phát Thành Công</th>
-                            <th>SL Phát Thành Công Đúng Quy Định</th>
-                            <th>SL Phát thành công Không Đúng Quy Định</th>
-                            <th>Tỉ Lệ thành công Đạt Đúng Quy Định</th>
-                            <th>Tỉ Lệ thành công Không Đúng Quy Định</th>
-                            <th>SL Phát Thành Không Xác Định</th>
-
+                            <th class="text-center">STT<br /></th>
+                            <th class="text-center">Đơn Vị</th>
+                            <th class="text-center">Bưu Cục</th>
+                            <th class="text-center">Tên Bưu Cục</th>
+                            <th class="text-center">SL Bưu  <br /> Gửi Đến</th>
+                            <th class="text-center">SL Phát <br /> Thành Công</th>
+                            <th class="text-center">SL Phát Chưa <br />Có Thông Tin</th>
+                            <th class="text-center">SL PTC <br /> Đúng Quy Định</th>
+                            <th class="text-center">SL PTC Không <br />  Đúng Quy Định</th>
+                            <th class="text-center">Tỉ Lệ TC Đạt<br />  Đúng Quy Định</th>
+                            <th class="text-center">Tỉ Lệ TC Không<br />  Đúng Quy Định</th>
+                            <th class="text-center">SL PTC Không <br /> Xác Định</th>
                         </tr>
                     </thead>
                     <tbody id="listqualityreport"></tbody>
                 </table>
+
             </div>
             <div class="loading-element">
                 <i class="fa fa-spinner fa-spin"></i>
                 Vui lòng chờ giây lát...
             </div>
-            <div>
-                <p id="demo1"></p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="button" class="btn btn-default btn-lrg ajax" onclick="tableToExcel('ExcelView', 'Trạng Thái Bưu Gửi')" value="Xuất Excel">
+                </div>
             </div>
+
+            
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -176,7 +158,6 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Chi Tiết</h4>
-                            @*<input type="submit" name="btnExport" value="Xuất Excel" id="btnExport" />*@
                             <button type="submit" class="btn btn-default btn-lrg ajax" name="btnExport" id="btnExport">Xuất Excel</button>
                         </div>
                         <div class="modal-body edit-content">
@@ -185,7 +166,6 @@
                                 <i class="fa fa-spinner fa-spin"></i>
                                 Vui lòng chờ giây lát...
                             </div>
-                            @*<p id="demo"></p>*@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -195,6 +175,56 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="box-footer">
+            @*Phần Xuất Ra Biểu Đồ*@
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="box-footer">
+            @*Phần Xuất Ra Biểu Đồ*@
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer">
+            @*Phần Xuất Ra Biểu Đồ*@
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="chartContainer5" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="chartContainer6" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-footer">
+            @*Phần Xuất Ra Biểu Đồ*@
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="chartContainer7" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="chartContainer8" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -206,23 +236,10 @@
 
 
 </section>
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <!-- ./wrapper -->
-    <!-- REQUIRED JS SCRIPTS -->
-    <!-- jQuery 3 -->
-    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/Content/dist/js/adminlte.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
-    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+    
 
-<!--jquery.bootpag.min-->>
-
-
-<script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
     $(document).ready(function () {
         $("#fromdate").datepicker({
             dateFormat: "dd/mm/yyyy"
@@ -233,16 +250,27 @@
         }).datepicker("setDate", "0");
     });
 
-
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+          , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
 
 
     //Phần Xuất excel của bảng chi tiết
     $(function () {
         $('[id*=btnExport]').on('click', function () {
             ExportToExcel('GridView1');
-            //location.reload();
         });
     });
+    
+    //Function Xuất Excel của bảng chi tiết
     function ExportToExcel(Id) {
         var tab_text = "<table border='2px'><tr>";
         var textRange;
@@ -283,8 +311,8 @@
         // goi ham Detail
         $("#listqualityreport tr").remove();
         detail();
-
-
+        
+        
 
     });
 
@@ -312,7 +340,6 @@
                 },
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listqualityreport
-                console.log(result.Code);
                 if (result.Code == 99) {
                     document.getElementById("demo1").innerHTML = "Không Có Dữ Liệu";
 
@@ -346,21 +373,7 @@
             })
     });
 
-    //Phần lấy dữ liệu của tuyến phát
-    //$(document).ready(function () {
-
-    //    $.getJSON("/QualityDelivery/RouteCode", function (data) {
-    //        $.each(data, function (i, data) {
-
-    //            $('<option>',
-    //               {
-    //                   value: data.POSCODE,
-    //                   text: data.POSNAME
-    //               }).html(data.POSCODE + '-' + data.POSNAME).appendTo("#routecode");
-    //        });
-    //    })
-
-    //});
+    
 
     //Sự kiện thay đổi tuyến phát theo bưu cục phát
     $(document).ready(function () {
@@ -380,7 +393,7 @@
         })
     });
 
-
+    
 </script>
 
 

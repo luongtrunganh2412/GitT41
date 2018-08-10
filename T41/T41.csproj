@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -67,6 +64,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -240,6 +238,7 @@
     <Compile Include="Areas\Admin\Model\BusinessModel\DataInitializer.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\DTPowerDBContext.cs" />
     <Compile Include="Areas\Admin\Model\BusinessModel\ReflectionController.cs" />
+    <Compile Include="Areas\Admin\Model\CanvasModel\DataPoint.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\Administrator.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\AirwaytransportComeManagement.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\RoadwayTransport.cs" />
@@ -577,6 +576,7 @@
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\js\tooltip.js" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\js\transition.js" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\package.js" />
+    <Content Include="Areas\Admin\Content\bower_components\ChartJS\Chart.js" />
     <Content Include="Areas\Admin\Content\bower_components\fastclick\lib\fastclick.js" />
     <Content Include="Areas\Admin\Content\bower_components\font-awesome\.gitignore" />
     <Content Include="Areas\Admin\Content\bower_components\font-awesome\css\font-awesome.css" />

@@ -113,11 +113,8 @@ namespace T41.Areas.Admin.Data
                 // Gọi vào DB để lấy dữ liệu.
                 using (OracleCommand cmd = new OracleCommand())
                 {
-                   
-                   
-
-                    OracleCommand myCommand = new OracleCommand("kpi_detail_delivery.Detail_area_Ems", Helper.OraDCOracleConnection);
-                  //xử lý tham số truyền vào data table
+                   OracleCommand myCommand = new OracleCommand("kpi_detail_delivery.Detail_area_Ems", Helper.OraDCOracleConnection);
+                   //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;                                         
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();                 
@@ -146,6 +143,7 @@ namespace T41.Areas.Admin.Data
                             oQualityDeliveryDetail.TongSLHub = dr["TONGSLHUB"].ToString();
                             oQualityDeliveryDetail.TongSL = Convert.ToInt32(dr["TONGSL"].ToString());
                             oQualityDeliveryDetail.SanLuongPTC = Convert.ToInt32(dr["SANLUONGPTC"].ToString());
+                            oQualityDeliveryDetail.SanLuongKTT = Convert.ToInt32(dr["SANLUONGKTT"].ToString());
                             oQualityDeliveryDetail.SanLuongPTC6H = Convert.ToInt32(dr["SANLUONGPTC6H"].ToString());
                             oQualityDeliveryDetail.SanLuongPTCQUA6H = Convert.ToInt32(dr["SANLUONGPTCQUA6H"].ToString());
                             oQualityDeliveryDetail.TyLeTrong6H = Convert.ToDecimal(dr["TYLETRONG6H"].ToString());
@@ -203,7 +201,6 @@ namespace T41.Areas.Admin.Data
                     cmd.Connection = Helper.OraDCOracleConnection;
                     cmd.CommandText = Helper.SchemaName + "kpi_detail_delivery.Detail_Item_Ems";
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add(new OracleParameter("v_EndPostCode", OracleDbType.Int32)).Value = endpostcode;
                     cmd.Parameters.Add(new OracleParameter("v_routecode", OracleDbType.Int32)).Value = routecode;
                     cmd.Parameters.Add(new OracleParameter("v_Service", OracleDbType.Int32)).Value = service;
@@ -212,28 +209,6 @@ namespace T41.Areas.Admin.Data
                     cmd.Parameters.Add(new OracleParameter("v_type", OracleDbType.Int32)).Value = type;
                     cmd.Parameters.Add("v_ListStage", OracleDbType.RefCursor, null, ParameterDirection.Output);
                     OracleDataReader dr = Helper.ExecuteDataReader(cmd, Helper.OraDCOracleConnection);
-
-
-
-                    //OracleCommand myCommand = new OracleCommand("kpi_detail_delivery.Detail_Item_Ems", Helper.OraDCOracleConnection);
-                    ////xử lý tham số truyền vào data table
-
-                    //myCommand.CommandType = CommandType.StoredProcedure;
-                    //myCommand.CommandTimeout = 20000;
-                    //OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    //myCommand.Parameters.Add("v_Zone", OracleDbType.Int32).Value = zone;
-                    //myCommand.Parameters.Add("v_EndPostCode", OracleDbType.Int32).Value = endpostcode;
-                    //myCommand.Parameters.Add("v_RouteCode", OracleDbType.Int32).Value = routecode;
-                    //myCommand.Parameters.Add("v_Service", OracleDbType.Int32).Value = service;
-                    //myCommand.Parameters.Add("v_StartDate", OracleDbType.Int32).Value = startdate;
-                    //myCommand.Parameters.Add("v_EndDate", OracleDbType.Int32).Value = enddate;
-
-                    //myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-
-                    //mAdapter = new OracleDataAdapter(myCommand);
-                    //mAdapter.Fill(da);
-
-                    //DataTableReader dr = da.CreateDataReader();
                     if (dr.HasRows)
                     {
                         listQualityDeliverySuccess6HDetail = new List<QualityDeliverySuccess6HDetail>();
@@ -274,12 +249,76 @@ namespace T41.Areas.Admin.Data
             }
             return _returnQuality;
         }
-
-
-
         #endregion
 
 
+        //Phần chi tiết của từng bưu gửi theo số lượng phát thành công không có thông tin
+        #region QUALITY_DETAIL          
+        public ReturnQuality Quality_Delivery_NoInformation_Detail(int endpostcode, int routecode, int startdate, int enddate, int service, int type)
+        {
+            DataTable da = new DataTable();
+            MetaData1 _metadata1 = new MetaData1();
+            Convertion common = new Convertion();
+            ReturnQuality _returnQuality = new ReturnQuality();
+            List<QualityDeliverySuccess6HDetail> listQualityDeliverySuccess6HDetail = null;
+            QualityDeliverySuccess6HDetail oQualityDeliverySuccess6HDetail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    cmd.Connection = Helper.OraDCOracleConnection;
+                    cmd.CommandText = Helper.SchemaName + "kpi_detail_delivery.Detail_Item_Ems_KTT";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("v_EndPostCode", OracleDbType.Int32)).Value = endpostcode;
+                    cmd.Parameters.Add(new OracleParameter("v_routecode", OracleDbType.Int32)).Value = routecode;
+                    cmd.Parameters.Add(new OracleParameter("v_Service", OracleDbType.Int32)).Value = service;
+                    cmd.Parameters.Add(new OracleParameter("v_StartDate", OracleDbType.Int32)).Value = startdate;
+                    cmd.Parameters.Add(new OracleParameter("v_EndDate", OracleDbType.Int32)).Value = enddate;
+                    cmd.Parameters.Add(new OracleParameter("v_type", OracleDbType.Int32)).Value = type;
+                    cmd.Parameters.Add("v_ListStage", OracleDbType.RefCursor, null, ParameterDirection.Output);
+                    OracleDataReader dr = Helper.ExecuteDataReader(cmd, Helper.OraDCOracleConnection);
+                    if (dr.HasRows)
+                    {
+                        listQualityDeliverySuccess6HDetail = new List<QualityDeliverySuccess6HDetail>();
+                        while (dr.Read())
+                        {
+                            oQualityDeliverySuccess6HDetail = new QualityDeliverySuccess6HDetail();
+                            oQualityDeliverySuccess6HDetail.ItemCode = dr["ITEMCODE"].ToString();
+                            oQualityDeliverySuccess6HDetail.EndPostCode = Convert.ToInt32(dr["ENDPOSTCODE"].ToString());
+                            oQualityDeliverySuccess6HDetail.RouteCode = Convert.ToInt32(dr["ROUTECODE"].ToString());
+                            oQualityDeliverySuccess6HDetail.StatusDate = dr["STATUSDATE"].ToString();
+                            oQualityDeliverySuccess6HDetail.C17StatusDate = dr["C17STATUSDATE"].ToString();
+                            oQualityDeliverySuccess6HDetail.StatusTime = dr["STATUSTIME"].ToString();
+                            oQualityDeliverySuccess6HDetail.C17StatusTime = dr["C17STATUSTIME"].ToString();
+                            oQualityDeliverySuccess6HDetail.TimeInterval = dr["TIMEINTERVAL"].ToString();
+                            listQualityDeliverySuccess6HDetail.Add(oQualityDeliverySuccess6HDetail);
+                        }
+                        _returnQuality.Code = "00";
+                        _returnQuality.Message = "Lấy dữ liệu thành công.";
+                        _returnQuality.ListQualityDeliverySuccess6HReport = listQualityDeliverySuccess6HDetail;
+                    }
+                    else
+                    {
+                        _returnQuality.Code = "01";
+                        _returnQuality.Message = "Không có dữ liệu";
+                        _returnQuality.Total = 0;
+                        _returnQuality.ListQualityDeliverySuccess6HReport = null;
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnQuality.Code = "99";
+                _returnQuality.Message = "Lỗi xử lý dữ liệu";
+                _returnQuality.Total = 0;
+                _returnQuality.ListQualityDeliverySuccess6HReport = null;
+            }
+            return _returnQuality;
+        }
+        #endregion
     }
 
 }

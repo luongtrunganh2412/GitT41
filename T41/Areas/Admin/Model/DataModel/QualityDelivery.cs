@@ -41,6 +41,7 @@ namespace T41.Areas.Admin.Models.DataModel
         public String TongSLHub { get; set; }
         public int TongSL { get; set; }
         public int SanLuongPTC { get; set; }
+        public int SanLuongKTT { get; set; }
         public int SanLuongPTC6H { get; set; }
         public int SanLuongPTCQUA6H { get; set; }
         public Decimal TyLeTrong6H { get; set; }

@@ -66,23 +66,29 @@ namespace T41.Areas.Admin.Controllers
             QualityDeliveryRepository qualitydeliveryRepository = new QualityDeliveryRepository();
             ReturnQuality returnquality = new ReturnQuality();
             returnquality = qualitydeliveryRepository.Quality_Delivery_Success6H_Detail(endpostcode, routecode, common.DateToInt(startdate), common.DateToInt(enddate), service, type);
-
-            //return Json(returnquality.ListQualityDeliverySuccess6HReport, JsonRequestBehavior.AllowGet);
             return Json(returnquality, JsonRequestBehavior.AllowGet);
             
         }
-        
+
+        [HttpPost]
+        //Controller gọi đến chi tiết theo từng mã bưu cục của sản lượng phát thành công không có thông tin 
+        public ActionResult QualityDeliveryDetailReport_NoInformation(int endpostcode, int routecode, string startdate, string enddate, int service, int type)
+        {
+            QualityDeliveryRepository qualitydeliveryRepository = new QualityDeliveryRepository();
+            ReturnQuality returnquality = new ReturnQuality();
+            returnquality = qualitydeliveryRepository.Quality_Delivery_NoInformation_Detail(endpostcode, routecode, common.DateToInt(startdate), common.DateToInt(enddate), service, type);
+            return Json(returnquality, JsonRequestBehavior.AllowGet);
+        }
+
         //Controller gọi đến chi tiết của bảng tổng hợp sản lượng đi phát
         public ActionResult ListDetailedQualityDeliveryReport(int zone, int endpostcode, int routecode, string startdate, string enddate, int service)
         {
-            
             //ViewBag.zone = zone;
             ViewBag.endpostcode = endpostcode;
             ViewBag.routecode = routecode;
             ViewBag.service = service;
             ViewBag.startdate = startdate;
             ViewBag.enddate = enddate;
-            
             QualityDeliveryRepository qualitydeliveryRepository = new QualityDeliveryRepository();
             ReturnQuality returnquality = new ReturnQuality();
             returnquality = qualitydeliveryRepository.QUALITY_DELIVERY_DETAIL(zone , endpostcode , routecode, common.DateToInt(startdate), common.DateToInt(enddate), service);
