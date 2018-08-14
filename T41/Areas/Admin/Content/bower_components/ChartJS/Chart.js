@@ -149,6 +149,7 @@ function chartContainer1() {
 
     var chart = new CanvasJS.Chart("chartContainer1",
     {
+        animationEnabled: true,  
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -369,6 +370,7 @@ function chartContainer3() {
 
     var chart = new CanvasJS.Chart("chartContainer3",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -587,6 +589,7 @@ function chartContainer5() {
 
     var chart = new CanvasJS.Chart("chartContainer5",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -805,6 +808,7 @@ function chartContainer7() {
 
     var chart = new CanvasJS.Chart("chartContainer7",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -1023,6 +1027,7 @@ function chartContainer9() {
 
     var chart = new CanvasJS.Chart("chartContainer9",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -1241,6 +1246,7 @@ function chartContainer11() {
 
     var chart = new CanvasJS.Chart("chartContainer11",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -1459,6 +1465,7 @@ function chartContainer13() {
 
     var chart = new CanvasJS.Chart("chartContainer13",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -1677,6 +1684,7 @@ function chartContainer15() {
 
     var chart = new CanvasJS.Chart("chartContainer15",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -1895,6 +1903,7 @@ function chartContainer17() {
 
     var chart = new CanvasJS.Chart("chartContainer17",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -2113,6 +2122,7 @@ function chartContainer19() {
 
     var chart = new CanvasJS.Chart("chartContainer19",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -2331,6 +2341,7 @@ function chartContainer21() {
 
     var chart = new CanvasJS.Chart("chartContainer21",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -2549,6 +2560,7 @@ function chartContainer23() {
 
     var chart = new CanvasJS.Chart("chartContainer23",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -2767,6 +2779,7 @@ function chartContainer25() {
 
     var chart = new CanvasJS.Chart("chartContainer25",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
@@ -2985,6 +2998,7 @@ function chartContainer27() {
 
     var chart = new CanvasJS.Chart("chartContainer27",
     {
+        animationEnabled: true,
         title: {
             text: title1,
             fontFamily: "tahoma",
