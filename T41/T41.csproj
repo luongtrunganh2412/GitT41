@@ -196,6 +196,7 @@
     <Compile Include="Areas\Admin\Controllers\ExpressRoadController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DevelopActivityController.cs" />
     <Compile Include="Areas\Admin\Controllers\TotalDataCustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoadwayTransportController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportController.cs" />
@@ -3266,6 +3267,8 @@
     <Content Include="Areas\Admin\Views\BusinessManagement\ListSumBusinessManagement2Report.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessManagement\ListDetailedBusinessManagement3Report.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport29.cshtml" />
+    <Content Include="Areas\Admin\Views\DevelopActivity\ListDevelopActivity.cshtml" />
+    <Content Include="Areas\Admin\Views\DevelopActivity\DevelopActivityDetailReport.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
 <style type="text/css">
-    .p {
+    p {
         font-weight:bold;
     }
 </style>
@@ -39,8 +39,9 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
-                        </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy" autocomplete="off">
+                    </div>
+
                     </div>
                     <div class="form-group">
                         <label>Khu Vực</label>
@@ -61,7 +62,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy" autocomplete="off">
                         </div>
                     </div>
 
@@ -360,7 +361,11 @@
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript">
+    var chart1, chart2, chart4, chart5, chart6, chart7, chart8, chart9, chart10, chart11, chart12, chart13, chart14, chart15
+       , chart16, chart17, chart18, chart19, chart20, chart21, chart22, chart23, chart24, chart25, chart26, chart27, chart28;
     $(document).ready(function () {
+
+
         $("#fromdate").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
@@ -368,6 +373,9 @@
         $("#todate").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
+
+        $('.loading-element').hide();
+        $('.box-footer').hide();
     });
 
     var tableToExcel = (function () {
@@ -432,44 +440,38 @@
         $("#listqualityreport tr").remove();
         detail();
         $('.box-footer').show();
-        ////Phần Xuất Biểu Đồ
-        //$("#chartContainer1").remove();
-        //$("#chartContainer2").remove();
-        //$("#chartContainer3").remove();
-        //$("#chartContainer4").remove();
-        //$("#chartContainer5").remove();
-        //$("#chartContainer6").remove();
-        //$("#chartContainer7").remove();
-        //$("#chartContainer8").remove();
-        //$("#chartContainer9").remove();
-        //$("#chartContainer10").remove();
-        //$("#chartContainer11").remove();
-        //$("#chartContainer12").remove();
-        //$("#chartContainer13").remove();
-        //$("#chartContainer14").remove();
-        //$("#chartContainer15").remove();
-        //$("#chartContainer16").remove();
-        //$("#chartContainer17").remove();
-        //$("#chartContainer18").remove();
-        //$("#chartContainer19").remove();
-        //$("#chartContainer20").remove();
-        //$("#chartContainer21").remove();
-        //$("#chartContainer22").remove();
-        //$("#chartContainer23").remove();
-        //$("#chartContainer24").remove();
-        //$("#chartContainer25").remove();
-        //$("#chartContainer26").remove();
-        //$("#chartContainer27").remove();
-        //$("#chartContainer28").remove();
 
-        
+        chart1.destroy();
+        chart2.destroy();
+        chart3.destroy();
+        chart4.destroy();
+        chart5.destroy();
+        chart6.destroy();
+        chart7.destroy();
+        chart8.destroy();
+        chart9.destroy();
+        chart10.destroy();
+        chart11.destroy();
+        chart12.destroy();
+        chart13.destroy();
+        chart14.destroy();
+        chart15.destroy();
+        chart16.destroy();
+        chart17.destroy();
+        chart18.destroy();
+        chart19.destroy();
+        chart20.destroy();
+        chart21.destroy();
+        chart22.destroy();
+        chart23.destroy();
+        chart24.destroy();
+        chart25.destroy();
+        chart26.destroy();
+        chart27.destroy();
+        chart28.destroy();
     });
 
-    $(document).ready(function () {
-        $('.loading-element').hide();
-        $('.box-footer').hide();
-    });
-
+   
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     function detail(p) {
         $.ajax({

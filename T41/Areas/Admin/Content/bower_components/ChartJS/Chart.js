@@ -1,5 +1,7 @@
 ﻿
 $(document).ready(function () {
+   
+
     chartContainer1();
     chartContainer2();
     chartContainer3();
@@ -147,7 +149,7 @@ function chartContainer1() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer1",
+    chart1 = new CanvasJS.Chart("chartContainer1",
     {
         animationEnabled: true,  
         title: {
@@ -176,7 +178,7 @@ function chartContainer1() {
         ]
     });
 
-    chart.render();
+    chart1.render();
 }
 
 
@@ -223,7 +225,7 @@ function chartContainer2() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer2", {
+     chart2 = new CanvasJS.Chart("chartContainer2", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -247,7 +249,7 @@ function chartContainer2() {
             ]
         }]
     });
-    chart.render();
+    chart2.render();
 }
 
 
@@ -368,7 +370,7 @@ function chartContainer3() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer3",
+     chart3 = new CanvasJS.Chart("chartContainer3",
     {
         animationEnabled: true,
         title: {
@@ -397,7 +399,7 @@ function chartContainer3() {
         ]
     });
 
-    chart.render();
+    chart3.render();
 }
 
 
@@ -444,7 +446,7 @@ function chartContainer4() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer4", {
+     chart4 = new CanvasJS.Chart("chartContainer4", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -468,7 +470,7 @@ function chartContainer4() {
             ]
         }]
     });
-    chart.render();
+    chart4.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 3
@@ -587,7 +589,7 @@ function chartContainer5() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer5",
+     chart5 = new CanvasJS.Chart("chartContainer5",
     {
         animationEnabled: true,
         title: {
@@ -616,7 +618,7 @@ function chartContainer5() {
         ]
     });
 
-    chart.render();
+    chart5.render();
 }
 
 
@@ -663,7 +665,7 @@ function chartContainer6() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer6", {
+     chart6 = new CanvasJS.Chart("chartContainer6", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -687,7 +689,7 @@ function chartContainer6() {
             ]
         }]
     });
-    chart.render();
+    chart6.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 4
@@ -806,7 +808,7 @@ function chartContainer7() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer7",
+     chart7 = new CanvasJS.Chart("chartContainer7",
     {
         animationEnabled: true,
         title: {
@@ -835,7 +837,7 @@ function chartContainer7() {
         ]
     });
 
-    chart.render();
+    chart7.render();
 }
 
 
@@ -882,7 +884,7 @@ function chartContainer8() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer8", {
+     chart8 = new CanvasJS.Chart("chartContainer8", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -906,7 +908,7 @@ function chartContainer8() {
             ]
         }]
     });
-    chart.render();
+    chart8.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 5
@@ -1025,7 +1027,7 @@ function chartContainer9() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer9",
+     chart9 = new CanvasJS.Chart("chartContainer9",
     {
         animationEnabled: true,
         title: {
@@ -1054,7 +1056,7 @@ function chartContainer9() {
         ]
     });
 
-    chart.render();
+    chart9.render();
 }
 
 
@@ -1101,7 +1103,7 @@ function chartContainer10() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer10", {
+     chart10 = new CanvasJS.Chart("chartContainer10", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -1125,7 +1127,7 @@ function chartContainer10() {
             ]
         }]
     });
-    chart.render();
+    chart10.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 6
@@ -1244,7 +1246,7 @@ function chartContainer11() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer11",
+     chart11 = new CanvasJS.Chart("chartContainer11",
     {
         animationEnabled: true,
         title: {
@@ -1273,7 +1275,7 @@ function chartContainer11() {
         ]
     });
 
-    chart.render();
+    chart11.render();
 }
 
 
@@ -1320,7 +1322,7 @@ function chartContainer12() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer12", {
+     chart12 = new CanvasJS.Chart("chartContainer12", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -1344,7 +1346,7 @@ function chartContainer12() {
             ]
         }]
     });
-    chart.render();
+    chart12.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 7
@@ -1463,7 +1465,7 @@ function chartContainer13() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer13",
+     chart13 = new CanvasJS.Chart("chartContainer13",
     {
         animationEnabled: true,
         title: {
@@ -1492,7 +1494,7 @@ function chartContainer13() {
         ]
     });
 
-    chart.render();
+    chart13.render();
 }
 
 
@@ -1539,7 +1541,7 @@ function chartContainer14() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer14", {
+     chart14 = new CanvasJS.Chart("chartContainer14", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -1563,7 +1565,7 @@ function chartContainer14() {
             ]
         }]
     });
-    chart.render();
+    chart14.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 8
@@ -1682,7 +1684,7 @@ function chartContainer15() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer15",
+     chart15 = new CanvasJS.Chart("chartContainer15",
     {
         animationEnabled: true,
         title: {
@@ -1711,7 +1713,7 @@ function chartContainer15() {
         ]
     });
 
-    chart.render();
+    chart15.render();
 }
 
 
@@ -1758,7 +1760,7 @@ function chartContainer16() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer16", {
+     chart16 = new CanvasJS.Chart("chartContainer16", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -1782,7 +1784,7 @@ function chartContainer16() {
             ]
         }]
     });
-    chart.render();
+    chart16.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 9
@@ -1901,7 +1903,7 @@ function chartContainer17() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer17",
+     chart17 = new CanvasJS.Chart("chartContainer17",
     {
         animationEnabled: true,
         title: {
@@ -1930,7 +1932,7 @@ function chartContainer17() {
         ]
     });
 
-    chart.render();
+    chart17.render();
 }
 
 
@@ -1977,7 +1979,7 @@ function chartContainer18() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer18", {
+     chart18 = new CanvasJS.Chart("chartContainer18", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -2001,7 +2003,7 @@ function chartContainer18() {
             ]
         }]
     });
-    chart.render();
+    chart18.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 10
@@ -2120,7 +2122,7 @@ function chartContainer19() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer19",
+     chart19 = new CanvasJS.Chart("chartContainer19",
     {
         animationEnabled: true,
         title: {
@@ -2149,7 +2151,7 @@ function chartContainer19() {
         ]
     });
 
-    chart.render();
+    chart19.render();
 }
 
 
@@ -2196,7 +2198,7 @@ function chartContainer20() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer20", {
+     chart20 = new CanvasJS.Chart("chartContainer20", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -2220,7 +2222,7 @@ function chartContainer20() {
             ]
         }]
     });
-    chart.render();
+    chart20.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 11
@@ -2339,7 +2341,7 @@ function chartContainer21() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer21",
+     chart21 = new CanvasJS.Chart("chartContainer21",
     {
         animationEnabled: true,
         title: {
@@ -2368,7 +2370,7 @@ function chartContainer21() {
         ]
     });
 
-    chart.render();
+    chart21.render();
 }
 
 
@@ -2415,7 +2417,7 @@ function chartContainer22() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer22", {
+     chart22 = new CanvasJS.Chart("chartContainer22", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -2439,7 +2441,7 @@ function chartContainer22() {
             ]
         }]
     });
-    chart.render();
+    chart22.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 12
@@ -2558,7 +2560,7 @@ function chartContainer23() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer23",
+     chart23 = new CanvasJS.Chart("chartContainer23",
     {
         animationEnabled: true,
         title: {
@@ -2587,7 +2589,7 @@ function chartContainer23() {
         ]
     });
 
-    chart.render();
+    chart23.render();
 }
 
 
@@ -2634,7 +2636,7 @@ function chartContainer24() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer24", {
+     chart24 = new CanvasJS.Chart("chartContainer24", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -2658,7 +2660,7 @@ function chartContainer24() {
             ]
         }]
     });
-    chart.render();
+    chart24.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 13
@@ -2777,7 +2779,7 @@ function chartContainer25() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer25",
+     chart25 = new CanvasJS.Chart("chartContainer25",
     {
         animationEnabled: true,
         title: {
@@ -2806,7 +2808,7 @@ function chartContainer25() {
         ]
     });
 
-    chart.render();
+    chart25.render();
 }
 
 
@@ -2853,7 +2855,7 @@ function chartContainer26() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer26", {
+     chart26 = new CanvasJS.Chart("chartContainer26", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -2877,7 +2879,7 @@ function chartContainer26() {
             ]
         }]
     });
-    chart.render();
+    chart26.render();
 }
 
 //Phần Xuất Ra Biểu Đồ Dòng 14
@@ -2996,7 +2998,7 @@ function chartContainer27() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer27",
+     chart27 = new CanvasJS.Chart("chartContainer27",
     {
         animationEnabled: true,
         title: {
@@ -3025,7 +3027,7 @@ function chartContainer27() {
         ]
     });
 
-    chart.render();
+    chart27.render();
 }
 
 
@@ -3072,7 +3074,7 @@ function chartContainer28() {
     }
 
 
-    var chart = new CanvasJS.Chart("chartContainer28", {
+     chart28 = new CanvasJS.Chart("chartContainer28", {
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -3096,7 +3098,7 @@ function chartContainer28() {
             ]
         }]
     });
-    chart.render();
+    chart28.render();
 }
 
 function explodePie(e) {
