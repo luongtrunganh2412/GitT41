@@ -7,13 +7,7 @@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
-@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <title>Báo cáo tổng hợp dữ liệu truyền nhận EMS Center</title>
 
 <section class="content">
@@ -34,10 +28,10 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Lựa Chọn In Bản Kê </label>
-                        <select class="form-control select2" style="width: 100%;" id="typecomunication">
-                            <option selected="selected" value="1">Bản Kê Giao Dịch</option>
-                            <option value="2">Bản Kê Đường Thư Bưu Tá </option>
-                        </select>
+                            <select class="form-control" style="width: 100%;" id="typecomunication">
+                                <option selected="selected" value="1">Bản Kê Giao Dịch</option>
+                                <option value="2">Bản Kê Đường Thư Bưu Tá </option>
+                            </select>
                     </div>
                 </div>
             </div>
@@ -101,16 +95,6 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        @*<label>Khoảng thời gian</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" id="reservation">
-                            </div>*@
-                        <!-- /.input group -->
-
-                        
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -122,7 +106,6 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -136,13 +119,7 @@
                         <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
                         <div class="row">
                             <div class="col-md-6">
-                                
-                                @*<a href="/Admin/TransferManagement/E2_TransferManagementDetailReport" target="_blank" id="btnreport" class="btn btn-default btn-md">Hiển thị dữ liệu</a>*@
-
-                                @*<a href='' target="_blank" id="btnreport" class="btn btn-default btn-md" onclick="this.href ='/Admin/TransferManagement/MCT_E2_TransferManagementDetailReport?fromposcode=' + document.getElementById('ide2').value + '&toposcode=' + document.getElementById('ide2').value + '&date=' + document.getElementById('ide2').value + '&mailtrip=' + document.getElementById('ide2').value + '&postbag=' + document.getElementById('ide2').value">Hiển thị dữ liệu</a>*@
-
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -238,7 +215,6 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -248,16 +224,16 @@
 
     <!-- /.box-body -->
 
-
-
 </section>
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
 
-    
-    
 
     $(function () {
         $('#fromdate').datepicker()
@@ -275,57 +251,37 @@
     })
 
 
-    //Phần lấy dữ liệu tỉnh đóng
+    
     $(document).ready(function () {
+        //HIDE
+        $('.loading-element').hide();
+        $('.loading-element-fromprovince').hide();
+        $('.loading-element-toprovince').hide();
 
+
+        //Phần lấy dữ liệu tỉnh đóng
         $.getJSON("/TransferManagement/ProvinceCode", function (data) {
-            $.each(data, function (i, data) {
-
-                $('<option>',
-                   {
-                        value: data.PROVINCECODE,
-                        text: data.PROVINCENAME
-                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#fromprovince");
-            });
+            $('#fromprovince').html(data);
         })
 
-    });
 
-
-    //Phần lấy dữ liệu tỉnh Nhận
-    $(document).ready(function () {
-
+        //Phần lấy dữ liệu tỉnh Nhận
         $.getJSON("/TransferManagement/ProvinceCode", function (data) {
-            $.each(data, function (i, data) {
-
-                $('<option>',
-                   {
-                       value: data.PROVINCECODE,
-                       text: data.PROVINCENAME
-                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#toprovince");
-            });
+            $('#toprovince').html(data);
         })
 
-    });
+        //Lần đầu load bưu cục đóng = HN
+        $.ajax({
+            url: "/TransferManagement/PosCode",
+            dataType: "json",
+            data: { province: 10 },
+            success: function (data) {
+                $('#fromposcode').html('<option value=0>Tất Cả </option>');
+                $('#fromposcode').html(data);
+            }
+        });
 
-
-    //Lần đầu load bưu cục đóng = HN
-
-    $.ajax({
-        url: "/TransferManagement/PosCode",
-        dataType: "json",
-        data: { province:0 },
-        success: function (data) {
-            $('#fromposcode').html('<option value=0>Tất Cả </option>');
-            jQuery.each(data, function (i, val) {
-                $('#fromposcode').html($('#fromposcode').html() +
-                    "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-            });
-        }
-    });
-
-    //Sự kiện thay đổi bưu cục đóng theo khu vực
-    $(document).ready(function () {
+        //Sự kiện thay đổi bưu cục đóng theo khu vực
         $('#fromprovince').change(function () {
             $.ajax({
                 url: "/TransferManagement/PosCode",
@@ -336,34 +292,26 @@
                 data: { province: $("#fromprovince").val() },
                 success: function (data) {
                     $('.loading-element-fromprovince').hide();
-                    $('#fromposcode').html('<option value=0>Tất Cả </option>');
-                    jQuery.each(data, function (i, val) {
-                        $('#fromposcode').html($('#fromposcode').html() +
-                            "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-                    });
+                    $('#fromposcode').html(data);
                 }
             });
         })
-    });
 
 
-    //Lần đầu load bưu cục nhận = HN
+        //Lần đầu load bưu cục nhận = HN
+        $.ajax({
+            url: "/TransferManagement/PosCode",
+            dataType: "json",
+            data: { province: 10 },
+            success: function (data) {
+                $('#toposcode').html('<option value=0>Tất Cả </option>');
+                $('#toposcode').html(data);
+            }
+        });
 
-    $.ajax({
-        url: "/TransferManagement/PosCode",
-        dataType: "json",
-        data: { province: 0 },
-        success: function (data) {
-            $('#toposcode').html('<option value=0>Tất Cả </option>');
-            jQuery.each(data, function (i, val) {
-                $('#toposcode').html($('#toposcode').html() +
-                    "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-            });
-        }
-    });
 
-    //Sự kiện thay đổi bưu cục nhận theo khu vực
-    $(document).ready(function () {
+
+        //Sự kiện thay đổi bưu cục nhận theo khu vực
         $('#toprovince').change(function () {
             $.ajax({
                 url: "/TransferManagement/PosCode",
@@ -374,32 +322,20 @@
                 data: { province: $("#toprovince").val() },
                 success: function (data) {
                     $('.loading-element-toprovince').hide();
-                    $('#toposcode').html('<option value=0>Tất Cả </option>');
-                    jQuery.each(data, function (i, val) {
-                        $('#toposcode').html($('#toposcode').html() +
-                            "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-                    });
+                    $('#toposcode').html(data);
                 }
             });
         })
     });
 
+
     $("#btnreport").click(function () {
-        
-        
         $("#listtransfermanagement tr").remove();
         // goi ham Detail
         detail();
-        
-
     });
 
-    $(document).ready(function () {
-        $('.loading-element').hide();
-        $('.loading-element-fromprovince').hide();
-        $('.loading-element-toprovince').hide();
-    });
-
+   
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     function detail(p) {
         $.ajax({
@@ -431,12 +367,10 @@
                     $('#listtransfermanagement').html(result);
 
                 }
-
             }
         })
     }
 
-    
     
 </script>
 

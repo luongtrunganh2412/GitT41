@@ -14,10 +14,9 @@ namespace T41.Areas.Admin.Data
     {
         #region GETPROVINCE
         //Lấy mã bưu cục phát dưới DB Procedure transfer_management_ems.GetProvince_Ems
-        public IEnumerable<GETPROVINCE> GETPROVINCE()
+        public string GETPROVINCE()
         {
-            List<GETPROVINCE> listGetProvinceCode = null;
-            GETPROVINCE oGetProvinceCode = null;
+            string LISTPROVINCE = "<option value=\"0\">Tất Cả</option>";
 
             try
             {
@@ -30,14 +29,9 @@ namespace T41.Areas.Admin.Data
                     cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
                     using (OracleDataReader dr = cm.ExecuteReader())
                     {
-                        listGetProvinceCode = new List<GETPROVINCE>();
                         while (dr.Read())
                         {
-                            oGetProvinceCode = new GETPROVINCE();
-                            //oGetProvinceCode.PROVINCECODE = int.Parse(dr["PROVINCECODE"].ToString());
-                            oGetProvinceCode.PROVINCECODE = dr["PROVINCECODE"].ToString();
-                            oGetProvinceCode.PROVINCENAME = dr["PROVINCENAME"].ToString();
-                            listGetProvinceCode.Add(oGetProvinceCode);
+                            LISTPROVINCE += "<option value='" + dr["PROVINCECODE"].ToString() + "'>" + dr["PROVINCECODE"].ToString() + '-' + dr["PROVINCENAME"].ToString() + "</option>";
                         }
                     }
                 }
@@ -45,20 +39,18 @@ namespace T41.Areas.Admin.Data
             catch (Exception ex)
             {
                 LogAPI.LogToFile(LogFileType.EXCEPTION, "GETPROVINCE" + ex.Message);
-                listGetProvinceCode = null;
+                
             }
 
-            return listGetProvinceCode;
+            return LISTPROVINCE;
         }
         #endregion
 
         #region GetAllPOSCODE
         //Lấy mã bưu cục phát dưới DB Procedure GetPosCode_Vnpost 
-        public IEnumerable<GETCRPOSCODE> GetCRPOSCODE(int province)
+        public string GetCRPOSCODE(int province)
         {
-            List<GETCRPOSCODE> listGetPosCode = null;
-            GETCRPOSCODE oGetPosCode = null;
-
+            string LISTPOSCODE = "<option value=\"0\">Tất Cả</option>";
             try
             {
                 using (OracleCommand cm = new OracleCommand())
@@ -71,14 +63,9 @@ namespace T41.Areas.Admin.Data
                     cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
                     using (OracleDataReader dr = cm.ExecuteReader())
                     {
-                        listGetPosCode = new List<GETCRPOSCODE>();
                         while (dr.Read())
                         {
-                            oGetPosCode = new GETCRPOSCODE();
-                            //oGetPosCode.POSCODE = int.Parse(dr["POSCODE"].ToString());
-                            oGetPosCode.POSCODE = dr["POSCODE"].ToString();
-                            oGetPosCode.POSNAME = dr["POSNAME"].ToString();
-                            listGetPosCode.Add(oGetPosCode);
+                            LISTPOSCODE += "<option value='" + dr["POSCODE"].ToString() + "'>" + dr["POSCODE"].ToString() + '-' + dr["POSNAME"].ToString() + "</option>";
                         }
                     }
                 }
@@ -86,10 +73,10 @@ namespace T41.Areas.Admin.Data
             catch (Exception ex)
             {
                 LogAPI.LogToFile(LogFileType.EXCEPTION, "GETCRPOSCODE" + ex.Message);
-                listGetPosCode = null;
+                
             }
 
-            return listGetPosCode;
+            return LISTPOSCODE;
         }
         #endregion
 

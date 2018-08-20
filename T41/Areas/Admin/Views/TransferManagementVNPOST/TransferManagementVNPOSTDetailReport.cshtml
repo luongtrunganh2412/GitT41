@@ -7,12 +7,7 @@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
-@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 <title>Báo cáo tổng hợp dữ liệu truyền nhận VNPOST</title>
 
@@ -36,7 +31,7 @@
                         <div class="col-md-4">
                             <label>Lựa Chọn In Bản Kê </label>
                         </div>
-                        <select class="form-control select2" style="width: 100%;" id="typecomunication">
+                        <select class="form-control" style="width: 100%;" id="typecomunication">
                             <option selected="selected" value="1">Bản Kê Liên Tỉnh</option>
                             <option value="2">Bản Kê Nội Tỉnh</option>
                             <option value="3">Bản kê xác nhận đến khai thác vùng</option>
@@ -266,20 +261,16 @@
         </div>
 
     </div>
-
-
-    <!-- /.box-body -->
-
-
+<!-- /.box-body -->
 
 </section>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
-
-
-
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
 
     $(function () {
         $('#fromdate').datepicker()
@@ -296,58 +287,36 @@
         }).datepicker("setDate", "0");
     })
 
-
-    //Phần lấy dữ liệu tỉnh đóng
     $(document).ready(function () {
+        //HIDE
+        $('.loading-element').hide();
+        $('.loading-element-fromprovince').hide();
+        $('.loading-element-toprovince').hide();
 
+
+        //Phần lấy dữ liệu tỉnh đóng
         $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
-            $.each(data, function (i, data) {
-
-                $('<option>',
-                   {
-                        value: data.PROVINCECODE,
-                        text: data.PROVINCENAME
-                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#fromprovince");
-            });
+            $('#fromprovince').html(data);
         })
 
-    });
 
-
-    //Phần lấy dữ liệu tỉnh Nhận
-    $(document).ready(function () {
-
+        //Phần lấy dữ liệu tỉnh Nhận
         $.getJSON("/TransferManagementVNPOST/ProvinceCode", function (data) {
-            $.each(data, function (i, data) {
-
-                $('<option>',
-                   {
-                       value: data.PROVINCECODE,
-                       text: data.PROVINCENAME
-                   }).html(data.PROVINCECODE + '-' + data.PROVINCENAME).appendTo("#toprovince");
-            });
+            $('#toprovince').html(data);
         })
 
-    });
+        //Lần đầu load bưu cục đóng = HN
+        $.ajax({
+            url: "/TransferManagementVNPOST/PosCode",
+            dataType: "json",
+            data: { province: 10 },
+            success: function (data) {
+                $('#fromposcode').html('<option value=0>Tất Cả </option>');
+                $('#fromposcode').html(data);
+            }
+        });
 
-
-    //Lần đầu load bưu cục đóng = HN
-
-    $.ajax({
-        url: "/TransferManagementVNPOST/PosCode",
-        dataType: "json",
-        data: { province:0 },
-        success: function (data) {
-            $('#fromposcode').html('<option value="0">Chọn Bưu Cục Đóng </option>');
-            jQuery.each(data, function (i, val) {
-                $('#fromposcode').html($('#fromposcode').html() +
-                    "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-            });
-        }
-    });
-
-    //Sự kiện thay đổi bưu cục đóng theo khu vực
-    $(document).ready(function () {
+        //Sự kiện thay đổi bưu cục đóng theo khu vực
         $('#fromprovince').change(function () {
             $.ajax({
                 url: "/TransferManagementVNPOST/PosCode",
@@ -358,34 +327,26 @@
                 data: { province: $("#fromprovince").val() },
                 success: function (data) {
                     $('.loading-element-fromprovince').hide();
-                    $('#fromposcode').html('<option value="0">Chọn Bưu Cục Đóng </option>');
-                    jQuery.each(data, function (i, val) {
-                        $('#fromposcode').html($('#fromposcode').html() +
-                            "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-                    });
+                    $('#fromposcode').html(data);
                 }
             });
         })
-    });
 
 
-    //Lần đầu load bưu cục nhận = HN
+        //Lần đầu load bưu cục nhận = HN
+        $.ajax({
+            url: "/TransferManagementVNPOST/PosCode",
+            dataType: "json",
+            data: { province: 10 },
+            success: function (data) {
+                $('#toposcode').html('<option value=0>Tất Cả </option>');
+                $('#toposcode').html(data);
+            }
+        });
 
-    $.ajax({
-        url: "/TransferManagementVNPOST/PosCode",
-        dataType: "json",
-        data: { province: 0 },
-        success: function (data) {
-            $('#toposcode').html('<option value="0">Chọn Bưu Cục Nhận </option>');
-            jQuery.each(data, function (i, val) {
-                $('#toposcode').html($('#toposcode').html() +
-                    "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-            });
-        }
-    });
 
-    //Sự kiện thay đổi bưu cục nhận theo khu vực
-    $(document).ready(function () {
+
+        //Sự kiện thay đổi bưu cục nhận theo khu vực
         $('#toprovince').change(function () {
             $.ajax({
                 url: "/TransferManagementVNPOST/PosCode",
@@ -396,15 +357,12 @@
                 data: { province: $("#toprovince").val() },
                 success: function (data) {
                     $('.loading-element-toprovince').hide();
-                    $('#toposcode').html('<option value="0">Chọn Bưu Cục Nhận </option>');
-                    jQuery.each(data, function (i, val) {
-                        $('#toposcode').html($('#toposcode').html() +
-                            "<option value='" + val.POSCODE + "'>" + val.POSCODE + '-' + val.POSNAME + "</option>");
-                    });
+                    $('#toposcode').html(data);
                 }
             });
         })
     });
+
 
     $("#btnreport").click(function () {
 
@@ -420,7 +378,6 @@
         } else {
             detail();
         }
-       
     });
 
     $(document).ready(function () {

@@ -57,6 +57,8 @@ namespace T41.Areas.Admin.Controllers
             //  return Json(apiRepository.ListPostCode(), JsonRequestBehavior.AllowGet);
         }
 
+
+
         //Controller gọi đến chi tiết của bảng tổng hợp sản lượng đi phát
         public ActionResult ListDetailedTransferManagementReport(int fromprovince, int toprovince, int fromposcode, int toposcode, string fromdate, string todate, int typecomunication)
         {
