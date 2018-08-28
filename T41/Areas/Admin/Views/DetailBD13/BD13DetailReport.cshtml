@@ -6,13 +6,13 @@
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
-
-<title>Chi tiết E1 BD 13 Đi</title>
+<title>Chi tiết e1 bd13 đi</title>
 <section class="content">
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Chi tiết E1 BD 13 Đi</h3>
+            <h3 class="box-title">Chi tiết e1 bd13 đi</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -38,12 +38,13 @@
 
                         </select>
                     </div>
+                    
                     <!-- /.form-group -->
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Ca Khai Thác</label>
-                        <select class="form-control select2" style="width: 100%;" id="ca">
+                        <select class="form-control" style="width: 100%;" id="ca">
                             <option selected="selected" value="1">Ca 1</option>
                             <option value="2">Ca 2</option>
                             <option value="3">Ca 3</option>
@@ -55,8 +56,18 @@
                             <option selected="selected" value="0">Tất cả</option>
                         </select>
                     </div>
+                    
                 </div>
-                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Chuyến Thư</label>
+                        <input class="form-control " onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" type="text" id="chthu">
+                    </div>
+                    <div class="form-group">
+                        <label>Túi Số</label>
+                        <input class="form-control " onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" type="text" id="tuiso">
+                    </div>
+                </div>
             </div>
             
             <div class="row">
@@ -64,47 +75,29 @@
                     <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển Thị</button>
                 </div>
             </div>
-            <div class="box-header">
-                <h3 class="box-title">Chi Tiết Bưu Gửi</h3>
-            </div>
+            
+            @*<div class="box-header">
+                <h3 class="box-title">Chi tiết bưu gửi</h3>
+            </div>*@
             
             <div class="loading-element">
                 <i class="fa fa-spinner fa-spin"></i>
                 Vui lòng chờ giây lát...
             </div>
-            <div class="col-md-12">
-                <div style="overflow-x:auto;">
-                    <table id="example1" class="table table-bordered table-hover">
-                        <thead>
-                            <tr class="bg-light-blue color-palette">
-                                <th>STT</th>
-                                <th>Mã E1</th>
-                                <th>Mã Bưu Cục Trả</th>
-                                <th>Mã Bưu Cục Nhận</th>
-                                <th>Khối Lượng</th>
-                                <th>Cước CS</th>
-                                <th>Cước DV</th>
-                                <th>Trạng Thái</th>
-                                <th>Địa Chỉ</th>
-                                <th>Mã Bưu Cục</th>
-                                <th>Chuyến Thư</th>
-                                <th>Túi Số</th>
-                                <th>Ngày</th>
-                                <th>Mã Bưu Cục Khai Thác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listbd13report"></tbody>
-                    </table>
-                </div>
+            <div style="overflow-x:auto;">
+                <table id="listbd13report" class="table table-bordered table-hover"></table>
             </div>
             
+
             <div class="row">
                 <div id="page-selection" class="col-sm-12 text-center">
                 </div>
             </div>
             
             
+            
         </div>
+        
     </div>
 
 
@@ -117,9 +110,11 @@
 </section>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('.select2').select2();
+
         $("#date").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
@@ -140,6 +135,25 @@
 
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     function detail(p) {
+        var chthu;
+        var tuiso;
+
+        if (document.getElementById('chthu').value == ""
+        || document.getElementById('chthu').value == undefined) {
+            chthu = 0;
+        }
+        else {
+            chthu = document.getElementById('chthu').value;
+        }
+
+        if (document.getElementById('tuiso').value == ""
+        || document.getElementById('tuiso').value == undefined) {
+            tuiso = 0;
+        }
+        else {
+            tuiso = document.getElementById('tuiso').value;
+        }
+
         $.ajax({
             url: '@Url.Action("ListDetailedBD13Report", "DetailBD13")',
             beforeSend: function () {
@@ -152,7 +166,9 @@
                     mabc_kt: $("#endpostcode").val(),
                     mabc: $("#routecode").val(),
                     ngay: $('#date').val(),
-                    cakt: $("#ca").val()
+                    cakt: $("#ca").val(),
+                    chthu: chthu,
+                    tuiso: tuiso
                     
                 },
             success: function (result) {

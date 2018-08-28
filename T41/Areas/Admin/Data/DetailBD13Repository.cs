@@ -95,7 +95,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng e1_bd13_di
         #region BD13_DI_DETAIL          
-        public ReturnBD13 BD13_DI_DETAIL(int page_index, int page_size, int mabc_kt, int mabc, int ngay, int cakt)
+        public ReturnBD13 BD13_DI_DETAIL(int page_index, int page_size, int mabc_kt, int mabc, int ngay, int cakt, int chthu, int tuiso)
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -121,6 +121,8 @@ namespace T41.Areas.Admin.Data
                     myCommand.Parameters.Add("P_MABC", OracleDbType.Int32).Value = mabc;
                     myCommand.Parameters.Add("P_NGAY", OracleDbType.Int32).Value = ngay;
                     myCommand.Parameters.Add("P_CAKT", OracleDbType.Int32).Value = cakt;
+                    myCommand.Parameters.Add("P_CHTHU", OracleDbType.Int32).Value = chthu;
+                    myCommand.Parameters.Add("P_TUISO", OracleDbType.Int32).Value = tuiso;
                     myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
                     myCommand.Parameters.Add(new OracleParameter("P_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);

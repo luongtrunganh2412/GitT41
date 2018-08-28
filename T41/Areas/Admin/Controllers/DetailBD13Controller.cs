@@ -43,14 +43,14 @@ namespace T41.Areas.Admin.Controllers
         }
 
         //Phần show ra dữ liệu của bảng người dùng
-        public ActionResult ListDetailedBD13Report(int? page, int mabc_kt, int mabc, string ngay, int cakt)
+        public ActionResult ListDetailedBD13Report(int? page, int mabc_kt, int mabc, string ngay, int cakt, int chthu, int tuiso)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
             ViewBag.currentPageIndex = currentPageIndex;
             ViewBag.PageSize = page_size;
             DetailBD13Repository bd13Repository = new DetailBD13Repository();
             ReturnBD13 returnbd13 = new ReturnBD13();
-            returnbd13 = bd13Repository.BD13_DI_DETAIL(currentPageIndex, page_size,  mabc_kt, mabc, common.DateToInt(ngay), cakt);
+            returnbd13 = bd13Repository.BD13_DI_DETAIL(currentPageIndex, page_size,  mabc_kt, mabc, common.DateToInt(ngay), cakt, chthu, tuiso);
             ViewBag.total = returnbd13.Total;
             ViewBag.total_page = (returnbd13.Total + page_size - 1) / page_size;
             return View(returnbd13);

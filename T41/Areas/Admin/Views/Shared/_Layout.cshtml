@@ -194,11 +194,6 @@ desired effect
                     <!-- Optionally, you can add icons to the links -->
                     <!-- Group 1 -->
 
-
-
-
-
-
                     @{
                         if (Convert.ToInt32(Session["isadmin"]) == 1)
                         {
@@ -217,22 +212,7 @@ desired effect
                                 </ul>
                             </li>
 
-							<!-- Group 1 -->
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>Báo cáo phát</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
-                                    <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
-                                    <li><a href="/Admin/DetailBD13/BD13DetailReport">Chi tiết E1 BD13</a></li>
-                                </ul>
-                            </li>
-                            
-                    <!-- Group 2 -->
+                            <!-- Group 2 -->
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
@@ -297,6 +277,25 @@ desired effect
                             </li>
                         }
                     }
+							<!-- Group 1 -->
+                            @{
+                                if (Convert.ToInt32(Session["isadmin"]) == 1 || Convert.ToInt32(Session["userid"]) == 17 || Convert.ToInt32(Session["userid"]) == 18 || Convert.ToInt32(Session["userid"]) == 19)
+                                {
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <i class="fa fa-link"></i> <span>Báo cáo phát</span>
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
+                                            <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
+                                            <li><a href="/Admin/DetailBD13/BD13DetailReport">Chi tiết E1 BD13</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
 
                     @{
                         if (Convert.ToInt32(Session["userid"]) == 25 || Convert.ToInt32(Session["userid"]) == 1)
