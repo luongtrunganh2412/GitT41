@@ -168,22 +168,6 @@
         case 0:
             checkphuongtienvanchuyen = "Bay"
             break;
-
-        case 1:
-            checkphuongtienvanchuyen = "Đường Thư Đột Xuất"
-            break;
-        case 2:
-            checkphuongtienvanchuyen = "Đường Thư Liên Tỉnh"
-            break;
-        case 3:
-            checkphuongtienvanchuyen = "Đường Thư Nội Huyện"
-            break;
-        case 4:
-            checkphuongtienvanchuyen = "Đường Thư Nội Tỉnh"
-            break;
-        case 5:
-            checkphuongtienvanchuyen = "Đường Thư Phụ Trợ Liên Tỉnh"
-            break;
         default:
             break;
     }
@@ -226,9 +210,12 @@
 
     switch (checktinhchapnhan) {
         case 0:
-            checktinhchapnhan = "Tất Cả"
+            checktinhchapnhan = "Miền Bắc(Trừ Hà Nội)"
             break;
-        case 1:
+        case 10:
+            checktinhchapnhan = "Miền Bắc"
+            break;
+        case 100000:
             checktinhchapnhan = "Hà Nội"
             break;
         default:
@@ -244,6 +231,9 @@
             break;
         case 1:
             checkdonvichapnhan = "Bưu Điện Hà Nội"
+            break;
+        case 2:
+            checkdonvichapnhan = "EMS Hà Nội"
             break;
         default:
             break;
@@ -343,7 +333,7 @@
                 $.each(data.ListBDHN_DI_HCMReport, function (i, item) {
                     str_body += '<tr>';
                     str_body += '<td>' + a++ + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].TGDEN + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListBDHN_DI_HCMReport[i].TGDEN + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEIDVNPOST + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEMAILROUTENAME + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEFROMPOSCODE + '</td>';
@@ -358,7 +348,7 @@
                     str_body += '<td style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG_TON_LK + '</td>';
 
 
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].TGDI + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListBDHN_DI_HCMReport[i].TGDI + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEIDVNPOST + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEMAILROUTENAME + '</td>';
                     str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVETOPOSCODE + '</td>';
