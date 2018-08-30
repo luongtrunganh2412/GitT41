@@ -15,6 +15,13 @@
         .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
             border: 1px solid #2d2a2a;
         }
+
+        .table-bordered > tbody > tr > td {
+            padding:2px;
+        }
+        .row {
+            margin-bottom:10px;
+        }
     </style>
 </head>
 <body>
@@ -28,18 +35,25 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                        <h3 class="box-title" id="date"> </h3>
+                        <h3 class="box-title" id="today"> </h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</strong></h2>
-                    <h3 class="text-center" id="fromdate"></h3>
-                    <h3 class="text-center" id="vung"></h3>
-                    <h3 class="text-center" id="cap"></h3>
-                    <h3 class="text-center" id="loaipt"></h3>
-                    <h3 class="text-center" id="mailroutecode"></h3>
+                    <h3 class="text-center" id="bckhaithac"></h3>
+                    <h3 class="text-center"><strong>Phạm Vi Dữ Liệu: Theo Ngày Xác Nhận Đến</strong></h3>
+                    <h3 class="text-center" id="date"></h3>
+                    <h3 class="text-center" id="phuongtienvc"></h3>
+                    <h3 class="text-center" id="changvc"></h3>
+                    <h3 class="text-center" id="tuyenvc"></h3>
+                    <h3 class="text-center" id="chuyenvc"></h3>
+
+                    <h3 class="text-center" id="tinhchapnhan"></h3>
+                    <h3 class="text-center" id="donvichapnhan"></h3>
+                    <h3 class="text-center" id="tinhphattra"></h3>
+                    <h3 class="text-center" id="donviphattra"></h3>
                     
                 </div>
             </div>
@@ -53,47 +67,44 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:9px;width:auto;border-collapse:collapse;">
-                        <thead class="bg-light-blue">
+                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:10px;border-collapse:collapse;border:1px solid;">
+                        <thead>
                             <tr>
                                 <th rowspan="2" class="text-center">STT</th>
-                                <th colspan="13" class="text-center">Chi Tiết Đến</th>
-                                <th colspan="11" class="text-center">Chi Tiết Đi</th>
+                                <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
+                                <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
                                 <th colspan="2"  class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
                                 <th rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
                                 
                             </tr>
                             <tr>
-                                <th class="text-center">Thời gian</th>
-                                <th class="text-center">ID Tuyến </th>
-                                <th class="text-center">Tên tuyến</th>
-                                <th class="text-center">ID chuyến</th>
-                                <th class="text-center">Tên chuyến </th>
-                                <th class="text-center">Mã bưu cục</th>
-                                <th class="text-center">Tên bưu cục</th>
-                                <th class="text-center">SL đến </th>
-                                <th class="text-center">KL đến (kg)</th>
-                                <th class="text-center">SL đến lũy kế</th>
-                                <th class="text-center">KL đến lũy kế</th>
-                                <th class="text-center">SL tồn lũy kế</th>
-                                <th class="text-center">KLg tồn lũy kế</th>
+                                <th style="background:#f9c19a;" class="text-center">Thời gian</th>
+                                <th style="background:#f9c19a;" class="text-center">ID chuyến </th>
+                                <th style="background:#f9c19a;" class="text-center">Tên chuyến</th>
+                                <th style="background:#f9c19a;" class="text-center">Mã Đơn Vị</th>
+                                <th style="background:#f9c19a;" class="text-center">Tên Đơn Vị </th>
+                                <th style="background:#f9c19a;" class="text-center">SL đến </th>
+                                <th style="background:#f9c19a;" class="text-center">KL đến (kg)</th>
+                                <th style="background:#f9c19a;" class="text-center">SL đến lũy kế</th>
+                                <th style="background:#f9c19a;" class="text-center">KL đến lũy kế</th>
+                                <th style="background:#f9c19a;" class="text-center">SL tồn lũy kế</th>
+                                <th style="background:#f9c19a;" class="text-center">KLg tồn lũy kế</th>
 
-                                <th class="text-center">Thời gian</th>
-                                <th class="text-center">ID Tuyến </th>
-                                <th class="text-center">Tên tuyến</th>
-                                <th class="text-center">ID chuyến</th>
-                                <th class="text-center">Tên chuyến </th>
-                                <th class="text-center">Mã bưu cục</th>
-                                <th class="text-center">Tên bưu cục</th>
-                                <th class="text-center">SL đi </th>
-                                <th class="text-center">KL đi (kg)</th>
-                                <th class="text-center">SL đi lũy kế</th>
-                                <th class="text-center">KL đi lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">Thời gian</th>
+                                <th style="background:#57c5e0;" class="text-center">ID Tuyến </th>
+                                <th style="background:#57c5e0;" class="text-center">Tên tuyến</th>
+                                <th style="background:#57c5e0;" class="text-center">ID chuyến</th>
+                                <th style="background:#57c5e0;" class="text-center">Tên chuyến </th>
+                                
+                                <th style="background:#57c5e0;" class="text-center">SL đi </th>
+                                <th style="background:#57c5e0;" class="text-center">KL đi (kg)</th>
+                                <th style="background:#57c5e0;" class="text-center">SL đi lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">KL đi lũy kế</th>
                                 <th class="text-center">Đáp ứng (SL)</th>
                                 <th class="text-center">Đáp ứng (KLg)</th>
                             </tr>
                         </thead>
-                        <tbody id="listroadwaytransport1"></tbody>
+                        <tbody id="listdevelopactivity1"></tbody>
                     </table>
                 </div>
                 <div class="col-lg-12 loading-element">
@@ -114,80 +125,169 @@
 <script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
+
     var url_string = document.URL;
     var url = new URL(url_string);
-    var fromdate = url.searchParams.get("fromdate");
-    var todate = url.searchParams.get("todate");
-    var vung = url.searchParams.get("vung");
-    var cap = url.searchParams.get("cap");
-    var loaipt = url.searchParams.get("loaipt");
-    var mailroutecode = url.searchParams.get("mailroutecode");
+    var bckhaithac = url.searchParams.get("bckhaithac");
+    var date = url.searchParams.get("date");
+    var phuongtienvanchuyen = url.searchParams.get("phuongtienvanchuyen");
+    var changvanchuyen = url.searchParams.get("changvanchuyen");
+    var tuyenvanchuyen = url.searchParams.get("tuyenvanchuyen");
+    var chuyenvanchuyen = url.searchParams.get("chuyenvanchuyen");
+    var tinhchapnhan = url.searchParams.get("tinhchapnhan");
+    var donvichapnhan = url.searchParams.get("donvichapnhan");
+    var tinhphattra = url.searchParams.get("tinhphattra");
+    var donviphattra = url.searchParams.get("donviphattra");
 
-    var checkvung = 0;
-    checkvung = parseInt(vung);
-    
-    switch (checkvung) {
+    var checkbckhaithac = 0;
+    checkbckhaithac = parseInt(bckhaithac);
+
+    switch (checkbckhaithac) {
         case 0:
-            checkvung = "Tất Cả"
+            checkbckhaithac = "Tất Cả"
             break;
 
-        case 1:
-            checkvung = "Miền Bắc"
+        case 100916:
+            checkbckhaithac = "100916 - HN EMS LT"
             break;
-        case 2:
-            checkvung = "Miền Trung"
-            break;
-        case 3:
-            checkvung = "Miền Nam"
-            
-            break;
+        //case 2:
+        //    checkbckhaithac = "Miền Trung"
+        //    break;
+        //case 3:
+        //    checkbckhaithac = "Miền Nam"
+
+        //    break;
         default:
             break;
     }
 
-    var checkcap = 0;
-    checkcap = parseInt(cap);
+    var checkphuongtienvanchuyen = 0;
+    checkphuongtienvanchuyen = parseInt(phuongtienvanchuyen);
 
-    switch (checkcap) {
+    switch (checkphuongtienvanchuyen) {
         case 0:
-            checkcap = "Tất Cả"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Bay"
             break;
 
         case 1:
-            checkcap = "Đường Thư Đột Xuất"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Đường Thư Đột Xuất"
             break;
         case 2:
-            checkcap = "Đường Thư Liên Tỉnh"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Đường Thư Liên Tỉnh"
             break;
         case 3:
-            checkcap = "Đường Thư Nội Huyện"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Đường Thư Nội Huyện"
             break;
         case 4:
-            checkcap = "Đường Thư Nội Tỉnh"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Đường Thư Nội Tỉnh"
             break;
         case 5:
-            checkcap = "Đường Thư Phụ Trợ Liên Tỉnh"
-            console.log(checkcap);
+            checkphuongtienvanchuyen = "Đường Thư Phụ Trợ Liên Tỉnh"
             break;
         default:
             break;
     }
 
-    
+    var checkchangvanchuyen = 0;
+    checkchangvanchuyen = parseInt(changvanchuyen);
+
+    switch (checkchangvanchuyen) {
+        case 0:
+            checkchangvanchuyen = "Nội Bài - Tân Sơn Nhất"
+            break;
+        default:
+            break;
+    }
+
+    var checktuyenvanchuyen = 0;
+    checktuyenvanchuyen = parseInt(tuyenvanchuyen);
+
+    switch (checktuyenvanchuyen) {
+        case 0:
+            checktuyenvanchuyen = "Tất Cả"
+            break;
+        default:
+            break;
+    }
+
+    var checkchuyenvanchuyen = 0;
+    checkchuyenvanchuyen = parseInt(chuyenvanchuyen);
+
+    switch (checkchuyenvanchuyen) {
+        case 0:
+            checkchuyenvanchuyen = "Tất Cả"
+            break;
+        default:
+            break;
+    }
+
+    var checktinhchapnhan = 0;
+    checktinhchapnhan = parseInt(tinhchapnhan);
+
+    switch (checktinhchapnhan) {
+        case 0:
+            checktinhchapnhan = "Tất Cả"
+            break;
+        case 1:
+            checktinhchapnhan = "Hà Nội"
+            break;
+        default:
+            break;
+    }
+
+    var checkdonvichapnhan = 0;
+    checkdonvichapnhan = parseInt(donvichapnhan);
+
+    switch (checkdonvichapnhan) {
+        case 0:
+            checkdonvichapnhan = "Tất Cả"
+            break;
+        case 1:
+            checkdonvichapnhan = "Bưu Điện Hà Nội"
+            break;
+        default:
+            break;
+    }
+
+    var checktinhphattra = 0;
+    checktinhphattra = parseInt(tinhphattra);
+
+    switch (checktinhphattra) {
+        case 0:
+            checktinhphattra = "Hồ Chí Minh"
+            break;
+        default:
+            break;
+    }
+
+    var checkdonviphattra = 0;
+    checkdonviphattra = parseInt(donviphattra);
+
+    switch (checkdonviphattra) {
+        case 0:
+            checkdonviphattra = "Tất Cả"
+            break;
+        default:
+            break;
+    }
+
 
     $(document).ready(function () {
-        document.getElementById("fromdate").innerHTML = "<strong>Thời Gian:" + fromdate + "-" + todate + "</strong>";
-        document.getElementById("date").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
-        document.getElementById("vung").innerHTML = "<strong>Vùng:" + checkvung + "</strong>";
-        document.getElementById("cap").innerHTML = "<strong>Cấp Đường Thư:" + checkcap + "</strong>";
+        document.getElementById("date").innerHTML = "<strong>Thời Gian:" + date + "</strong>";
+        document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
+        document.getElementById("bckhaithac").innerHTML = "<strong>BC Khai Thác:" + checkbckhaithac + "</strong>";
+        document.getElementById("phuongtienvc").innerHTML = "<strong>Phương Tiện VC:" + checkphuongtienvanchuyen + "</strong>";
+        document.getElementById("changvc").innerHTML = "<strong>Chặng Vận Chuyển:" + checkchangvanchuyen + "</strong>";
+        document.getElementById("tuyenvc").innerHTML = "<strong>Tuyến Vận Chuyển:" + checktuyenvanchuyen + "</strong>";
+        document.getElementById("chuyenvc").innerHTML = "<strong>Chuyến Vận Chuyển:" + checkchuyenvanchuyen + "</strong>";
+        document.getElementById("tinhchapnhan").innerHTML = "<strong>Tỉnh Chấp Nhận:" + checktinhchapnhan + "</strong>";
+        document.getElementById("donvichapnhan").innerHTML = "<strong>Đơn Vị Chấp Nhận:" + checkdonvichapnhan + "</strong>";
+        document.getElementById("tinhphattra").innerHTML = "<strong>Tỉnh Phát Trả:" + checktinhphattra + "</strong>";
+        document.getElementById("donviphattra").innerHTML = "<strong>Đơn Vị Phát Trả:" + checkdonviphattra + "</strong>";
+
         // goi ham Detail
         detail_Roadway1();
-       
+
     });
 
     //Phần JS để lấy dữ liệu date theo kiểu yyyyMMdddd
@@ -217,46 +317,76 @@
         printButton.style.visibility = 'visible';
     }
 
-    
+
 
 
     //Phần JS để lấy dữ liệu theo kiểu JSON rồi bind vào table theo ID
     function detail_Roadway1() {
         $.ajax({
-            url: '@Url.Action("ListDevelopActivity_GETID", "DevelopActivity")',
+            url: '@Url.Action("ListDevelopActivity_BDHN_DI_HCM", "DevelopActivity")',
             beforeSend: function () {
                 $('.loading-element').show();
             },
             dataType: 'json',
             data:
                 {
-                    id_nguoi_dung: 115070,
-                    
+                    workcenter: bckhaithac,
+                    AcceptDate: date,
+                    arriveprovince: tinhchapnhan,
+                    arrivepartner: donvichapnhan,
+
                 },
             success: function (data) {
                 var str_html = "";
                 var str_body = "";
                 var a = 1;
-                $.each(data.ListSaleUserManagement_Report, function (i, item) {
+                $.each(data.ListBDHN_DI_HCMReport, function (i, item) {
                     str_body += '<tr>';
                     str_body += '<td>' + a++ + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].ID_NGUOI_DUNG + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].ID_DON_VI + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].HO_TEN + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].CHUC_VU + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].DIEN_THOAI + '</td>';
-                    str_body += '<td>' + data.ListSaleUserManagement_Report[i].EMAIL + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].TGDEN + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEIDVNPOST + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEMAILROUTENAME + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEFROMPOSCODE + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEFROMPOSNAME + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG + '</td>';
+
+                    str_body += '<td style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY_LK + '</td>';
+                    str_body += '<td style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG_LK + '</td>';
+
+                    str_body += '<td style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY_TON_LK + '</td>';
+                    str_body += '<td style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG_TON_LK + '</td>';
+
+
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].TGDI + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEIDVNPOST + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEMAILROUTENAME + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVETOPOSCODE + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVETOPOSNAME + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEQUANTITY + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEWEIGHT_KG + '</td>';
+
+                    str_body += '<td style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEQUANTITY_LK + '</td>';
+                    str_body += '<td style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEWEIGHT_KG_LK + '</td>';
                     str_body += '</tr>';
                 });
                 str_html += str_body;
-                $('.loading-element').hide();
-                $('#listroadwaytransport1').html(str_html);
+                //$('.loading-element').hide();
+                //$('#listdevelopactivity1').html(str_html);
 
+                if (data.Code == '01') {
+                    $('.loading-element').hide();
+                    alert("Không Có Số Liệu");
+                }
+                else {
+                    $('.loading-element').hide();
+                    $('#listdevelopactivity1').html(str_html);
+                }
             }
         })
     }
 
-    
+
 </script>
 
 

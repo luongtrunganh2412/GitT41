@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
 
-<title>Báo cáo giao nhận vận chuyển đường bộ</title>
+<title>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</title>
 <section class="content">
     <div class="box box-default">
         <div class="box-header with-border">
@@ -22,79 +22,109 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Từ Ngày </label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Đến Ngày </label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Vùng</label>
-                        <select class="form-control select2" style="width: 100%;" id="vung">
+                        <label>BC khai thác</label>
+                        <select class="form-control select2" style="width: 100%;" id="bckhaithac">
                             <option selected="selected" value="0">Tất cả</option>
-                            <option value="1">Miền Bắc</option>
-                            <option value="2">Miền Trung</option>
-                            <option value="3">Miền Nam</option>
+                            <option value="100916">100916 - HN EMS LT</option>
+                            @*<option value="2">Miền Trung</option>
+                            <option value="3">Miền Nam</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="date" type="text" data-date-format="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Phương tiện vận chuyển</label>
+                        <select class="form-control select2" style="width: 100%;" id="phuongtienvanchuyen">
+                            <option selected="selected" value="0">Bay</option>
                         </select>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Cấp Đường Thư</label>
-                        <select class="form-control select2" style="width: 100%;" id="cap">
-                            <option selected="selected" value="0">Tất cả</option>
-                            <option value="1">DX-Đường Thư Đột Xuất</option>
-                            <option value="2">LT-Đường Thư Liên Tỉnh</option>
-                            <option value="3">NH-Đường Thư Nội Huyện</option>
-                            <option value="4">NH-Đường Thư Nội Tỉnh</option>
-                            <option value="5">NH-Đường Thư Phụ Trợ Liên Tỉnh</option>
+                        <label>Chặng vận chuyển</label>
+                        <select class="form-control select2" style="width: 100%;" id="changvanchuyen">
+                            <option selected="selected" value="0">Nội Bài - Tân Sơn Nhất</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Loại Phương Tiện</label>
-                        <select class="form-control select2" style="width: 100%;" id="loaipt">
+                        <label>Tuyến vận chuyển</label>
+                        <select class="form-control select2" style="width: 100%;" id="tuyenvanchuyen">
                             <option selected="selected" value="0">Tất cả</option>
-                            <option value="1">1-Xe máy</option>
-                            <option value="2">2-Otô</option>
-                            <option value="3">3-Tàu Hỏa</option>
-                            <option value="4">4-Máy Bay</option>
-                            <option value="7">7-Khác</option>
-                            <option value="9">9-Otô Xã Hội</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Tuyến</label>
-                        <select class="form-control select2" style="width: 100%;" id="mailroutecode">
+                        <label>Chuyến vận chuyển: </label>
+                        <select class="form-control select2" style="width: 100%;" id="chuyenvanchuyen">
                             <option selected="selected" value="0">Tất cả</option>
                         </select>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Tỉnh chấp nhận</label>
+                        <select class="form-control select2" style="width: 100%;" id="tinhchapnhan">
+                            <option selected="selected" value="100000">Hà Nội</option>
+                            <option  value="10">Miền Bắc</option>
+                            <option value="0">Miền Bắc(Trừ Hà Nội)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Đơn vị chấp nhận</label>
+                        <select class="form-control select2" style="width: 100%;" id="donvichapnhan">
+                            <option selected="selected" value="0">Tất Cả</option>
+                            <option  value="1">Bưu điện Hà Nội</option>
+                            <option value="2">EMS Hà Nội</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Tỉnh phát trả </label>
+                        <select class="form-control select2" style="width: 100%;" id="tinhphattra">
+                            <option selected="selected" value="0">Hồ Chí Minh</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Đơn vị phát trả</label>
+                        <select class="form-control select2" style="width: 100%;" id="donviphattra">
+                            <option selected="selected" value="0">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-4">
-                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/DevelopActivity/ListDevelopActivity?fromdate=' + document.getElementById('fromdate').value + '&todate=' + document.getElementById('todate').value + '&vung=' + document.getElementById('vung').value + '&cap=' + document.getElementById('cap').value + '&loaipt=' + document.getElementById('loaipt').value + '&mailroutecode=' + document.getElementById('mailroutecode').value ">Hiển Thị Báo Cáo</a>
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/DevelopActivity/ListDevelopActivity?bckhaithac=' + document.getElementById('bckhaithac').value + '&date=' + document.getElementById('date').value + '&phuongtienvanchuyen=' + document.getElementById('phuongtienvanchuyen').value + '&changvanchuyen=' + document.getElementById('changvanchuyen').value
+                    + '&tuyenvanchuyen=' + document.getElementById('tuyenvanchuyen').value + '&chuyenvanchuyen=' + document.getElementById('chuyenvanchuyen').value + '&tinhchapnhan=' + document.getElementById('tinhchapnhan').value + '&donvichapnhan=' + document.getElementById('donvichapnhan').value + '&tinhphattra=' + document.getElementById('tinhphattra').value + '&donviphattra=' + document.getElementById('donviphattra').value">Hiển Thị Báo Cáo</a>
                 </div>
             </div>
 
@@ -103,64 +133,17 @@
     </div>
 
 
-    <!-- /.box-body -->
-
-
-
-
-
 </section>
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <!-- ./wrapper -->
-    <!-- REQUIRED JS SCRIPTS -->
-    <!-- jQuery 3 -->
-    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/Content/dist/js/adminlte.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="~/Content/bower_components/moment/min/moment.min.js"></script>
-    <script src="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
-
-<!--jquery.bootpag.min-->>
 
 
 <script>
     $(document).ready(function () {
-        $("#fromdate").datepicker({
-            dateFormat: "dd/mm/yyyy"
-        }).datepicker("setDate", "0");
-
-        $("#todate").datepicker({
+        $("#date").datepicker({
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
 
         
     });
-
-    $("#btntotal").click(function () {
-            detail();
-
-    });
-
-    //Phần lấy dữ liệu của tuyến phát
-    
-    $(document).ready(function () {
-
-        $.getJSON("/RoadwayTransport/GetAllMailRouteCode", function (data) {
-            $.each(data, function (i, data) {
-
-                $('<option>',
-                   {
-                       value: data.MAILROUTECODE,
-                       text: data.MAILROUTENAME
-                   }).html(data.MAILROUTECODE + '-' + data.MAILROUTENAME).appendTo("#mailroutecode");
-            });
-        })
-
-    });
-    
 
 </script>
 

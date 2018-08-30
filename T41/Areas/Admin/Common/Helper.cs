@@ -25,6 +25,9 @@ namespace T41.Areas.Admin.Common
         private static string _OraDCDevConnectionString = string.Empty;
         private static OracleConnection _OraDCDevOracleConnection = null;
 
+        private static string _OraDCComConnectionString = string.Empty;
+        private static OracleConnection _OraDCComOracleConnection = null;
+
         private static string _schemaName = string.Empty;
 
         /// <summary>
@@ -157,6 +160,36 @@ namespace T41.Areas.Admin.Common
             set
             { _me24OracleConnection = value; }
         }
+
+        //Phần gọi vào Database Máy Com
+        public static string OraDCComConnectionString
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_OraDCComConnectionString))
+                    _OraDCComConnectionString = ConfigurationManager.ConnectionStrings["ORA_CONNECTION_STRING_COM"].ConnectionString;
+                return _OraDCComConnectionString;
+            }
+            set { _me24ConnectionString = value; }
+        }
+
+        /// <summary>
+        /// ME24OracleConnection
+        /// </summary>
+        public static OracleConnection OraDCComOracleConnection
+        {
+            get
+            {
+                if (_OraDCComOracleConnection == null)
+                    _OraDCComOracleConnection = new OracleConnection(OraDCComConnectionString);
+                if (_OraDCComOracleConnection.State == System.Data.ConnectionState.Closed)
+                    _OraDCComOracleConnection.Open();
+                return _OraDCComOracleConnection;
+            }
+            set
+            { _me24OracleConnection = value; }
+        }
+
         /// <summary>
         /// ExecuteNonQuery
         /// </summary>

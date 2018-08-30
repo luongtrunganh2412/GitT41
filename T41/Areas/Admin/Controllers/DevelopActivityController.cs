@@ -32,15 +32,22 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
-        //Phần controller xử lý để lấy dữ liệu bảng nguoi_dung_sale theo ID
+        //Phần controller xử lý để lấy dữ liệu bảng KPI_SummingPassByMailRoute 
         [HttpGet]
-        public JsonResult ListDevelopActivity_GETID(int id_nguoi_dung)
+        public JsonResult ListDevelopActivity_BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner )
         {
-            SaleUserManagementRepository saleusermanagementRepository = new SaleUserManagementRepository();
-            ReturnSaleUserManagement returnsaleusermanagement = new ReturnSaleUserManagement();
-            returnsaleusermanagement = saleusermanagementRepository.SALE_USER_MANAGEMENT_BYID_DETAIL(id_nguoi_dung);
-            return Json(returnsaleusermanagement, JsonRequestBehavior.AllowGet);
+            long ARRIVEQUANTITY_LK = 0;
+            decimal ARRIVEWEIGHT_KG_LK = 0;
 
+            long LEAVEQUANTITY_LK = 0;
+            decimal LEAVEWEIGHT_KG_LK = 0;
+
+            DevelopActivityRepository developactivityrepository = new DevelopActivityRepository();
+            ReturnBDHN_DI_HCM returnBDHN_DI_HCM = new ReturnBDHN_DI_HCM();
+            returnBDHN_DI_HCM = developactivityrepository.BDHN_DI_HCM( workcenter,  AcceptDate,  arriveprovince,  arrivepartner, ref ARRIVEQUANTITY_LK, ref ARRIVEWEIGHT_KG_LK, ref  LEAVEQUANTITY_LK, ref  LEAVEWEIGHT_KG_LK);
+            
+            return Json(returnBDHN_DI_HCM, JsonRequestBehavior.AllowGet);
+            
         }
 
     }
