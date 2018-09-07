@@ -95,7 +95,16 @@ namespace T41.Areas.Admin.Data
                             else {
                                 oBDHN_DI_HCM_Detail.DAPUNGKL = "";
                             }
-                            
+
+                            //Phần Tính Thời Gian Chiều Đi và Đến
+                            if (oBDHN_DI_HCM_Detail.TGDEN != "")
+                            {
+                                oBDHN_DI_HCM_Detail.CHECK_TG = dr["TGDEN"].ToString();
+                            }
+                            else {
+                                oBDHN_DI_HCM_Detail.CHECK_TG = dr["TGDI"].ToString();
+                            }
+
                             listBDHN_DI_HCM_Detail.Add(oBDHN_DI_HCM_Detail);
                             
 

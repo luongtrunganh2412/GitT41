@@ -48,6 +48,8 @@ namespace T41.Areas.Admin.Model.DataModel
         public string DAPUNGSL { get; set; }
         public string DAPUNGKL { get; set; }
 
+        public string CHECK_TG { get; set; }
+
     }
 
     public class ReturnBDHN_DI_HCM

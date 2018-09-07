@@ -39,23 +39,23 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</strong></h2>
                     <div class="col-lg-6" style="padding-right: 5px;">
-                        <h4 class="text-right" ><strong>BC Khai Thác:</strong></h4>
+                        <h4 class="text-right"><strong>BC Khai Thác:</strong></h4>
                         <h4 class="text-right"><strong>Phạm Vi Dữ Liệu:</strong></h4>
-                        <h4 class="text-right" ><strong>Thời Gian:</strong></h4>
-                        <h4 class="text-right" ><strong>Phương Tiện VC:</strong></h4>
-                        <h4 class="text-right" ><strong>Chặng Vận Chuyển:</strong></h4>
-                        <h4 class="text-right" ><strong>Tuyến Vận Chuyển:</strong></h4>
-                        <h4 class="text-right" ><strong>Chuyến Vận Chuyển:</strong></h4>
+                        <h4 class="text-right"><strong>Thời Gian:</strong></h4>
+                        <h4 class="text-right"><strong>Phương Tiện VC:</strong></h4>
+                        <h4 class="text-right"><strong>Chặng Vận Chuyển:</strong></h4>
+                        <h4 class="text-right"><strong>Tuyến Vận Chuyển:</strong></h4>
+                        <h4 class="text-right"><strong>Chuyến Vận Chuyển:</strong></h4>
 
-                        <h4 class="text-right" ><strong>Tỉnh Chấp Nhận:</strong></h4>
-                        <h4 class="text-right" ><strong>Đơn Vị Chấp Nhận:</strong></h4>
-                        <h4 class="text-right" ><strong>Tỉnh Phát Trả:</strong></h4>
-                        <h4 class="text-right" ><strong>Đơn Vị Phát Trả:</strong></h4>
+                        <h4 class="text-right"><strong>Tỉnh Chấp Nhận:</strong></h4>
+                        <h4 class="text-right"><strong>Đơn Vị Chấp Nhận:</strong></h4>
+                        <h4 class="text-right"><strong>Tỉnh Phát Trả:</strong></h4>
+                        <h4 class="text-right"><strong>Đơn Vị Phát Trả:</strong></h4>
                     </div>
                     <div class="col-lg-6" style="padding-left: 0px;">
                         <h4 class="text-left" id="bckhaithac"></h4>
@@ -71,19 +71,29 @@
                         <h4 class="text-left" id="tinhphattra"></h4>
                         <h4 class="text-left" id="donviphattra"></h4>
                     </div>
-                    
-                    
-                    
+
+
+
                 </div>
             </div>
 
             <div class="row">
-                
-                <div class="col-lg-12"><input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Báo Cáo" onclick="printpage()" /></div>
+
+                <div class="col-lg-12">
+                    <input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Báo Cáo" onclick="printpage()" />
+                    <input id="printchart" class="btn btn-default btn-lrg ajax loading-button-chart" type="button" value="Vẽ Biểu Đồ" />
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-md-12" id="chartContainer" style="height: 500px; width: 100%;">
+
+                    </div>
+                </div>
             </div>
             
-               
             
+
             <div class="row">
                 <div class="col-lg-12">
                     <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:11px;border-collapse:collapse;border:1px solid;">
@@ -92,9 +102,9 @@
                                 <th rowspan="2" class="text-center">STT</th>
                                 <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
                                 <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
-                                <th style="background:#3ce892;" colspan="2"  class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
+                                <th style="background:#3ce892;" colspan="2" class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
                                 <th rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
-                                
+
                             </tr>
                             <tr>
                                 <th style="background:#f9c19a;" class="text-center">Thời gian</th>
@@ -114,7 +124,7 @@
                                 <th style="background:#57c5e0;" class="text-center">Tên tuyến</th>
                                 <th style="background:#57c5e0;" class="text-center">ID chuyến</th>
                                 <th style="background:#57c5e0;" class="text-center">Tên chuyến </th>
-                                
+
                                 <th style="background:#57c5e0;" class="text-center">SL đi </th>
                                 <th style="background:#57c5e0;" class="text-center">KL đi (kg)</th>
                                 <th style="background:#57c5e0;" class="text-center">SL đi lũy kế</th>
@@ -130,9 +140,9 @@
                     <i class="fa fa-spinner fa-spin"></i>
                     Vui lòng chờ giây lát...
                 </div>
-            </div>    
-            
-            
+            </div>
+
+
         </div>
     </form>
 
@@ -140,10 +150,13 @@
 </html>
 
 <script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="~/Scripts/jquery.bootpag.min.js"></script>
+@*<script src="~/Scripts/jquery.bootpag.min.js"></script>*@
 <script src="/Areas/Admin/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/Areas/Admin/Content/dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript">
+    
+
 
     var url_string = document.URL;
     var url = new URL(url_string);
@@ -160,6 +173,7 @@
 
     var checkbckhaithac = 0;
     checkbckhaithac = parseInt(bckhaithac);
+
 
     switch (checkbckhaithac) {
         case 0:
@@ -282,6 +296,9 @@
 
 
     $(document).ready(function () {
+        $('.box-footer').hide();
+        $('.loading-button-chart').hide();
+
         document.getElementById("date").innerHTML = "<strong>" + date + "</strong>";
         document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
         document.getElementById("bckhaithac").innerHTML = "<strong>" + checkbckhaithac + "</strong>";
@@ -326,8 +343,7 @@
         printButton.style.visibility = 'visible';
     }
 
-
-
+    
 
     //Phần JS để lấy dữ liệu theo kiểu JSON rồi bind vào table theo ID
     function detail_Roadway1() {
@@ -380,11 +396,11 @@
 
                     str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGSL + '</td>';
                     str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGKL + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].CHECK_TG + '</td>';
                     str_body += '</tr>';
                 });
                 str_html += str_body;
-                //$('.loading-element').hide();
-                //$('#listdevelopactivity1').html(str_html);
+                
 
                 if (data.Code == '01') {
                     $('.loading-element').hide();
@@ -393,12 +409,140 @@
                 else {
                     $('.loading-element').hide();
                     $('#listdevelopactivity1').html(str_html);
+                    $('.loading-button-chart').show();
+                    $('.box-footer').show();
+                   
                 }
             }
         })
     }
 
+    function DevelopChart() {
+        var data = [];
 
+        var dataSeries = { type: "line", showInLegend: true, legendText: "SL Đến", };
+        var dataPoints = [];
+        var count = $('#example1 tr').length;
+        count -= 2;
+
+        for (var i = 2; i < count; i += 1) {
+            var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+            var bi = parseInt(document.getElementById("example1").rows[i].cells[6].innerText);
+            dataPoints.push({
+                label: ai,
+                y: bi
+            });
+        }
+
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+        var dataSeries = { type: "line", showInLegend: true, legendText: "SL Đi", };
+        var dataPoints = [];
+
+        for (var i = 2; i < count; i += 1) {
+            var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+            var ci = parseInt(document.getElementById("example1").rows[i].cells[17].innerText);
+            dataPoints.push({
+                label: ai,
+                y: ci
+            });
+        }
+
+
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+        var dataSeries = { type: "line", showInLegend: true, legendText: "SL Tồn Lũy kế", };
+        var dataPoints = [];
+
+        for (var i = 2; i < count; i += 1) {
+            var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+            var ci = parseInt(document.getElementById("example1").rows[i].cells[10].innerText);
+            dataPoints.push({
+                label: ai,
+                y: ci
+            });
+        }
+
+
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+
+
+        var dataSeries = { type: "line", showInLegend: true, legendText: "SL Đến Lũy Kế", };
+        var dataPoints = [];
+
+        for (var i = 2; i < count; i += 1) {
+            var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+            var ci = parseInt(document.getElementById("example1").rows[i].cells[8].innerText);
+            dataPoints.push({
+                label: ai,
+                y: ci
+            });
+        }
+
+
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+        var dataSeries = { type: "line", showInLegend: true, legendText: "SL Đi Lũy Kế", };
+        var dataPoints = [];
+
+        for (var i = 2; i < count; i += 1) {
+            var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+            var ci = parseInt(document.getElementById("example1").rows[i].cells[19].innerText);
+            dataPoints.push({
+                label: ai,
+                y: ci
+            });
+        }
+
+
+        dataSeries.dataPoints = dataPoints;
+        data.push(dataSeries);
+
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            exportEnabled: true,
+            animationEnabled: true,
+            theme: "dark1",
+            legend: {
+                verticalAlign: "top",
+                cursor: "pointer",
+                itemclick: function (e) {
+                    //console.log("legend click: " + e.dataPointIndex);
+                    //console.log(e);
+                    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                        e.dataSeries.visible = false;
+                    } else {
+                        e.dataSeries.visible = true;
+                    }
+
+                    e.chart.render();
+                }
+            },
+            title: {
+                text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến"
+            },
+            axisY: {
+                minimum: 0,
+            },
+            data: data  // random generator below
+        });
+
+
+        chart.render();
+    }
+    
+    
+    $("#printchart").click(function () {
+        DevelopChart();
+        
+    });
+    
+    
 </script>
 
 
