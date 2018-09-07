@@ -579,6 +579,7 @@
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\js\tooltip.js" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\js\transition.js" />
     <Content Include="Areas\Admin\Content\bower_components\bootstrap\package.js" />
+    <Content Include="Areas\Admin\Content\bower_components\DevelopActivityJS\DevelopChart.js" />
     <Content Include="Areas\Admin\Content\bower_components\QualityDelivertChartJS\Chart.js" />
     <Content Include="Areas\Admin\Content\bower_components\fastclick\lib\fastclick.js" />
     <Content Include="Areas\Admin\Content\bower_components\font-awesome\.gitignore" />
