@@ -45,7 +45,8 @@ namespace T41.Areas.Admin.Model.DataModel
 
         public long LEAVEQUANTITY_LK { get; set; }
         public decimal LEAVEWEIGHT_KG_LK { get; set; }
-        
+        public string DAPUNGSL { get; set; }
+        public string DAPUNGKL { get; set; }
 
     }
 

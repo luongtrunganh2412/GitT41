@@ -39,21 +39,40 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</strong></h2>
-                    <h3 class="text-center" id="bckhaithac"></h3>
-                    <h3 class="text-center"><strong>Phạm Vi Dữ Liệu: Theo Ngày Xác Nhận Đến</strong></h3>
-                    <h3 class="text-center" id="date"></h3>
-                    <h3 class="text-center" id="phuongtienvc"></h3>
-                    <h3 class="text-center" id="changvc"></h3>
-                    <h3 class="text-center" id="tuyenvc"></h3>
-                    <h3 class="text-center" id="chuyenvc"></h3>
+                    <div class="col-lg-6" style="padding-right: 5px;">
+                        <h4 class="text-right" ><strong>BC Khai Thác:</strong></h4>
+                        <h4 class="text-right"><strong>Phạm Vi Dữ Liệu:</strong></h4>
+                        <h4 class="text-right" ><strong>Thời Gian:</strong></h4>
+                        <h4 class="text-right" ><strong>Phương Tiện VC:</strong></h4>
+                        <h4 class="text-right" ><strong>Chặng Vận Chuyển:</strong></h4>
+                        <h4 class="text-right" ><strong>Tuyến Vận Chuyển:</strong></h4>
+                        <h4 class="text-right" ><strong>Chuyến Vận Chuyển:</strong></h4>
 
-                    <h3 class="text-center" id="tinhchapnhan"></h3>
-                    <h3 class="text-center" id="donvichapnhan"></h3>
-                    <h3 class="text-center" id="tinhphattra"></h3>
-                    <h3 class="text-center" id="donviphattra"></h3>
+                        <h4 class="text-right" ><strong>Tỉnh Chấp Nhận:</strong></h4>
+                        <h4 class="text-right" ><strong>Đơn Vị Chấp Nhận:</strong></h4>
+                        <h4 class="text-right" ><strong>Tỉnh Phát Trả:</strong></h4>
+                        <h4 class="text-right" ><strong>Đơn Vị Phát Trả:</strong></h4>
+                    </div>
+                    <div class="col-lg-6" style="padding-left: 0px;">
+                        <h4 class="text-left" id="bckhaithac"></h4>
+                        <h4 class="text-left"><strong>Theo Ngày Xác Nhận Đến</strong></h4>
+                        <h4 class="text-left" id="date"></h4>
+                        <h4 class="text-left" id="phuongtienvc"></h4>
+                        <h4 class="text-left" id="changvc"></h4>
+                        <h4 class="text-left" id="tuyenvc"></h4>
+                        <h4 class="text-left" id="chuyenvc"></h4>
+
+                        <h4 class="text-left" id="tinhchapnhan"></h4>
+                        <h4 class="text-left" id="donvichapnhan"></h4>
+                        <h4 class="text-left" id="tinhphattra"></h4>
+                        <h4 class="text-left" id="donviphattra"></h4>
+                    </div>
+                    
+                    
                     
                 </div>
             </div>
@@ -67,13 +86,13 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:10px;border-collapse:collapse;border:1px solid;">
+                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:11px;border-collapse:collapse;border:1px solid;">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="text-center">STT</th>
                                 <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
                                 <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
-                                <th colspan="2"  class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
+                                <th style="background:#3ce892;" colspan="2"  class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
                                 <th rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
                                 
                             </tr>
@@ -100,8 +119,8 @@
                                 <th style="background:#57c5e0;" class="text-center">KL đi (kg)</th>
                                 <th style="background:#57c5e0;" class="text-center">SL đi lũy kế</th>
                                 <th style="background:#57c5e0;" class="text-center">KL đi lũy kế</th>
-                                <th class="text-center">Đáp ứng (SL)</th>
-                                <th class="text-center">Đáp ứng (KLg)</th>
+                                <th style="background:#3ce892;" class="text-center">Đáp ứng (SL)</th>
+                                <th style="background:#3ce892;" class="text-center">Đáp ứng (KLg)</th>
                             </tr>
                         </thead>
                         <tbody id="listdevelopactivity1"></tbody>
@@ -263,17 +282,17 @@
 
 
     $(document).ready(function () {
-        document.getElementById("date").innerHTML = "<strong>Thời Gian:" + date + "</strong>";
+        document.getElementById("date").innerHTML = "<strong>" + date + "</strong>";
         document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
-        document.getElementById("bckhaithac").innerHTML = "<strong>BC Khai Thác:" + checkbckhaithac + "</strong>";
-        document.getElementById("phuongtienvc").innerHTML = "<strong>Phương Tiện VC:" + checkphuongtienvanchuyen + "</strong>";
-        document.getElementById("changvc").innerHTML = "<strong>Chặng Vận Chuyển:" + checkchangvanchuyen + "</strong>";
-        document.getElementById("tuyenvc").innerHTML = "<strong>Tuyến Vận Chuyển:" + checktuyenvanchuyen + "</strong>";
-        document.getElementById("chuyenvc").innerHTML = "<strong>Chuyến Vận Chuyển:" + checkchuyenvanchuyen + "</strong>";
-        document.getElementById("tinhchapnhan").innerHTML = "<strong>Tỉnh Chấp Nhận:" + checktinhchapnhan + "</strong>";
-        document.getElementById("donvichapnhan").innerHTML = "<strong>Đơn Vị Chấp Nhận:" + checkdonvichapnhan + "</strong>";
-        document.getElementById("tinhphattra").innerHTML = "<strong>Tỉnh Phát Trả:" + checktinhphattra + "</strong>";
-        document.getElementById("donviphattra").innerHTML = "<strong>Đơn Vị Phát Trả:" + checkdonviphattra + "</strong>";
+        document.getElementById("bckhaithac").innerHTML = "<strong>" + checkbckhaithac + "</strong>";
+        document.getElementById("phuongtienvc").innerHTML = "<strong>" + checkphuongtienvanchuyen + "</strong>";
+        document.getElementById("changvc").innerHTML = "<strong>" + checkchangvanchuyen + "</strong>";
+        document.getElementById("tuyenvc").innerHTML = "<strong>" + checktuyenvanchuyen + "</strong>";
+        document.getElementById("chuyenvc").innerHTML = "<strong>" + checkchuyenvanchuyen + "</strong>";
+        document.getElementById("tinhchapnhan").innerHTML = "<strong>" + checktinhchapnhan + "</strong>";
+        document.getElementById("donvichapnhan").innerHTML = "<strong>" + checkdonvichapnhan + "</strong>";
+        document.getElementById("tinhphattra").innerHTML = "<strong>" + checktinhphattra + "</strong>";
+        document.getElementById("donviphattra").innerHTML = "<strong>" + checkdonviphattra + "</strong>";
 
         // goi ham Detail
         detail_Roadway1();
@@ -358,6 +377,9 @@
 
                     str_body += '<td style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEQUANTITY_LK + '</td>';
                     str_body += '<td style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEWEIGHT_KG_LK + '</td>';
+
+                    str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGSL + '</td>';
+                    str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGKL + '</td>';
                     str_body += '</tr>';
                 });
                 str_html += str_body;

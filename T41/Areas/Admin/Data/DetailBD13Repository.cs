@@ -148,6 +148,7 @@ namespace T41.Areas.Admin.Data
                             oBD13Detail.TUISO = dr["TUISO"].ToString();
                             oBD13Detail.NGAY = dr["NGAY"].ToString();
                             oBD13Detail.MABC_KT = dr["MABC_KT"].ToString();
+                            oBD13Detail.DATE_LOG = dr["DATE_LOG"].ToString();
                             listBD13Detail.Add(oBD13Detail);
 
                         }

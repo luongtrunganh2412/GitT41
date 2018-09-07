@@ -40,8 +40,9 @@ namespace T41.Areas.Admin.Model.DataModel
         public String TUISO { get; set; }
         public String NGAY { get; set; }
         public String MABC_KT { get; set; }
-        
-        
+        public String DATE_LOG { get; set; }
+
+
     }
 
     public class ReturnBD13

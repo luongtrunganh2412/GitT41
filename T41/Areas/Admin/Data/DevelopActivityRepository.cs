@@ -15,7 +15,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng KPI_SummingPassByMailRoute
         #region BDHN_DI_HCM          
-        public ReturnBDHN_DI_HCM BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, ref long ARRIVEQUANTITY_LK, ref decimal ARRIVEWEIGHT_KG_LK, ref long LEAVEQUANTITY_LK, ref decimal LEAVEWEIGHT_KG_LK)
+        public ReturnBDHN_DI_HCM BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, ref long ARRIVEQUANTITY_LK, ref decimal ARRIVEWEIGHT_KG_LK, ref long LEAVEQUANTITY_LK, ref decimal LEAVEWEIGHT_KG_LK, ref decimal DAPUNGKL)
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -28,21 +28,15 @@ namespace T41.Areas.Admin.Data
                 // Gọi vào DB để lấy dữ liệu.
                 using (OracleCommand cmd = new OracleCommand())
                 {
-
-                    OracleCommand myCommand = new OracleCommand("DEVELOP_ACTIVITY.BDHN_DI_HCM", Helper.OraDCComOracleConnection);
-                    //xử lý tham số truyền vào data table
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.CommandTimeout = 20000;
-                    OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("p_workcenter", OracleDbType.Int32).Value = workcenter;
-                    myCommand.Parameters.Add("p_AcceptDate", OracleDbType.Int32).Value = common.DateToInt(AcceptDate);
-                    myCommand.Parameters.Add("p_arriveprovince", OracleDbType.Int32).Value = arriveprovince;
-                    myCommand.Parameters.Add("p_arrivepartner", OracleDbType.Int32).Value = arrivepartner;
-                    myCommand.Parameters.Add(new OracleParameter("p_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    mAdapter = new OracleDataAdapter(myCommand);
-                    mAdapter.Fill(da);
-                    //myCommand.ExecuteNonQuery();
-                    DataTableReader dr = da.CreateDataReader();
+                    cmd.Connection = Helper.OraDCComOracleConnection;
+                    cmd.CommandText = Helper.SchemaName + "DEVELOP_ACTIVITY.BDHN_DI_HCM";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("p_workcenter", OracleDbType.Int32)).Value = workcenter;
+                    cmd.Parameters.Add(new OracleParameter("p_AcceptDate", OracleDbType.Int32)).Value = common.DateToInt(AcceptDate);
+                    cmd.Parameters.Add(new OracleParameter("p_arriveprovince", OracleDbType.Int32)).Value = arriveprovince;
+                    cmd.Parameters.Add(new OracleParameter("p_arrivepartner", OracleDbType.Int32)).Value = arrivepartner;
+                    cmd.Parameters.Add("p_ListStage", OracleDbType.RefCursor, null, ParameterDirection.Output);
+                    OracleDataReader dr = Helper.ExecuteDataReader(cmd, Helper.OraDCComOracleConnection);
                     if (dr.HasRows)
                     {
                         listBDHN_DI_HCM_Detail = new List<BDHN_DI_HCM>();
@@ -88,6 +82,20 @@ namespace T41.Areas.Admin.Data
                             //Phần Tính KL Tồn Lũy Kế Chiều Đến
                             oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_TON_LK = ARRIVEWEIGHT_KG_LK - LEAVEWEIGHT_KG_LK;
 
+                            //Phần Tính Tỷ Lệ Đáp Ứng Theo Chuyến (SL)
+                            oBDHN_DI_HCM_Detail.DAPUNGSL = (Convert.ToInt32(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) > 0) ? ( (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) / Convert.ToDecimal(ARRIVEQUANTITY_LK)) *100).ToString().Substring(0, 5) + "%" : "";
+
+
+                            //Phần Tính Tỷ Lệ Đáp Ứng Theo Chuyến (KL)
+                            if (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) > 0)
+                            {
+                                DAPUNGKL = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) / oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_LK) * 100;
+                                oBDHN_DI_HCM_Detail.DAPUNGKL = (DAPUNGKL.ToString()).Substring(0, 5) + "%";
+                            }
+                            else {
+                                oBDHN_DI_HCM_Detail.DAPUNGKL = "";
+                            }
+                            
                             listBDHN_DI_HCM_Detail.Add(oBDHN_DI_HCM_Detail);
                             
 

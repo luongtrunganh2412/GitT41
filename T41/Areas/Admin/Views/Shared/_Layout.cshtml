@@ -33,7 +33,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="/Areas/Admin/Content/dist/css/skins/skin-blue.min.css">
     <!--Print Js-->
-    @*<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">*@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,34 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script src="/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/Scripts/jquery.bootpag.min.js"></script>
-    @*<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>*@
-    <style type="text/css">
-        @@media print {
-            /*.body {
-                webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }*/
-            tr td .bg-blue {
-                background-color: #175eb5 !important;
-                outline-style: outset;
-            }
-
-            tr td .bg-green {
-                background-color: #239036 !important;
-                outline-style: outset;
-            }
-            
-            .bg-blue {
-                color: white !important;
-            }
-
-            .bg-green {
-                color: white !important;
-            }
-        }
-    </style>
-
-
+    
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -102,10 +74,11 @@ desired effect
 
             <!-- Logo -->
             <a href="/Admin/Home/Index" class="logo">
+                <i class="fa fa-home"></i> <span></span>
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>E</b>MS</span>
+                @*<span class="logo-mini"><b>E</b>MS</span>*@
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>EMS</b></span>
+                @*<span class="logo-lg"><b>EMS</b></span>*@
             </a>
 
             <!-- Header Navbar -->
@@ -137,7 +110,7 @@ desired effect
 
                                     <p>
                                         @Session["fullname"]
-                                        <small>Member since Nov. 2012</small>
+                                        <small>Member</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -199,7 +172,7 @@ desired effect
                         {
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Danh mục</span>
+                                    <i class="fa fa-wrench"></i> <span>Danh mục</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -213,7 +186,7 @@ desired effect
                             </li>
 
                             <!-- Group 2 -->
-                            <li class="treeview">
+                            @*<li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
                                     <span class="pull-right-container">
@@ -233,12 +206,12 @@ desired effect
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>*@
 
                             <!-- Group 3 -->
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Báo cáo GNVC đường bộ </span>
+                                    <i class="fa fa-train"></i> <span>Báo cáo GNVC đường bộ </span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -249,24 +222,12 @@ desired effect
                                     <li><a href="/Admin/RoadwayTransport/RoadwayTransportDetailReport_TG">Tổng Hợp Theo Thời Gian</a></li>
                                 </ul>
                             </li>
-
-                            <!-- Group 4 -->
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>QL Chỉ Tiêu Công Đoạn</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="/Admin/ExpressRoad/ExpressRoadDetailReport">Hành Trình Đường Thư</a></li>
-                                </ul>
-                            </li>
+                            
 
                             <!-- Group TEST -->
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Báo Cáo Hoạt Động<br /> Tại Sàn KT </span>
+                                    <i class="fa fa-building"></i> <span>Báo Cáo Hoạt Động<br /> Tại Sàn KT </span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -303,7 +264,7 @@ desired effect
                             <!-- Group 5 -->
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Quản Lý Khách Hàng</span>
+                                    <i class="fa fa-users"></i> <span>Quản Lý Khách Hàng</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -317,7 +278,7 @@ desired effect
                             <!-- Group 6 -->
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Báo Cáo Kinh Doanh</span>
+                                    <i class="fa fa-credit-card"></i> <span>Báo Cáo Kinh Doanh</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -338,7 +299,7 @@ desired effect
                             <!-- Group 7 -->
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-link"></i> <span>Hỗ Trợ Khách Hàng</span>
+                                    <i class="fa fa-user"></i> <span>Hỗ Trợ Khách Hàng</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
@@ -354,9 +315,9 @@ desired effect
                     }
 
                     <!-- Group 8 -->
-                    <li class="treeview">
+                    @*<li class="treeview">
                         <a href="#">
-                            <i class="fa fa-link"></i> <span>Báo cáo chấm công</span>
+                            <i class="fa fa-user-tie"></i> <span>Báo cáo chấm công</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -365,12 +326,12 @@ desired effect
                             <li><a href="/Admin/Timekeeping/TimekeepingDetailReport">Chi tiết phân công <br> lao động theo ca kíp</a></li>
                             <li><a href="/Admin/RealTimekeeping/RealTimekeepingDetailReport">Chi tiết phân công <br> lao động theo thực tế</a></li>
                         </ul>
-                    </li>
+                    </li>*@
 
                     <!-- Group 9 -->
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-link"></i> <span>Báo cáo chỉ tiêu <br> chất lượng</span>
+                            <i class="fa fa-industry"></i> <span>Báo cáo chỉ tiêu <br> chất lượng</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -386,7 +347,7 @@ desired effect
                     <!-- Group 10 -->
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-link"></i> <span>Quản lý truyền nhận</span>
+                            <i class="fa fa-angle-double-right"></i> <span>Quản lý truyền nhận</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -414,7 +375,7 @@ desired effect
                     <!-- Group 11 -->
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-link"></i> <span>Báo cáo hàng không </span>
+                            <i class="fa fa-plane"></i> <span>Báo cáo hàng không </span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -440,7 +401,7 @@ desired effect
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            @*<section class="content-header">
                 <h1>
                     <small>Page </small>
                 </h1>
@@ -448,7 +409,7 @@ desired effect
                     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                     <li class="active">Here</li>
                 </ol>
-            </section>
+            </section>*@
 
             <!-- Main content -->
             @*<section class="content container-fluid">*@
