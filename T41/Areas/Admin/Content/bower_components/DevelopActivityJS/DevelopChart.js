@@ -7,7 +7,7 @@
     count -= 2;
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var bi = parseInt(document.getElementById("example1").rows[i].cells[6].innerText);
         dataPoints.push({
             label: ai,
@@ -22,7 +22,7 @@
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[17].innerText);
         dataPoints.push({
             label: ai,
@@ -38,7 +38,7 @@
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[10].innerText);
         dataPoints.push({
             label: ai,
@@ -56,7 +56,7 @@
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[8].innerText);
         dataPoints.push({
             label: ai,
@@ -72,7 +72,7 @@
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[19].innerText);
         dataPoints.push({
             label: ai,
@@ -105,7 +105,8 @@
             }
         },
         title: {
-            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến"
+            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến",
+            fontFamily: "roboto",
         },
         axisY: {
             minimum: 0,
@@ -126,7 +127,7 @@ function DevelopChartKL() {
     count -= 2;
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var bi = parseInt(document.getElementById("example1").rows[i].cells[7].innerText);
         dataPoints.push({
             label: ai,
@@ -141,7 +142,7 @@ function DevelopChartKL() {
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[18].innerText);
         dataPoints.push({
             label: ai,
@@ -157,7 +158,7 @@ function DevelopChartKL() {
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[11].innerText);
         dataPoints.push({
             label: ai,
@@ -175,7 +176,7 @@ function DevelopChartKL() {
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[9].innerText);
         dataPoints.push({
             label: ai,
@@ -191,7 +192,7 @@ function DevelopChartKL() {
     var dataPoints = [];
 
     for (var i = 2; i < count; i += 1) {
-        var ai = document.getElementById("example1").rows[i].cells[23].innerText;
+        var ai = document.getElementById("example1").rows[i].cells[24].innerText;
         var ci = parseInt(document.getElementById("example1").rows[i].cells[20].innerText);
         dataPoints.push({
             label: ai,
@@ -224,7 +225,8 @@ function DevelopChartKL() {
             }
         },
         title: {
-            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến"
+            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến",
+            fontFamily: "roboto",
         },
         axisY: {
             minimum: 0,

@@ -49,6 +49,7 @@ namespace T41.Areas.Admin.Model.DataModel
         public string DAPUNGKL { get; set; }
 
         public string CHECK_TG { get; set; }
+        public string DAPUNGLUYKE { get; set; }
 
     }
 

@@ -3,14 +3,19 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@{
+    int i = 0;
+} 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped table-bordered table-hover">
     <tr>
+        <th>
+            STT
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
@@ -40,6 +45,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @(i + 1)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
@@ -71,6 +79,7 @@
             @Html.ActionLink("Phân quyền", "Index", "GrantPermissions", new { id = item.UserId }, null)
         </td>
     </tr>
+    i++;
 }
 
 </table>

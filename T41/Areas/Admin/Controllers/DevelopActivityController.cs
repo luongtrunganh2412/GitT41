@@ -42,10 +42,11 @@ namespace T41.Areas.Admin.Controllers
             long LEAVEQUANTITY_LK = 0;
             decimal LEAVEWEIGHT_KG_LK = 0;
             decimal DAPUNGKL = 0;
+            decimal DAPUNGLUYKE = 0;
 
             DevelopActivityRepository developactivityrepository = new DevelopActivityRepository();
             ReturnBDHN_DI_HCM returnBDHN_DI_HCM = new ReturnBDHN_DI_HCM();
-            returnBDHN_DI_HCM = developactivityrepository.BDHN_DI_HCM( workcenter,  AcceptDate,  arriveprovince,  arrivepartner, ref ARRIVEQUANTITY_LK, ref ARRIVEWEIGHT_KG_LK, ref  LEAVEQUANTITY_LK, ref  LEAVEWEIGHT_KG_LK, ref DAPUNGKL);
+            returnBDHN_DI_HCM = developactivityrepository.BDHN_DI_HCM( workcenter,  AcceptDate,  arriveprovince,  arrivepartner, ref ARRIVEQUANTITY_LK, ref ARRIVEWEIGHT_KG_LK, ref  LEAVEQUANTITY_LK, ref  LEAVEWEIGHT_KG_LK, ref DAPUNGKL, ref DAPUNGLUYKE);
             
             return Json(returnBDHN_DI_HCM, JsonRequestBehavior.AllowGet);
             

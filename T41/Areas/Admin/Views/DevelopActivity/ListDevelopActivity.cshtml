@@ -106,25 +106,25 @@
                     <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:11px;border-collapse:collapse;border:1px solid;">
                         <thead>
                             <tr>
-                                <th rowspan="2" class="text-center">STT</th>
-                                <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
+                                <th style="background:#57c5e0;" rowspan="2" class="text-center">STT</th>
+                                <th style="background:#57c5e0;" colspan="11" class="text-center">Chi Tiết Đến</th>
                                 <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
-                                <th style="background:#3ce892;" colspan="2" class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
-                                <th rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
+                                <th style="background:#57c5e0;" colspan="2" class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
+                                <th style="background:#57c5e0;" rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
 
                             </tr>
                             <tr>
-                                <th style="background:#f9c19a;" class="text-center">Thời gian</th>
-                                <th style="background:#f9c19a;" class="text-center">ID chuyến </th>
-                                <th style="background:#f9c19a;" class="text-center">Tên chuyến</th>
-                                <th style="background:#f9c19a;" class="text-center">Mã Đơn Vị</th>
-                                <th style="background:#f9c19a;" class="text-center">Tên Đơn Vị </th>
-                                <th style="background:#f9c19a;" class="text-center">SL đến </th>
-                                <th style="background:#f9c19a;" class="text-center">KL đến (kg)</th>
-                                <th style="background:#f9c19a;" class="text-center">SL đến lũy kế</th>
-                                <th style="background:#f9c19a;" class="text-center">KL đến lũy kế</th>
-                                <th style="background:#f9c19a;" class="text-center">SL tồn lũy kế</th>
-                                <th style="background:#f9c19a;" class="text-center">KLg tồn lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">Thời gian</th>
+                                <th style="background:#57c5e0;" class="text-center">ID chuyến </th>
+                                <th style="background:#57c5e0;" class="text-center">Tên chuyến</th>
+                                <th style="background:#57c5e0;" class="text-center">Mã Đơn Vị</th>
+                                <th style="background:#57c5e0;" class="text-center">Tên Đơn Vị </th>
+                                <th style="background:#57c5e0;" class="text-center">SL đến </th>
+                                <th style="background:#57c5e0;" class="text-center">KL đến (kg)</th>
+                                <th style="background:#57c5e0;" class="text-center">SL đến lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">KL đến lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">SL tồn lũy kế</th>
+                                <th style="background:#57c5e0;" class="text-center">KLg tồn lũy kế</th>
 
                                 <th style="background:#57c5e0;" class="text-center">Thời gian</th>
                                 <th style="background:#57c5e0;" class="text-center">ID Tuyến </th>
@@ -136,8 +136,8 @@
                                 <th style="background:#57c5e0;" class="text-center">KL đi (kg)</th>
                                 <th style="background:#57c5e0;" class="text-center">SL đi lũy kế</th>
                                 <th style="background:#57c5e0;" class="text-center">KL đi lũy kế</th>
-                                <th style="background:#3ce892;" class="text-center">Đáp ứng (SL)</th>
-                                <th style="background:#3ce892;" class="text-center">Đáp ứng (KLg)</th>
+                                <th style="background:#57c5e0;" class="text-center">Đáp ứng (SL)</th>
+                                <th style="background:#57c5e0;" class="text-center">Đáp ứng (KLg)</th>
                             </tr>
                         </thead>
                         <tbody id="listdevelopactivity1"></tbody>
@@ -191,13 +191,9 @@
         case 100916:
             checkbckhaithac = "100916 - HN EMS LT"
             break;
-        //case 2:
-        //    checkbckhaithac = "Miền Trung"
-        //    break;
-        //case 3:
-        //    checkbckhaithac = "Miền Nam"
-
-        //    break;
+        case 700916:
+            checkbckhaithac = "700916 - HCM EMS LT"
+            break;
         default:
             break;
     }
@@ -245,40 +241,49 @@
         default:
             break;
     }
+    
 
-    var checktinhchapnhan = 0;
-    checktinhchapnhan = parseInt(tinhchapnhan);
+        var checktinhchapnhan = 0;
+        checktinhchapnhan = parseInt(tinhchapnhan);
 
-    switch (checktinhchapnhan) {
-        case 0:
-            checktinhchapnhan = "Miền Bắc(Trừ Hà Nội)"
-            break;
-        case 10:
-            checktinhchapnhan = "Miền Bắc"
-            break;
-        case 100000:
-            checktinhchapnhan = "Hà Nội"
-            break;
-        default:
-            break;
-    }
+        switch (checktinhchapnhan) {
+            case 0:
+                checktinhchapnhan = "Miền Bắc(Trừ Hà Nội)"
+                break;
+            case 10:
+                checktinhchapnhan = "Miền Bắc"
+                break;
+            case 100000:
+                checktinhchapnhan = "Hà Nội"
+                break;
+            case 700000:
+                checktinhchapnhan = "Hồ Chí Minh"
+                break;
+            default:
+                break;
+        }
 
-    var checkdonvichapnhan = 0;
-    checkdonvichapnhan = parseInt(donvichapnhan);
+        var checkdonvichapnhan = 0;
+        checkdonvichapnhan = parseInt(donvichapnhan);
 
-    switch (checkdonvichapnhan) {
-        case 0:
-            checkdonvichapnhan = "Tất Cả"
-            break;
-        case 1:
-            checkdonvichapnhan = "Bưu Điện Hà Nội"
-            break;
-        case 2:
-            checkdonvichapnhan = "EMS Hà Nội"
-            break;
-        default:
-            break;
-    }
+        switch (checkdonvichapnhan) {
+            case 0:
+                checkdonvichapnhan = "Tất Cả"
+                break;
+            case 1:
+                checkdonvichapnhan = "Bưu Điện "
+                break;
+            case 2:
+                checkdonvichapnhan = "EMS "
+                break;
+            case 99:
+                checkdonvichapnhan = "Tỉnh Trừ Thành Phố "
+                break;
+            default:
+                break;
+        }
+    
+    
 
     var checktinhphattra = 0;
     checktinhphattra = parseInt(tinhphattra);
@@ -404,7 +409,8 @@
 
                     str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGSL + '</td>';
                     str_body += '<td style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGKL + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].CHECK_TG + '</td>';
+                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].DAPUNGLUYKE + '</td>';
+                    str_body += '<td class="hide">' + data.ListBDHN_DI_HCMReport[i].CHECK_TG + '</td>';
                     str_body += '</tr>';
                 });
                 str_html += str_body;

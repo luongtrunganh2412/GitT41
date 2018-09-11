@@ -185,29 +185,7 @@ desired effect
                                 </ul>
                             </li>
 
-                            <!-- Group 2 -->
-                            @*<li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="fa fa-link"></i> <span>Quản Lý Shipment </span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="/Admin/ShipmentManagement/ShipmentManagementDetail"> Shipment</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>*@
-
+                            
                             <!-- Group 3 -->
                             <li class="treeview">
                                 <a href="#">
@@ -222,7 +200,7 @@ desired effect
                                     <li><a href="/Admin/RoadwayTransport/RoadwayTransportDetailReport_TG">Tổng Hợp Theo Thời Gian</a></li>
                                 </ul>
                             </li>
-                            
+
 
                             <!-- Group TEST -->
                             <li class="treeview">
@@ -238,25 +216,41 @@ desired effect
                             </li>
                         }
                     }
-							<!-- Group 1 -->
-                            @{
-                                if (Convert.ToInt32(Session["isadmin"]) == 1 || Convert.ToInt32(Session["userid"]) == 17 || Convert.ToInt32(Session["userid"]) == 18 || Convert.ToInt32(Session["userid"]) == 19)
-                                {
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="fa fa-link"></i> <span>Báo cáo phát</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
-                                            <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
-                                            <li><a href="/Admin/DetailBD13/BD13DetailReport">Chi tiết E1 BD13</a></li>
-                                        </ul>
-                                    </li>
-                                }
-                            }
+
+                    <!-- Group Quốc Tế -->
+                    @{
+                        if (Convert.ToInt32(Session["Role"]) == 1 || Convert.ToInt32(Session["Role"]) == 4)
+                        {
+                            <li>
+                                <a href="/Admin/FindReceptacle/Index">
+                                    <i class="fa fa-search"></i> <span>Tra cứu thông tin <br />túi gói</span>
+                                    
+                                </a>
+                            </li>
+                        }
+                    }
+
+
+
+                    <!-- Group 1 -->
+                    @{
+                        if (Convert.ToInt32(Session["isadmin"]) == 1 || Convert.ToInt32(Session["userid"]) == 17 || Convert.ToInt32(Session["userid"]) == 18 || Convert.ToInt32(Session["userid"]) == 19)
+                        {
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-link"></i> <span>Báo cáo phát</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/Admin/Delivery/DeliveryDetailReport">Chi tiết hoạt động phát</a></li>
+                                    <li><a href="#">Biểu tổng hợp hoạt động phát</a></li>
+                                    <li><a href="/Admin/DetailBD13/BD13DetailReport">Chi tiết E1 BD13</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
 
                     @{
                         if (Convert.ToInt32(Session["userid"]) == 25 || Convert.ToInt32(Session["userid"]) == 1)
@@ -316,18 +310,19 @@ desired effect
 
                     <!-- Group 8 -->
                     @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-user-tie"></i> <span>Báo cáo chấm công</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Admin/Timekeeping/TimekeepingDetailReport">Chi tiết phân công <br> lao động theo ca kíp</a></li>
-                            <li><a href="/Admin/RealTimekeeping/RealTimekeepingDetailReport">Chi tiết phân công <br> lao động theo thực tế</a></li>
-                        </ul>
-                    </li>*@
-
+                <a href="#">
+                    <i class="fa fa-user-tie"></i> <span>Báo cáo chấm công</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Admin/Timekeeping/TimekeepingDetailReport">Chi tiết phân công <br> lao động theo ca kíp</a></li>
+                    <li><a href="/Admin/RealTimekeeping/RealTimekeepingDetailReport">Chi tiết phân công <br> lao động theo thực tế</a></li>
+                </ul>
+            </li>*@
+                    
+                    
                     <!-- Group 9 -->
                     <li class="treeview">
                         <a href="#">
@@ -363,15 +358,15 @@ desired effect
 
                                 if (Convert.ToInt32(Session["Role"]) == 1 || Convert.ToInt32(Session["Role"]) == 3)
                                 {
-                                <li><a href="/Admin/TransferManagementVNPOST/TransferManagementVNPOSTDetailReport">Quản lý truyền nhận VNPOST</a></li>
+                                    <li><a href="/Admin/TransferManagementVNPOST/TransferManagementVNPOSTDetailReport">Quản lý truyền nhận VNPOST</a></li>
                                 }
                             }
-                            
+
                         </ul>
                     </li>
 
-                    
-                    
+
+
                     <!-- Group 11 -->
                     <li class="treeview">
                         <a href="#">
@@ -384,12 +379,24 @@ desired effect
                             <li><a href="/Admin/AirwayTransport/AirwayTransportDetailReport">Báo cáo vận chuyển <br /> hàng không chiều đi</a></li>
                             <li><a href="/Admin/AirwayTransportCome/AirwayTransportComeDetailReport">Báo cáo vận chuyển <br /> hàng không chiều đến</a></li>
                             @*<li><a href="/Admin/AirwayTransportManagement/AirwayTransportManagementDetailReport">Quản Lý vận chuyển <br /> hàng không chiều đi</a></li>
-                            <li><a href="/Admin/AirwayTransportComeManagement/AirwayTransportComeManagementDetailReport">Quản Lý vận chuyển <br /> hàng không chiều đến</a></li>*@
+                    <li><a href="/Admin/AirwayTransportComeManagement/AirwayTransportComeManagementDetailReport">Quản Lý vận chuyển <br /> hàng không chiều đến</a></li>*@
                         </ul>
                     </li>
 
 
                 </ul>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

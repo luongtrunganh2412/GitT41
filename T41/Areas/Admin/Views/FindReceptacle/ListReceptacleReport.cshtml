@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+@if (Model.ListReceptacleReport != null)
+{
+    int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    foreach (var c in Model.ListReceptacleReport)
+    {
+        <tr>
+            <td class="text-center">@(i + 1)</td>
+            <td class="text-center">@c.CONSIGMENTID </td>
+            <td class="text-center">@c.EVTCODE </td>
+            <td class="text-center">@c.EVTDATE</td>
+            <td class="text-center">@c.EVTTIME </td>
+            <td class="text-center">@c.EVTLOCATIONS </td>
+            <td class="text-center">@c.FLIGHTNUMBER </td>
+            <td class="text-center">@c.DEPARTURELOC </td>
+            <td class="text-center">@c.ARRIVALLOC </td>
+            <td class="text-center">@c.DEPARTUREDATE </td>
+            <td class="text-center">@c.DEPARTURETIME </td>
+            <td class="text-center">@c.ARRIVALDATE </td>
+            <td class="text-center">@c.ARRIVALTIME </td>
+            <td class="text-center">@c.EQUIPMENTID </td>
+            <td class="text-center">@c.CONTAINERTYPE </td>
+            <td class="text-center">@c.RECEPTACLEID </td>
+            <td class="text-center">@c.MESSAGEID </td>
+            <td class="text-center">@c.SENDERMAILBOX </td>
+        </tr>
+        i++;
+    }
+}
+else
+{
+    <script type="text/javascript">
+        alert("Vui Lòng Nhập Lại Mã Túi !");
+    </script>
+
+}
+
+<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />

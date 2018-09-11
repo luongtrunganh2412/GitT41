@@ -15,7 +15,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng KPI_SummingPassByMailRoute
         #region BDHN_DI_HCM          
-        public ReturnBDHN_DI_HCM BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, ref long ARRIVEQUANTITY_LK, ref decimal ARRIVEWEIGHT_KG_LK, ref long LEAVEQUANTITY_LK, ref decimal LEAVEWEIGHT_KG_LK, ref decimal DAPUNGKL)
+        public ReturnBDHN_DI_HCM BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, ref long ARRIVEQUANTITY_LK, ref decimal ARRIVEWEIGHT_KG_LK, ref long LEAVEQUANTITY_LK, ref decimal LEAVEWEIGHT_KG_LK, ref decimal DAPUNGKL, ref decimal DAPUNGLUYKE)
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -103,6 +103,21 @@ namespace T41.Areas.Admin.Data
                             }
                             else {
                                 oBDHN_DI_HCM_Detail.CHECK_TG = dr["TGDI"].ToString();
+                            }
+
+                            //Phần Tính Tỷ Lệ Đáp Ứng Lũy Kế Theo KLG
+                            //Kiểm tra xem LEAVETOPOSCOD có hay không ?
+                            if (oBDHN_DI_HCM_Detail.LEAVETOPOSCODE == "")
+                            {
+                                oBDHN_DI_HCM_Detail.DAPUNGLUYKE = "";
+                            }
+                            else {
+
+                                if (oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG_LK > 0) {
+                                    DAPUNGLUYKE = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG_LK) / Convert.ToDecimal(oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_LK)) * 100;
+                                    oBDHN_DI_HCM_Detail.DAPUNGLUYKE = (DAPUNGLUYKE.ToString()).Substring(0, 5) + "%"; ;
+                                }
+
                             }
 
                             listBDHN_DI_HCM_Detail.Add(oBDHN_DI_HCM_Detail);

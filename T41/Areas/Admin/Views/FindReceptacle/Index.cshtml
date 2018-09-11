@@ -1,0 +1,184 @@
+﻿@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
+
+<title>Chi tiết túi gói</title>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chi tiết túi gói</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row"  style="margin-bottom:20px;">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Từ Ngày </label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="fromdate" type="text" data-date-format="dd/mm/yyyy" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Đến Ngày</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control pull-right" id="todate" type="text" data-date-format="dd/mm/yyyy" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Receptacle ID:</label>
+                    <input class="form-control " type="text" maxlength="30" id="receptacleID">
+                </div>
+                <div class="col-md-3" style="padding-top:25px;">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Tìm Kiếm</button>
+                </div>
+            </div>
+            
+            
+            
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:9px;">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">CONSIGMENTID</th>
+                            <th class="text-center">EVTCODE</th>
+                            <th class="text-center">EVTDATE</th>
+                            <th class="text-center">EVTTIME</th>
+                            <th class="text-center">EVTLOCATIONS</th>
+                            <th class="text-center">FLIGHTNUMBER</th>
+                            <th class="text-center">DEPARTURELOC</th>
+                            <th class="text-center">ARRIVALLOC</th>
+                            <th class="text-center">DEPARTUREDATE</th>
+                            <th class="text-center">DEPARTURETIME</th>
+                            <th class="text-center">ARRIVALDATE</th>
+                            <th class="text-center">ARRIVALTIME</th>
+                            <th class="text-center">EQUIPMENTID</th>
+                            <th class="text-center">CONTAINERTYPE</th>
+                            <th class="text-center">RECEPTACLEID</th>
+                            <th class="text-center">MESSAGEID</th>
+                            <th class="text-center">SENDERMAILBOX</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listreceptacle"></tbody>
+                </table>
+                <div class="loading-element">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    Vui lòng chờ giây lát...
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <div id="page-selection" class="col-sm-12 text-center">
+                </div>
+            </div>
+            
+            
+            
+        </div>
+        
+    </div>
+
+
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        var d = new Date();
+        var currMonth = d.getMonth() - 1;
+        var currYear = d.getFullYear();
+        var startDate = new Date(currYear, currMonth, 1);
+        
+
+        $("#fromdate").datepicker({
+            dateFormat: "dd/mm/yyyy",
+            todayHighlight:true
+        }).datepicker("setDate", startDate);
+
+        $("#todate").datepicker({
+            dateFormat: "dd/mm/yyyy",
+            todayHighlight:true
+        }).datepicker("setDate", "0");
+
+        $('.loading-element').hide();
+       
+    });
+
+    $("#btnreport").click(function () {
+        // goi ham Detail
+        $("#listreceptacle tr").remove();
+        detail(1);
+
+    });
+
+    
+    //Phần chi tiết của bảng tổng hợp sản lượng đi phát
+    
+    function detail(p) {
+        var receptacleID;
+
+        if (document.getElementById('receptacleID').value == ""
+        || document.getElementById('receptacleID').value == undefined) {
+            receptacleID = 0;
+        }
+        else {
+            receptacleID = document.getElementById('receptacleID').value;
+        }
+
+        $.ajax({
+            url: '@Url.Action("ListReceptacleReport", "FindReceptacle")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'html',
+            data:
+                {
+                    page: p,
+                    receptacle_id: receptacleID,
+                    fromdate: $('#fromdate').val(),
+                    todate: $('#todate').val()
+
+                },
+            success: function (result) {
+                    $('.loading-element').hide();
+                    $('#listreceptacle').html(result);
+                    if (p == 1) refreshPaging();
+                
+            }
+        })
+    }
+
+    //Phần Phân Trang
+    function refreshPaging() {
+        $('#page-selection').bootpag({
+            total: $('#total_page').val(),
+            maxVisible: 10,
+        }).on("page", function (event, /* page number here */ num) {
+            detail(num);
+            $("#listreceptacle tr").remove();
+        });
+    }
+
+    
+</script>
+
+
