@@ -149,21 +149,22 @@ desired effect
                     </div>
                 </div>
 
-                <!-- search form (Optional) -->
-                <form action="#" method="get" class="sidebar-form">
+                @*Phần Tra Cứu Định Vị Bưu Gửi*@
+                <form action="#" method="get" class="sidebar-form" autocomplete="off">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <input type="text" name="message" id="emscode" placeholder="Nhập Mã E1..." class="form-control" maxlength="13">
                         <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="fa fa-search"></i>
-                            </button>
+                            <a href='' class="btn btn-warning btn-flat" onclick="this.href = '/Admin/TrackAndTrace/Index?emscode=' + document.getElementById('emscode').value">
+                                <strong class="fa fa-arrow-circle-right">
+                                </strong>
+                            </a>
                         </span>
                     </div>
                 </form>
-                <!-- /.search form -->
-                <!-- Sidebar Menu -->
+               
+
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">HEADER</li>
+                    <li class="header ">TRA CỨU ĐỊNH VỊ</li>
                     <!-- Optionally, you can add icons to the links -->
                     <!-- Group 1 -->
 
@@ -202,7 +203,7 @@ desired effect
                             </li>
 
 
-                            <!-- Group TEST -->
+                            <!-- Group Sàn KT -->
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-building"></i> <span>Báo Cáo Hoạt Động<br /> Tại Sàn KT </span>
@@ -214,6 +215,14 @@ desired effect
                                     <li><a href="/Admin/DevelopActivity/DevelopActivityDetailReport">Chi Tiết</a></li>
                                 </ul>
                             </li>
+
+                            <!-- Group TEST -->
+                            @*<li>
+                                <a href="/Admin/TrackAndTrace/Index">
+                                    <i class="fa fa-search"></i> <span>Tra cứu bưu gửi</span>
+
+                                </a>
+                            </li>*@
                         }
                     }
 

@@ -54,27 +54,15 @@
             
             
             <div style="overflow-x:auto;">
-                <table id="example1" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:9px;">
+                <table id="example1" class="table table-bordered table-hover" style="font-family:Tahoma;font-size:15px;">
                     <thead>
                         <tr class="bg-light-blue color-palette">
                             <th class="text-center">STT</th>
-                            <th class="text-center">CONSIGMENTID</th>
-                            <th class="text-center">EVTCODE</th>
-                            <th class="text-center">EVTDATE</th>
-                            <th class="text-center">EVTTIME</th>
-                            <th class="text-center">EVTLOCATIONS</th>
-                            <th class="text-center">FLIGHTNUMBER</th>
-                            <th class="text-center">DEPARTURELOC</th>
-                            <th class="text-center">ARRIVALLOC</th>
-                            <th class="text-center">DEPARTUREDATE</th>
-                            <th class="text-center">DEPARTURETIME</th>
-                            <th class="text-center">ARRIVALDATE</th>
-                            <th class="text-center">ARRIVALTIME</th>
-                            <th class="text-center">EQUIPMENTID</th>
-                            <th class="text-center">CONTAINERTYPE</th>
-                            <th class="text-center">RECEPTACLEID</th>
-                            <th class="text-center">MESSAGEID</th>
-                            <th class="text-center">SENDERMAILBOX</th>
+                            <th class="text-center">Ngày</th>
+                            <th class="text-center">Số hiệu chuyến bay</th>
+                            <th class="text-center">Mô tả</th>
+                            <th class="text-center">Vị Trí</th>
+                            <th class="text-center">CN38</th>
                         </tr>
                     </thead>
                     <tbody id="listreceptacle"></tbody>
@@ -126,14 +114,14 @@
     $("#btnreport").click(function () {
         // goi ham Detail
         $("#listreceptacle tr").remove();
-        detail(1);
+        detail();
 
     });
 
     
     //Phần chi tiết của bảng tổng hợp sản lượng đi phát
     
-    function detail(p) {
+    function detail() {
         var receptacleID;
 
         if (document.getElementById('receptacleID').value == ""
@@ -152,7 +140,6 @@
             dataType: 'html',
             data:
                 {
-                    page: p,
                     receptacle_id: receptacleID,
                     fromdate: $('#fromdate').val(),
                     todate: $('#todate').val()
@@ -161,22 +148,13 @@
             success: function (result) {
                     $('.loading-element').hide();
                     $('#listreceptacle').html(result);
-                    if (p == 1) refreshPaging();
+                    
                 
             }
         })
     }
 
-    //Phần Phân Trang
-    function refreshPaging() {
-        $('#page-selection').bootpag({
-            total: $('#total_page').val(),
-            maxVisible: 10,
-        }).on("page", function (event, /* page number here */ num) {
-            detail(num);
-            $("#listreceptacle tr").remove();
-        });
-    }
+    
 
     
 </script>

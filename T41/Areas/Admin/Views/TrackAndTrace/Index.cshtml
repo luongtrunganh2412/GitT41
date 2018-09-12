@@ -1,0 +1,391 @@
+﻿
+@{
+//  Layout = null;
+}
+
+<!-- daterange picker -->
+<link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<title>Theo Dõi Đơn Hàng</title>
+<head>
+    <style>
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            border: 1px solid #2d2a2a;
+        }
+    </style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.alert-success').hide();
+        $('.alert-danger').hide();
+    })
+</script>
+</head>
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border text-center">
+            <h3 class="box-title "><strong>TRA CỨU ĐỊNH VỊ</strong></h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <strong>Thành Công!</strong> 
+        </div>
+
+        <div class="alert alert-danger">
+            <strong>Vui Lòng Nhập Lại Mã E1!</strong> 
+        </div>
+
+        <div class="loading-element text-center" style="font-size:50px;">
+            <i class="fa fa-spinner fa-spin"></i>
+            Vui lòng chờ giây lát...
+        </div>
+
+        <div class="box-body">
+            @*TBL_INFO*@
+            <div class="box-header text-center">
+                <h3 class="box-title "></h3>
+            </div>
+            <div>
+                <table id="example1" class="table table-bordered table-hover"">
+                    <thead>
+                        
+                    </thead>
+                    <tbody id="listTBL_INFO"></tbody>
+                </table>
+            </div>
+
+
+            @*TBL_DINH_VI*@
+            <div class="box-header text-center">
+                <h3 class="box-title"><strong>Thông tin trạng thái</strong></h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th   class="text-center">STT</th>
+                            <th   class="text-center">Ngày</th>
+                            <th   class="text-center">Giờ</th>
+                            <th   class="text-center">Trạng Thái Bưu Gửi</th>
+                            <th   class="text-center">Tại Bưu Cục</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTBL_DINH_VI"></tbody>
+                </table>
+            </div>
+
+            @*TBL_DELIVERY*@
+            <div class="box-header text-center">
+                <h3 class="box-title "><strong>Thông tin phát</strong></h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Ngày Giờ Phát</th>
+                            <th class="text-center">Ngày Nhập TT Phát</th>
+                            <th class="text-center">Bưu Cục Phát</th>
+                            <th class="text-center">Người Nhận/Lý Do</th>
+                            <th  class="text-center">Ngày Truyền/Cập Nhật Cuối</th>
+                            <th  class="text-center">Tuyến Phát/Bưu tá</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTBL_DELIVERY"></tbody>
+                </table>
+            </div>
+
+            @*TBL_CHUYEN_THU*@
+            <div class="box-header text-center">
+                <h3 class="box-title"><strong>Thông tin chuyến thư</strong></h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th   class="text-center">STT</th>
+                            <th   class="text-center">Ngày CT</th>
+                            <th   class="text-center">Giờ Đóng CT</th>
+                            <th   class="text-center">Bưu Cục đóng</th>
+                            <th   class="text-center">Bưu Cục nhận</th>
+                            <th class="text-center">Thông tin CT</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTBL_CHUYEN_THU"></tbody>
+                </table>
+            </div>
+            
+            
+
+            @*TBL_BD10*@
+            <div class="box-header text-center">
+                <h3 class="box-title "><strong>Thông tin giao nhận bd10</strong></h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Ngày BĐ10</th>
+                            <th class="text-center">Ngày xác nhận đi</th>
+                            <th class="text-center">Bưu Cục giao</th>
+                            <th class="text-center">Bưu Cục nhận</th>
+                            <th class="text-center">Lần lập/Mã BĐ10</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTBL_BD10"></tbody>
+                </table>
+            </div>
+
+            @*TBL_BD10_STATUS*@
+            <div class="box-header text-center">
+                <h3 class="box-title"><strong>Thông tin trạng thái giao nhận BĐ10</strong></h3>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="example1" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Ngày BĐ10</th>
+                            <th class="text-center">Ngày xác nhận đi</th>
+                            <th class="text-center">Ngày xác nhận đến</th>
+                            <th class="text-center">Trạng thái BĐ10</th>
+                            <th class="text-center">Tại Bưu Cục</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTBL_BD10_STATUS"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- /.box-body -->
+
+    
+
+
+</section>
+
+
+
+<script type="text/javascript">
+    var url_string = document.URL;
+    var url = new URL(url_string);
+    var emscode = url.searchParams.get("emscode");
+
+    $(document).ready(function () {
+        //$(".loading-element").hide();
+        detail();
+    })
+
+
+    function detail() {
+        $.ajax({
+            url: '@Url.Action("ListTrackAndTrace", "TrackAndTrace")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
+            dataType: 'json',
+            data:
+                {
+                    emscode: emscode,
+                },
+            success: function (data) {
+                
+                var str_html_1 = "";
+                var str_body_1 = "";
+
+                var str_html_2 = "";
+                var str_body_2 = "";
+
+                var str_html_3 = "";
+                var str_body_3 = "";
+
+                var str_html_4 = "";
+                var str_body_4 = "";
+
+                var str_html_5 = "";
+                var str_body_5 = "";
+
+                var str_html_6 = "";
+                var str_body_6 = "";
+
+                
+                var a1 = 1;
+                var a2 = 1;
+                var a3 = 1;
+                var a4 = 1;
+                var a5 = 1;
+                var a6 = 1;
+
+                //Phần lấy ra List_TBL_INFO_Report
+                $.each(data.List_TBL_INFO_Report, function (i, item) {
+                    str_body_1 += '<tr>';
+                    str_body_1 += '<td style="width:50%;" class ="text-center">' + '<strong>' + data.List_TBL_INFO_Report[i].BC_GUI + '-' + data.List_TBL_INFO_Report[i].Nuoc_Chapnhan + '</strong>' + '</td>';
+                    str_body_1 += '<td style="width:50%;" class ="text-center">' + '<strong>' + data.List_TBL_INFO_Report[i].BC_PHAT + '-' + data.List_TBL_INFO_Report[i].Nuoc_Phat + '</strong>' + '</td>';
+                    str_body_1 += '</tr>';
+
+                    str_body_1 += '<tr>';
+                    str_body_1 += '<td colspan="2">' + '<strong>Bưu Gửi Số : &nbsp;</strong>' + '<strong style="color:red;">' + data.List_TBL_INFO_Report[i].ID + '</strong>' + '</td>';
+                    str_body_1 += '</tr>';
+
+                    str_body_1 += '<tr>';
+                    str_body_1 += '<td colspan="2">' + '<strong>Mã Khách Hàng : &nbsp;</strong>' + '<strong style="color:red;">' + data.List_TBL_INFO_Report[i].CustomerCode + '</strong>' + '<strong style="color:red;"> (' + data.List_TBL_INFO_Report[i].CustomerGroupCode + ') &nbsp; </strong>' + '<strong>' + data.List_TBL_INFO_Report[i].HO_TEN_GUI + '</strong>' + '<strong> / ' + data.List_TBL_INFO_Report[i].SenderMobile + '</strong>' + '</td>';
+                    str_body_1 += '</tr>';
+
+                    str_body_1 += '<tr>';
+
+                    str_body_1 += '<td colspan="2">' +
+                                                '<div class="row">'+
+                                                    '<div class="col-md-6">' +
+                                                        '<strong>Số hiệu : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].ID + '</br>' +
+                                                        '<strong>Nước chấp nhận : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Nuoc_Chapnhan + '</br>' +
+                                                        '<strong>Bưu cục chấp nhận : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].BC_GUI + '</br>' +
+                                                        '<strong>Người gửi : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].HO_TEN_GUI + '<span> / ' + data.List_TBL_INFO_Report[i].SenderMobile + '</span>' + '</br>' +
+                                                        '<strong>Địa chỉ gửi : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].DIA_CHI_GUI + '</br>' +
+                                                        '<strong>Cước chính : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].MainFreight + '</br>' +
+                                                        '<strong>Cước xăng dầu : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].FuelSurchargeFreight + '</br>' +
+                                                        '<strong>Cước vùng xa : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].FarRegionFreight + '</br>' +
+                                                        '<strong>Tổng cước GTGT : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].SubFreight + '</br>' +
+                                                        '<strong>Tổng cước (chưa bao gồm VAT) : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].TotalFreight + '</br>' +
+                                                        '<strong>Tổng cước thu ở người gửi : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].TotalFreightdiscountvat + '</br>' +
+                                                        '<strong>Dịch vụ cộng thêm : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].ValueAddedServiceName + '</br>' +
+                                                    '</div>' +
+                                                    '<div class="col-md-6">' +
+                                                        '<strong>Số đơn hàng /Số CV : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].DataCode + '</br>' +
+                                                        '<strong>Nước phát : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Nuoc_Phat + '</br>' +
+                                                        '<strong>Bưu cục phát : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].BC_PHAT + '</br>' +
+                                                        '<strong>Người nhận : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].HO_TEN_NHAN + '<span> / ' + data.List_TBL_INFO_Report[i].ReceiverMobile + '</span>' + '</br>' +
+                                                        '<strong>Địa chỉ nhận : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].DIA_CHI_NHAN + '</br>' +
+                                                        '<strong>SĐT nhận : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].ReceiverMobile + '</br>' +
+                                                        '<strong>Chiều rộng : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Width + '</br>' +
+                                                        '<strong>Chiều dài : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Length + '</br>' +
+                                                        '<strong>Chiều cao : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Height + '</br>' +
+                                                        '<strong>Khối lượng thực tế : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].Weight + 'gam' + '</br>' +
+                                                        '<strong>Khối lượng quy đổi : &nbsp;</strong>' + data.List_TBL_INFO_Report[i].KL_QUI_DOI + 'gam' + '</br>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                    
+                                  '</td>';
+
+                    str_body_1 += '</tr>';
+
+                });
+                str_html_1 += str_body_1;
+
+                //Phần lấy ra List_TBL_DINH_VI_Report
+                $.each(data.List_TBL_DINH_VI_Report, function (i, item) {
+                    str_body_2 += '<tr>';
+                    str_body_2 += '<td class="text-center">' + a2++ + '</td>';
+                    //str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].TraceDate + '</td>';
+                    str_body_2 += '<td class="text-center">' + data.List_TBL_DINH_VI_Report[i].Date + '</td>';
+                    str_body_2 += '<td class="text-center">' + data.List_TBL_DINH_VI_Report[i].TimeDetail + '</td>';
+                    str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].StatusText + '</td>';
+                    str_body_2 += '<td class="text-center">' + data.List_TBL_DINH_VI_Report[i].VI_TRI + '</td>';
+                    //str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].POSTel + '</td>';
+
+                    str_body_2 += '</tr>';
+                });
+                str_html_2 += str_body_2;
+
+
+                //Phần lấy ra List_TBL_DELIVERY_Report
+                $.each(data.List_TBL_DELIVERY_Report, function (i, item) {
+                    str_body_3 += '<tr>';
+                    str_body_3 += '<td class="text-center">' + a3++ + '</td>';
+                    //str_body_3 += '<td>' + data.List_TBL_DELIVERY_Report[i].DATE + '</td>';
+                    //str_body_3 += '<td>' + data.List_TBL_DELIVERY_Report[i].TIMEDETAIL + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].NGAY_PHAT + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].NGAY_NHAP + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].VI_TRI + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].STATUSTEXT + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].NGAY_TRUYEN + '</td>';
+                    str_body_3 += '<td class="text-center">' + data.List_TBL_DELIVERY_Report[i].NGAY_CN + '</td>';
+                    
+                    
+                    //str_body_3 += '<td>' + data.List_TBL_DELIVERY_Report[i].IsDeliverable + '</td>';
+                    //str_body_3 += '<td>' + data.List_TBL_DELIVERY_Report[i].CauseCode + '</td>';
+                    str_body_3 += '</tr>';
+                });
+                str_html_3 += str_body_3;
+                
+                //Phần lấy ra List_TBL_CHUYEN_THU_Report
+                $.each(data.List_TBL_CHUYEN_THU_Report, function (i, item) {
+                    str_body_4 += '<tr>';
+                    str_body_4 += '<td class="text-center">' + a4++ + '</td>';
+                    str_body_4 += '<td class="text-center"> ' + data.List_TBL_CHUYEN_THU_Report[i].DATE + '</td>';
+                    str_body_4 += '<td class="text-center">' + data.List_TBL_CHUYEN_THU_Report[i].TIMEDETAIL + '</td>';
+                    str_body_4 += '<td class="text-center">' + data.List_TBL_CHUYEN_THU_Report[i].BCG + '</td>';
+                    str_body_4 += '<td class="text-center">' + data.List_TBL_CHUYEN_THU_Report[i].BCN + '</td>';
+                    str_body_4 += '<td class="text-center"> ' + data.List_TBL_CHUYEN_THU_Report[i].CHUYEN_THU + '</td>';
+                    
+                    str_body_4 += '</tr>';
+                });
+                str_html_4 += str_body_4;
+
+                //Phần lấy ra List_TBL_BD10_Report
+                $.each(data.List_TBL_BD10_Report, function (i, item) {
+                    str_body_5 += '<tr>';
+                    str_body_5 += '<td class="text-center">' + a5++ + '</td>';
+                    str_body_5 += '<td class="text-center">' + data.List_TBL_BD10_Report[i].DATE + '</td>';
+                    str_body_5 += '<td class="text-center">' + data.List_TBL_BD10_Report[i].TIMEDETAIL + '</td>';
+                    str_body_5 += '<td class="text-center">' + data.List_TBL_BD10_Report[i].BCG + '</td>';
+                    str_body_5 += '<td class="text-center">' + data.List_TBL_BD10_Report[i].BCN + '</td>';
+                    str_body_5 += '<td class="text-center">' + data.List_TBL_BD10_Report[i].BC37_INFO + '</td>';
+                    //str_body_5 += '<td>' + data.List_TBL_BD10_Report[i].SendingTime + '</td>';
+                    //str_body_5 += '<td>' + data.List_TBL_BD10_Report[i].BC37Date + '</td>';
+                    str_body_5 += '</tr>';
+                });
+                str_html_5 += str_body_5;
+                
+                //Phần lấy ra List_TBL_BD10_STATUS_Report
+                $.each(data.List_TBL_BD10_STATUS_Report, function (i, item) {
+                    str_body_6 += '<tr>';
+                    str_body_6 += '<td class="text-center">' + a6++ + '</td>';
+                    str_body_6 += '<td class="text-center">' + data.List_TBL_BD10_STATUS_Report[i].DATE + '</td>';
+                    str_body_6 += '<td class="text-center">' + data.List_TBL_BD10_STATUS_Report[i].TIMEDETAIL1 + '</td>';
+                    str_body_6 += '<td class="text-center">' + data.List_TBL_BD10_STATUS_Report[i].TIMEDETAIL + '</td>';
+                    str_body_6 += '<td class="text-center">' + data.List_TBL_BD10_STATUS_Report[i].STATUSTEXT + '</td>';
+                    str_body_6 += '<td class="text-center">' + data.List_TBL_BD10_STATUS_Report[i].VI_TRI + '</td>';
+                    //str_body_6 += '<td>' + data.List_TBL_BD10_STATUS_Report[i].ConfirmDate + '</td>';
+                    //str_body_6 += '<td>' + data.List_TBL_BD10_STATUS_Report[i].BC37Date + '</td>';
+                    str_body_6 += '</tr>';
+                });
+                str_html_6 += str_body_6;
+                
+                
+                if (data.Code == '99') {
+                    $('.loading-element').hide();
+                    $('.alert-danger').fadeIn();
+                    
+                }
+                else {
+                    $('.loading-element').hide();
+                    $('.alert-success').fadeIn();
+                    setTimeout(function () {
+                        $('.alert-success').fadeOut();
+                        }, 3000
+                    );
+                    $('#listTBL_INFO').html(str_html_1);
+                    $('#listTBL_DINH_VI').html(str_html_2);
+                    $('#listTBL_DELIVERY').html(str_html_3);
+                    $('#listTBL_CHUYEN_THU').html(str_html_4);
+                    $('#listTBL_BD10').html(str_html_5);
+                    $('#listTBL_BD10_STATUS').html(str_html_6);
+                   
+                }
+            }
+        })
+    }
+
+
+</script>
+
+

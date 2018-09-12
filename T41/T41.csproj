@@ -193,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportComeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AirwayTransportManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrackAndTraceController.cs" />
     <Compile Include="Areas\Admin\Controllers\FindReceptacleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExpressRoadController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetailBD13Controller.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Data\AirwayTransportComeRepository.cs" />
     <Compile Include="Areas\Admin\Data\AirwaytransportComeManagementRepository.cs" />
+    <Compile Include="Areas\Admin\Data\TrackAndTraceRepository.cs" />
     <Compile Include="Areas\Admin\Data\ReceptacleIDRepository.cs" />
     <Compile Include="Areas\Admin\Data\DevelopActivityRepository.cs" />
     <Compile Include="Areas\Admin\Data\RoadwayTransportRepository.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="Areas\Admin\Model\DataModel\AirwayTransport.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\ExpressRoad.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\BusinessManagement.cs" />
+    <Compile Include="Areas\Admin\Model\DataModel\TrackAndTrace.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TrackingOrder.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TotalDataCustomer.cs" />
     <Compile Include="Areas\Admin\Model\DataModel\TransferManagement_VNPOST.cs" />
@@ -280,7 +283,17 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Web References\TrackAndTrace_VNPOST\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\bootstrap.css" />
@@ -3277,7 +3290,13 @@
     <Content Include="Areas\Admin\Views\DevelopActivity\DevelopActivityDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\FindReceptacle\Index.cshtml" />
     <Content Include="Areas\Admin\Views\FindReceptacle\ListReceptacleReport.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackAndTrace\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TrackAndTrace\ListTrackAndTrace.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3291,6 +3310,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Web References\TrackAndTrace_VNPOST\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\TrackAndTrace_VNPOST\TrackAndTrace.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3327,6 +3351,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Web References\TrackAndTrace_VNPOST\TrackAndTrace.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3342,6 +3367,25 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ws.vnpost.vn/TrackAndTrace/TrackAndTrace.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TrackAndTrace_VNPOST\</RelPath>
+      <UpdateFromURL>http://ws.vnpost.vn/TrackAndTrace/TrackAndTrace.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>T41_TrackAndTrace_VNPOST_TrackAndTrace</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

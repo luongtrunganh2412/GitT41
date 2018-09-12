@@ -9,24 +9,13 @@ namespace T41.Areas.Admin.Model.DataModel
     //Phần lấy dữ iệu của bảng edi_consigment_resdit_event
     public class RECEPTACLE_Detail
     {
-        public String CONSIGMENTID { get; set; }
-        public String EVTCODE { get; set; }
-        public String EVTDATE { get; set; }
-        public String EVTTIME { get; set; }
-        public String EVTLOCATIONS { get; set; }
+       
+        public String NGAY { get; set; }
         public String FLIGHTNUMBER { get; set; }
-        public String DEPARTURELOC { get; set; }
-        public String ARRIVALLOC { get; set; }
-        public String DEPARTUREDATE { get; set; }
-        public String DEPARTURETIME { get; set; }
-        public String ARRIVALDATE { get; set; }
-        public String ARRIVALTIME { get; set; }
-        public String EQUIPMENTID { get; set; }
-        public String CONTAINERTYPE { get; set; }
-        public String RECEPTACLEID { get; set; }
-        public String MESSAGEID { get; set; }
-        public String SENDERMAILBOX { get; set; }
-
+        public String MO_TA { get; set; }
+        public String VI_TRI { get; set; }
+        public String CN38 { get; set; }
+        
 
     }
 
