@@ -108,7 +108,11 @@
                     date: $('#date').val(),
                 },
             success: function (result) {
-                alert("Tổng Hợp Dữ Liệu Thành Công");
+                swal(
+                      'Tổng Hợp Dữ Liệu Thành Công !',
+                      '',
+                      'success'
+                    )
                 $('.loading-element').hide();
                 $('.btnview').show();
             }

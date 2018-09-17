@@ -179,4 +179,6 @@ namespace T41.Areas.Admin.Model.DataModel
 
         public List<TBL_BD10_STATUS> List_TBL_BD10_STATUS_Report;
     }
+
+    
 }

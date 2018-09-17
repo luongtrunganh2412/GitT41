@@ -359,7 +359,11 @@
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listtransfermanagement
                 if (result.Code == '01') {
-                    alert("Không Có Dữ Liệu");
+                    swal(
+                       'Không Có Số Liệu',
+                       '',
+                       'error'
+                     )
                     
                 }
                 else {

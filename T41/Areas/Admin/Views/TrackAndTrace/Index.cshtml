@@ -32,11 +32,11 @@
         </div>
 
         <div class="alert alert-success">
-            <strong>Thành Công!</strong> 
+            Thành Công!
         </div>
 
         <div class="alert alert-danger">
-            <strong>Vui Lòng Nhập Lại Mã E1!</strong> 
+            Vui Lòng Nhập Lại Mã E1! 
         </div>
 
         <div class="loading-element text-center" style="font-size:50px;">
@@ -72,6 +72,7 @@
                             <th   class="text-center">Giờ</th>
                             <th   class="text-center">Trạng Thái Bưu Gửi</th>
                             <th   class="text-center">Tại Bưu Cục</th>
+                            <th class="text-center">Điện thoại</th>
                         </tr>
                     </thead>
                     <tbody id="listTBL_DINH_VI"></tbody>
@@ -289,7 +290,7 @@
                     str_body_2 += '<td class="text-center">' + data.List_TBL_DINH_VI_Report[i].TimeDetail + '</td>';
                     str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].StatusText + '</td>';
                     str_body_2 += '<td class="text-center">' + data.List_TBL_DINH_VI_Report[i].VI_TRI + '</td>';
-                    //str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].POSTel + '</td>';
+                    str_body_2 += '<td>' + data.List_TBL_DINH_VI_Report[i].POSTel + '</td>';
 
                     str_body_2 += '</tr>';
                 });

@@ -374,7 +374,11 @@
         var paratoposcode = $('#toposcode').val();
         // goi ham Detail
         if (parafromprovince == 0 || paratoprovince == 0 || parafromposcode == 0 || paratoposcode == 0) {
-            alert("Bạn vui lòng chọn đủ tỉnh và bưu cục !");
+            swal(
+                       'Bạn vui lòng chọn đủ tỉnh và bưu cục ',
+                       '',
+                       'warning'
+                     )
         } else {
             detail();
         }
@@ -409,7 +413,11 @@
             success: function (result) {
                 // sau khi chay ham thanh cong lay ra ket qua thi bind html vao id listtransfermanagement
                 if (result.Code == '01') {
-                    alert("Không Có Dữ Liệu");
+                    swal(
+                       'Không Có Số Liệu',
+                       '',
+                       'error'
+                     )
 
                 }
                 else {

@@ -3291,7 +3291,6 @@
     <Content Include="Areas\Admin\Views\FindReceptacle\Index.cshtml" />
     <Content Include="Areas\Admin\Views\FindReceptacle\ListReceptacleReport.cshtml" />
     <Content Include="Areas\Admin\Views\TrackAndTrace\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\TrackAndTrace\ListTrackAndTrace.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
