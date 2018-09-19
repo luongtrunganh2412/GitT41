@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
 
+
 <title>Chi tiết túi gói</title>
 <section class="content">
     <div class="box box-default">
@@ -48,9 +49,15 @@
                 </div>
                 <div class="col-md-3" style="padding-top:25px;">
                     <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Tìm Kiếm</button>
+                    
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <input type="button" id="btnexport" class="btn btn-default btn-lrg ajax" data-baseurl="@Url.Action("Export", "FindReceptacle")" value="Xuất Excel" />
+
+                </div>
+            </div>
             
             
             <div style="overflow-x:auto;">
@@ -90,6 +97,8 @@
 
 
 <script>
+    
+
     $(document).ready(function () {
         var d = new Date();
         var currMonth = d.getMonth() - 1;
@@ -108,6 +117,7 @@
         }).datepicker("setDate", "0");
 
         $('.loading-element').hide();
+        $('#btnexport').hide();
        
     });
 
@@ -119,7 +129,16 @@
     });
 
     
-    //Phần chi tiết của bảng tổng hợp sản lượng đi phát
+    //Export Excel
+    $('#btnexport').click(function () {
+        // build the url
+        var url = $(this).data('baseurl') + '?fromdate=' + $('#fromdate').val() + '&todate=' + $('#todate').val() + '&receptacle_id=' + $('#receptacleID').val();
+        // redirect
+        location.href = url;
+    });
+
+    
+    //Phần chi tiết của mã túi gói
     
     function detail() {
         var receptacleID;
@@ -148,12 +167,14 @@
             success: function (result) {
                     $('.loading-element').hide();
                     $('#listreceptacle').html(result);
-                    
+                    $('#btnexport').show();
                 
             }
         })
     }
 
+    
+    
     
 
     

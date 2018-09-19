@@ -9,7 +9,7 @@ namespace T41.Areas.Admin.Model.DataModel
     //Phần lấy dữ iệu của bảng edi_consigment_resdit_event
     public class RECEPTACLE_Detail
     {
-       
+        public int ID { get; set; }
         public String NGAY { get; set; }
         public String FLIGHTNUMBER { get; set; }
         public String MO_TA { get; set; }

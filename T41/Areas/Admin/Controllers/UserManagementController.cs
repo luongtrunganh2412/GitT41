@@ -7,7 +7,12 @@ using System.Web.Mvc;
 using T41.Areas.Admin.Common;
 using T41.Areas.Admin.Data;
 using T41.Areas.Admin.Model.DataModel;
-using T41.Areas.Admin.Models.DataModel;
+using System.IO;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
+using OfficeOpenXml.Style;
+using DocumentFormat.OpenXml.Office2010.Excel;
+
 namespace T41.Areas.Admin.Controllers
 {
     public class UserManagementController : Controller
@@ -24,145 +29,136 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ID_USER_MANAGEMENT_DETAIL()
-        {
-            return View();
-        }
         //Controller lấy dữ liệu tỉnh đóng, tỉnh nhận
-        public JsonResult ProvinceCode()
+        public JsonResult PosCode()
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            return Json(usermanagementRepository.GETPROVINCE(), JsonRequestBehavior.AllowGet);
-        }
-
-        //Controller lấy dữ liệu quận
-        public JsonResult DistrictCode(int provincecode)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            return Json(usermanagementRepository.GETDISTRICT(provincecode), JsonRequestBehavior.AllowGet);
-        }
-
-        //Phần controller xử lý để thêm dữ liệu vào bảng business_profile_oa dưới database
-        [HttpGet]
-        public ActionResult CreateUserReport(PARAMETER_BUSINESS_OA para)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.CreatBusinessProfile_OA(para);
-            return View(returnusermanagement);
-        }
-
-        //Phần controller xử lý để thêm dữ liệu vào bảng business_profile dưới database
-        [HttpGet]
-        public ActionResult CreateChannelReport(PARAMETER_BUSINESS para)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.CreatBusinessProfile(para);
-            return View(returnusermanagement);
+            return Json(usermanagementRepository.GETPOSCODE_GIAO_DICH(), JsonRequestBehavior.AllowGet);
         }
 
         //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE_OA dưới database
         [HttpGet]
-        public ActionResult EditUserReport(PARAMETER_BUSINESS_OA business)
+        public ActionResult ListUserManagement_CRM_Report(int poscode)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.EditBusinessProfile_OA(business);
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode);
             return View(returnusermanagement);
         }
 
-        //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE_OA dưới database
+
+        //[HttpGet]
+        ////Phần show ra dữ liệu của bảng BUSINESS_PROFILE_OA
+        //public ActionResult ListDetailedUserManagementReport(int? page, int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email)
+        //{
+        //    int currentPageIndex = page.HasValue ? page.Value : 1;
+        //    ViewBag.currentPageIndex = currentPageIndex;
+        //    ViewBag.PageSize = page_size;
+        //    UserManagementRepository usermanagementRepository = new UserManagementRepository();
+        //    ReturnUserManagement returnusermanagement = new ReturnUserManagement();
+        //    returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(page_size, currentPageIndex,user_id , user_customer_code, user_contact_phone_work, user_general_email);
+        //    ViewBag.total = returnusermanagement.Total;
+        //    ViewBag.total_page = (returnusermanagement.Total + page_size - 1) / page_size;
+        //    return View(returnusermanagement);
+
+        //}
+
+
+        //Phần trả về data theo list để xuất excel
         [HttpGet]
-        public ActionResult EditChannelReport(PARAMETER_BUSINESS business)
+        public List<UserManagement_CRM_Detail> ReturnListExcel(int poscode)
         {
+
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.EditBusinessProfile(business);
-            return View(returnusermanagement);
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode);
+            return returnusermanagement.ListUserManagement_CRM_Report;
         }
 
-        //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE dưới database
+       
+        public Stream CreateExcelFile(Stream stream = null)
+        {
+            //var list = CreateTestItems();
+            var list = ReturnListExcel(ViewBag.poscode);
+            using (var excelPackage = new ExcelPackage(stream ?? new MemoryStream()))
+            {
+                // Tạo author cho file Excel
+                excelPackage.Workbook.Properties.Author = "Window.User";
+                // Tạo title cho file Excel
+                excelPackage.Workbook.Properties.Title = "Export Excel";
+                // thêm tí comments vào làm màu 
+                excelPackage.Workbook.Properties.Comments = "Export Excel Success !";
+                // Add Sheet vào file Excel
+                excelPackage.Workbook.Worksheets.Add("First Sheet");
+                // Lấy Sheet bạn vừa mới tạo ra để thao tác 
+                var workSheet = excelPackage.Workbook.Worksheets[1];
+                // Đổ data vào Excel file
+                workSheet.Cells[1, 1].LoadFromCollection(list, true, TableStyles.Dark9);
+                //BindingFormatForExcel(workSheet, list);
+                excelPackage.Save();
+                return excelPackage.Stream;
+            }
+        }
+
+
+        //Phần sửa excel
+
+        //private void BindingFormatForExcel(ExcelWorksheet worksheet, List<UserManagement_CRM_Detail> listItems)
+        //{
+        //    // Set default width cho tất cả column
+        //    //worksheet.DefaultColWidth = 10;
+        //    worksheet.DefaultRowHeight = 10;
+        //    // Tự động xuống hàng khi text quá dài
+        //    worksheet.Cells.Style.WrapText = true;
+        //    // Tạo header
+        //    //worksheet.Cells[1, 1].Value = "ID";
+        //    //worksheet.Cells[1, 2].Value = "Full Name";
+        //    //worksheet.Cells[1, 3].Value = "Address";
+        //    //worksheet.Cells[1, 4].Value = "Money";
+
+        //    // Lấy range vào tạo format cho range đó ở đây là từ A1 tới D1
+        //    //using (var range = worksheet.Cells["A1:D1"])
+        //    //{
+        //    //    // Set PatternType
+        //    //    range.Style.Fill.PatternType = ExcelFillStyle.DarkGray;
+        //    //    // Set Màu cho Background
+        //    //    range.Style.Fill.BackgroundColor.SetColor(Color.Aqua);
+        //    //    // Canh giữa cho các text
+        //    //    range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+        //    //    // Set Font cho text  trong Range hiện tại
+        //    //    range.Style.Font.SetFromFont(new Font("Arial", 10));
+        //    //    // Set Border
+        //    //    range.Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+        //    //    // Set màu ch Border
+        //    //    range.Style.Border.Bottom.Color.SetColor(Color.Blue);
+        //    //}
+
+
+        //}
+
+        //Hàm Export excel  , truyền parameter vào để export
         [HttpGet]
-        public ActionResult GET_DATA_BUSINESS_PROFILE(int get_data_id)
+        public ActionResult Export(int poscode)
         {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.GET_DATA_BUSINESS_PROFILE(get_data_id);
-            return Json(returnusermanagement.ListUserManagement_BP_Report, JsonRequestBehavior.AllowGet);
-            
-            //return Json(returnquality, JsonRequestBehavior.AllowGet);
-
-        }
-
-        //Phần controller xử lý để xóa dữ liệu người dùng theo ID trong bảng BUSINESS_PROFILE_OA
-        public ActionResult DeleteUserReport(int delete_id)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.DeleteBusinessProfile_OA(delete_id);
-            return View(returnusermanagement);
-        }
-
-        //Phần controller xử lý để xóa dữ liệu người dùng theo ID trong bảng BUSINESS_PROFILE
-        public ActionResult DeleteChannelReport(int delete_id)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.DeleteBusinessProfile(delete_id);
-            return View(returnusermanagement);
-        }
-        public ActionResult CreateUser()
-        {
-            return View();
-        }
-
-        public ActionResult CreateChannel()
-        {
-            return View();
-        }
-
-        public ActionResult EditUser()
-        {
-            return View();
-        }
-
-        public ActionResult DeleteUser()
-        {
-            return View();
-        }
-        [HttpGet]
-        //Phần show ra dữ liệu của bảng BUSINESS_PROFILE_OA
-        public ActionResult ListDetailedUserManagementReport(int? page, int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email)
-        {
-            int currentPageIndex = page.HasValue ? page.Value : 1;
-            ViewBag.currentPageIndex = currentPageIndex;
-            ViewBag.PageSize = page_size;
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(page_size, currentPageIndex,user_id , user_customer_code, user_contact_phone_work, user_general_email);
-            ViewBag.total = returnusermanagement.Total;
-            ViewBag.total_page = (returnusermanagement.Total + page_size - 1) / page_size;
-            return View(returnusermanagement);
-            
-        }
-
-        //Phần controller show ra dữ liệu theo ID người dùng bảng BUSINESS_PROFILE_OA
-        public ActionResult EDIT_ID_BP_OA_UserManagementReport(int edit_id)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.ID_BUSINESS_PROFILE_OA_DETAIL(edit_id);
-            return View(returnusermanagement);
-        }
-
-        //Phần controller show ra dữ liệu theo ID người dùng bảng BUSINESS_PROFILE
-        public ActionResult ListDetailed_ID_BP_UserManagementReport(int customer_id)
-        {
-            UserManagementRepository usermanagementRepository = new UserManagementRepository();
-            ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.ID_BUSINESS_PROFILE_DETAIL(customer_id);
-            return View(returnusermanagement);
+            ViewBag.poscode = poscode;
+            //ViewBag.todate = todate;
+            //ViewBag.receptacle_id = receptacle_id;
+            // Gọi lại hàm để tạo file excel
+            var stream = CreateExcelFile();
+            // Tạo buffer memory strean để hứng file excel
+            var buffer = stream as MemoryStream;
+            // Đây là content Type dành cho file excel
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            // Dòng này rất quan trọng, vì chạy trên firefox hay IE thì dòng này sẽ hiện Save As dialog cho người dùng chọn thư mục để lưu
+            // File name của Excel này là ExcelDemo
+            Response.AddHeader("Content-Disposition", "attachment; filename=Quản Lý Khách Hàng CRM.xlsx");
+            // Lưu file excel của chúng ta như 1 mảng byte để trả về response
+            Response.BinaryWrite(buffer.ToArray());
+            // Send tất cả ouput bytes về phía clients
+            Response.Flush();
+            Response.End();
+            // Redirect về luôn trang index >
+            return RedirectToAction("Index");
         }
 
     }

@@ -13,115 +13,68 @@ namespace T41.Areas.Admin.Data
     public class UserManagementRepository
     {
         Convertion common = new Convertion();
-        #region GETPROVINCE
-        //Lấy mã bưu cục phát dưới DB Procedure USER_MANAGEMENT.Detail_Province
-        public IEnumerable<GETPROVINCE> GETPROVINCE()
-        {
-            List<GETPROVINCE> listGetProvinceCode = null;
-            GETPROVINCE oGetProvinceCode = null;
 
+        #region GETPOSCODE_GIAO_DICH
+        //Lấy mã bưu cục giao dịch dưới DB
+        public String GETPOSCODE_GIAO_DICH()
+        {
+            string LISTPOSTCODE_GD = "<option value=\"0\">Tất Cả</option>";
             try
             {
                 using (OracleCommand cm = new OracleCommand())
                 {
-                    cm.Connection = Helper.OraDCDevOracleConnection;
-                    cm.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Detail_Province";
+                    cm.Connection = Helper.OraDCOracleConnection;
+                    cm.CommandText = Helper.SchemaName + "CRM_USER_MANAGEMENT.GetPoscodeGD_Ems";
                     cm.CommandType = CommandType.StoredProcedure;
 
                     cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
                     using (OracleDataReader dr = cm.ExecuteReader())
                     {
-                        listGetProvinceCode = new List<GETPROVINCE>();
                         while (dr.Read())
                         {
-                            oGetProvinceCode = new GETPROVINCE();
-                            //oGetProvinceCode.PROVINCECODE = int.Parse(dr["PROVINCECODE"].ToString());
-                            oGetProvinceCode.PROVINCECODE = dr["PROVINCECODE"].ToString();
-                            oGetProvinceCode.PROVINCENAME = dr["PROVINCENAME"].ToString();
-                            listGetProvinceCode.Add(oGetProvinceCode);
+                            LISTPOSTCODE_GD += "<option value='" + dr["MA_BC"].ToString() + "'>" + dr["MA_BC"].ToString() + '-' + dr["TEN_BC"].ToString() + "</option>";
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, "GETPROVINCE" + ex.Message);
-                listGetProvinceCode = null;
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "LISTPOSTCODE_GD" + ex.Message);
             }
 
-            return listGetProvinceCode;
+            return LISTPOSTCODE_GD;
         }
         #endregion
 
-
-        #region GETDISTRICT
-        //Lấy mã bưu cục phát dưới DB Procedure USER_MANAGEMENT.Detail_District
-        public IEnumerable<GETDISTRICT> GETDISTRICT(int provincecode)
-        {
-            List<GETDISTRICT> listGetDistrictCode = null;
-            GETDISTRICT oGetDistrictCode = null;
-
-            try
-            {
-                using (OracleCommand cm = new OracleCommand())
-                {
-                    cm.Connection = Helper.OraDCDevOracleConnection;
-                    cm.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Detail_District";
-                    cm.CommandType = CommandType.StoredProcedure;
-                    cm.Parameters.Add(new OracleParameter("P_PROVINCECODE", OracleDbType.Int32)).Value = provincecode;
-                    cm.Parameters.Add("v_liststage", OracleDbType.RefCursor, null, ParameterDirection.Output);
-                    using (OracleDataReader dr = cm.ExecuteReader())
-                    {
-                        listGetDistrictCode = new List<GETDISTRICT>();
-                        while (dr.Read())
-                        {
-                            oGetDistrictCode = new GETDISTRICT();
-                            oGetDistrictCode.DISTRICTCODE = dr["DISTRICTCODE"].ToString();
-                            oGetDistrictCode.DISTRICTNAME = dr["DISTRICTNAME"].ToString();
-                            listGetDistrictCode.Add(oGetDistrictCode);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, "GETDISTRICT" + ex.Message);
-                listGetDistrictCode = null;
-            }
-
-            return listGetDistrictCode;
-        }
-        #endregion
 
         // Phần lấy dữ liệu từ bảng business_profile_oa
         #region USER_MANAGEMENT_DETAIL          
-        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int page_size, int page_index,int user_id, string user_customer_code, int user_contact_phone_work, string user_general_email )
+        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int poscode )
         {
+            int STT = 1;
             DataTable da = new DataTable();
-            MetaData _metadata = new MetaData();
             Convertion common = new Convertion();
             ReturnUserManagement _returnUserManagement = new ReturnUserManagement();
-
-            List<UserManagement_BP_OA_Detail> listUserManagementDetail = null;
-            UserManagement_BP_OA_Detail oUserManagementDetail = null;
+            List<UserManagement_CRM_Detail> listUserManagementDetail = null;
+            UserManagement_CRM_Detail oUserManagementDetail = null;
             try
             {
                 // Gọi vào DB để lấy dữ liệu.
                 using (OracleCommand cmd = new OracleCommand())
                 {
-
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Page_Detail_User", Helper.OraDCDevOracleConnection);
                     //xử lý tham số truyền vào data table
+                    //OracleCommand myCommand = new OracleCommand("management_sale.get_list_Customer_Crm", Helper.OraEVComOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("CRM_USER_MANAGEMENT.Detail_User", Helper.OraEVComOracleConnection);
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("P_PAGE_INDEX", OracleDbType.Int32).Value = page_index;
-                    myCommand.Parameters.Add("P_PAGE_SIZE", OracleDbType.Int32).Value = page_size;
-                    myCommand.Parameters.Add("p_ID", OracleDbType.Int32).Value = user_id;
-                    myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_customer_code;
-                    myCommand.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Int32).Value = user_contact_phone_work;
-                    myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_general_email;
-                    myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
+                    myCommand.Parameters.Add("p_ID_BUU_CUC", OracleDbType.Int32).Value = poscode;
+                    //myCommand.Parameters.Add("P_PAGE_SIZE", OracleDbType.Int32).Value = page_size;
+                    //myCommand.Parameters.Add("p_ID", OracleDbType.Int32).Value = user_id;
+                    //myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_customer_code;
+                    //myCommand.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Int32).Value = user_contact_phone_work;
+                    //myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_general_email;
+                    //myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
                     mAdapter.Fill(da);
@@ -129,25 +82,26 @@ namespace T41.Areas.Admin.Data
                     DataTableReader dr = da.CreateDataReader();
                     if (dr.HasRows)
                     {
-                        listUserManagementDetail = new List<UserManagement_BP_OA_Detail>();
+                        listUserManagementDetail = new List<UserManagement_CRM_Detail>();
                         while (dr.Read())
                         {
-                            oUserManagementDetail = new UserManagement_BP_OA_Detail();
-                            oUserManagementDetail.ID = Convert.ToInt32(dr["ID"].ToString());
-                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
-                            //Phần mã hóa api key 
-                            //oUserManagementDetail.ApiKey = Common.Security.CreatPassWordHash(oUserManagementDetail.ApiKey + "6688");
+                            oUserManagementDetail = new UserManagement_CRM_Detail();
+                            oUserManagementDetail.STT = STT++;
+                            oUserManagementDetail.ACCOUNT_ID = dr["ACCOUNT_ID"].ToString();
+                            oUserManagementDetail.DEAL_ID = dr["DEAL_ID"].ToString();
+                            oUserManagementDetail.CONTACT_ID = dr["CONTACT_ID"].ToString();
+                            oUserManagementDetail.SALES_ORDER_OWNER_ID = dr["SALES_ORDER_OWNER_ID"].ToString();
+                            oUserManagementDetail.PO_ACCEPTANCE = dr["PO_ACCEPTANCE"].ToString();
+                            oUserManagementDetail.CUSTOMER_NO = dr["CUSTOMER_NO"].ToString();
+                            oUserManagementDetail.PICKUP_NAME = dr["PICKUP_NAME"].ToString();
+                            oUserManagementDetail.PICKUP_FULL_ADDRESS = dr["PICKUP_FULL_ADDRESS"].ToString();
                             listUserManagementDetail.Add(oUserManagementDetail);
 
                         }
                         _returnUserManagement.Code = "00";
                         _returnUserManagement.Message = "Lấy dữ liệu thành công.";
-                        _returnUserManagement.Total = Convert.ToInt32(myCommand.Parameters["P_TOTAL"].Value.ToString());
-                        _returnUserManagement.ListUserManagement_BP_OA_Report = listUserManagementDetail;
+                        _returnUserManagement.Total = listUserManagementDetail.Count();
+                        _returnUserManagement.ListUserManagement_CRM_Report = listUserManagementDetail;
                     }
                     else
                     {
@@ -163,643 +117,13 @@ namespace T41.Areas.Admin.Data
             {
                 _returnUserManagement.Code = "99";
                 _returnUserManagement.Message = "Lỗi xử lý dữ liệu";
-                //_returnQuality.Total = 0;
-                //_returnQuality.ListQualityDeliveryReport = null;
             }
             return _returnUserManagement;
         }
-
-
-
+        
         #endregion
 
-
-        // Phần lấy dữ liệu từ bảng business_profile_oa theo id người dùng
-        #region ID_BUSINESS_PROFILE_OA_DETAIL          
-        public ReturnUserManagement ID_BUSINESS_PROFILE_OA_DETAIL(int edit_id)
-        {
-            DataTable da = new DataTable();
-            MetaData _metadata = new MetaData();
-            Convertion common = new Convertion();
-            ReturnUserManagement _returnUserManagement = new ReturnUserManagement();
-
-            List<UserManagement_BP_OA_Detail> listUserManagementDetail = null;
-            UserManagement_BP_OA_Detail oUserManagementDetail = null;
-            try
-            {
-                // Gọi vào DB để lấy dữ liệu.
-                using (OracleCommand cmd = new OracleCommand())
-                {
-
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_Id_User", Helper.OraDCDevOracleConnection);
-                    //xử lý tham số truyền vào data table
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.CommandTimeout = 20000;
-                    OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("P_ID", OracleDbType.Int32).Value = edit_id;
-                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    mAdapter = new OracleDataAdapter(myCommand);
-                    mAdapter.Fill(da);
-
-                    DataTableReader dr = da.CreateDataReader();
-                    if (dr.HasRows)
-                    {
-                        listUserManagementDetail = new List<UserManagement_BP_OA_Detail>();
-                        while (dr.Read())
-                        {
-                            oUserManagementDetail = new UserManagement_BP_OA_Detail();
-                            oUserManagementDetail.ID = Convert.ToInt32(dr["ID"].ToString());
-                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.DATE_CREATE = dr["DATE_CREATE"].ToString();
-                            oUserManagementDetail.DATE_END = dr["DATE_END"].ToString();
-                            //oUserManagementDetail.DATE_CREATE = common.Convert_Date(Convert.ToInt32(dr["DATE_CREATE"].ToString()));
-                            //oUserManagementDetail.DATE_END = common.Convert_Date(Convert.ToInt32(dr["DATE_END"].ToString()));
-                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
-                            oUserManagementDetail.BUSINESS_TAX = dr["BUSINESS_TAX"].ToString();
-                            oUserManagementDetail.UNIT_CODE = dr["UNIT_CODE"].ToString();
-                            oUserManagementDetail.CONTRACT_NUMBER = dr["CONTRACT_NUMBER"].ToString();
-                            oUserManagementDetail.CUSTOMER_ACTIVE = dr["CUSTOMER_ACTIVE"].ToString();
-                            oUserManagementDetail.TOTAL_CUSTOMER_CODE = dr["TOTAL_CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.PAYMENT_ADDRESS = dr["PAYMENT_ADDRESS"].ToString();
-                            oUserManagementDetail.PAYMENT_METHOD = dr["PAYMENT_METHOD"].ToString();
-                            oUserManagementDetail.CONTACT_PROVINCE = dr["CONTACT_PROVINCE"].ToString();
-                            oUserManagementDetail.CONTACT_DISTRICT = dr["CONTACT_DISTRICT"].ToString();
-                            oUserManagementDetail.EMPLOYEE_DEBT_CODE = dr["EMPLOYEE_DEBT_CODE"].ToString();
-                            oUserManagementDetail.EMPLOYEE_SALE_CODE = dr["EMPLOYEE_SALE_CODE"].ToString();
-                            listUserManagementDetail.Add(oUserManagementDetail);
-
-                        }
-                        _returnUserManagement.Code = "00";
-                        _returnUserManagement.Message = "Lấy dữ liệu thành công.";
-                        _returnUserManagement.ListUserManagement_BP_OA_Report = listUserManagementDetail;
-                    }
-                    else
-                    {
-                        _returnUserManagement.Code = "01";
-                        _returnUserManagement.Message = "Không có dữ liệu";
-
-                    }
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                _returnUserManagement.Code = "99";
-                _returnUserManagement.Message = "Lỗi xử lý dữ liệu";
-                //_returnQuality.Total = 0;
-                //_returnQuality.ListQualityDeliveryReport = null;
-            }
-            return _returnUserManagement;
-        }
-
-
-
-        #endregion
-
-        // Phần lấy dữ liệu từ bảng business_profile theo customer_id người dùng theo kiểu HTML
-        #region ID_BUSINESS_PROFILE_DETAIL          
-        public ReturnUserManagement ID_BUSINESS_PROFILE_DETAIL(int customer_id)
-        {
-            DataTable da = new DataTable();
-            MetaData _metadata = new MetaData();
-            Convertion common = new Convertion();
-            ReturnUserManagement _returnUserManagement = new ReturnUserManagement();
-
-            List<UserManagement_BP_Detail> listUserManagementDetail = null;
-            UserManagement_BP_Detail oUserManagementDetail = null;
-            try
-            {
-                // Gọi vào DB để lấy dữ liệu.
-                using (OracleCommand cmd = new OracleCommand())
-                {
-
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_CUSTOMER_Id_User_BP", Helper.OraDCDevOracleConnection);
-                    //xử lý tham số truyền vào data table
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.CommandTimeout = 20000;
-                    OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32).Value = customer_id;
-                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    mAdapter = new OracleDataAdapter(myCommand);
-                    mAdapter.Fill(da);
-
-                    DataTableReader dr = da.CreateDataReader();
-                    if (dr.HasRows)
-                    {
-                        listUserManagementDetail = new List<UserManagement_BP_Detail>();
-                        while (dr.Read())
-                        {
-                            oUserManagementDetail = new UserManagement_BP_Detail();
-                            oUserManagementDetail.ID = Convert.ToInt32(dr["ID"].ToString());
-                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
-                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.CONTACT_PROVINCE = dr["CONTACT_PROVINCE"].ToString();
-                            oUserManagementDetail.CONTACT_DISTRICT = dr["CONTACT_DISTRICT"].ToString();
-                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.API_KEY = dr["API_KEY"].ToString();
-                            oUserManagementDetail.CUSTOMER_ID = dr["CUSTOMER_ID"].ToString();
-                            listUserManagementDetail.Add(oUserManagementDetail);
-
-                        }
-                        _returnUserManagement.Code = "00";
-                        _returnUserManagement.Message = "Lấy dữ liệu thành công.";
-                        _returnUserManagement.ListUserManagement_BP_Report = listUserManagementDetail;
-                    }
-                    else
-                    {
-                        _returnUserManagement.Code = "01";
-                        _returnUserManagement.Message = "Không có dữ liệu";
-
-                    }
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                _returnUserManagement.Code = "99";
-                _returnUserManagement.Message = "Lỗi xử lý dữ liệu";
-                //_returnQuality.Total = 0;
-                //_returnQuality.ListQualityDeliveryReport = null;
-            }
-            return _returnUserManagement;
-        }
-
-
-
-        #endregion
-
-        // Phần lấy dữ liệu từ bảng business_profile theo customer_id người dùng theo kiểu JSON
-        #region GET_DATA_BUSINESS_PROFILE          
-        public ReturnUserManagement GET_DATA_BUSINESS_PROFILE(int get_data_id)
-        {
-            DataTable da = new DataTable();
-            MetaData _metadata = new MetaData();
-            Convertion common = new Convertion();
-            ReturnUserManagement _returnUserManagement = new ReturnUserManagement();
-
-            List<UserManagement_BP_Detail> listUserManagementDetail = null;
-            UserManagement_BP_Detail oUserManagementDetail = null;
-            try
-            {
-                // Gọi vào DB để lấy dữ liệu.
-                using (OracleCommand cmd = new OracleCommand())
-                {
-
-                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_Id_User_BP", Helper.OraDCDevOracleConnection);
-                    //xử lý tham số truyền vào data table
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.CommandTimeout = 20000;
-                    OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("P_ID", OracleDbType.Int32).Value = get_data_id;
-                    myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    mAdapter = new OracleDataAdapter(myCommand);
-                    mAdapter.Fill(da);
-
-                    DataTableReader dr = da.CreateDataReader();
-                    if (dr.HasRows)
-                    {
-                        listUserManagementDetail = new List<UserManagement_BP_Detail>();
-                        while (dr.Read())
-                        {
-                            oUserManagementDetail = new UserManagement_BP_Detail();
-                            oUserManagementDetail.ID = Convert.ToInt32(dr["ID"].ToString());
-                            oUserManagementDetail.CONTACT_NAME = dr["CONTACT_NAME"].ToString();
-                            oUserManagementDetail.CONTACT_ADDRESS = dr["CONTACT_ADDRESS"].ToString();
-                            oUserManagementDetail.GENERAL_EMAIL = dr["GENERAL_EMAIL"].ToString();
-                            oUserManagementDetail.CONTACT_PHONE_WORK = dr["CONTACT_PHONE_WORK"].ToString();
-                            oUserManagementDetail.CONTACT_PROVINCE = dr["CONTACT_PROVINCE"].ToString();
-                            oUserManagementDetail.CONTACT_DISTRICT = dr["CONTACT_DISTRICT"].ToString();
-                            oUserManagementDetail.CUSTOMER_CODE = dr["CUSTOMER_CODE"].ToString();
-                            oUserManagementDetail.UNIT_CODE = dr["UNIT_CODE"].ToString();
-                            oUserManagementDetail.API_KEY = dr["API_KEY"].ToString();
-                            oUserManagementDetail.CUSTOMER_ID = dr["CUSTOMER_ID"].ToString();
-                            listUserManagementDetail.Add(oUserManagementDetail);
-
-                        }
-                        _returnUserManagement.Code = "00";
-                        _returnUserManagement.Message = "Lấy dữ liệu thành công.";
-                        _returnUserManagement.ListUserManagement_BP_Report = listUserManagementDetail;
-                    }
-                    else
-                    {
-                        _returnUserManagement.Code = "01";
-                        _returnUserManagement.Message = "Không có dữ liệu";
-
-                    }
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                _returnUserManagement.Code = "99";
-                _returnUserManagement.Message = "Lỗi xử lý dữ liệu";
-                //_returnQuality.Total = 0;
-                //_returnQuality.ListQualityDeliveryReport = null;
-            }
-            return _returnUserManagement;
-        }
-
-
-
-        #endregion
-
-
-        //Phần gọi đến package Insert_User trong database oracle để thêm dữ liệu vào trong bảng business_profile_oa !
-        #region CreatBusinessProfile_OA  
-        public ReturnUserManagement CreatBusinessProfile_OA(PARAMETER_BUSINESS_OA business)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Insert_User";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    cmd.Parameters.Add("P_DATE_CREATE", OracleDbType.Int32, ParameterDirection.Input).Value = common.DateToInt(business.DATE_CREATE);
-                    cmd.Parameters.Add("P_DATE_END", OracleDbType.Int32, ParameterDirection.Input).Value = common.DateToInt(business.DATE_END);
-                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
-                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_CONTRACT_NUMBER", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT_NUMBER;
-                    cmd.Parameters.Add("P_CUSTOMER_ACTIVE", OracleDbType.Int32, ParameterDirection.Input).Value = business.CUSTOMER_ACTIVE;
-                    cmd.Parameters.Add("P_TOTAL_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.TOTAL_CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_PAYMENT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.PAYMENT_ADDRESS;
-                    cmd.Parameters.Add("P_PAYMENT_METHOD", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.PAYMENT_METHOD;
-                    cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
-                    cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
-                    //cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.DATE_CREATE));
-
-                    cmd.ExecuteNonQuery();
-                    id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Thêm dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-                        if (id == -1)
-                        {
-                            oReturnUserManagement.Code = "-1";
-                            oReturnUserManagement.Message = "Đã tồn tại tài khoản này";
-                            oReturnUserManagement.Value = id.ToString();
-                        }
-                        else
-                        {
-                            oReturnUserManagement.Code = "-99";
-                            oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                            oReturnUserManagement.Value = string.Empty;
-                        }
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
-
-        //Phần gọi đến package Insert_User_BP trong database oracle để thêm dữ liệu vào trong bảng business_profile !
-        #region CreatBusinessProfile  
-        public ReturnUserManagement CreatBusinessProfile(PARAMETER_BUSINESS business)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.Insert_User_BP";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    //cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Int32, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Int32, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.CUSTOMER_CODE) + DateTime.Now.Millisecond);
-                    cmd.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CUSTOMER_ID;
-                    cmd.ExecuteNonQuery();
-                    id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Thêm dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-                        if (id == -1)
-                        {
-                            oReturnUserManagement.Code = "-1";
-                            oReturnUserManagement.Message = "Đã tồn tại tài khoản này";
-                            oReturnUserManagement.Value = id.ToString();
-                        }
-                        if (id == -99) 
-                        {
-                            oReturnUserManagement.Code = "-99";
-                            oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                            oReturnUserManagement.Value = string.Empty;
-                        }
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
-
-        //Phần gọi đến package EDIT_USER trong database oracle để sửa dữ liệu !
-        #region EditBusinessProfile_OA  
-        public ReturnUserManagement EditBusinessProfile_OA(PARAMETER_BUSINESS_OA business)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.EDIT_USER";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    cmd.Parameters.Add("P_DATE_CREATE", OracleDbType.Int32, ParameterDirection.Input).Value = common.DateToInt(business.DATE_CREATE);
-                    cmd.Parameters.Add("P_DATE_END", OracleDbType.Int32, ParameterDirection.Input).Value = common.DateToInt(business.DATE_END);
-                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    cmd.Parameters.Add("P_BUSINESS_TAX", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.BUSINESS_TAX;
-                    cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_CONTRACT_NUMBER", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTRACT_NUMBER;
-                    cmd.Parameters.Add("P_CUSTOMER_ACTIVE", OracleDbType.Int32, ParameterDirection.Input).Value = business.CUSTOMER_ACTIVE;
-                    cmd.Parameters.Add("P_TOTAL_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.TOTAL_CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_PAYMENT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.PAYMENT_ADDRESS;
-                    cmd.Parameters.Add("P_PAYMENT_METHOD", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.PAYMENT_METHOD;
-                    cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    cmd.Parameters.Add("P_EMPLOYEE_DEBT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_DEBT_CODE;
-                    cmd.Parameters.Add("P_EMPLOYEE_SALE_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.EMPLOYEE_SALE_CODE;
-                    cmd.Parameters.Add("P_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.EDIT_ID;
-                    //cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.DATE_CREATE));
-
-                    cmd.ExecuteNonQuery();
-
-                    Oracle.ManagedDataAccess.Types.OracleDecimal P_return = (Oracle.ManagedDataAccess.Types.OracleDecimal)cmd.Parameters["P_RETURN"].Value;
-
-                    if (P_return.IsNull)
-                    {
-                        id = 0;
-                    }
-
-                    else {
-                        id = P_return.ToInt32();
-                    }
-                        
-
-                    //id = int.Parse(cmd.Parameters["P_RETURN"].Value.ToString());
-                    //id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Sửa dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-                        if (id == -1)
-                        {
-                            oReturnUserManagement.Code = "-1";
-                            oReturnUserManagement.Message = "Đã tồn tại tài khoản này";
-                            oReturnUserManagement.Value = id.ToString();
-                        }
-                        else
-                        {
-                            oReturnUserManagement.Code = "-99";
-                            oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                            oReturnUserManagement.Value = string.Empty;
-                        }
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
-
-        //Phần gọi đến package EDIT_USER_BP trong database oracle để sửa dữ liệu !
-        #region EditBusinessProfile  
-        public ReturnUserManagement EditBusinessProfile(PARAMETER_BUSINESS business)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.EDIT_USER_BP";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_CONTACT_NAME", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_NAME;
-                    cmd.Parameters.Add("P_CONTACT_ADDRESS", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_ADDRESS;
-                    cmd.Parameters.Add("P_CONTACT_DISTRICT", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_DISTRICT;
-                    cmd.Parameters.Add("P_CONTACT_PROVINCE", OracleDbType.Varchar2, ParameterDirection.Input).Value = business.CONTACT_PROVINCE;
-                    cmd.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CONTACT_PHONE_WORK;
-                    cmd.Parameters.Add("P_CUSTOMER_CODE", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.CUSTOMER_CODE;
-                    cmd.Parameters.Add("P_GENERAL_EMAIL", OracleDbType.NVarchar2, ParameterDirection.Input).Value = business.GENERAL_EMAIL;
-                    //cmd.Parameters.Add("P_UNIT_CODE", OracleDbType.Int32, ParameterDirection.Input).Value = business.UNIT_CODE;
-                    cmd.Parameters.Add("P_API_KEY", OracleDbType.Varchar2, ParameterDirection.Input).Value = Common.Security.CreatPassWordHash(business.GENERAL_EMAIL + "6688" + common.DateToInt(business.CUSTOMER_CODE) + DateTime.Now.Millisecond);
-                    cmd.Parameters.Add("P_CUSTOMER_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.CUSTOMER_ID;
-                    cmd.Parameters.Add("P_ID", OracleDbType.Int32, ParameterDirection.Input).Value = business.EDIT_ID;
-                    cmd.ExecuteNonQuery();
-
-                    Oracle.ManagedDataAccess.Types.OracleDecimal P_return = (Oracle.ManagedDataAccess.Types.OracleDecimal)cmd.Parameters["P_RETURN"].Value;
-
-                    if (P_return.IsNull)
-                    {
-                        id = 0;
-                    }
-
-                    else
-                    {
-                        id = P_return.ToInt32();
-                    }
-
-                    
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Sửa dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-                        if (id == -1)
-                        {
-                            oReturnUserManagement.Code = "-1";
-                            oReturnUserManagement.Message = "Đã tồn tại tài khoản này";
-                            oReturnUserManagement.Value = id.ToString();
-                        }
-                        else
-                        {
-                            oReturnUserManagement.Code = "-99";
-                            oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                            oReturnUserManagement.Value = string.Empty;
-                        }
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
-
-        //Phần gọi đến DeleteBusinessProfile để xóa dữ liệu theo id trong bảng business_profile_oa !
-        #region DELETE_USER_MANAGEMENT_DETAIL  
-        public ReturnUserManagement DeleteBusinessProfile_OA(int delete_id)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.DELETE_USER";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_ID", OracleDbType.Int32, ParameterDirection.Input).Value = delete_id;
-                    
-                    cmd.ExecuteNonQuery();
-                    id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Xóa dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-                        
-                         oReturnUserManagement.Code = "-99";
-                         oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                         oReturnUserManagement.Value = string.Empty;
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
-
-        //Phần gọi đến DeleteBusinessProfile để xóa dữ liệu theo id trong bảng business_profile  !
-        #region DELETE_USER_MANAGEMENT_DETAIL  
-        public ReturnUserManagement DeleteBusinessProfile(int delete_id)
-        {
-            ReturnUserManagement oReturnUserManagement = new ReturnUserManagement();
-            int id = 0;
-            OracleCommand cmd;
-            try
-            {
-                using (cmd = new OracleCommand())
-                {
-                    cmd.Connection = Helper.OraDCDevOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "USER_MANAGEMENT.DELETE_USER_BP";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("P_RETURN", OracleDbType.Int32, ParameterDirection.ReturnValue);
-                    cmd.Parameters.Add("P_ID", OracleDbType.Int32, ParameterDirection.Input).Value = delete_id;
-
-                    cmd.ExecuteNonQuery();
-                    id = Convert.ToInt32(cmd.Parameters["P_RETURN"].Value.ToString());
-                    if (id > 0)
-                    {
-                        oReturnUserManagement.Code = "00";
-                        oReturnUserManagement.Message = "Xóa dữ liệu thành công";
-                        oReturnUserManagement.Value = id.ToString();
-
-                    }
-                    else
-                    {
-
-                        oReturnUserManagement.Code = "-99";
-                        oReturnUserManagement.Message = "Lỗi cập nhật dữ liệu";
-                        oReturnUserManagement.Value = string.Empty;
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                LogAPI.LogToFile(LogFileType.EXCEPTION, ex.Message);
-                oReturnUserManagement = null;
-            }
-            return oReturnUserManagement;
-        }
-        #endregion
+        
     }
 
 

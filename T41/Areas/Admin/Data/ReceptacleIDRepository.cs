@@ -19,6 +19,7 @@ namespace T41.Areas.Admin.Data
         {
             DataTable da = new DataTable();
             Convertion common = new Convertion();
+            int id = 1;
             ReturnRECEPTACLE _ReturnRECEPTACLE = new ReturnRECEPTACLE();
 
             List<RECEPTACLE_Detail> listReceptacleDetail = null;
@@ -48,6 +49,7 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oRECEPTACLEDetail = new RECEPTACLE_Detail();
+                            oRECEPTACLEDetail.ID = id++;
                             oRECEPTACLEDetail.NGAY = dr["NGAY"].ToString();
                             oRECEPTACLEDetail.FLIGHTNUMBER = dr["FLIGHTNUMBER"].ToString();
                             oRECEPTACLEDetail.MO_TA = dr["MO_TA"].ToString();
@@ -79,14 +81,7 @@ namespace T41.Areas.Admin.Data
             }
             return _ReturnRECEPTACLE;
         }
-
-
-
         #endregion
-
-
-        
-
         
     }
 

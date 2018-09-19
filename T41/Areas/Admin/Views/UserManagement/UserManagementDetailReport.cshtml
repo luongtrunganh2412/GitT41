@@ -6,12 +6,6 @@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-@*<link rel="stylesheet" href="/Areas/Admin/Content/plugins/Print.js-1.0.35/css/print.css">*@
-@*<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />*@
-<!-- bootstrap datepicker -->
-@*<link rel="stylesheet" href="~/Content/plugins/iCheck/all.css">*@
-<!-- Bootstrap Color Picker -->
-@*<link rel="stylesheet" href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">*@
 
 <title>Quản Lý Người Dùng</title>
 
@@ -19,72 +13,75 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Quản Lý Người Dùng</h3>
+            <h3 class="box-title text-center"><strong>Quản Lý Khách Hàng CRM</strong></h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
             </div>
+
+            
         </div>
 
 
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>ID:</label>
-                        <input type="text" id="InputID" class="form-control"  placeholder="Search for names.." title="Type in a name">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Mã Khách hàng:</label>
-                        <input type="text" id="InputCode" class="form-control"  placeholder="Search for code.." title="Type in a code">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label>Điện Thoại:</label>
-                    <input type="text" id="InputTel" class="form-control" placeholder="Search for tel.." title="Type in a tel">
-                </div>
-                <div class="col-md-3">
-                    <label>Email:</label>
-                    <input type="text" id="InputMail" class="form-control" placeholder="Search for email.." title="Type in a email">
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu</button>
+                    <div class="form-group">
+                        <label>Đơn Vị</label>
+                        <select class="form-control select2" style="width: 100%;" id="unit">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Bưu Cục</label>
+                        <select class="form-control select2" style="width: 100%;" id="posoffice">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding-top:25px;">
+                    <button type="button" class="btn btn-default btn-lrg ajax" id="btnreport">Hiển thị dữ liệu  <i class="fa fa-search"></i></button>
                 </div>
             </div>
+            
             <!-- /.row -->
-            <div class="box-header">
-                <h3 class="box-title">Bảng quản lý người dùng</h3>
+            <div class="box-body text-center">
+                <h3 class="box-title"></h3>
             </div>
-            <div class="col-md-12">
-                <a href="/Admin/UserManagement/CreateUser" class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus"></span> Create</a>
-                @*<p data-placement="top" data-toggle="tooltip" title="Add"><button class="btn btn-info btn-md" data-title="Add" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span></button></p>*@
-            </div>
-
-            <div class="col-md-12">
-                <div style="overflow-x:auto;">
-                    <table id="myTable" class="table table-bordered table-hover">
-
-                        <thead>
-                            <tr class="bg-light-blue color-palette">
-                                <th class="text-center">STT</th>
-                                <th class="text-center">Mã Khách Hàng</th>
-                                <th class="text-center">Tên Khách Hàng</th>
-                                <th class="text-center">Số Điện Thoại</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Địa Chỉ</th>
-                                <th class="text-center">Edit / Delete / Add Channel</th>
-                            </tr>
-                        </thead>
-                        <tbody id="list_user">
-                        </tbody>
-
-                    </table>
+            
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "UserManagement")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>
+                    @*<input type="button" id="btnexport" class="btn btn-success btn-lrg ajax" data-baseurl="@Url.Action("Export", "UserManagement")" value="Xuất Excel"/>*@
                 </div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="myTable" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-light-blue color-palette">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">ID tài khoản</th>
+                            <th class="text-center">ID hợp đồng</th>
+                            <th class="text-center">ID CONTACT</th>
+                            <th class="text-center">ID SALES ORDER OWNER </th>
+                            <th class="text-center">Bưu cục chấp nhận</th>
+                            <th class="text-center">Mã KH</th>
+                            <th class="text-center">Tên KH</th>
+                            <th class="text-center">Địa chi lấy hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="list_user"></tbody>
+
+                </table>
+            </div>
+            
+
+            <div class="col-lg-12 loading-element text-center" style="font-size:50px;">
+                <i class="fa fa-spinner fa-spin"></i>
+                Vui lòng chờ giây lát...
             </div>
             <div class="row">
                 <div id="page-selection" class="col-sm-12 text-center">
@@ -92,107 +89,8 @@
             </div>
 
 
-            <!--Phần modal Add thông tin người dùng-->
-            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Thêm thông tin người dùng</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="ContactName">ContactName:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="ContactAddress">ContactAddress:</label>
-                                <textarea rows="2" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="ContactPhoneWork">ContactPhoneWork:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="GeneralEmail">GeneralEmail:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="Street">Street:</label>
-                                <textarea rows="2" class="form-control"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer ">
-                            <button type="button" class="btn btn-info btn-lg" id="btnreportadd" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
 
-            <!--Phần modal Edit thông tin người dùng-->
-            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Sửa thông tin người dùng</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="ContactName">ContactName:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="ContactAddress">ContactAddress:</label>
-                                <textarea rows="2" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="ContactPhoneWork">ContactPhoneWork:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="GeneralEmail">GeneralEmail:</label>
-                                <input class="form-control " type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="Street">Street:</label>
-                                <textarea rows="2" class="form-control"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer ">
-                            <button type="button" class="btn btn-primary btn-lg" id="btnreportedit" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Sửa</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-
-
-            <!--Phần modal Delete thông tin người dùng-->
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Xóa thông tin người dùng</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Bạn có chắc chắn muốn xóa không ?</div>
-
-                        </div>
-                        <div class="modal-footer ">
-                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok-sign" id="btnreportdelete"></span> Có</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Không</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
+            
 
         </div>
 
@@ -206,98 +104,92 @@
 </section>
 
 <script type="text/javascript">
-
-
-
     $(document).ready(function () {
+        
+        $('.loading-element').hide();
+        $('#btnexport').hide();
+        
 
-        // goi ham Detail
 
-        detail_user(1);
+        //Phần lấy dữ liệu đơn vị
+        $.getJSON("/BusinessManagement/UnitCode", function (data) {
+            $.each(data, function (i, data) {
+                $('<option>',
+                           {
+                               value: data.UNIT_CODE,
+                               text: data.UNIT_NAME
+                           }).html(data.UNIT_CODE + '-' + data.UNIT_NAME).appendTo("#unit");
+            });
+        })
 
+        //Phần lấy dữ liệu bưu cục
+        $.ajax({
+            url: "/BusinessManagement/PosCode",
+            dataType: "json",
+            data: { id_don_vi: 100000 },
+            success: function (data) {
+                $('#posoffice').html('<option value=0>Tất Cả </option>');
+                jQuery.each(data, function (i, val) {
+                    $('#posoffice').html($('#posoffice').html() +
+                        "<option value='" + val.POS_CODE + "'>" + val.POS_CODE + '-' + val.POS_NAME + "</option>");
+                });
+            }
+        })
+
+
+        //Sự kiện thay đổi mã bưu cục theo mã đơn vị
+        $('#unit').change(function () {
+            $.ajax({
+                url: "/BusinessManagement/PosCode",
+                dataType: "json",
+                data: { id_don_vi: $("#unit").val() },
+                success: function (data) {
+                    $('#posoffice').html('<option value=0>Tất Cả </option>');
+                    jQuery.each(data, function (i, val) {
+                        $('#posoffice').html($('#posoffice').html() +
+                            "<option value='" + val.POS_CODE + "'>" + val.POS_CODE + '-' + val.POS_NAME + "</option>");
+                    });
+                }
+            });
+        })
     });
+
+    
+    
 
     $("#btnreport").click(function () {
         $("#list_user tr").remove();
-        detail_user_search(1);
+        detail_user_search();
     });
 
-
-    @*//Phần JS gọi đến dữ liệu của chi tiết người dùng
-    function detail_user(p) {
-        $.ajax({
-            url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
-            method: 'GET',
-            dataType: 'html',
-            data: {
-                page: p,
-                user_id: 0,
-                user_customer_code: 0,
-                user_contact_phone_work: 0,
-                user_general_email: 0,
-            },
-            success: function (result) {
-                $('#list_user').html(result);
-                if (p == 1) refreshPaging();
-            }
-        })
-    }*@
+    //Export Excel
+    $('#btnexport').click(function () {
+        // build the url
+        var url = $(this).data('baseurl') + '?poscode=' + $('#posoffice').val();
+        // redirect
+        location.href = url;
+    });
+    
 
 
     //Phần JS gọi đến dữ liệu của chi tiết người dùng
     function detail_user_search(p) {
-        var user_id;
-        var user_customer_code;
-        var user_contact_phone_work;
-
-        if (document.getElementById('InputID').value == ""
-        || document.getElementById('InputID').value == undefined) {
-            user_id = 0;
-        }
-        else {
-            user_id = document.getElementById('InputID').value;
-        }
-
-        if (document.getElementById('InputCode').value == ""
-            || document.getElementById('InputCode').value == undefined) {
-            user_customer_code = 0;
-        }
-        else {
-            user_customer_code = document.getElementById('InputCode').value;
-        }
-
-        if (document.getElementById('InputTel').value == ""
-            || document.getElementById('InputTel').value == undefined) {
-            user_contact_phone_work = 0;
-        }
-        else {
-            user_contact_phone_work = document.getElementById('InputTel').value;
-        }
-
-        if (document.getElementById('InputMail').value == ""
-            || document.getElementById('InputMail').value == undefined) {
-            user_general_email = 0;
-        }
-        else {
-            user_general_email = document.getElementById('InputMail').value;
-        }
-
-        
-
         $.ajax({
-            url: '@Url.Action("ListDetailedUserManagementReport", "UserManagement")',
+            url: '@Url.Action("ListUserManagement_CRM_Report", "UserManagement")',
+            beforeSend: function () {
+                $('.loading-element').show();
+            },
             method: 'GET',
             dataType: 'html',
             data: {
-                page: p,
-                user_id: user_id,
-                user_customer_code: user_customer_code,
-                user_contact_phone_work: user_contact_phone_work,
-                user_general_email: user_general_email,
+                //posoffice: $('#posoffice').val(),
+                poscode: $('#posoffice').val(),
             },
             success: function (result) {
                 $('#list_user').html(result);
-                if (p == 1) refreshPaging();
+                $('.loading-element').hide();
+                $('#btnexport').show();
+                //if (p == 1) refreshPaging();
             }
         })
     }
@@ -311,48 +203,6 @@
             detail_user(num);
         });
     }
-
-    ////Phần Js tìm kiếm theo tên
-    //function search_name() {
-    //    var input, filter, table, tr, td, i;
-    //    input = document.getElementById("myInputName");
-    //    filter = input.value.toUpperCase();
-    //    table = document.getElementById("myTable");
-    //    tr = table.getElementsByTagName("tr");
-    //    for (i = 0; i < tr.length; i++) {
-    //        td = tr[i].getElementsByTagName("td")[1];
-    //        if (td) {
-    //            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-    //                tr[i].style.display = "";
-    //            } else {
-    //                tr[i].style.display = "none";
-    //            }
-    //        }
-    //    }
-    //}
-
-    ////Phần Js tìm kiếm theo số điện thoại
-    //function search_tel() {
-    //    var input, filter, table, tr, td, i;
-    //    input = document.getElementById("myInputTel");
-    //    filter = input.value.toUpperCase();
-    //    table = document.getElementById("myTable");
-    //    tr = table.getElementsByTagName("tr");
-    //    for (i = 0; i < tr.length; i++) {
-    //        td = tr[i].getElementsByTagName("td")[3];
-    //        if (td) {
-    //            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-    //                tr[i].style.display = "";
-    //            } else {
-    //                tr[i].style.display = "none";
-    //            }
-    //        }
-    //    }
-    //}
-
-
-
-
 
 
 </script>

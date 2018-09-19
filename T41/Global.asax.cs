@@ -26,6 +26,8 @@ namespace T41
             Session["username"] = null;
             Session["fullname"] = null;
             Session["avatar"] = null;
+            Session["Role"] = null;
+            Session["Email"] = null;
         }
     }
 }

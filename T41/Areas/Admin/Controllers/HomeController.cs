@@ -25,6 +25,8 @@ namespace T41.Areas.Admin.Controllers
             Session["username"] = null;
             Session["fullname"] = null;
             Session["avatar"] = null;
+            Session["Role"] = null;
+            Session["Email"] = null;
             return  RedirectToAction("Login");
         }
         [HttpPost]
@@ -41,6 +43,7 @@ namespace T41.Areas.Admin.Controllers
                 Session["avatar"] = user.Avatar;
                 Session["isadmin"] = user.IsAdmin;
                 Session["Role"] = user.Role;
+                Session["Email"] = user.Email;
                 //  Response.Redirect("Index");
                 return RedirectToAction("Index");
             }

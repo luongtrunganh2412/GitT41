@@ -1,0 +1,48 @@
+﻿
+
+@{
+    Layout = null;
+}
+@if (Model.ListUserManagement_CRM_Report != null)
+{
+    <tr class="bg-light-blue color-palette">
+        <td></td>
+        <td class="text-right" colspan="8">Tổng Số : @Model.Total</td>
+    </tr>
+    //int i = 0; /*i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;*/
+    foreach (var c in Model.ListUserManagement_CRM_Report)
+    {
+        <tr>
+            @*<td>@(i + 1)</td>*@
+            <td>@c.STT</td>
+            <td>@c.ACCOUNT_ID</td>
+            <td>@c.DEAL_ID</td>
+            <td>@c.CONTACT_ID</td>
+            <td>@c.SALES_ORDER_OWNER_ID</td>
+            <td>@c.PO_ACCEPTANCE</td>
+            <td>@c.CUSTOMER_NO </td>
+            <td>@c.PICKUP_NAME </td>
+            <td>@c.PICKUP_FULL_ADDRESS </td>
+        </tr>
+
+        //i++;
+
+    }
+
+
+}
+else
+{
+    <script>
+        swal(
+          'Không Có Số Liệu',
+          '',
+          'error'
+        )
+    </script>
+}
+@*<input type="hidden" value="@ViewBag.currentPageIndex" id="currentPage" />
+<input type="hidden" id="total_page" value="@ViewBag.total_page" />
+<input type="hidden" id="total" value="@ViewBag.total" />*@
+
+

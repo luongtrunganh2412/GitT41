@@ -44,6 +44,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -56,6 +72,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlXml" />
@@ -65,6 +82,7 @@
       <HintPath>bin\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +141,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -3166,19 +3185,13 @@
     <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_E2_Report.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_CTTS_E2_Report.cshtml" />
     <Content Include="Areas\Admin\Views\UserManagement\UserManagementDetailReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\ListDetailedUserManagementReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\CreateUser.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\ID_USER_MANAGEMENT_DETAIL.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\DeleteUser.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\ListUserManagement_CRM_Report.cshtml" />
     <Content Include="Areas\Admin\Views\Collect\CollectDetailReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\CreateUserReport.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_MCT_E2_Report.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\ListDetailedTransferManagement_CTTS_MCT_E2_Report.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\MCT_E2_TransferManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\ListTransferManagement_SOTUI_Report.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagement\SOTUITRONGCHTHU.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\DeleteUserReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\Edit_ID_BP_OA_UserManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\AirwayTransportDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListAirwayTransport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport1.cshtml" />
@@ -3247,7 +3260,6 @@
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\ListAirwayTransportComeManagement.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\AirwayTransportComeManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\ListAirwayTransportManagement.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\EditUserReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportManagement\CreateAirwaytransportManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransportComeManagement\CreateAirwaytransportComeManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\AirwayTransport\ListDetailedAirwayTransport27.cshtml" />
@@ -3268,13 +3280,8 @@
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\MCT_E2_TransferManagementVNPOSTDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\SOTUITRONGCHTHUVNPOST.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\TransferManagementVNPOSTDetailReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\CreateChannel.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\CreateChannelReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\ListDetailed_ID_BP_UserManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\ExpressRoad\ExpressRoadDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\ExpressRoad\ListDetailedExpressRoadReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\EditChannelReport.cshtml" />
-    <Content Include="Areas\Admin\Views\UserManagement\DeleteChannelReport.cshtml" />
     <Content Include="Areas\Admin\Views\SaleUserManagement\ListDetailedSaleUserManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\SaleUserManagement\SaleUserManagementDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessManagement\ListDetailedBusinessManagementReport.cshtml" />
