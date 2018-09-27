@@ -83,9 +83,47 @@
 
     dataSeries.dataPoints = dataPoints;
     data.push(dataSeries);
+    CanvasJS.addColorSet("setcolor",
+               [//colorSet Array
 
+               "#ffff00",
+               "#33cc33",
+               "#ff3300",
+               "#ff9900",
+               "#00ffff"
+               ]);
+
+    //Hàm lấy thứ trong tuần
+    //var d = new Date();
+    //var thu = d.getDay()
+    //switch (thu) {
+    //    case 0:
+    //        thu = "Chủ Nhật"
+    //        break;
+    //    case 1:
+    //        thu = "Thứ 2"
+    //        break;
+    //    case 2:
+    //        thu = "Thứ 3 "
+    //        break;
+    //    case 3:
+    //        thu = "Thứ 4"
+    //        break;
+    //    case 4:
+    //        thu = "Thứ 5"
+    //        break;
+    //    case 5:
+    //        thu = "Thứ 6"
+    //        break;
+    //    case 6:
+    //        thu = "Thứ 7"
+    //        break;
+    //    default:
+    //        break;
+    //}
 
     var chart = new CanvasJS.Chart("chartContainer", {
+        colorSet: "setcolor",
         exportEnabled: true,
         animationEnabled: true,
         theme: "dark1",
@@ -105,7 +143,7 @@
             }
         },
         title: {
-            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến",
+            text: "Báo cáo hoạt động sàn khai thác liên tỉnh theo ngày xác nhận đến" + "-" + checktinhchapnhan + "-" + checktinhphattra,
             fontFamily: "roboto",
         },
         axisY: {
@@ -204,8 +242,47 @@ function DevelopChartKL() {
     dataSeries.dataPoints = dataPoints;
     data.push(dataSeries);
 
+    CanvasJS.addColorSet("setcolor",
+               [//colorSet Array
+
+               "#ffff00",
+               "#33cc33",
+               "#ff3300",
+               "#ff9900",
+               "#33ccff"
+               ]);
+
+    //Hàm lấy thứ trong tuần
+    //var d = new Date();
+    //var thu = d.getDay()
+    //switch (thu) {
+    //    case 0:
+    //        thu = "Chủ Nhật"
+    //        break;
+    //    case 1:
+    //        thu = "Thứ 2"
+    //        break;
+    //    case 2:
+    //        thu = "Thứ 3 "
+    //        break;
+    //    case 3:
+    //        thu = "Thứ 4"
+    //        break;
+    //    case 4:
+    //        thu = "Thứ 5"
+    //        break;
+    //    case 5:
+    //        thu = "Thứ 6"
+    //        break;
+    //    case 6:
+    //        thu = "Thứ 7"
+    //        break;
+    //    default:
+    //        break;
+    //}
 
     var chart = new CanvasJS.Chart("chartContainer1", {
+        colorSet: "setcolor",
         exportEnabled: true,
         animationEnabled: true,
         theme: "dark1",
@@ -225,7 +302,7 @@ function DevelopChartKL() {
             }
         },
         title: {
-            text: "Báo cáo hoạt động sàn khai thác nội tỉnh theo ngày xác nhận đến",
+            text: "Báo cáo hoạt động sàn khai thác liên tỉnh theo ngày xác nhận đến" + "-" + checktinhchapnhan + "-" + checktinhphattra,
             fontFamily: "roboto",
         },
         axisY: {

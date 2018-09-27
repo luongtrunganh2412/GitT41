@@ -1,19 +1,25 @@
 ﻿
-@{
-//  Layout = null;
-}
 
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        var userid = parseInt(@Session["userid"]);
+
+        if (userid != 1){
+            window.location.href = "@Url.Action("Index", "Home")";
+        }
+    })
+</script>*@
 <!-- daterange picker -->
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 
-<title>Quản Lý Người Dùng</title>
+<title>Quản lý khách hàng crm</title>
 
 <section class="content">
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title text-center"><strong>Quản Lý Khách Hàng CRM</strong></h3>
+            <h3 class="box-title text-center"><strong>Quản lý khách hàng crm</strong></h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -54,8 +60,8 @@
             
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "UserManagement")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>
-                    @*<input type="button" id="btnexport" class="btn btn-success btn-lrg ajax" data-baseurl="@Url.Action("Export", "UserManagement")" value="Xuất Excel"/>*@
+                    @*<button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "UserManagement")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>*@
+                    
                 </div>
             </div>
             <div style="overflow-x:auto;">
@@ -63,14 +69,14 @@
                     <thead>
                         <tr class="bg-light-blue color-palette">
                             <th class="text-center">STT</th>
-                            <th class="text-center">ID tài khoản</th>
-                            <th class="text-center">ID hợp đồng</th>
-                            <th class="text-center">ID CONTACT</th>
-                            <th class="text-center">ID SALES ORDER OWNER </th>
+                            <th class="text-center">Mã tài khoản</th>
+                            <th class="text-center">Mã hợp đồng</th>
+                            <th class="text-center">Mã liên hệ</th>
+                            <th class="text-center">Mã nhân viên tiếp thị</th>
                             <th class="text-center">Bưu cục chấp nhận</th>
                             <th class="text-center">Mã KH</th>
                             <th class="text-center">Tên KH</th>
-                            <th class="text-center">Địa chi lấy hàng</th>
+                            @*<th class="text-center">Địa chi lấy hàng</th>*@
                         </tr>
                     </thead>
                     <tbody id="list_user"></tbody>
@@ -104,11 +110,13 @@
 </section>
 
 <script type="text/javascript">
+    @*alert(@Session["userid"]);*@
     $(document).ready(function () {
         
+
         $('.loading-element').hide();
         $('#btnexport').hide();
-        
+
 
 
         //Phần lấy dữ liệu đơn vị
@@ -154,8 +162,8 @@
         })
     });
 
-    
-    
+
+
 
     $("#btnreport").click(function () {
         $("#list_user tr").remove();
@@ -165,11 +173,11 @@
     //Export Excel
     $('#btnexport').click(function () {
         // build the url
-        var url = $(this).data('baseurl') + '?poscode=' + $('#posoffice').val();
+        var url = $(this).data('baseurl') + '?unitcode=' + $('#unit').val() + '&poscode=' + $('#posoffice').val();
         // redirect
         location.href = url;
     });
-    
+
 
 
     //Phần JS gọi đến dữ liệu của chi tiết người dùng
@@ -182,7 +190,7 @@
             method: 'GET',
             dataType: 'html',
             data: {
-                //posoffice: $('#posoffice').val(),
+                unitcode: $('#unit').val(),
                 poscode: $('#posoffice').val(),
             },
             success: function (result) {

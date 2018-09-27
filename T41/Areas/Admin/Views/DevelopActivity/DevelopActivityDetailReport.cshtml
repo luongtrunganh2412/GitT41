@@ -105,7 +105,7 @@
                     <div class="form-group">
                         <label>Tỉnh phát trả </label>
                         <select class="form-control select2" style="width: 100%;" id="tinhphattra">
-                            <option selected="selected" value="0">Hồ Chí Minh</option>
+                            <option selected="selected" value="1">Hồ Chí Minh</option>
                         </select>
                     </div>
                 </div>
@@ -141,6 +141,18 @@
             dateFormat: "dd/mm/yyyy"
         }).datepicker("setDate", "0");
 
+        
+        $('#bckhaithac').change(function () {
+            let bckhaithacvalue = $("#bckhaithac").val();
+            if (bckhaithacvalue == 100916) {
+                $("#tinhphattra").html("<option value=" +  1 + ">Hồ Chí Minh</option>")
+            }
+            if (bckhaithacvalue == 700916) {
+                $("#tinhphattra").html("<option value=" + 0 + ">Hà Nội</option>")
+            }
+        })
+
+        
         
     });
 

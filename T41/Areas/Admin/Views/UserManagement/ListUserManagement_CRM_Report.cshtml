@@ -7,7 +7,7 @@
 {
     <tr class="bg-light-blue color-palette">
         <td></td>
-        <td class="text-right" colspan="8">Tổng Số : @Model.Total</td>
+        <td class="text-right" colspan="7">Tổng Số : @Model.Total</td>
     </tr>
     //int i = 0; /*i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;*/
     foreach (var c in Model.ListUserManagement_CRM_Report)
@@ -22,7 +22,7 @@
             <td>@c.PO_ACCEPTANCE</td>
             <td>@c.CUSTOMER_NO </td>
             <td>@c.PICKUP_NAME </td>
-            <td>@c.PICKUP_FULL_ADDRESS </td>
+            @*<td>@c.PICKUP_FULL_ADDRESS </td>*@
         </tr>
 
         //i++;

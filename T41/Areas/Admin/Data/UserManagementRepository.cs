@@ -49,7 +49,7 @@ namespace T41.Areas.Admin.Data
 
         // Phần lấy dữ liệu từ bảng business_profile_oa
         #region USER_MANAGEMENT_DETAIL          
-        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int poscode )
+        public ReturnUserManagement USER_MANAGEMENT_DETAIL(int poscode , int unitcode)
         {
             int STT = 1;
             DataTable da = new DataTable();
@@ -63,18 +63,13 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     //xử lý tham số truyền vào data table
-                    //OracleCommand myCommand = new OracleCommand("management_sale.get_list_Customer_Crm", Helper.OraEVComOracleConnection);
-                    OracleCommand myCommand = new OracleCommand("CRM_USER_MANAGEMENT.Detail_User", Helper.OraEVComOracleConnection);
+                    //OracleCommand myCommand = new OracleCommand("CRM_USER_MANAGEMENT.Detail_User", Helper.OraEVComOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("management_sale.get_list_Customer_Crm", Helper.OraEVComOracleConnection);
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("p_ID_BUU_CUC", OracleDbType.Int32).Value = poscode;
-                    //myCommand.Parameters.Add("P_PAGE_SIZE", OracleDbType.Int32).Value = page_size;
-                    //myCommand.Parameters.Add("p_ID", OracleDbType.Int32).Value = user_id;
-                    //myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_customer_code;
-                    //myCommand.Parameters.Add("P_CONTACT_PHONE_WORK", OracleDbType.Int32).Value = user_contact_phone_work;
-                    //myCommand.Parameters.Add("p_CUSTOMER_CODE", OracleDbType.NVarchar2).Value = user_general_email;
-                    //myCommand.Parameters.Add("P_TOTAL", OracleDbType.Int32, 0, ParameterDirection.Output);
+                    myCommand.Parameters.Add("v_Zone", OracleDbType.Int32).Value = unitcode;
+                    myCommand.Parameters.Add("v_PosCode", OracleDbType.Int32).Value = poscode;
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
                     mAdapter.Fill(da);
@@ -94,7 +89,7 @@ namespace T41.Areas.Admin.Data
                             oUserManagementDetail.PO_ACCEPTANCE = dr["PO_ACCEPTANCE"].ToString();
                             oUserManagementDetail.CUSTOMER_NO = dr["CUSTOMER_NO"].ToString();
                             oUserManagementDetail.PICKUP_NAME = dr["PICKUP_NAME"].ToString();
-                            oUserManagementDetail.PICKUP_FULL_ADDRESS = dr["PICKUP_FULL_ADDRESS"].ToString();
+                            //oUserManagementDetail.PICKUP_FULL_ADDRESS = dr["PICKUP_FULL_ADDRESS"].ToString();
                             listUserManagementDetail.Add(oUserManagementDetail);
 
                         }

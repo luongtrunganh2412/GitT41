@@ -26,7 +26,17 @@ namespace T41.Areas.Admin.Controllers
 
         public ActionResult UserManagementDetailReport()
         {
-            return View();
+            var userid = Convert.ToInt32(Session["userid"]);
+            //Phân quyền đăng nhập
+            if (userid == 1 || userid == 3)
+            {
+                return View();
+                
+            }
+            else {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         //Controller lấy dữ liệu tỉnh đóng, tỉnh nhận
@@ -38,11 +48,11 @@ namespace T41.Areas.Admin.Controllers
 
         //Phần controller xử lý để sửa dữ liệu bảng BUSINESS_PROFILE_OA dưới database
         [HttpGet]
-        public ActionResult ListUserManagement_CRM_Report(int poscode)
+        public ActionResult ListUserManagement_CRM_Report(int poscode, int unitcode)
         {
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode);
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode, unitcode);
             return View(returnusermanagement);
         }
 
@@ -66,12 +76,12 @@ namespace T41.Areas.Admin.Controllers
 
         //Phần trả về data theo list để xuất excel
         [HttpGet]
-        public List<UserManagement_CRM_Detail> ReturnListExcel(int poscode)
+        public List<UserManagement_CRM_Detail> ReturnListExcel(int poscode, int unitcode)
         {
 
             UserManagementRepository usermanagementRepository = new UserManagementRepository();
             ReturnUserManagement returnusermanagement = new ReturnUserManagement();
-            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode);
+            returnusermanagement = usermanagementRepository.USER_MANAGEMENT_DETAIL(poscode, unitcode);
             return returnusermanagement.ListUserManagement_CRM_Report;
         }
 
@@ -79,7 +89,7 @@ namespace T41.Areas.Admin.Controllers
         public Stream CreateExcelFile(Stream stream = null)
         {
             //var list = CreateTestItems();
-            var list = ReturnListExcel(ViewBag.poscode);
+            var list = ReturnListExcel(ViewBag.poscode,ViewBag.unitcode);
             using (var excelPackage = new ExcelPackage(stream ?? new MemoryStream()))
             {
                 // Tạo author cho file Excel
@@ -138,8 +148,9 @@ namespace T41.Areas.Admin.Controllers
 
         //Hàm Export excel  , truyền parameter vào để export
         [HttpGet]
-        public ActionResult Export(int poscode)
+        public ActionResult Export(int poscode, int unitcode)
         {
+            ViewBag.unitcode = unitcode;
             ViewBag.poscode = poscode;
             //ViewBag.todate = todate;
             //ViewBag.receptacle_id = receptacle_id;
