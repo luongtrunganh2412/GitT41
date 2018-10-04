@@ -85,8 +85,8 @@
                         <select class="form-control select2" style="width: 100%;" id="tinhchapnhan">
                             <option selected="selected" value="0">Tỉnh Trừ Thành Phố</option>
                             <option  value="10">Tất Cả</option>
-                            <option value="100000">TP.Hà Nội</option>
-                            <option value="700000">TP.Hồ Chí Minh</option>
+                            <option value="100000">100000 -TP.Hà Nội</option>
+                            <option value="700000">700000 -TP.Hồ Chí Minh</option>
                         </select>
                     </div>
                 </div>
@@ -138,7 +138,8 @@
 <script>
     $(document).ready(function () {
         $("#date").datepicker({
-            dateFormat: "dd/mm/yyyy"
+            dateFormat: "dd/mm/yyyy",
+            todayHighlight: true
         }).datepicker("setDate", "0");
 
         

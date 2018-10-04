@@ -22,7 +22,8 @@ namespace T41.Areas.Admin.Data
             Convertion common = new Convertion();
             ReturnBDHN_DI_HCM _ReturnBDHN_DI_HCM = new ReturnBDHN_DI_HCM();
             List<BDHN_DI_HCM> listBDHN_DI_HCM_Detail = null;
-            BDHN_DI_HCM oBDHN_DI_HCM_Detail = null; 
+            BDHN_DI_HCM oBDHN_DI_HCM_Detail = null;
+            int a = 1;
             try
             {
                 // Gọi vào DB để lấy dữ liệu.
@@ -43,6 +44,7 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oBDHN_DI_HCM_Detail = new BDHN_DI_HCM();
+                            oBDHN_DI_HCM_Detail.STT = a++;
                             oBDHN_DI_HCM_Detail.TGDEN = dr["TGDEN"].ToString();
                             oBDHN_DI_HCM_Detail.ARRIVEIDVNPOST = dr["ARRIVEIDVNPOST"].ToString();
                             oBDHN_DI_HCM_Detail.ARRIVEMAILROUTENAME = dr["ARRIVEMAILROUTENAME"].ToString();

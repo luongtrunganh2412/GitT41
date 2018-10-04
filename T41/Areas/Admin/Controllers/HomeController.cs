@@ -19,6 +19,12 @@ namespace T41.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Lock()
+        {
+            return View();
+        }
+
         public ActionResult Logout()
         {
             Session["userid"] = null;

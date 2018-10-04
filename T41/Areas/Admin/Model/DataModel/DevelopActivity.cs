@@ -21,6 +21,7 @@ namespace T41.Areas.Admin.Model.DataModel
     //Phần lấy dữ iệu của bảng KPI_SummingPassByMailRoute
     public class BDHN_DI_HCM
     {
+        public int STT { get; set; }
         public String TGDEN { get; set; }
         public String  ARRIVEIDVNPOST { get; set; }
         public String  ARRIVEMAILROUTENAME { get; set; }
@@ -48,8 +49,8 @@ namespace T41.Areas.Admin.Model.DataModel
         public string DAPUNGSL { get; set; }
         public string DAPUNGKL { get; set; }
 
-        public string CHECK_TG { get; set; }
         public string DAPUNGLUYKE { get; set; }
+        public string CHECK_TG { get; set; }
 
     }
 

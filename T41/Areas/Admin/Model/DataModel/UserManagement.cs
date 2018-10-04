@@ -17,7 +17,7 @@ namespace T41.Areas.Admin.Model.DataModel
         public String PO_ACCEPTANCE { get; set; }
         public String CUSTOMER_NO { get; set; }
         public String PICKUP_NAME { get; set; }
-        public String PICKUP_FULL_ADDRESS { get; set; }
+        //public String PICKUP_FULL_ADDRESS { get; set; }
         
     }
 

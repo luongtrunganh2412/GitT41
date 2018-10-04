@@ -150,11 +150,11 @@ desired effect
                 </div>
 
                 @*Phần Tra Cứu Định Vị Bưu Gửi*@
-                <form action="#" method="get" class="sidebar-form" autocomplete="off">
+                <form action="#" method="get" @*class="sidebar-form"*@ autocomplete="off">
                     <div class="input-group">
                         <input type="text" name="message" id="emscode" placeholder="Nhập Mã E1..." class="form-control" maxlength="13">
                         <span class="input-group-btn">
-                            <a href='' class="btn btn-warning btn-flat" onclick="this.href = '/Admin/TrackAndTrace/Index?emscode=' + document.getElementById('emscode').value">
+                            <a href='' class="btn btn-primary btn-flat" onclick="this.href = '/Admin/TrackAndTrace/Index?emscode=' + document.getElementById('emscode').value">
                                 <strong class="fa fa-arrow-circle-right">
                                 </strong>
                             </a>
@@ -341,6 +341,7 @@ desired effect
                             <li><a href="/Admin/Collect/CollectDetailReport">Báo cáo thu gom</a></li>
                             <li><a href="#">Báo cáo khai thác</a></li>
                             <li><a href="#">Báo cáo vận chuyển</a></li>
+                            <li>@*<a href="/Admin/Home/Lock">Báo cáo chất lượng phát</a>*@</li>
                             <li><a href="/Admin/QualityDelivery/QualityDeliveryDetailReport">Báo cáo chất lượng phát</a></li>
                         </ul>
                     </li>
