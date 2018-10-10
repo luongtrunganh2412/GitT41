@@ -108,6 +108,7 @@ namespace T41.Areas.Admin.Data
             _returnQuality.MetaData1 = _metadata1;
             List<QualityDeliveryDetail> listQualityDeliveryDetail = null;
             QualityDeliveryDetail oQualityDeliveryDetail = null;
+            int a = 1;
             try
             {
                 // Gọi vào DB để lấy dữ liệu.
@@ -136,11 +137,11 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oQualityDeliveryDetail = new QualityDeliveryDetail();
+                            oQualityDeliveryDetail.STT = a++;
                             oQualityDeliveryDetail.KhuVuc = dr["KHUVUC"].ToString();
                             //oQualityDeliveryDetail.BuuCuc = Convert.ToInt32(dr["BUUCUC"].ToString());
                             oQualityDeliveryDetail.BuuCuc = dr["BUUCUC"].ToString();
                             oQualityDeliveryDetail.TenBuuCuc = dr["TENBUUCUC"].ToString();
-                            oQualityDeliveryDetail.TongSLHub = dr["TONGSLHUB"].ToString();
                             oQualityDeliveryDetail.TongSL = Convert.ToInt32(dr["TONGSL"].ToString());
                             oQualityDeliveryDetail.SanLuongPTC = Convert.ToInt32(dr["SANLUONGPTC"].ToString());
                             oQualityDeliveryDetail.SanLuongKTT = Convert.ToInt32(dr["SANLUONGKTT"].ToString());

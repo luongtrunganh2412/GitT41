@@ -34,11 +34,11 @@ namespace T41.Areas.Admin.Models.DataModel
     //Lấy chi tiết của bảng tổng hợp sản lượng đi phát
     public class QualityDeliveryDetail
     {
+        public int STT { get; set; }
         public String KhuVuc { get; set; }
         //public int BuuCuc { get; set; }
         public String BuuCuc { get; set; }
         public String TenBuuCuc { get; set; }
-        public String TongSLHub { get; set; }
         public int TongSL { get; set; }
         public int SanLuongPTC { get; set; }
         public int SanLuongKTT { get; set; }

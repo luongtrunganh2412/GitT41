@@ -8,14 +8,12 @@
 
     int i = 0;
 
-
-
-
-    //int i = 0; i = (ViewBag.currentPageIndex - 1) * ViewBag.PageSize;
+    
     foreach (var c in Model.ListQualityDeliveryReport)
     {
         <tr>
-            <td class="text-center">@(i + 1)</td>
+            @*<td class="text-center">@(i + 1)</td>*@
+            <td class="text-center">@c.STT</td>
             <td class="text-left">@c.KhuVuc</td>
             <td class="text-center">@c.BuuCuc</td>
             <td class="text-left">@c.TenBuuCuc</td>
@@ -208,9 +206,11 @@
                         if (data.Code == '01') {
                             $('.loading-element').hide();
                             $("#list_test tr").remove();
-                            @*window.location.href = "@Url.Action("QualityDeliveryDetailReport", "QualityDelivery")";*@
-                            //document.getElementById("demo").innerHTML = "Không Có Dữ Liệu";
-                            alert("Không Có Số Liệu");
+                            swal(
+                              'Không Có Số Liệu',
+                              '',
+                              'error'
+                            )
                         }
                         else {
                             $('.loading-element').hide();
