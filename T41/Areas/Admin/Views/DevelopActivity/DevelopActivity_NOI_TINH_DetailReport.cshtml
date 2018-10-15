@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="~/Areas/Admin/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/Areas/Admin/Content/bower_components/font-awesome/css/font-awesome.min.css">
 
-<title>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC LIÊN TỈNH</title>
+<title>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC NỘI TỈNH</title>
 <section class="content">
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC LIÊN TỈNH</h3>
+            <h3 class="box-title">BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC NỘI TỈNH</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -24,8 +24,8 @@
                     <div class="form-group">
                         <label>BC khai thác</label>
                         <select class="form-control select2" style="width: 100%;" id="bckhaithac">
-                            <option selected="selected" value="100916">100916 - HN EMS LT</option>
-                            <option value="700916">700916 - HCM EMS LT</option>
+                            <option selected="selected" value="101000">101000 - HN EMS NT</option>
+                            <option value="701000">701000 - HCM EMS NT</option>
                         </select>
                     </div>
                 </div>
@@ -45,46 +45,20 @@
                     <div class="form-group">
                         <label>Phương tiện vận chuyển</label>
                         <select class="form-control select2" style="width: 100%;" id="phuongtienvanchuyen">
-                            <option selected="selected" value="0">Bay</option>
+                            <option selected="selected" value="0">Tất Cả</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Chặng vận chuyển</label>
-                        <select class="form-control select2" style="width: 100%;" id="changvanchuyen">
-                            <option selected="selected" value="0">Nội Bài - Tân Sơn Nhất</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Tuyến vận chuyển</label>
-                        <select class="form-control select2" style="width: 100%;" id="tuyenvanchuyen">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Chuyến vận chuyển: </label>
-                        <select class="form-control select2" style="width: 100%;" id="chuyenvanchuyen">
-                            <option selected="selected" value="0">Tất cả</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Tỉnh chấp nhận</label>
                         <select class="form-control select2" style="width: 100%;" id="tinhchapnhan">
-                            <option selected="selected" value="0">Tỉnh Trừ Thành Phố</option>
-                            <option  value="10">Tất Cả</option>
+                            <option selected="selected" value="100">Tất Cả</option>
                             <option value="100000">100000 -TP.Hà Nội</option>
                             <option value="700000">700000 -TP.Hồ Chí Minh</option>
                         </select>
@@ -96,8 +70,6 @@
                         <select class="form-control select2" style="width: 100%;" id="donvichapnhan">
                             <option selected="selected" value="0">Tất Cả</option>
                             <option  value="1">Bưu điện </option>
-                            <option value="2">EMS</option>
-                            <option value="99">Tỉnh Trừ Thành Phố</option>
                         </select>
                     </div>
                 </div>
@@ -105,7 +77,7 @@
                     <div class="form-group">
                         <label>Tỉnh phát trả </label>
                         <select class="form-control select2" style="width: 100%;" id="tinhphattra">
-                            <option selected="selected" value="1">Hồ Chí Minh</option>
+                            <option selected="selected" value="100000">Hà Nội</option>
                         </select>
                     </div>
                 </div>
@@ -122,8 +94,8 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-4">
-                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/DevelopActivity/ListDevelopActivity?bckhaithac=' + document.getElementById('bckhaithac').value + '&date=' + document.getElementById('date').value + '&phuongtienvanchuyen=' + document.getElementById('phuongtienvanchuyen').value + '&changvanchuyen=' + document.getElementById('changvanchuyen').value
-                    + '&tuyenvanchuyen=' + document.getElementById('tuyenvanchuyen').value + '&chuyenvanchuyen=' + document.getElementById('chuyenvanchuyen').value + '&tinhchapnhan=' + document.getElementById('tinhchapnhan').value + '&donvichapnhan=' + document.getElementById('donvichapnhan').value + '&tinhphattra=' + document.getElementById('tinhphattra').value + '&donviphattra=' + document.getElementById('donviphattra').value">Hiển Thị Báo Cáo</a>
+                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/DevelopActivity/ListDevelopActivity_NOI_TINH?bckhaithac=' + document.getElementById('bckhaithac').value + '&date=' + document.getElementById('date').value + '&phuongtienvanchuyen=' + document.getElementById('phuongtienvanchuyen').value 
+                     + '&tinhchapnhan=' + document.getElementById('tinhchapnhan').value + '&donvichapnhan=' + document.getElementById('donvichapnhan').value + '&tinhphattra=' + document.getElementById('tinhphattra').value + '&donviphattra=' + document.getElementById('donviphattra').value">Hiển Thị Báo Cáo</a>
                 </div>
             </div>
 
@@ -145,11 +117,11 @@
         
         $('#bckhaithac').change(function () {
             let bckhaithacvalue = $("#bckhaithac").val();
-            if (bckhaithacvalue == 100916) {
-                $("#tinhphattra").html("<option value=" +  1 + ">Hồ Chí Minh</option>")
+            if (bckhaithacvalue == 701000) {
+                $("#tinhphattra").html("<option value=" + 700000 + ">Hồ Chí Minh</option>")
             }
-            if (bckhaithacvalue == 700916) {
-                $("#tinhphattra").html("<option value=" + 0 + ">Hà Nội</option>")
+            if (bckhaithacvalue == 101000) {
+                $("#tinhphattra").html("<option value=" + 100000 + ">Hà Nội</option>")
             }
         })
 

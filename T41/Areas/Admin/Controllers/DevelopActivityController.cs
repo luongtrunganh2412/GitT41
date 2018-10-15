@@ -41,7 +41,18 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
-        //Phần controller xử lý để lấy dữ liệu bảng KPI_SummingPassByMailRoute 
+        public ActionResult DevelopActivity_NOI_TINH_DetailReport()
+        {
+            return View();
+        }
+
+
+        public ActionResult ListDevelopActivity_NOI_TINH()
+        {
+            return View();
+        }
+
+        //Phần controller xử lý để lấy dữ liệu  LIÊN TỈNH
         [HttpGet]
         public JsonResult ListDevelopActivity_BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner )
         {
@@ -59,6 +70,18 @@ namespace T41.Areas.Admin.Controllers
             
             return Json(returnBDHN_DI_HCM, JsonRequestBehavior.AllowGet);
             
+        }
+
+        //Phần controller xử lý để lấy dữ liệu NỘI TỈNH
+        [HttpGet]
+        public JsonResult ListDevelopActivity_Action_NOI_TINH(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, int leaveprovince, int transitbag)
+        {
+            DevelopActivityRepository developactivityrepository = new DevelopActivityRepository();
+            ReturnNOI_TINH returnNOI_TINH = new ReturnNOI_TINH();
+            returnNOI_TINH = developactivityrepository.NOI_TINH( workcenter,  AcceptDate,  arriveprovince,  arrivepartner,  leaveprovince,  transitbag);
+
+            return Json(returnNOI_TINH, JsonRequestBehavior.AllowGet);
+
         }
 
         //Phần trả về data theo list để xuất excel

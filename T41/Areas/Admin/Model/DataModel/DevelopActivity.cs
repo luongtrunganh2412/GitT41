@@ -18,17 +18,18 @@ namespace T41.Areas.Admin.Model.DataModel
     }
 
 
-    //Phần lấy dữ iệu của bảng KPI_SummingPassByMailRoute
+    //Phần lấy dữ iệu của bảng KPI_SummingPassByMailRoute LIÊN TỈNH
+    #region LIEN_TINH
     public class BDHN_DI_HCM
     {
         public int STT { get; set; }
         public String TGDEN { get; set; }
-        public String  ARRIVEIDVNPOST { get; set; }
-        public String  ARRIVEMAILROUTENAME { get; set; }
-        public String  ARRIVEFROMPOSCODE { get; set; }
-        public String  ARRIVEFROMPOSNAME { get; set; }
-        public String  ARRIVEQUANTITY { get; set; }
-        public String  ARRIVEWEIGHT_KG { get; set; }
+        public String ARRIVEIDVNPOST { get; set; }
+        public String ARRIVEMAILROUTENAME { get; set; }
+        public String ARRIVEFROMPOSCODE { get; set; }
+        public String ARRIVEFROMPOSNAME { get; set; }
+        public String ARRIVEQUANTITY { get; set; }
+        public String ARRIVEWEIGHT_KG { get; set; }
 
         public long ARRIVEQUANTITY_LK { get; set; }
         public decimal ARRIVEWEIGHT_KG_LK { get; set; }
@@ -36,13 +37,13 @@ namespace T41.Areas.Admin.Model.DataModel
         public long ARRIVEQUANTITY_TON_LK { get; set; }
         public decimal ARRIVEWEIGHT_KG_TON_LK { get; set; }
 
-        public String  TGDI { get; set; }
-        public String  LEAVEIDVNPOST { get; set; }
-        public String  LEAVEMAILROUTENAME { get; set; }
-        public String  LEAVETOPOSCODE { get; set; }
-        public String  LEAVETOPOSNAME { get; set; }
-        public String  LEAVEQUANTITY { get; set; }
-        public String  LEAVEWEIGHT_KG { get; set; }
+        public String TGDI { get; set; }
+        public String LEAVEIDVNPOST { get; set; }
+        public String LEAVEMAILROUTENAME { get; set; }
+        public String LEAVETOPOSCODE { get; set; }
+        public String LEAVETOPOSNAME { get; set; }
+        public String LEAVEQUANTITY { get; set; }
+        public String LEAVEWEIGHT_KG { get; set; }
 
         public long LEAVEQUANTITY_LK { get; set; }
         public decimal LEAVEWEIGHT_KG_LK { get; set; }
@@ -71,9 +72,75 @@ namespace T41.Areas.Admin.Model.DataModel
 
         public BDHN_DI_HCM BDHN_DI_HCMReport { get; set; }
         public List<BDHN_DI_HCM> ListBDHN_DI_HCMReport;
-        
+
         public MetaData MetaData { get; set; }
 
 
     }
+    #endregion
+
+
+    //Phần lấy dữ iệu của bảng KPI_SummingPassByMailRoute NỘI TỈNH
+    #region NOI_TINH
+    public class NOI_TINH
+    {
+        public String TGDEN { get; set; }
+
+        public String ARRIVEMAILROUTE { get; set; }
+        public String ARRIVEIDVNPOSTNAME { get; set; }
+        public String ARRIVEIDVNPOST { get; set; }
+        public String ARRIVEMAILROUTENAME { get; set; }
+        public String ARRIVEDONVI { get; set; }
+        public String ARRIVEFROMPOSCODE { get; set; }
+        public String ARRIVEFROMPOSNAME { get; set; }
+        public String ARRIVEQUANTITY { get; set; }
+        public String ARRIVEWEIGHT_KG { get; set; }
+        public String ARRIVEQUANTITY_ACCUM { get; set; }
+        public String DEN_KLG_LUYKE { get; set; }
+        public String ARRIVEQUANTITY_STOCKACCUM { get; set; }
+        public String DEN_KLG_TON_LUYKE { get; set; }
+        public String TGQUETTUIDI { get; set; }
+        public String LEAVEMAILROUTE { get; set; }
+        public String LEAVEIDVNPOSTNAME { get; set; }
+        public String LEAVEIDVNPOST { get; set; }
+        public String LEAVEMAILROUTENAME { get; set; }
+        public String LEAVEDONVI { get; set; }
+        public String LEAVETOPOSCODE { get; set; }
+        public String LEAVETOPOSNAME { get; set; }
+        public String LEAVEQUANTITY { get; set; }
+        public String LEAVEWEIGHT_KG { get; set; }
+        public String LEAVEQUANTITY_ACCUM { get; set; }
+        public String DI_KLG_LUYKE { get; set; }
+        public String TYLEDAPUNGCHUYEN_SL { get; set; }
+        public String TYLEDAPUNGCHUYEN_KLG { get; set; }
+        public String TYLEDAPUNGLUYKE_SLG { get; set; }
+        public String TYLEDAPUNGLUYKE_KLG { get; set; }
+        public String MAXDATE { get; set; }
+
+
+    }
+
+    public class ReturnNOI_TINH
+    {
+        public string Code { get; set; }
+
+        /// <summary>
+        /// Message
+        /// </summary>
+        public string Message { get; set; }
+
+        public string Value { get; set; }
+        /// <summary>
+        /// Value
+        /// </summary>
+        public int Total { get; set; }
+
+        public NOI_TINH NOI_TINHReport { get; set; }
+        public List<NOI_TINH> ListNOI_TINHReport;
+
+        public MetaData MetaData { get; set; }
+
+
+    }
+    #endregion
 }

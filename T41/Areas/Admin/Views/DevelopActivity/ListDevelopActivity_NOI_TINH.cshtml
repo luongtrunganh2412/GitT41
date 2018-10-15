@@ -48,10 +48,6 @@
                         <h5 class="text-right"><strong>Phạm Vi Dữ Liệu:</strong></h5>
                         <h5 class="text-right"><strong>Thời Gian:</strong></h5>
                         <h5 class="text-right"><strong>Phương Tiện VC:</strong></h5>
-                        <h5 class="text-right"><strong>Chặng Vận Chuyển:</strong></h5>
-                        <h5 class="text-right"><strong>Tuyến Vận Chuyển:</strong></h5>
-                        <h5 class="text-right"><strong>Chuyến Vận Chuyển:</strong></h5>
-
                         <h5 class="text-right"><strong>Tỉnh Chấp Nhận:</strong></h5>
                         <h5 class="text-right"><strong>Đơn Vị Chấp Nhận:</strong></h5>
                         <h5 class="text-right"><strong>Tỉnh Phát Trả:</strong></h5>
@@ -62,10 +58,6 @@
                         <h5 class="text-left"><strong>Theo Ngày Xác Nhận Đến</strong></h5>
                         <h5 class="text-left" id="date"></h5>
                         <h5 class="text-left" id="phuongtienvc"></h5>
-                        <h5 class="text-left" id="changvc"></h5>
-                        <h5 class="text-left" id="tuyenvc"></h5>
-                        <h5 class="text-left" id="chuyenvc"></h5>
-
                         <h5 class="text-left" id="tinhchapnhan"></h5>
                         <h5 class="text-left" id="donvichapnhan"></h5>
                         <h5 class="text-left" id="tinhphattra"></h5>
@@ -80,7 +72,6 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    @*<input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Báo Cáo" onclick="printpage()" />*@
                     <button type="button" class="btn btn-primary btn-lrg ajax" id="printpagebutton" onclick="printpage()">In Báo Cáo <i class="fa fa-print" aria-hidden="true"></i>  </button>
                     <button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>
                     
@@ -171,9 +162,6 @@
     var bckhaithac = url.searchParams.get("bckhaithac");
     var date = url.searchParams.get("date");
     var phuongtienvanchuyen = url.searchParams.get("phuongtienvanchuyen");
-    var changvanchuyen = url.searchParams.get("changvanchuyen");
-    var tuyenvanchuyen = url.searchParams.get("tuyenvanchuyen");
-    var chuyenvanchuyen = url.searchParams.get("chuyenvanchuyen");
     var tinhchapnhan = url.searchParams.get("tinhchapnhan");
     var donvichapnhan = url.searchParams.get("donvichapnhan");
     var tinhphattra = url.searchParams.get("tinhphattra");
@@ -188,11 +176,11 @@
             checkbckhaithac = "Tất Cả"
             break;
 
-        case 100916:
-            checkbckhaithac = "100916 - HN EMS LT"
+        case 101000:
+            checkbckhaithac = "101000 - HN EMS NT"
             break;
-        case 700916:
-            checkbckhaithac = "700916 - HCM EMS LT"
+        case 701000:
+            checkbckhaithac = "701000 - HCM EMS NT"
             break;
         default:
             break;
@@ -209,51 +197,14 @@
             break;
     }
 
-    var checkchangvanchuyen = 0;
-    checkchangvanchuyen = parseInt(changvanchuyen);
-
-    switch (checkchangvanchuyen) {
-        case 0:
-            checkchangvanchuyen = "Nội Bài - Tân Sơn Nhất"
-            break;
-        default:
-            break;
-    }
-
-    var checktuyenvanchuyen = 0;
-    checktuyenvanchuyen = parseInt(tuyenvanchuyen);
-
-    switch (checktuyenvanchuyen) {
-        case 0:
-            checktuyenvanchuyen = "Tất Cả"
-            break;
-        default:
-            break;
-    }
-
-    var checkchuyenvanchuyen = 0;
-    checkchuyenvanchuyen = parseInt(chuyenvanchuyen);
-
-    switch (checkchuyenvanchuyen) {
-        case 0:
-            checkchuyenvanchuyen = "Tất Cả"
-            break;
-        default:
-            break;
-    }
     
 
         var checktinhchapnhan = 0;
         checktinhchapnhan = parseInt(tinhchapnhan);
 
         switch (checktinhchapnhan) {
-            case 0:
-                checkbckhaithac == "100916 - HN EMS LT" ? checktinhchapnhan = "Miền Bắc(Trừ Hà Nội)" : checktinhchapnhan = "Miền Nam (Trừ Hồ Chí Minh)"
-                //checktinhchapnhan = "Miền Bắc(Trừ Hà Nội)"
-                break;
-            case 10:
-                checkbckhaithac == "100916 - HN EMS LT" ? checktinhchapnhan = "Miền Bắc" : checktinhchapnhan = "Miền Nam"
-                //checktinhchapnhan = "Miền Bắc"
+            case 100:
+                checktinhchapnhan = "Tất Cả"
                 break;
             case 100000:
                 checktinhchapnhan = "Hà Nội"
@@ -273,15 +224,8 @@
                 checkdonvichapnhan = "Tất Cả"
                 break;
             case 1:
-                checkbckhaithac == "100916 - HN EMS LT" ? checkdonvichapnhan = "Bưu Điện Hà Nội" : checkdonvichapnhan = "Bưu Điện Hồ Chí Minh"
+                checkbckhaithac == "101000 - HN EMS NT" ? checkdonvichapnhan = "Bưu Điện Hồ Chí Minh" : checkdonvichapnhan = "Bưu Điện Hà Nội"
                 //checkdonvichapnhan = "Bưu Điện "
-                break;
-            case 2:
-                checkbckhaithac == "100916 - HN EMS LT" ? checkdonvichapnhan = "EMS Hà Nội" : checkdonvichapnhan = "EMS Hồ Chí Minh"
-                //checkdonvichapnhan = "EMS "
-                break;
-            case 99:
-                checkdonvichapnhan = "Tỉnh Trừ Thành Phố "
                 break;
             default:
                 break;
@@ -293,10 +237,10 @@
     checktinhphattra = parseInt(tinhphattra);
 
     switch (checktinhphattra) {
-        case 0:
+        case 100000:
             checktinhphattra = "Hà Nội"
             break;
-        case 1:
+        case 700000:
             checktinhphattra = "Hồ Chí Minh"
             break;
         default:
@@ -323,9 +267,6 @@
         document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
         document.getElementById("bckhaithac").innerHTML = "<strong>" + checkbckhaithac + "</strong>";
         document.getElementById("phuongtienvc").innerHTML = "<strong>" + checkphuongtienvanchuyen + "</strong>";
-        document.getElementById("changvc").innerHTML = "<strong>" + checkchangvanchuyen + "</strong>";
-        document.getElementById("tuyenvc").innerHTML = "<strong>" + checktuyenvanchuyen + "</strong>";
-        document.getElementById("chuyenvc").innerHTML = "<strong>" + checkchuyenvanchuyen + "</strong>";
         document.getElementById("tinhchapnhan").innerHTML = "<strong>" + checktinhchapnhan + "</strong>";
         document.getElementById("donvichapnhan").innerHTML = "<strong>" + checkdonvichapnhan + "</strong>";
         document.getElementById("tinhphattra").innerHTML = "<strong>" + checktinhphattra + "</strong>";
@@ -379,8 +320,10 @@
 
     //Phần JS để lấy dữ liệu theo kiểu JSON rồi bind vào table theo ID
     function detail_Roadway1() {
+        let transitbag = 0;
+        checkbckhaithac == "101000 - HN EMS NT" ? transitbag = 99 : transitbag = 10;
         $.ajax({
-            url: '@Url.Action("ListDevelopActivity_BDHN_DI_HCM", "DevelopActivity")',
+            url: '@Url.Action("ListDevelopActivity_Action_NOI_TINH", "DevelopActivity")',
             beforeSend: function () {
                 $('.loading-element').show();
             },
@@ -391,6 +334,8 @@
                     AcceptDate: date,
                     arriveprovince: tinhchapnhan,
                     arrivepartner: donvichapnhan,
+                    leaveprovince: tinhphattra,
+                    transitbag: transitbag
 
                 },
             success: function (data) {

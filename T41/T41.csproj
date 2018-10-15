@@ -3280,7 +3280,7 @@
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\MCT_E2_TransferManagementVNPOSTDetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\SOTUITRONGCHTHUVNPOST.cshtml" />
     <Content Include="Areas\Admin\Views\TransferManagementVNPOST\TransferManagementVNPOSTDetailReport.cshtml" />
-    <Content Include="Areas\Admin\Views\ExpressRoad\ExpressRoadDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\ExpressRoad\ReadFromExcel.cshtml" />
     <Content Include="Areas\Admin\Views\ExpressRoad\ListDetailedExpressRoadReport.cshtml" />
     <Content Include="Areas\Admin\Views\SaleUserManagement\ListDetailedSaleUserManagementReport.cshtml" />
     <Content Include="Areas\Admin\Views\SaleUserManagement\SaleUserManagementDetailReport.cshtml" />
@@ -3299,6 +3299,8 @@
     <Content Include="Areas\Admin\Views\FindReceptacle\ListReceptacleReport.cshtml" />
     <Content Include="Areas\Admin\Views\TrackAndTrace\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Lock.cshtml" />
+    <Content Include="Areas\Admin\Views\DevelopActivity\DevelopActivity_NOI_TINH_DetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\DevelopActivity\ListDevelopActivity_NOI_TINH.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

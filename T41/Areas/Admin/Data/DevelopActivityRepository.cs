@@ -13,8 +13,8 @@ namespace T41.Areas.Admin.Data
     public class DevelopActivityRepository
     {
 
-        // Phần lấy dữ liệu từ bảng KPI_SummingPassByMailRoute
-        #region BDHN_DI_HCM          
+        // Phần lấy dữ liệu từ bảng KPI_SummingPassByMailRoute LIÊN TỈNH  
+        #region LIÊN TỈNH            
         public ReturnBDHN_DI_HCM BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, ref long ARRIVEQUANTITY_LK, ref decimal ARRIVEWEIGHT_KG_LK, ref long LEAVEQUANTITY_LK, ref decimal LEAVEWEIGHT_KG_LK, ref decimal DAPUNGKL, ref decimal DAPUNGLUYKE)
         {
             DataTable da = new DataTable();
@@ -30,7 +30,7 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
                     cmd.Connection = Helper.OraDCComOracleConnection;
-                    cmd.CommandText = Helper.SchemaName + "DEVELOP_ACTIVITY.BDHN_DI_HCM";
+                    cmd.CommandText = Helper.SchemaName + "DEVELOP_ACTIVITY.KHAI_THAC_LIEN_TINH";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new OracleParameter("p_workcenter", OracleDbType.Int32)).Value = workcenter;
                     cmd.Parameters.Add(new OracleParameter("p_AcceptDate", OracleDbType.Int32)).Value = common.DateToInt(AcceptDate);
@@ -85,14 +85,24 @@ namespace T41.Areas.Admin.Data
                             oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_TON_LK = ARRIVEWEIGHT_KG_LK - LEAVEWEIGHT_KG_LK;
 
                             //Phần Tính Tỷ Lệ Đáp Ứng Theo Chuyến (SL)
-                            oBDHN_DI_HCM_Detail.DAPUNGSL = (Convert.ToInt32(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) > 0) ? ( (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) / Convert.ToDecimal(ARRIVEQUANTITY_LK)) *100).ToString().Substring(0, 5) + "%" : "";
+
+                            //Công Thức Cũ
+                            //oBDHN_DI_HCM_Detail.DAPUNGSL = (Convert.ToInt32(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) > 0) ? ((Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) / Convert.ToDecimal(ARRIVEQUANTITY_LK)) * 100).ToString().Substring(0, 3) + "%" : "";
+
+                            //Công Thức Mới
+                            oBDHN_DI_HCM_Detail.DAPUNGSL = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) > 0) ? ((Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY) / (oBDHN_DI_HCM_Detail.ARRIVEQUANTITY_TON_LK + Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEQUANTITY))) * 100).ToString().Substring(0, 3) + "%" : "";
 
 
                             //Phần Tính Tỷ Lệ Đáp Ứng Theo Chuyến (KL)
                             if (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) > 0)
                             {
-                                DAPUNGKL = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) / oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_LK) * 100;
-                                oBDHN_DI_HCM_Detail.DAPUNGKL = (DAPUNGKL.ToString()).Substring(0, 5) + "%";
+                                //Công Thức Cũ
+                                //DAPUNGKL = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) / oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_LK) * 100;
+                                //oBDHN_DI_HCM_Detail.DAPUNGKL = (DAPUNGKL.ToString()).Substring(0, 3) + "%";
+
+                                //Công Thức Mới
+                                DAPUNGKL = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG) / (oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_TON_LK + Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG))) * 100;
+                                oBDHN_DI_HCM_Detail.DAPUNGKL = (DAPUNGKL.ToString()).Substring(0, 3) + "%";
                             }
                             else {
                                 oBDHN_DI_HCM_Detail.DAPUNGKL = "";
@@ -117,7 +127,7 @@ namespace T41.Areas.Admin.Data
 
                                 if (oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG_LK > 0) {
                                     DAPUNGLUYKE = (Convert.ToDecimal(oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG_LK) / Convert.ToDecimal(oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_LK)) * 100;
-                                    oBDHN_DI_HCM_Detail.DAPUNGLUYKE = (DAPUNGLUYKE.ToString()).Substring(0, 5) + "%"; ;
+                                    oBDHN_DI_HCM_Detail.DAPUNGLUYKE = (DAPUNGLUYKE.ToString()).Substring(0, 3) + "%"; ;
                                 }
 
                             }
@@ -144,6 +154,7 @@ namespace T41.Areas.Admin.Data
             {
                 _ReturnBDHN_DI_HCM.Code = "99";
                 _ReturnBDHN_DI_HCM.Message = "Lỗi xử lý dữ liệu";
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "DevelopActivityRepository# Region BDHN_DI_HCM" + ex.Message);
                 //_returnQuality.Total = 0;
                 //_returnQuality.ListBDHN_DI_HCMReport = null;
             }
@@ -154,10 +165,110 @@ namespace T41.Areas.Admin.Data
 
         #endregion
 
+        // Phần lấy dữ liệu từ bảng KPI_SummingPassByMailRoute NỘI TỈNH
+        #region NỘI TỈNH          
+        public ReturnNOI_TINH NOI_TINH(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner, int leaveprovince, int transitbag)
+        {
+            DataTable da = new DataTable();
+            MetaData _metadata = new MetaData();
+            Convertion common = new Convertion();
+            ReturnNOI_TINH _ReturnNOI_TINH = new ReturnNOI_TINH();
+            List<NOI_TINH> listNOI_TINH_Detail = null;
+            NOI_TINH oNOI_TINH_Detail = null;
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
 
-        
+                    OracleCommand myCommand = new OracleCommand("DEVELOP_ACTIVITY.KHAI_THAC_NOI_TINH", Helper.OraDCComOracleConnection);
+                    //xử lý tham số truyền vào data table
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    myCommand.Parameters.Add("p_workcenter", OracleDbType.Int32).Value = workcenter;
+                    myCommand.Parameters.Add("p_AcceptDate", OracleDbType.Int32).Value = common.DateToInt(AcceptDate);
+                    myCommand.Parameters.Add("p_arriveprovince", OracleDbType.Int32).Value = arriveprovince;
+                    myCommand.Parameters.Add("p_arrivepartner", OracleDbType.Int32).Value = arrivepartner;
+                    myCommand.Parameters.Add("p_leaveprovince", OracleDbType.Int32).Value = leaveprovince;
+                    myCommand.Parameters.Add("p_transitbag", OracleDbType.Int32).Value = transitbag;
+                    myCommand.Parameters.Add(new OracleParameter("p_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+                    //myCommand.ExecuteNonQuery();
+                    DataTableReader dr = da.CreateDataReader();
+                    if (dr.HasRows)
+                    {
+                        listNOI_TINH_Detail = new List<NOI_TINH>();
+                        while (dr.Read())
+                        {
+                            oNOI_TINH_Detail = new NOI_TINH();
+                            oNOI_TINH_Detail.TGDEN = dr["TGDEN"].ToString();
+                            oNOI_TINH_Detail.ARRIVEMAILROUTE = dr["ARRIVEMAILROUTE"].ToString();
+                            oNOI_TINH_Detail.ARRIVEIDVNPOSTNAME = dr["ARRIVEIDVNPOSTNAME"].ToString();
+                            oNOI_TINH_Detail.ARRIVEIDVNPOST = dr["ARRIVEIDVNPOST"].ToString();
+                            oNOI_TINH_Detail.ARRIVEMAILROUTENAME = dr["ARRIVEMAILROUTENAME"].ToString();
+                            oNOI_TINH_Detail.ARRIVEDONVI = dr["ARRIVEDONVI"].ToString();
+                            oNOI_TINH_Detail.ARRIVEFROMPOSCODE = dr["ARRIVEFROMPOSCODE"].ToString();
+                            oNOI_TINH_Detail.ARRIVEFROMPOSNAME = dr["ARRIVEFROMPOSNAME"].ToString();
+                            oNOI_TINH_Detail.ARRIVEQUANTITY = dr["ARRIVEQUANTITY"].ToString();
+                            oNOI_TINH_Detail.ARRIVEWEIGHT_KG = dr["ARRIVEWEIGHT_KG"].ToString();
+                            oNOI_TINH_Detail.ARRIVEQUANTITY_ACCUM = dr["ARRIVEQUANTITY_ACCUM"].ToString();
+                            oNOI_TINH_Detail.DEN_KLG_LUYKE = dr["DEN_KLG_LUYKE"].ToString();
+                            oNOI_TINH_Detail.ARRIVEQUANTITY_STOCKACCUM = dr["ARRIVEQUANTITY_STOCKACCUM"].ToString();
+                            oNOI_TINH_Detail.DEN_KLG_TON_LUYKE = dr["DEN_KLG_TON_LUYKE"].ToString();
+                            oNOI_TINH_Detail.TGQUETTUIDI = dr["TGQUETTUIDI"].ToString();
+                            oNOI_TINH_Detail.LEAVEMAILROUTE = dr["LEAVEMAILROUTE"].ToString();
+                            oNOI_TINH_Detail.LEAVEIDVNPOSTNAME = dr["LEAVEIDVNPOSTNAME"].ToString();
+                            oNOI_TINH_Detail.LEAVEIDVNPOST = dr["LEAVEIDVNPOST"].ToString();
+                            oNOI_TINH_Detail.LEAVEMAILROUTENAME = dr["LEAVEMAILROUTENAME"].ToString();
+                            oNOI_TINH_Detail.LEAVEDONVI = dr["LEAVEDONVI"].ToString();
+                            oNOI_TINH_Detail.LEAVETOPOSCODE = dr["LEAVETOPOSCODE"].ToString();
+                            oNOI_TINH_Detail.LEAVETOPOSNAME = dr["LEAVETOPOSNAME"].ToString();
+                            oNOI_TINH_Detail.LEAVEQUANTITY = dr["LEAVEQUANTITY"].ToString();
+                            oNOI_TINH_Detail.LEAVEWEIGHT_KG = dr["LEAVEWEIGHT_KG"].ToString();
+                            oNOI_TINH_Detail.LEAVEQUANTITY_ACCUM = dr["LEAVEQUANTITY_ACCUM"].ToString();
+                            oNOI_TINH_Detail.DI_KLG_LUYKE = dr["DI_KLG_LUYKE"].ToString();
+                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_SL = dr["TYLEDAPUNGCHUYEN_SL"].ToString();
+                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_KLG = dr["TYLEDAPUNGCHUYEN_KLG"].ToString();
+                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_SLG = dr["TYLEDAPUNGLUYKE_SLG"].ToString();
+                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_KLG = dr["TYLEDAPUNGLUYKE_KLG"].ToString();
+                            oNOI_TINH_Detail.MAXDATE = dr["MAXDATE"].ToString();
 
-        
+                            listNOI_TINH_Detail.Add(oNOI_TINH_Detail);
+
+
+                        }
+                        _ReturnNOI_TINH.Code = "00";
+                        _ReturnNOI_TINH.Message = "Lấy dữ liệu thành công.";
+                        _ReturnNOI_TINH.ListNOI_TINHReport = listNOI_TINH_Detail;
+                    }
+                    else
+                    {
+                        _ReturnNOI_TINH.Code = "01";
+                        _ReturnNOI_TINH.Message = "Không có dữ liệu";
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _ReturnNOI_TINH.Code = "99";
+                _ReturnNOI_TINH.Message = "Lỗi xử lý dữ liệu";
+                //_ReturnNOI_TINH.Total = 0;
+                //_ReturnNOI_TINH.ListBDHN_DI_HCMReport = null;
+            }
+            return _ReturnNOI_TINH;
+        }
+
+
+
+        #endregion
+
+
+
     }
 
 
