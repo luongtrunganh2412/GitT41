@@ -100,18 +100,22 @@
                         <thead>
                             <tr>
                                 <th  rowspan="2" class="text-center">STT</th>
-                                <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
-                                <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
+                                <th style="background:#f9c19a;" colspan="14" class="text-center">Chi Tiết Đến</th>
+                                <th style="background:#57c5e0;" colspan="12" class="text-center">Chi Tiết Đi</th>
                                 <th style="background:#3ce892;" colspan="2" class="text-center">Tỉ Lệ Đáp Ứng Theo Chuyến</th>
+                                <th style="background:#3ce892;" rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo SL </th>
                                 <th style="background:#3ce892;" rowspan="2" class="text-center">Tỷ lệ đáp ứng lũy kế theo KLg </th>
 
                             </tr>
                             <tr>
                                 <th style="background:#f9c19a;" class="text-center">Thời gian</th>
+                                <th style="background:#f9c19a;" class="text-center">ID tuyến </th>
+                                <th style="background:#f9c19a;" class="text-center">Tên tuyến</th>
                                 <th style="background:#f9c19a;" class="text-center">ID chuyến </th>
                                 <th style="background:#f9c19a;" class="text-center">Tên chuyến</th>
-                                <th style="background:#f9c19a;" class="text-center">Mã Đơn Vị</th>
                                 <th style="background:#f9c19a;" class="text-center">Tên Đơn Vị </th>
+                                <th style="background:#f9c19a;" class="text-center">Mã Bưu Cục</th>
+                                <th style="background:#f9c19a;" class="text-center">Tên Bưu Cục </th>
                                 <th style="background:#f9c19a;" class="text-center">SL đến </th>
                                 <th style="background:#f9c19a;" class="text-center">KL đến (kg)</th>
                                 <th style="background:#f9c19a;" class="text-center">SL đến lũy kế</th>
@@ -124,11 +128,14 @@
                                 <th style="background:#57c5e0;" class="text-center">Tên tuyến</th>
                                 <th style="background:#57c5e0;" class="text-center">ID chuyến</th>
                                 <th style="background:#57c5e0;" class="text-center">Tên chuyến </th>
-
+                                <th style="background:#57c5e0;" class="text-center">Tên Đơn Vị </th>
+                                <th style="background:#57c5e0;" class="text-center">Mã Bưu Cục</th>
+                                <th style="background:#57c5e0;" class="text-center">Tên Bưu Cục </th>
                                 <th style="background:#57c5e0;" class="text-center">SL đi </th>
                                 <th style="background:#57c5e0;" class="text-center">KL đi (kg)</th>
                                 <th style="background:#57c5e0;" class="text-center">SL đi lũy kế</th>
                                 <th style="background:#57c5e0;" class="text-center">KL đi lũy kế</th>
+
                                 <th style="background:#3ce892;" class="text-center">Đáp ứng (SL)</th>
                                 <th style="background:#3ce892;" class="text-center">Đáp ứng (KLg)</th>
                             </tr>
@@ -264,7 +271,7 @@
         $('#btnexport').hide();
 
         document.getElementById("date").innerHTML = "<strong>" + date + "</strong>";
-        document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
+        //document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
         document.getElementById("bckhaithac").innerHTML = "<strong>" + checkbckhaithac + "</strong>";
         document.getElementById("phuongtienvc").innerHTML = "<strong>" + checkphuongtienvanchuyen + "</strong>";
         document.getElementById("tinhchapnhan").innerHTML = "<strong>" + checktinhchapnhan + "</strong>";
@@ -342,40 +349,47 @@
                 var str_html = "";
                 var str_body = "";
                 //var a = 1;
-                $.each(data.ListBDHN_DI_HCMReport, function (i, item) {
+                $.each(data.ListNOI_TINHReport, function (i, item) {
                     str_body += '<tr>';
                     //str_body += '<td class="text-center">' + a++ + '</td>';
-                    str_body += '<td class="text-center">' + data.ListBDHN_DI_HCMReport[i].STT + '</td>';
-                    str_body += '<td style="width:100px;">' + data.ListBDHN_DI_HCMReport[i].TGDEN + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].ARRIVEIDVNPOST + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEMAILROUTENAME + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].ARRIVEFROMPOSCODE + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].ARRIVEFROMPOSNAME + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG + '</td>';
+                    str_body += '<td class="text-center">' + data.ListNOI_TINHReport[i].STT + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListNOI_TINHReport[i].TGDEN + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEMAILROUTE + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].ARRIVEIDVNPOSTNAME + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEIDVNPOST + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].ARRIVEMAILROUTENAME + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEDONVI + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEFROMPOSCODE + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].ARRIVEFROMPOSNAME + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEQUANTITY + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].ARRIVEWEIGHT_KG + '</td>';
+                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListNOI_TINHReport[i].ARRIVEQUANTITY_ACCUM + '</td>';
+                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListNOI_TINHReport[i].DEN_KLG_LUYKE + '</td>';
 
-                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY_LK + '</td>';
-                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG_LK + '</td>';
-
-                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEQUANTITY_TON_LK + '</td>';
-                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListBDHN_DI_HCMReport[i].ARRIVEWEIGHT_KG_TON_LK + '</td>';
+                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListNOI_TINHReport[i].ARRIVEQUANTITY_STOCKACCUM + '</td>';
+                    str_body += '<td class="text-right" style="background:#f9c19a;">' + data.ListNOI_TINHReport[i].DEN_KLG_TON_LUYKE + '</td>';
 
 
-                    str_body += '<td style="width:100px;">' + data.ListBDHN_DI_HCMReport[i].TGDI + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].LEAVEIDVNPOST + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEMAILROUTENAME + '</td>';
-                    str_body += '<td class="text-right">' + data.ListBDHN_DI_HCMReport[i].LEAVETOPOSCODE + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVETOPOSNAME + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEQUANTITY + '</td>';
-                    str_body += '<td>' + data.ListBDHN_DI_HCMReport[i].LEAVEWEIGHT_KG + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListNOI_TINHReport[i].TGQUETTUIDI + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].LEAVEMAILROUTE + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVEIDVNPOSTNAME + '</td>';
+                    str_body += '<td class="text-right">' + data.ListNOI_TINHReport[i].LEAVEIDVNPOST + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVEMAILROUTENAME + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVEDONVI + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVETOPOSCODE + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVETOPOSNAME + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVEQUANTITY + '</td>';
+                    str_body += '<td>' + data.ListNOI_TINHReport[i].LEAVEWEIGHT_KG + '</td>';
 
-                    str_body += '<td class="text-right" style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEQUANTITY_LK + '</td>';
-                    str_body += '<td class="text-right" style="background:#57c5e0;">' + data.ListBDHN_DI_HCMReport[i].LEAVEWEIGHT_KG_LK + '</td>';
+                    str_body += '<td class="text-right" style="background:#57c5e0;">' + data.ListNOI_TINHReport[i].LEAVEQUANTITY_ACCUM + '</td>';
+                    str_body += '<td class="text-right" style="background:#57c5e0;">' + data.ListNOI_TINHReport[i].DI_KLG_LUYKE + '</td>';
 
-                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGSL + '</td>';
-                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGKL + '</td>';
-                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListBDHN_DI_HCMReport[i].DAPUNGLUYKE + '</td>';
-                    str_body += '<td class="hide">' + data.ListBDHN_DI_HCMReport[i].CHECK_TG + '</td>';
+                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListNOI_TINHReport[i].TYLEDAPUNGCHUYEN_SL + '%' + '</td>';
+                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListNOI_TINHReport[i].TYLEDAPUNGCHUYEN_KLG + '%' + '</td>';
+                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListNOI_TINHReport[i].TYLEDAPUNGLUYKE_SLG + '%' + '</td>';
+                    str_body += '<td class="text-right" style="background:#3ce892;">' + data.ListNOI_TINHReport[i].TYLEDAPUNGLUYKE_KLG + '%' + '</td>';
+
+                    str_body += '<td class="hide">' + data.ListNOI_TINHReport[i].MAXDATE + '</td>';
                     str_body += '</tr>';
                 });
                 str_html += str_body;
@@ -409,6 +423,6 @@
     }
 
 </script>
-<script src="~/Areas/Admin/Content/bower_components/DevelopActivityJS/DevelopChart.js"></script>
+<script src="~/Areas/Admin/Content/bower_components/DevelopActivityJS/DevelopChart_NOI_TINH.js"></script>
 
 

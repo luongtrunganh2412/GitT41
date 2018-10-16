@@ -175,6 +175,7 @@ namespace T41.Areas.Admin.Data
             ReturnNOI_TINH _ReturnNOI_TINH = new ReturnNOI_TINH();
             List<NOI_TINH> listNOI_TINH_Detail = null;
             NOI_TINH oNOI_TINH_Detail = null;
+            int a = 1;
             try
             {
                 // Gọi vào DB để lấy dữ liệu.
@@ -203,6 +204,7 @@ namespace T41.Areas.Admin.Data
                         while (dr.Read())
                         {
                             oNOI_TINH_Detail = new NOI_TINH();
+                            oNOI_TINH_Detail.STT = a++;
                             oNOI_TINH_Detail.TGDEN = dr["TGDEN"].ToString();
                             oNOI_TINH_Detail.ARRIVEMAILROUTE = dr["ARRIVEMAILROUTE"].ToString();
                             oNOI_TINH_Detail.ARRIVEIDVNPOSTNAME = dr["ARRIVEIDVNPOSTNAME"].ToString();
@@ -229,10 +231,10 @@ namespace T41.Areas.Admin.Data
                             oNOI_TINH_Detail.LEAVEWEIGHT_KG = dr["LEAVEWEIGHT_KG"].ToString();
                             oNOI_TINH_Detail.LEAVEQUANTITY_ACCUM = dr["LEAVEQUANTITY_ACCUM"].ToString();
                             oNOI_TINH_Detail.DI_KLG_LUYKE = dr["DI_KLG_LUYKE"].ToString();
-                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_SL = dr["TYLEDAPUNGCHUYEN_SL"].ToString();
-                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_KLG = dr["TYLEDAPUNGCHUYEN_KLG"].ToString();
-                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_SLG = dr["TYLEDAPUNGLUYKE_SLG"].ToString();
-                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_KLG = dr["TYLEDAPUNGLUYKE_KLG"].ToString();
+                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_SL = Convert.ToDecimal(dr["TYLEDAPUNGCHUYEN_SL"].ToString()) *100;
+                            oNOI_TINH_Detail.TYLEDAPUNGCHUYEN_KLG = Convert.ToDecimal(dr["TYLEDAPUNGCHUYEN_KLG"].ToString()) *100;
+                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_SLG = Convert.ToDecimal(dr["TYLEDAPUNGLUYKE_SLG"].ToString()) * 100;
+                            oNOI_TINH_Detail.TYLEDAPUNGLUYKE_KLG = Convert.ToDecimal(dr["TYLEDAPUNGLUYKE_KLG"].ToString()) * 100;
                             oNOI_TINH_Detail.MAXDATE = dr["MAXDATE"].ToString();
 
                             listNOI_TINH_Detail.Add(oNOI_TINH_Detail);

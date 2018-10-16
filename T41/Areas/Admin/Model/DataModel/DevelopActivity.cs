@@ -84,6 +84,7 @@ namespace T41.Areas.Admin.Model.DataModel
     #region NOI_TINH
     public class NOI_TINH
     {
+        public int STT { get; set; }
         public String TGDEN { get; set; }
 
         public String ARRIVEMAILROUTE { get; set; }
@@ -111,10 +112,10 @@ namespace T41.Areas.Admin.Model.DataModel
         public String LEAVEWEIGHT_KG { get; set; }
         public String LEAVEQUANTITY_ACCUM { get; set; }
         public String DI_KLG_LUYKE { get; set; }
-        public String TYLEDAPUNGCHUYEN_SL { get; set; }
-        public String TYLEDAPUNGCHUYEN_KLG { get; set; }
-        public String TYLEDAPUNGLUYKE_SLG { get; set; }
-        public String TYLEDAPUNGLUYKE_KLG { get; set; }
+        public Decimal TYLEDAPUNGCHUYEN_SL { get; set; }
+        public Decimal TYLEDAPUNGCHUYEN_KLG { get; set; }
+        public Decimal TYLEDAPUNGLUYKE_SLG { get; set; }
+        public Decimal TYLEDAPUNGLUYKE_KLG { get; set; }
         public String MAXDATE { get; set; }
 
 
