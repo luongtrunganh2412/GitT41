@@ -144,4 +144,68 @@ namespace T41.Areas.Admin.Model.DataModel
 
     }
     #endregion
+
+    //Phần lấy dữ liệu CHI TIẾT LIÊN TỈNH
+    public class CHI_TIET_LIEN_TINH
+    {
+        public int STT { get; set; }
+        //CHIEU DEN
+        public String HUONG_DEN { get; set; }
+        public String ITEMCODE_DEN { get; set; }
+        public String WEIGHT_DEN { get; set; }
+        public String FROMPOSCODE_DEN { get; set; }
+        public String TOPOSCODE_DEN { get; set; }
+        public String MAILTRIPNUMBER_DEN { get; set; }
+        public String MAILTRIPDATE_DEN { get; set; }
+        public String POSTBAGINDEX_DEN { get; set; }
+
+        public String POSTBAGCODE_DEN { get; set; }
+        public String TO_CHAR_ACCEPTTIME_DEN { get; set; }
+        public String TO_CHAR_BC37CODE_DEN { get; set; }
+
+        public String TO_CHAR_BC37CREATETIME_DEN { get; set; }
+        public String IDVNPOST_DEN { get; set; }
+        public String CONVERT_3_IDVNPOST_DEN { get; set; }
+
+
+        //CHIEU DI
+        public String HUONG_DI { get; set; }
+        public String ITEMCODE_DI { get; set; }
+        //public String WEIGHT_DI { get; set; }
+        public String FROMPOSCODE_DI { get; set; }
+        public String TOPOSCODE_DI { get; set; }
+        public String MAILTRIPNUMBER_DI { get; set; }
+        public String MAILTRIPDATE_DI { get; set; }
+        public String POSTBAGINDEX_DI { get; set; }
+
+        public String POSTBAGCODE_DI { get; set; }
+        public String TO_CHAR_ACCEPTTIME_DI { get; set; }
+        public String TO_CHAR_BC37CODE_DI { get; set; }
+
+        public String TO_CHAR_BC37CREATETIME_DI { get; set; }
+        public String IDVNPOST_DI { get; set; }
+        public String CONVERT_3_IDVNPOST_DI { get; set; }
+    }
+
+    public class ReturnCHI_TIET_LIEN_TINH
+    {
+        public string Code { get; set; }
+
+        /// <summary>
+        /// Message
+        /// </summary>
+        public string Message { get; set; }
+
+        public string Value { get; set; }
+        /// <summary>
+        /// Value
+        /// </summary>
+        public int Total { get; set; }
+
+        public CHI_TIET_LIEN_TINH CHI_TIET_LIEN_TINHReport { get; set; }
+        public List<CHI_TIET_LIEN_TINH> ListCHI_TIET_LIEN_TINHReport;
+
+        
+        
+    }
 }

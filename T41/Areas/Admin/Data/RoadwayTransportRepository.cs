@@ -141,6 +141,7 @@ namespace T41.Areas.Admin.Data
                     _returnRoadwayTransport.Code = "00";
                     _returnRoadwayTransport.Message = "Tổng dữ liệu thành công.";
                     cmd.Connection.Close();
+                    cmd.Connection.Dispose();
  
                 }
             }

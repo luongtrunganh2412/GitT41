@@ -73,19 +73,19 @@
 
                 <div class="col-lg-12">
                     <button type="button" class="btn btn-primary btn-lrg ajax" id="printpagebutton" onclick="printpage()">In Báo Cáo <i class="fa fa-print" aria-hidden="true"></i>  </button>
-                    <button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>
+                    @*<button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>*@
                     
                 </div>
             </div>
             <div class="box-footer">
                 <div class="row">
-                    <div class="col-md-12" id="chartContainer1" style="height: 400px; width: 100%;">
+                    <div class="col-lg-12" id="chartContainer1" style="height: 400px; width: 100%;">
 
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12" id="chartContainer" style="height: 400px; width: 100%;">
+                    <div class="col-lg-12" id="chartContainer" style="height: 400px; width: 100%;">
 
                     </div>
                 </div>
@@ -94,7 +94,7 @@
             
             
 
-            <div class="row">
+            <div class="row" style="margin-top:35px;">
                 <div class="col-lg-12">
                     <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:11px;border-collapse:collapse;border:1px solid;">
                         <thead>
@@ -198,7 +198,7 @@
 
     switch (checkphuongtienvanchuyen) {
         case 0:
-            checkphuongtienvanchuyen = "Bay"
+            checkphuongtienvanchuyen = "Tất Cả"
             break;
         default:
             break;
@@ -314,13 +314,14 @@
         var exportButton = document.getElementById("btnexport");
         //Set the print button visibility to 'hidden'
         printButton.style.visibility = 'hidden';
-        exportButton.style.visibility = 'hidden';
+        //exportButton.style.visibility = 'hidden';
+
         //Print the page content
         window.print()
         //Set the print button to 'visible' again
         //[Delete this line if you want it to stay hidden after printing]
         printButton.style.visibility = 'visible';
-        exportButton.style.visibility = 'visible';
+        //exportButton.style.visibility = 'visible';
     }
 
     

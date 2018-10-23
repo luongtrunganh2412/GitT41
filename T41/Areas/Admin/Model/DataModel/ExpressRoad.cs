@@ -18,25 +18,18 @@ namespace T41.Areas.Admin.Model.DataModel
     //Dữ liệu lấy ra của Báo cáo tổng hợp dữ liệu truyền nhận EMS Center
     public class ExpressRoadDetail
     {
-        public String EVENT { get; set; }
-        public String POSTTIMEVIEW { get; set; }
-        public String MAILROUTEARRIVE { get; set; }
-        public String MAILROUTEARRIVENAME { get; set; }
-        public String ARRIVETIME { get; set; }
-        public String MAILROUTE_TYPE { get; set; }
-        public String MAILROUTE_CLASSIFY { get; set; }
-        public String TRANSPORT_TYPE { get; set; }
-        public String MAILLEAVE { get; set; }
-        public String MAILROUTENAME { get; set; }
-        public String LEAVE { get; set; }
-        public String SERVICE { get; set; }
-        public String MAILROUTELEAVE { get; set; }
-        public String MAILROUTELEAVENAME { get; set; }
-        public String LEAVETIME { get; set; }
-        public String MAILROUTE_TYPE1 { get; set; }
-        public String MAILROUTE_CLASSIFY1 { get; set; }
-        public String TRANSPORT_TYPE1 { get; set; }
-        
+        public int ID { get; set; }
+        public String CONTACT_NAME { get; set; }
+        public String CONTACT_ADDRESS { get; set; }
+        public String GENERAL_EMAIL { get; set; }
+        public String CONTACT_PHONE_WORK { get; set; }
+        public int CONTACT_PROVINCE { get; set; }
+        public int CONTACT_DISTRICT { get; set; }
+        public String CUSTOMER_CODE { get; set; }
+        public String UNIT_CODE { get; set; }
+        public String API_KEY { get; set; }
+        public String CUSTOMER_ID { get; set; }
+
 
     }
 

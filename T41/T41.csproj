@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Common\Convertion.cs" />
+    <Compile Include="Areas\Admin\Common\ConvertListToDataTable.cs" />
     <Compile Include="Areas\Admin\Common\FormatterBase.cs" />
     <Compile Include="Areas\Admin\Common\FormatterGeneral.cs" />
     <Compile Include="Areas\Admin\Common\Helper.cs" />
@@ -3302,6 +3303,8 @@
     <Content Include="Areas\Admin\Views\Home\Lock.cshtml" />
     <Content Include="Areas\Admin\Views\DevelopActivity\DevelopActivity_NOI_TINH_DetailReport.cshtml" />
     <Content Include="Areas\Admin\Views\DevelopActivity\ListDevelopActivity_NOI_TINH.cshtml" />
+    <Content Include="Areas\Admin\Views\ExpressRoad\ExpressRoadDetailReport.cshtml" />
+    <Content Include="Areas\Admin\Views\DevelopActivity\ListDevelopActivity_CHI_TIET_LIEN_TINH.cshtml" />
     <None Include="Properties\PublishProfiles\Web.T41.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

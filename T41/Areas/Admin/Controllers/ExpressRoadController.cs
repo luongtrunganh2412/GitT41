@@ -28,11 +28,11 @@ namespace T41.Areas.Admin.Controllers
 
         //Controller gọi đến chi tiết của bảng CHI TIET
         [HttpGet]
-        public ActionResult ListDetailedExpressRoadReport(int zone)
+        public ActionResult ListDetailedExpressRoadReport()
         {
             ExpressRoadRepository expressroadRepository = new ExpressRoadRepository();
             ReturnExpressRoad returnexpressroad = new ReturnExpressRoad();
-            returnexpressroad = expressroadRepository.EXPRESS_ROAD_DETAIL(zone);
+            returnexpressroad = expressroadRepository.EXPRESS_ROAD_DETAIL();
             return View(returnexpressroad);
         }
 
@@ -71,6 +71,14 @@ namespace T41.Areas.Admin.Controllers
                 }
             }
             return dt;
+        }
+
+        public ActionResult Hello()
+        {
+            var data = ReadFromExcelfile(@"E:\DemoImportExcel\ExcelDemo.xlsx", "First Sheet");
+            List<ExpressRoadDetail> listExpressRoad = null;
+            listExpressRoad = ConvertListToDataTable.DataTableToList<ExpressRoadDetail>(data);
+            return View(listExpressRoad);
         }
 
         [HttpGet]

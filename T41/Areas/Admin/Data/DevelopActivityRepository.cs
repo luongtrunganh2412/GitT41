@@ -80,9 +80,12 @@ namespace T41.Areas.Admin.Data
                             oBDHN_DI_HCM_Detail.LEAVEWEIGHT_KG_LK = LEAVEWEIGHT_KG_LK;
 
                             //Phần Tính SL Tồn Lũy Kế Chiều Đến
-                            oBDHN_DI_HCM_Detail.ARRIVEQUANTITY_TON_LK = ARRIVEQUANTITY_LK - LEAVEQUANTITY_LK;
+                            //Chuyển Số liệu âm > DƯƠNG
+                            oBDHN_DI_HCM_Detail.ARRIVEQUANTITY_TON_LK = System.Math.Abs(ARRIVEQUANTITY_LK - LEAVEQUANTITY_LK);
+
                             //Phần Tính KL Tồn Lũy Kế Chiều Đến
-                            oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_TON_LK = ARRIVEWEIGHT_KG_LK - LEAVEWEIGHT_KG_LK;
+                            //Chuyển Số liệu âm > DƯƠNG
+                            oBDHN_DI_HCM_Detail.ARRIVEWEIGHT_KG_TON_LK = System.Math.Abs(ARRIVEWEIGHT_KG_LK - LEAVEWEIGHT_KG_LK);
 
                             //Phần Tính Tỷ Lệ Đáp Ứng Theo Chuyến (SL)
 
@@ -259,6 +262,7 @@ namespace T41.Areas.Admin.Data
             {
                 _ReturnNOI_TINH.Code = "99";
                 _ReturnNOI_TINH.Message = "Lỗi xử lý dữ liệu";
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "DevelopActivityRepository# Region ReturnNOI_TINH" + ex.Message);
                 //_ReturnNOI_TINH.Total = 0;
                 //_ReturnNOI_TINH.ListBDHN_DI_HCMReport = null;
             }
@@ -269,8 +273,135 @@ namespace T41.Areas.Admin.Data
 
         #endregion
 
+        //Phần lấy dữ liệu CHI TIẾT LIÊN TỈNH
+        #region CHI TIẾT LIÊN TỈNH
+        public ReturnCHI_TIET_LIEN_TINH CHI_TIET_LIEN_TINH(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner)
+        {
+            DataTable da = new DataTable();
+            Convertion common = new Convertion();
+            ReturnCHI_TIET_LIEN_TINH _returnChiTietLienTinh = new ReturnCHI_TIET_LIEN_TINH();
+
+            List<CHI_TIET_LIEN_TINH> listChiTietLienTinh = null;
+            CHI_TIET_LIEN_TINH oChiTietLienTinh = null;
+            String StoreProcedureName = "";
+            try
+            {
+                // Gọi vào DB để lấy dữ liệu.
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    //Chiều HN ĐI HCM 100916
+                    
+                    if (workcenter == 100916)
+                    {
+                        //BỘ LỌC EMS-HN ĐI HCM
+                        if (arriveprovince == 100000 && arrivepartner == 2)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_EMSHN_DI_HCM";
+                        }
+
+                        //BỘ LỌC BĐ-HN ĐI HCM
+                        if (arriveprovince == 100000 && arrivepartner == 1)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_BDHN_DI_HCM";
+                        }
+
+                        //BỘ LỌC Miền Bắc Trừ HN ĐI HCM
+                        if (arriveprovince == 0 && arrivepartner == 99)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_MIENBAC_TRU_HN_DI_HCM";
+                        }
+                    }
 
 
+                    //Chiều HCM ĐI HN 100916
+                    
+                    if (workcenter == 700916)
+                    {
+                        //BỘ LỌC EMS-HCM ĐI HN
+                        if (arriveprovince == 700000 && arrivepartner == 2)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_EMSHCM_DI_HN";
+                        }
+
+                        //BỘ LỌC BĐ-HCM ĐI HN
+                        if (arriveprovince == 700000 && arrivepartner == 1)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_BDHCM_DI_HN";
+                        }
+
+                        //BỘ LỌC Miền Bắc Trừ HCM ĐI HN
+                        if (arriveprovince == 0 && arrivepartner == 99)
+                        {
+                            StoreProcedureName = "DEVELOP_ACTIVITY.DETAIL_MIENNAM_TRU_HCM_DI_HN";
+                        }
+                    }
+
+                    //OracleCommand myCommand = new OracleCommand("DEVELOP_ACTIVITY.DETAIL_BDHN_DI_HCM", Helper.OraDCComOracleConnection);
+                    OracleCommand myCommand = new OracleCommand(StoreProcedureName, Helper.OraDCComOracleConnection);
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandTimeout = 20000;
+                    myCommand.Parameters.Add("p_workcenter", OracleDbType.Int32).Value = workcenter;
+                    myCommand.Parameters.Add("p_AcceptDate", OracleDbType.Int32).Value = common.DateToInt(AcceptDate);
+                    myCommand.Parameters.Add(new OracleParameter("p_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    OracleDataAdapter mAdapter = new OracleDataAdapter();
+                    mAdapter = new OracleDataAdapter(myCommand);
+                    mAdapter.Fill(da);
+                    listChiTietLienTinh = ConvertListToDataTable.DataTableToList<CHI_TIET_LIEN_TINH>(da);
+                    if (listChiTietLienTinh != null && listChiTietLienTinh.Count != 0)
+                    {
+                        _returnChiTietLienTinh.Code = "00";
+                        _returnChiTietLienTinh.Message = "Lấy dữ liệu thành công.";
+                        _returnChiTietLienTinh.ListCHI_TIET_LIEN_TINHReport = listChiTietLienTinh;
+                    }
+
+                    else
+                    {
+                        _returnChiTietLienTinh.Code = "01";
+                        _returnChiTietLienTinh.Message = "Không có dữ liệu";
+                        _returnChiTietLienTinh.ListCHI_TIET_LIEN_TINHReport = null;
+                    }
+
+
+
+                    //DataTableReader dr = da.CreateDataReader();
+
+                    //if (dr.HasRows)
+                    //{
+                    //    listChiTietLienTinh = new List<CHI_TIET_LIEN_TINH>();
+                    //    while (dr.Read())
+                    //    {
+                    //        oChiTietLienTinh = new CHI_TIET_LIEN_TINH();
+                    //        oChiTietLienTinh.PROVINCECODE = dr["PROVINCECODE"].ToString();
+                    //        oChiTietLienTinh.PROVINCENAME = dr["PROVINCENAME"].ToString();
+                    //        listChiTietLienTinh.Add(oChiTietLienTinh);
+
+                    //    }
+
+                    //    _returnChiTietLienTinh.Code = "00";
+                    //    _returnChiTietLienTinh.Message = "Lấy dữ liệu thành công.";
+                    //    _returnChiTietLienTinh.ListCHI_TIET_LIEN_TINHReport = listChiTietLienTinh;
+                    //}
+                    //else
+                    //{
+                    //    _returnChiTietLienTinh.Code = "01";
+                    //    _returnChiTietLienTinh.Message = "Không có dữ liệu";
+
+                    //}
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _returnChiTietLienTinh.Code = "99";
+                _returnChiTietLienTinh.Message = "Lỗi xử lý dữ liệu";
+                LogAPI.LogToFile(LogFileType.EXCEPTION, "DevelopActivityRepository# Region ReturnCHI_TIET_LIEN_TINH" + ex.Message);
+                //_returnChiTietLienTinh.Total = 0;
+                //_returnChiTietLienTinh.ListCHI_TIET_LIEN_TINHReport = null;
+            }
+            return _returnChiTietLienTinh;
+        }
+        #endregion
     }
 
 

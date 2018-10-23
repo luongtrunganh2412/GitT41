@@ -15,7 +15,7 @@ namespace T41.Areas.Admin.Data
         
         //Phần chi tiết của bảng tổng hợp 
         #region EXPRESS_ROAD_DETAIL          
-        public ReturnExpressRoad EXPRESS_ROAD_DETAIL(int zone)
+        public ReturnExpressRoad EXPRESS_ROAD_DETAIL()
         {
             DataTable da = new DataTable();
             MetaData _metadata = new MetaData();
@@ -30,56 +30,56 @@ namespace T41.Areas.Admin.Data
                 using (OracleCommand cmd = new OracleCommand())
                 {
 
-                    OracleCommand myCommand = new OracleCommand("management_qlct.GetJourneyOnePosCode", Helper.OraDSOracleConnection);
+                    OracleCommand myCommand = new OracleCommand("USER_MANAGEMENT.Detail_Id_User_BP", Helper.OraDCDevOracleConnection);
                     //xử lý tham số truyền vào data table
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myCommand.CommandTimeout = 20000;
                     OracleDataAdapter mAdapter = new OracleDataAdapter();
-                    myCommand.Parameters.Add("v_zone", OracleDbType.Int32).Value = zone;
+                    myCommand.Parameters.Add("P_ID", OracleDbType.Int32).Value = 22;
                     myCommand.Parameters.Add(new OracleParameter("v_ListStage", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
                     mAdapter = new OracleDataAdapter(myCommand);
                     mAdapter.Fill(da);
-                    DataTableReader dr = da.CreateDataReader();
-
-                    
-
-                    if (dr.HasRows)
+                    listExpressRoad = ConvertListToDataTable.DataTableToList<ExpressRoadDetail>(da);
+                    if (listExpressRoad != null && listExpressRoad.Count != 0)
                     {
-                        listExpressRoad = new List<ExpressRoadDetail>();
-                        while (dr.Read())
-                        {
-                            oExpressRoadDetail = new ExpressRoadDetail();
-                            oExpressRoadDetail.EVENT = dr["EVENT"].ToString();
-                            oExpressRoadDetail.POSTTIMEVIEW = dr["POSTTIMEVIEW"].ToString();
-                            oExpressRoadDetail.MAILROUTEARRIVE = dr["MAILROUTEARRIVE"].ToString();
-                            oExpressRoadDetail.MAILROUTEARRIVENAME = dr["MAILROUTEARRIVENAME"].ToString();
-                            oExpressRoadDetail.ARRIVETIME = dr["ARRIVETIME"].ToString();
-                            oExpressRoadDetail.MAILROUTE_TYPE = dr["MAILROUTE_TYPE"].ToString();
-                            oExpressRoadDetail.MAILROUTE_CLASSIFY = dr["MAILROUTE_CLASSIFY"].ToString();
-                            oExpressRoadDetail.TRANSPORT_TYPE = dr["TRANSPORT_TYPE"].ToString();
-                            oExpressRoadDetail.MAILLEAVE = dr["MAILLEAVE"].ToString();
-                            oExpressRoadDetail.MAILROUTENAME = dr["MAILROUTENAME"].ToString();
-                            oExpressRoadDetail.LEAVE = dr["LEAVE"].ToString();
-                            oExpressRoadDetail.SERVICE = dr["SERVICE"].ToString();
-                            oExpressRoadDetail.MAILROUTELEAVE = dr["MAILROUTELEAVE"].ToString();
-                            oExpressRoadDetail.MAILROUTELEAVENAME = dr["MAILROUTELEAVENAME"].ToString();
-                            oExpressRoadDetail.LEAVETIME = dr["LEAVETIME"].ToString();
-                            oExpressRoadDetail.MAILROUTE_TYPE1 = dr["MAILROUTE_TYPE1"].ToString();
-                            oExpressRoadDetail.MAILROUTE_CLASSIFY1 = dr["MAILROUTE_CLASSIFY1"].ToString();
-                            oExpressRoadDetail.TRANSPORT_TYPE1 = dr["TRANSPORT_TYPE1"].ToString();
-                            listExpressRoad.Add(oExpressRoadDetail);
-
-                        }
                         _returnExpressRoad.Code = "00";
                         _returnExpressRoad.Message = "Lấy dữ liệu thành công.";
                         _returnExpressRoad.ListExpressRoadReport = listExpressRoad;
                     }
+
                     else
                     {
                         _returnExpressRoad.Code = "01";
                         _returnExpressRoad.Message = "Không có dữ liệu";
-
+                        _returnExpressRoad.ListExpressRoadReport = null;
                     }
+
+
+
+                    //DataTableReader dr = da.CreateDataReader();
+
+                    //if (dr.HasRows)
+                    //{
+                    //    listExpressRoad = new List<ExpressRoadDetail>();
+                    //    while (dr.Read())
+                    //    {
+                    //        oExpressRoadDetail = new ExpressRoadDetail();
+                    //        oExpressRoadDetail.PROVINCECODE = dr["PROVINCECODE"].ToString();
+                    //        oExpressRoadDetail.PROVINCENAME = dr["PROVINCENAME"].ToString();
+                    //        listExpressRoad.Add(oExpressRoadDetail);
+
+                    //    }
+
+                    //    _returnExpressRoad.Code = "00";
+                    //    _returnExpressRoad.Message = "Lấy dữ liệu thành công.";
+                    //    _returnExpressRoad.ListExpressRoadReport = listExpressRoad;
+                    //}
+                    //else
+                    //{
+                    //    _returnExpressRoad.Code = "01";
+                    //    _returnExpressRoad.Message = "Không có dữ liệu";
+
+                    //}
 
 
                 }

@@ -104,6 +104,10 @@ namespace T41.Areas.Admin.Data
                     //var byteArray = Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["Username"] + ":" + ConfigurationManager.AppSettings["Password"]);
                     //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
                     var _response = client.GetAsync("TrackAndTrace/WebReport?emscode=" + emscode).Result;
+                    //if (Convert.ToInt32(_response.IsSuccessStatusCode) != 200)
+                    //{
+                        
+                    //}
                     var returndata = _response.Content.ReadAsAsync<ReturnTrackAndTrace>().Result;
                     //Gọi Theo dynamic data
                     //var returndata = _response.Content.ReadAsAsync<dynamic>().Result;

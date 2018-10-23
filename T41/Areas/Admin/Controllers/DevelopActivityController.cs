@@ -52,6 +52,11 @@ namespace T41.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult ListDevelopActivity_CHI_TIET_LIEN_TINH()
+        {
+            return View();
+        }
+
         //Phần controller xử lý để lấy dữ liệu  LIÊN TỈNH
         [HttpGet]
         public JsonResult ListDevelopActivity_BDHN_DI_HCM(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner )
@@ -70,6 +75,17 @@ namespace T41.Areas.Admin.Controllers
             
             return Json(returnBDHN_DI_HCM, JsonRequestBehavior.AllowGet);
             
+        }
+
+        //Phần controller xử lý để lấy dữ liệu CHI TIẾT LIÊN TỈNH
+        [HttpGet]
+        public JsonResult ListDevelopActivity_Action_CHI_TIET_LIEN_TINH_ACTION(int workcenter, string AcceptDate, int arriveprovince, int arrivepartner)
+        {
+            DevelopActivityRepository developactivityrepository = new DevelopActivityRepository();
+            ReturnCHI_TIET_LIEN_TINH returnCHI_TIET_LIEN_TINH = new ReturnCHI_TIET_LIEN_TINH();
+            returnCHI_TIET_LIEN_TINH = developactivityrepository.CHI_TIET_LIEN_TINH(workcenter, AcceptDate, arriveprovince, arrivepartner);
+            return Json(returnCHI_TIET_LIEN_TINH, JsonRequestBehavior.AllowGet);
+
         }
 
         //Phần controller xử lý để lấy dữ liệu NỘI TỈNH
