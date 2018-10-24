@@ -86,7 +86,7 @@
                             <option selected="selected" value="0">Tỉnh Trừ Thành Phố</option>
                             <option  value="10">Tất Cả</option>
                             <option value="100000">100000 -TP.Hà Nội</option>
-                            <option value="700000">700000 -TP.Hồ Chí Minh</option>
+                            @*<option value="700000">700000 -TP.Hồ Chí Minh</option>*@
                         </select>
                     </div>
                 </div>
@@ -127,12 +127,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <a href='' target="_blank" class="btn btn-primary btn-md" onclick="this.href = '/Admin/DevelopActivity/ListDevelopActivity_CHI_TIET_LIEN_TINH?bckhaithac=' + document.getElementById('bckhaithac').value + '&date=' + document.getElementById('date').value + '&phuongtienvanchuyen=' + document.getElementById('phuongtienvanchuyen').value + '&changvanchuyen=' + document.getElementById('changvanchuyen').value
-                    + '&tuyenvanchuyen=' + document.getElementById('tuyenvanchuyen').value + '&chuyenvanchuyen=' + document.getElementById('chuyenvanchuyen').value + '&tinhchapnhan=' + document.getElementById('tinhchapnhan').value + '&donvichapnhan=' + document.getElementById('donvichapnhan').value + '&tinhphattra=' + document.getElementById('tinhphattra').value + '&donviphattra=' + document.getElementById('donviphattra').value">Chi Tiết</a>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -151,9 +145,11 @@
         $('#bckhaithac').change(function () {
             let bckhaithacvalue = $("#bckhaithac").val();
             if (bckhaithacvalue == 100916) {
+                $("#tinhchapnhan").html("<option selected=" + 'selected' + " value=" + 0 + ">Tỉnh Trừ Thành Phố</option><option value=" + 10 + ">Tất Cả</option></option><option value=" + 100000 + ">100000 -TP.Hà Nội</option> ")
                 $("#tinhphattra").html("<option value=" +  1 + ">Hồ Chí Minh</option>")
             }
             if (bckhaithacvalue == 700916) {
+                $("#tinhchapnhan").html("<option selected=" + 'selected' + " value=" + 0 + ">Tỉnh Trừ Thành Phố</option><option value=" + 10 + ">Tất Cả</option></option><option value=" + 700000 + ">700000 -TP.Hồ Chí Minh</option> ")
                 $("#tinhphattra").html("<option value=" + 0 + ">Hà Nội</option>")
             }
         })

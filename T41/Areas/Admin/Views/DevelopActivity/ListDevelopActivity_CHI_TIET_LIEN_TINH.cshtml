@@ -42,7 +42,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</strong></h2>
+                    <h2 class="text-center"><strong>BÁO CÁO CHI TIẾT HOẠT ĐỘNG TẠI SÀN KHAI THÁC LIÊN TỈNH</strong></h2>
                     <div class="col-lg-6" style="padding-right: 5px;">
                         <h5 class="text-right"><strong>BC Khai Thác:</strong></h5>
                         <h5 class="text-right"><strong>Phạm Vi Dữ Liệu:</strong></h5>
@@ -80,21 +80,21 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    @*<input id="printpagebutton" class="btn btn-default btn-lrg ajax" type="button" value="In Báo Cáo" onclick="printpage()" />*@
                     <button type="button" class="btn btn-primary btn-lrg ajax" id="printpagebutton" onclick="printpage()">In Báo Cáo <i class="fa fa-print" aria-hidden="true"></i>  </button>
-                    <button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>
-                    
+                    @*<button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>*@
+                    <input type="button" class="btn btn-success btn-lrg ajax no-print" id="btnexportJS" onclick="tableToExcel('example1', 'Dữ Liệu Chi Tiết ')" value="Xuất Excel">
+
                 </div>
             </div>
             
             <div class="row" style="margin-top:35px;">
                 <div class="col-lg-12">
-                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:11px;border-collapse:collapse;border:1px solid;">
+                    <table id="example1" class="table table-bordered table-hover" style="border-color:Black;border-width: 0px;border-style:Solid;font-family:Tahoma;font-size:9px;border-collapse:collapse;border:1px solid;">
                         <thead>
                             <tr>
-                                <th  rowspan="2" class="text-center">STT</th>
-                                <th style="background:#f9c19a;" colspan="11" class="text-center">Chi Tiết Đến</th>
-                                <th style="background:#57c5e0;" colspan="9" class="text-center">Chi Tiết Đi</th>
+                                <th style="background:#f9c19a;" rowspan="2" class="text-center">STT</th>
+                                <th style="background:#f9c19a;" colspan="14" class="text-center">Chi Tiết Đến</th>
+                                <th style="background:#57c5e0;" colspan="13" class="text-center">Chi Tiết Đi</th>
                             </tr>
                             <tr>
                                 <th style="background:#f9c19a;" class="text-center">Hướng</th>
@@ -114,7 +114,6 @@
 
                                 <th style="background:#57c5e0;" class="text-center">Hướng</th>
                                 <th style="background:#57c5e0;" class="text-center">Mã E1 </th>
-                                <th style="background:#57c5e0;" class="text-center">Khối lượng (g)</th>
                                 <th style="background:#57c5e0;" class="text-center">Bưu cục đóng</th>
                                 <th style="background:#57c5e0;" class="text-center">BC nhận </th>
                                 <th style="background:#57c5e0;" class="text-center">Chuyến thư </th>
@@ -151,7 +150,20 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
-    
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+          , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
+
     var url_string = document.URL;
     var url = new URL(url_string);
     var bckhaithac = url.searchParams.get("bckhaithac");
@@ -303,7 +315,7 @@
 
     $(document).ready(function () {
         $('.box-footer').hide();
-        $('#btnexport').hide();
+        $('#btnexportJS').hide();
 
         document.getElementById("date").innerHTML = "<strong>" + date + "</strong>";
         //document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
@@ -341,16 +353,14 @@
     function printpage() {
         //Get the print button and put it into a variable
         var printButton = document.getElementById("printpagebutton");
-        var exportButton = document.getElementById("btnexport");
         //Set the print button visibility to 'hidden'
         printButton.style.visibility = 'hidden';
-        exportButton.style.visibility = 'hidden';
         //Print the page content
         window.print()
         //Set the print button to 'visible' again
         //[Delete this line if you want it to stay hidden after printing]
         printButton.style.visibility = 'visible';
-        exportButton.style.visibility = 'visible';
+        
     }
 
     
@@ -381,23 +391,23 @@
                     str_body += '<td class="text-center">' + a++ + '</td>';
                     //str_body += '<td class="text-center">' + data.ListCHI_TIET_LIEN_TINHReport[i].STT + '</td>';
                     str_body += '<td style="width:100px;">' + data.ListCHI_TIET_LIEN_TINHReport[i].HUONG_DEN + '</td>';
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].ITEMCODE_DEN + '</td>';
-                    str_body += '<td>' + data.ListCHI_TIET_LIEN_TINHReport[i].WEIGHT_DEN + '</td>';
+                    str_body += '<td class="text-center">' + data.ListCHI_TIET_LIEN_TINHReport[i].ITEMCODE_DEN + '</td>';
+                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].WEIGHT_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].FROMPOSCODE_DEN + '</td>';
-                    str_body += '<td>' + data.ListCHI_TIET_LIEN_TINHReport[i].TOPOSCODE_DEN + '</td>';
+                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TOPOSCODE_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].MAILTRIPNUMBER_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].MAILTRIPDATE_DEN + '</td>';
 
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].POSTBAGINDEX_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].POSTBAGCODE_DEN + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_ACCEPTTIME_DEN + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_ACCEPTTIME_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CODE_DEN + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CREATETIME_DEN + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CREATETIME_DEN + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].IDVNPOST_DEN + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].CONVERT_3_IDVNPOST_DEN + '</td>';
+                    str_body += '<td >' + data.ListCHI_TIET_LIEN_TINHReport[i].CONVERT_3_IDVNPOST_DEN + '</td>';
 
 
                     //Chiều ĐI
@@ -405,20 +415,20 @@
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].ITEMCODE_DI + '</td>';
 
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].FROMPOSCODE_DI + '</td>';
-                    str_body += '<td>' + data.ListCHI_TIET_LIEN_TINHReport[i].TOPOSCODE_DI + '</td>';
+                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TOPOSCODE_DI + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].MAILTRIPNUMBER_DI + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].MAILTRIPDATE_DI + '</td>';
 
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].POSTBAGINDEX_DI + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].POSTBAGCODE_DI + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_ACCEPTTIME_DI + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_ACCEPTTIME_DI + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CODE_DI + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CREATETIME_DI + '</td>';
+                    str_body += '<td style="width:100px;">' + data.ListCHI_TIET_LIEN_TINHReport[i].TO_CHAR_BC37CREATETIME_DI + '</td>';
                     str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].IDVNPOST_DI + '</td>';
 
-                    str_body += '<td class="text-right">' + data.ListCHI_TIET_LIEN_TINHReport[i].CONVERT_3_IDVNPOST_DI + '</td>';
+                    str_body += '<td >' + data.ListCHI_TIET_LIEN_TINHReport[i].CONVERT_3_IDVNPOST_DI + '</td>';
 
 
                     str_body += '</tr>';
@@ -443,7 +453,7 @@
                     )
                     $('.loading-element').hide();
                     $('#listdevelopactivity1').html(str_html);
-                    $('#btnexport').show();
+                    $('#btnexportJS').show();
                     $('.box-footer').show();
                     
                    

@@ -42,7 +42,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC</strong></h2>
+                    <h2 class="text-center"><strong>BÁO CÁO HOẠT ĐỘNG TẠI SÀN KHAI THÁC NỘI TỈNH</strong></h2>
                     <div class="col-lg-6" style="padding-right: 5px;">
                         <h5 class="text-right"><strong>BC Khai Thác:</strong></h5>
                         <h5 class="text-right"><strong>Phạm Vi Dữ Liệu:</strong></h5>
@@ -74,7 +74,8 @@
                 <div class="col-lg-12">
                     <button type="button" class="btn btn-primary btn-lrg ajax" id="printpagebutton" onclick="printpage()">In Báo Cáo <i class="fa fa-print" aria-hidden="true"></i>  </button>
                     @*<button type="button" class="btn btn-success btn-lrg ajax" id="btnexport" data-baseurl="@Url.Action("Export", "DevelopActivity")">Xuất Excel <i class="fa fa-file-excel-o" aria-hidden="true"></i>  </button>*@
-                    
+                    <input type="button" class="btn btn-success btn-lrg ajax no-print" id="btnexportJS" onclick="tableToExcel('example1', 'Dữ Liệu Biểu Đồ Nội Tỉnh')" value="Xuất Excel">
+
                 </div>
             </div>
             <div class="box-footer">
@@ -163,7 +164,18 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.28/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
-    
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+          , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
     var url_string = document.URL;
     var url = new URL(url_string);
     var bckhaithac = url.searchParams.get("bckhaithac");
@@ -268,7 +280,7 @@
 
     $(document).ready(function () {
         $('.box-footer').hide();
-        $('#btnexport').hide();
+        $('#btnexportJS').hide();
 
         document.getElementById("date").innerHTML = "<strong>" + date + "</strong>";
         //document.getElementById("today").innerHTML = "<strong>Ngày Lập Báo Cáo:" + ddmmyyyy(); + "</strong>";
@@ -285,12 +297,7 @@
     });
 
     //Export Excel
-    $('#btnexport').click(function () {
-        // build the url
-        var url = $(this).data('baseurl') + '?workcenter=' + bckhaithac + '&AcceptDate=' + date + '&arriveprovince=' + tinhchapnhan + '&arrivepartner=' + donvichapnhan;
-        // redirect
-        location.href = url;
-    });
+    
 
 
     //Phần JS để lấy dữ liệu date theo kiểu yyyyMMdddd
@@ -413,7 +420,7 @@
                     )
                     $('.loading-element').hide();
                     $('#listdevelopactivity1').html(str_html);
-                    $('#btnexport').show();
+                    $('#btnexportJS').show();
                     $('.box-footer').show();
                     DevelopChartKL();
                     DevelopChartSL();
